@@ -929,15 +929,20 @@ button{font:inherit;cursor:pointer}
 .ovl{position:fixed;inset:0;background:rgba(25,30,46,.48);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
 .ovl.show{display:flex}
 /* === 영단어 학습 모듈 === */
-.wordovl{position:fixed;inset:0;background:rgba(25,30,46,.55);z-index:140;display:none;align-items:flex-end;justify-content:center}
+.wordovl{position:fixed;inset:0;background:rgba(25,30,46,.55);z-index:140;display:none;align-items:center;justify-content:center;padding:20px}
 .wordovl.show{display:flex}
-.wordsheet{background:var(--card);width:100%;max-width:440px;height:92vh;max-height:760px;border-radius:24px 24px 0 0;display:flex;flex-direction:column;overflow:hidden;animation:winup .24s ease}
+.wordsheet{background:var(--card);width:100%;max-width:440px;height:auto;max-height:88vh;border-radius:22px;display:flex;flex-direction:column;overflow:hidden;animation:winup .22s ease}
+/* 모바일 실기기(좁은 폭): bottom-sheet 유지가 자연스러움 */
+@media(max-width:560px){
+ .wordovl{align-items:flex-end;padding:0}
+ .wordsheet{max-width:100%;height:92vh;max-height:760px;border-radius:24px 24px 0 0}
+}
 .wtop{display:flex;align-items:center;gap:12px;padding:16px 18px 12px}
 .wx{border:0;background:var(--bg);width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer;color:var(--ink2);flex:none}
 .wprog{flex:1;height:7px;background:var(--line2);border-radius:999px;overflow:hidden}
 .wpbar{height:100%;background:var(--s-word);border-radius:999px;transition:width .3s;width:0}
 .wcount{font-size:12px;font-weight:800;color:var(--ink3);flex:none}
-.wbody{flex:1;overflow-y:auto;padding:14px 24px 28px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.wbody{flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px 24px 28px;display:flex;flex-direction:column;align-items:center;text-align:center}
 .wsrs{font-size:11px;font-weight:900;color:var(--s-word);background:var(--s-wordt);padding:5px 12px;border-radius:999px;margin:8px 0 18px}
 .wword{font-size:38px;font-weight:900;color:var(--ink);letter-spacing:-.5px}
 .wword.sm{font-size:30px;margin-top:10px}
@@ -2214,16 +2219,25 @@ function openSchFix(){
   document.getElementById(&#x27;ovl&#x27;).classList.add(&#x27;show&#x27;);
 }
 /* day=요일(0월~6일), slot=시작행, len=길이 — 특강은 시간이 정해져 있어 그 자리에 담김(겹치면 안내) */
+/* when(&quot;토 19:00&quot;)의 시간을 TIMES 기준 slot으로 변환. 그리드 밖(오전 등)이면 -1 */
+function whenToSlot(when){
+ var m=(when||&#x27;&#x27;).match(/(\d{1,2}):(\d{2})/); if(!m)return -1;
+ var hm=(&#x27;0&#x27;+m[1]).slice(-2)+&#x27;:&#x27;+m[2];
+ var i=TIMES.indexOf(hm);
+ return i; /* -1이면 15:30~21:30 그리드 밖 (오전 특강 등 — 시간표 겹침 없음) */
+}
 var TKB=[
- {g:&#x27;linear-gradient(120deg,#E23B3B,#F2683C)&#x27;,cat:&#x27;🔥 수행평가 공략&#x27;,tit:&#x27;수행평가, 뭘 고를지부터&#x27;,desc:&#x27;많은 수행 중 세팅에 유리한 하나를 골라 공략하는 법&#x27;,when:&#x27;금 20:00&#x27;,day:4,slot:9,len:2},
- {g:&#x27;linear-gradient(120deg,#3A3D8F,#6B4FD0)&#x27;,cat:&#x27;✦ 공부 기술&#x27;,tit:&#x27;시험 2주 전 역산 공부법&#x27;,desc:&#x27;벼락치기 말고, D-14부터 거꾸로 짜는 시험 플랜&#x27;,when:&#x27;화 19:30&#x27;,day:1,slot:8,len:1},
- {g:&#x27;linear-gradient(120deg,#1E8E7E,#2FB3A0)&#x27;,cat:&#x27;∑ 서술형 대비&#x27;,tit:&#x27;서술형 감점 안 당하는 법&#x27;,desc:&#x27;채점 기준에 맞춰 쓰는 연습 — 태블릿 판서 첨삭&#x27;,when:&#x27;토 10:00&#x27;,day:5,slot:9,len:1},
- {g:&#x27;linear-gradient(120deg,#C28A1E,#E0A93A)&#x27;,cat:&#x27;🎓 입시 세미나&#x27;,tit:&#x27;중2 외고·자사고 로드맵&#x27;,desc:&#x27;내신·원서 일정 전략 — 학부모 동반 세미나&#x27;,when:&#x27;토 19:00&#x27;,day:5,slot:9,len:2},
- {g:&#x27;linear-gradient(120deg,#8C5BC2,#B07FE0)&#x27;,cat:&#x27;📒 노트 기술&#x27;,tit:&#x27;오답노트, 진짜 되는 방식&#x27;,desc:&#x27;틀린 걸 다시 안 틀리게 만드는 정리법&#x27;,when:&#x27;목 20:00&#x27;,day:3,slot:9,len:1}
+ {g:&#x27;linear-gradient(120deg,#3A3D8F,#6B4FD0)&#x27;,cat:&#x27;✦ 공부 기술&#x27;,tit:&#x27;시험 D-14 역산 공부법&#x27;,desc:&#x27;벼락치기 말고, D-14부터 거꾸로 짜는 시험 플랜 — 범위·학교 무관&#x27;,when:&#x27;화 19:30&#x27;,day:1,len:1},
+ {g:&#x27;linear-gradient(120deg,#1E8E7E,#2FB3A0)&#x27;,cat:&#x27;∑ 서술형 대비&#x27;,tit:&#x27;서술형 감점 안 당하는 법&#x27;,desc:&#x27;채점 기준에 맞춰 쓰는 연습 — 태블릿 판서 첨삭&#x27;,when:&#x27;토 18:00&#x27;,day:5,len:1},
+ {g:&#x27;linear-gradient(120deg,#C28A1E,#E0A93A)&#x27;,cat:&#x27;🎓 입시 세미나&#x27;,tit:&#x27;중2 외고·자사고 로드맵&#x27;,desc:&#x27;내신·원서 일정 전략 — 학부모 동반 세미나&#x27;,when:&#x27;토 19:00&#x27;,day:5,len:2},
+ {g:&#x27;linear-gradient(120deg,#8C5BC2,#B07FE0)&#x27;,cat:&#x27;📒 노트 기술&#x27;,tit:&#x27;오답노트, 진짜 되는 방식&#x27;,desc:&#x27;틀린 걸 다시 안 틀리게 만드는 정리법&#x27;,when:&#x27;목 20:00&#x27;,day:3,len:1}
 ];
+/* slot은 when에서 자동 계산 — 데이터 불일치 방지 */
+TKB.forEach(function(t){t.slot=whenToSlot(t.when);});
 var tkIdx=0,tkTimer;
 /* 특강 신청 = 그 정해진 타임에 담기. 아이 시간표와 겹치면 물어봄 */
 function teukOverlap(day,slot,len){
+ if(slot&lt;0)return null; /* 그리드 밖(오전 특강 등) — 겹칠 블록 자체가 없음 */
  var hit=null;
  BLK.forEach(function(b){ if(b[0]!==day)return;
    var s1=b[1],e1=b[1]+b[2]-1, s2=slot,e2=slot+len-1;
@@ -4133,6 +4147,18 @@ function nextSolve(){
 }
 
 buildGrid(); buildTodo(); renderTkb();
+/* 모달 배경(빈 부분) 클릭 → 닫기. 오버레이별 전용 close 호출 */
+var OVL_CLOSE={wordOvl:&#x27;closeWord&#x27;,checkOvl:&#x27;closeCheck&#x27;,diagOvl:&#x27;closeDiag&#x27;,rptOvl:&#x27;closeReport&#x27;,teukOvl:&#x27;closeTeuk&#x27;,paperOvl:&#x27;closePaper&#x27;,lecOvl:&#x27;closeLec&#x27;,examOvl:&#x27;closeExam&#x27;};
+document.addEventListener(&#x27;click&#x27;,function(e){
+ var ov=e.target;
+ if(ov&amp;&amp;ov.classList&amp;&amp;ov.classList.contains(&#x27;wordovl&#x27;)&amp;&amp;ov.classList.contains(&#x27;show&#x27;)){
+   var fn=OVL_CLOSE[ov.id];
+   if(fn&amp;&amp;typeof window[fn]===&#x27;function&#x27;)window[fn]();
+   else ov.classList.remove(&#x27;show&#x27;);
+ }
+ /* dlg 계열(ovl) 배경 클릭 닫기 */
+ if(ov&amp;&amp;ov.id===&#x27;ovl&#x27;&amp;&amp;ov.classList.contains(&#x27;show&#x27;)&amp;&amp;typeof closeDlg===&#x27;function&#x27;)closeDlg();
+});
 &lt;/script&gt;
 &lt;script&gt;
 /* ===== 모바일 뷰 렌더 (데스크톱 상태와 동일 데이터 공유) ===== */
