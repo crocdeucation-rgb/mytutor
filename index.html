@@ -4559,7 +4559,15 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .logo .mk{width:30px;height:30px;border-radius:9px;overflow:hidden;flex:none}
 .logo .mk svg{width:30px;height:30px;display:block}
 .logo .adm{font-size:9px;font-weight:900;color:var(--lime);background:rgba(182,227,74,.16);padding:2px 6px;border-radius:5px;margin-left:2px}
-.menu{margin-top:24px;display:flex;flex-direction:column;gap:2px;padding:0 10px}
+/* 역할 전환 */
+.roleswitch{margin:18px 14px 2px;background:rgba(255,255,255,.06);border-radius:12px;padding:11px 12px}
+.rs-lbl{font-size:10px;font-weight:900;color:rgba(255,255,255,.4);letter-spacing:1px;margin-bottom:8px}
+.rs-btns{display:flex;flex-direction:column;gap:5px}
+.rs{display:flex;align-items:center;gap:7px;border:0;background:transparent;color:rgba(255,255,255,.6);border-radius:9px;padding:9px 11px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;text-align:left}
+.rs:hover{background:rgba(255,255,255,.07);color:#fff}
+.rs.on{background:#B6E34A;color:#20233F}
+.menu{margin-top:14px;display:flex;flex-direction:column;gap:2px;padding:0 10px}
+.mdiv.grp{display:flex;align-items:center;gap:5px}
 .mi{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:10px;color:rgba(255,255,255,.72);font-weight:700;font-size:13.5px;cursor:pointer;border:0;background:none;text-align:left;width:100%}
 .mi svg{width:18px;height:18px;flex:none}
 .mi:hover{background:rgba(255,255,255,.07);color:#fff}
@@ -4944,6 +4952,21 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .mk-roas{font-weight:900}
 .mk-roas.ok{color:#1F9D64}.mk-roas.warn{color:#C78A22}.mk-roas.low{color:#E23B3B}
 .mk-note{font-size:12px;color:#9A6310;background:#FFF6E6;border-radius:10px;padding:11px 13px;margin-top:11px;line-height:1.6}
+/* 6칸 KPI */
+.mk-kpi.k6{grid-template-columns:repeat(6,1fr)}
+@media(max-width:860px){.mk-kpi.k6{grid-template-columns:repeat(3,1fr)}}
+/* 넓은 테이블 (담당자별·유입경로 상세) */
+.mk-tbl.wide{overflow-x:auto}
+.mk-tr.m{grid-template-columns:44px 68px 44px 44px 44px 72px 50px 50px 60px 54px;min-width:640px}
+.mk-tr.ch2{grid-template-columns:56px 44px 44px 52px 46px 44px 44px 68px 54px 52px;min-width:600px}
+.mk-rk{font-weight:900;color:var(--ink2);text-align:left!important}
+.mk-rk.top{font-size:14px}
+.mk-sales{font-weight:900;color:var(--ink)}
+.mk-leadhead{font-size:16px;font-weight:900;color:var(--ink);margin:22px 0 10px}
+/* 대시보드 2열 분할 */
+.mk-row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mk-row2 .mk-sec{margin-bottom:0}
+@media(max-width:860px){.mk-row2{grid-template-columns:1fr;gap:0}.mk-row2 .mk-sec{margin-bottom:18px}}
 /* ===== 온보딩 진행 현황판 (칸반) ===== */
 .onb-h{font-size:15px;font-weight:900;color:var(--ink);margin:4px 0 12px}
 .onb-kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:16px}
@@ -5047,16 +5070,27 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 &lt;div class=&quot;app&quot;&gt;
   &lt;aside class=&quot;side&quot;&gt;
     &lt;div class=&quot;logo&quot;&gt;&lt;span class=&quot;mk&quot;&gt;&lt;svg viewBox=&quot;0 0 52 52&quot;&gt;&lt;rect width=&quot;52&quot; height=&quot;52&quot; rx=&quot;12&quot; fill=&quot;#B6E34A&quot;/&gt;&lt;path d=&quot;M14 15h24a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H24l-7 6v-6h-3a3 3 0 0 1-3-3V18a3 3 0 0 1 3-3z&quot; fill=&quot;#2A2D6B&quot;/&gt;&lt;path d=&quot;M20 25l4 4 9-9&quot; stroke=&quot;#B6E34A&quot; stroke-width=&quot;3.2&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;마이플래너&lt;span class=&quot;adm&quot;&gt;ADMIN&lt;/span&gt;&lt;/div&gt;
+    &lt;!-- 역할 전환 (시연) — 역할마다 보이는 메뉴가 달라짐 --&gt;
+    &lt;div class=&quot;roleswitch&quot;&gt;
+      &lt;div class=&quot;rs-lbl&quot;&gt;접속 역할&lt;/div&gt;
+      &lt;div class=&quot;rs-btns&quot;&gt;
+        &lt;button class=&quot;rs on&quot; id=&quot;rsTeacher&quot; onclick=&quot;setRole(&#x27;teacher&#x27;)&quot;&gt;👩‍🏫 교사·관리자&lt;/button&gt;
+        &lt;button class=&quot;rs&quot; id=&quot;rsMkt&quot; onclick=&quot;setRole(&#x27;mkt&#x27;)&quot;&gt;📣 마케터&lt;/button&gt;
+        &lt;button class=&quot;rs&quot; id=&quot;rsAdmin&quot; onclick=&quot;setRole(&#x27;admin&#x27;)&quot;&gt;👑 전체관리자&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
     &lt;nav class=&quot;menu&quot;&gt;
-      &lt;button class=&quot;mi on&quot; id=&quot;mHome&quot; onclick=&quot;go(&#x27;home&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;오늘 할 일&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; id=&quot;mStu&quot; onclick=&quot;go(&#x27;students&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2&quot;/&gt;&lt;circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/&gt;&lt;/svg&gt;학생 관리&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; id=&quot;mMastery&quot; onclick=&quot;go(&#x27;mastery&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M7 15l3-3 3 2 5-6&quot;/&gt;&lt;/svg&gt;학습 이해도 &lt;span style=&quot;margin-left:auto;background:#E23B3B;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;4&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; id=&quot;mMkt&quot; onclick=&quot;go(&#x27;mkt&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M19 9l-5 5-4-4-4 4&quot;/&gt;&lt;/svg&gt;유입·마케팅&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; id=&quot;mLead&quot; onclick=&quot;go(&#x27;leads&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M22 2 11 13&quot;/&gt;&lt;path d=&quot;M22 2 15 22l-4-9-9-4z&quot;/&gt;&lt;/svg&gt;리드·온보딩 &lt;span style=&quot;margin-left:auto;background:#2E7CF0;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;5&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; id=&quot;mNoti&quot; onclick=&quot;go(&#x27;noti&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9&quot;/&gt;&lt;path d=&quot;M13.7 21a2 2 0 0 1-3.4 0&quot;/&gt;&lt;/svg&gt;알림·결제 &lt;span style=&quot;margin-left:auto;background:#E23B3B;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;3&lt;/span&gt;&lt;/button&gt;
-      &lt;div class=&quot;mdiv&quot;&gt;콘텐츠&lt;/div&gt;
-      &lt;button class=&quot;mi&quot; onclick=&quot;toast(&#x27;개념특강·특강 편성 — 준비 중&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;4&quot; width=&quot;20&quot; height=&quot;15&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M10 9l5 3-5 3z&quot;/&gt;&lt;/svg&gt;특강 편성&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; onclick=&quot;toast(&#x27;문제은행 — 준비 중&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M4 19.5A2.5 2.5 0 0 1 6.5 17H20&quot;/&gt;&lt;path d=&quot;M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z&quot;/&gt;&lt;/svg&gt;문제은행 (19.9만)&lt;/button&gt;
+      &lt;div class=&quot;mdiv grp&quot; data-grp=&quot;edu&quot;&gt;🎓 교육 — 교사·관리자&lt;/div&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mHome&quot; onclick=&quot;go(&#x27;home&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;오늘 할 일&lt;/button&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mStu&quot; onclick=&quot;go(&#x27;students&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2&quot;/&gt;&lt;circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/&gt;&lt;/svg&gt;학생 관리&lt;/button&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mMastery&quot; onclick=&quot;go(&#x27;mastery&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M7 15l3-3 3 2 5-6&quot;/&gt;&lt;/svg&gt;학습 이해도 &lt;span style=&quot;margin-left:auto;background:#E23B3B;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;4&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mNoti&quot; onclick=&quot;go(&#x27;noti&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9&quot;/&gt;&lt;path d=&quot;M13.7 21a2 2 0 0 1-3.4 0&quot;/&gt;&lt;/svg&gt;알림·결제 &lt;span style=&quot;margin-left:auto;background:#E23B3B;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;3&lt;/span&gt;&lt;/button&gt;
+      &lt;div class=&quot;mdiv grp&quot; data-grp=&quot;mkt&quot;&gt;🔒 마케팅 — 허가된 마케터만&lt;/div&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;mkt&quot; id=&quot;mMkt&quot; onclick=&quot;go(&#x27;mkt&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M19 9l-5 5-4-4-4 4&quot;/&gt;&lt;/svg&gt;유입·마케팅&lt;/button&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;mkt&quot; id=&quot;mLead&quot; onclick=&quot;go(&#x27;leads&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M22 2 11 13&quot;/&gt;&lt;path d=&quot;M22 2 15 22l-4-9-9-4z&quot;/&gt;&lt;/svg&gt;리드·온보딩 &lt;span style=&quot;margin-left:auto;background:#2E7CF0;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;5&lt;/span&gt;&lt;/button&gt;
+      &lt;div class=&quot;mdiv grp&quot; data-grp=&quot;edu&quot;&gt;📦 콘텐츠&lt;/div&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; onclick=&quot;toast(&#x27;개념특강·특강 편성 — 준비 중&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;4&quot; width=&quot;20&quot; height=&quot;15&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M10 9l5 3-5 3z&quot;/&gt;&lt;/svg&gt;특강 편성&lt;/button&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; onclick=&quot;toast(&#x27;문제은행 — 준비 중&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M4 19.5A2.5 2.5 0 0 1 6.5 17H20&quot;/&gt;&lt;path d=&quot;M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z&quot;/&gt;&lt;/svg&gt;문제은행 (19.9만)&lt;/button&gt;
     &lt;/nav&gt;
     &lt;div class=&quot;ipbox&quot;&gt;&lt;b&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;18&quot; height=&quot;11&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M7 11V7a5 5 0 0 1 10 0v4&quot;/&gt;&lt;/svg&gt;보안 접속&lt;/b&gt;허용 IP에서만 접속 가능&lt;br&gt;현재 IP: 211.xx.xx.14 ✓&lt;/div&gt;
     &lt;div class=&quot;me&quot;&gt;&lt;div class=&quot;av&quot;&gt;김&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mn&quot;&gt;김튜터 매니저&lt;/div&gt;&lt;div class=&quot;mr&quot;&gt;담임 · 담당 100명&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
@@ -5613,24 +5647,57 @@ function marketingDash(){
  ];
  var weekLead=[[&#x27;월&#x27;,70],[&#x27;화&#x27;,33],[&#x27;수&#x27;,76],[&#x27;목&#x27;,89],[&#x27;금&#x27;,54],[&#x27;토&#x27;,65],[&#x27;일&#x27;,45]];
  var maxW=Math.max.apply(null,weekLead.map(function(x){return x[1];}));
+ /* 담당자별 실적 — 네 노션 대시보드 수준 (DB수/상담/등록/매출/전환율/투입원가/ROAS) */
+ var byMgr=[
+   {rk:1,n:&#x27;안준섭&#x27;,db:149,mtg:29,reg:12,sales:&#x27;3,524만&#x27;,mtgR:49,regR:41,cost:&#x27;787만&#x27;,roas:4.48},
+   {rk:2,n:&#x27;김우진&#x27;,db:133,mtg:20,reg:9,sales:&#x27;2,541만&#x27;,mtgR:43,regR:45,cost:&#x27;652만&#x27;,roas:3.90},
+   {rk:3,n:&#x27;우혜림&#x27;,db:88,mtg:18,reg:11,sales:&#x27;2,254만&#x27;,mtgR:45,regR:45,cost:&#x27;441만&#x27;,roas:5.11},
+   {rk:4,n:&#x27;박창건&#x27;,db:66,mtg:10,reg:4,sales:&#x27;1,213만&#x27;,mtgR:80,regR:0,cost:&#x27;336만&#x27;,roas:3.61},
+   {rk:5,n:&#x27;장윤호&#x27;,db:42,mtg:9,reg:3,sales:&#x27;760만&#x27;,mtgR:100,regR:33,cost:&#x27;220만&#x27;,roas:3.45},
+   {rk:6,n:&#x27;노영호&#x27;,db:75,mtg:16,reg:4,sales:&#x27;375만&#x27;,mtgR:13,regR:25,cost:&#x27;387만&#x27;,roas:0.97},
+   {rk:7,n:&#x27;김원득&#x27;,db:89,mtg:11,reg:3,sales:&#x27;346만&#x27;,mtgR:33,regR:27,cost:&#x27;454만&#x27;,roas:0.76},
+   {rk:8,n:&#x27;김주환&#x27;,db:72,mtg:6,reg:1,sales:&#x27;346만&#x27;,mtgR:100,regR:17,cost:&#x27;352만&#x27;,roas:0.99}
+ ];
+ /* 유입경로 상세 (오늘/어제/월간/방문/세팅/오더/광고비/CPL/ROAS) */
+ var chDetail=[
+   {ch:&#x27;본사&#x27;,today:30,yest:48,mon:996,visit:166,set:83,order:36,ad:&#x27;3,763만&#x27;,cpl:&#x27;3.9만&#x27;,roas:3.68},
+   {ch:&#x27;부평&#x27;,today:4,yest:6,mon:95,visit:7,set:2,order:2,ad:&#x27;300만&#x27;,cpl:&#x27;3.3만&#x27;,roas:4.82},
+   {ch:&#x27;메이킷&#x27;,today:5,yest:6,mon:218,visit:2,set:0,order:0,ad:&#x27;238만&#x27;,cpl:&#x27;1.1만&#x27;,roas:0},
+   {ch:&#x27;파인더&#x27;,today:6,yest:7,mon:311,visit:17,set:7,order:2,ad:&#x27;488만&#x27;,cpl:&#x27;1.6만&#x27;,roas:1.42}
+ ];
  return &#x27;&lt;div class=&quot;mk-dash&quot;&gt;&#x27;+
   &#x27;&lt;div class=&quot;mk-h&quot;&gt;📣 유입 마케팅 — 광고에서 리드까지 &lt;span&gt;이번 달&lt;/span&gt;&lt;/div&gt;&#x27;+
-  /* 핵심 지표 4칸 */
-  &#x27;&lt;div class=&quot;mk-kpi&quot;&gt;&#x27;+
-    &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;1,620&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;총 유입 (이번 달)&lt;/div&gt;&lt;/div&gt;&#x27;+
+  /* 핵심 지표 6칸 */
+  &#x27;&lt;div class=&quot;mk-kpi k6&quot;&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;1,620&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;총 유입&lt;/div&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;오늘 유입&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;1.17억&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;이번 달 매출&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;4,790만&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;광고비&lt;/div&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;3.0만&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;통합 CPL&lt;/div&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;mk-k hl&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;2.89&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;통합 ROAS&lt;/div&gt;&lt;/div&gt;&#x27;+
   &#x27;&lt;/div&gt;&#x27;+
-  /* 요일별 유입 */
-  &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;요일별 유입 (이번 주)&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;mk-wk&quot;&gt;&#x27;+weekLead.map(function(d){return &#x27;&lt;div class=&quot;mk-wc&quot;&gt;&lt;div class=&quot;mk-wbt&quot;&gt;&lt;div class=&quot;mk-wb&quot; style=&quot;height:&#x27;+Math.round(d[1]/maxW*100)+&#x27;%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;mk-wv&quot;&gt;&#x27;+d[1]+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-wd&quot;&gt;&#x27;+d[0]+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-  /* 유입경로별 성과 */
-  &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;유입경로별 성과 — ROAS 낮은 곳이 손볼 곳&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;mk-tbl&quot;&gt;&lt;div class=&quot;mk-tr mk-th&quot;&gt;&lt;span&gt;경로&lt;/span&gt;&lt;span&gt;리드&lt;/span&gt;&lt;span&gt;가입전환&lt;/span&gt;&lt;span&gt;CPL&lt;/span&gt;&lt;span&gt;ROAS&lt;/span&gt;&lt;/div&gt;&#x27;+
-   byChannel.map(function(c){return &#x27;&lt;div class=&quot;mk-tr&quot;&gt;&lt;span class=&quot;mk-ch&quot;&gt;&#x27;+c.ch+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.lead+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.cvr+&#x27;%&lt;/span&gt;&lt;span&gt;&#x27;+c.cpl+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-roas &#x27;+c.sev+&#x27;&quot;&gt;&#x27;+(c.roas||&#x27;—&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+  /* 담당자별 실적 */
+  &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;담당자별 실적 — DB·상담·등록·매출·ROAS&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mk-tbl wide&quot;&gt;&lt;div class=&quot;mk-tr mk-th m&quot;&gt;&lt;span&gt;순위&lt;/span&gt;&lt;span&gt;담당&lt;/span&gt;&lt;span&gt;DB&lt;/span&gt;&lt;span&gt;상담&lt;/span&gt;&lt;span&gt;등록&lt;/span&gt;&lt;span&gt;매출&lt;/span&gt;&lt;span&gt;상담율&lt;/span&gt;&lt;span&gt;등록율&lt;/span&gt;&lt;span&gt;투입&lt;/span&gt;&lt;span&gt;ROAS&lt;/span&gt;&lt;/div&gt;&#x27;+
+   byMgr.map(function(m){var sev=m.roas&gt;=3?&#x27;ok&#x27;:m.roas&gt;=1.5?&#x27;warn&#x27;:&#x27;low&#x27;;
+     return &#x27;&lt;div class=&quot;mk-tr m&quot;&gt;&lt;span class=&quot;mk-rk&#x27;+(m.rk&lt;=3?&#x27; top&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+(m.rk&lt;=3?[&#x27;🥇&#x27;,&#x27;🥈&#x27;,&#x27;🥉&#x27;][m.rk-1]:m.rk)+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-ch&quot;&gt;&#x27;+m.n+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+m.db+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+m.mtg+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+m.reg+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-sales&quot;&gt;&#x27;+m.sales+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+m.mtgR+&#x27;%&lt;/span&gt;&lt;span&gt;&#x27;+m.regR+&#x27;%&lt;/span&gt;&lt;span&gt;&#x27;+m.cost+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-roas &#x27;+sev+&#x27;&quot;&gt;&#x27;+m.roas.toFixed(2)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&lt;div class=&quot;mk-note&quot;&gt;우혜림 ROAS 5.11 최고 · 노영호·김원득·김주환은 ROAS 1 미만 — 상담→등록 전환이 막혀요. DB 질(유입경로)인지 상담 역량인지 확인 필요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+  /* ↓ 2열 분할: 요일별 유입 | 유입경로 전환 */
+  &#x27;&lt;div class=&quot;mk-row2&quot;&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;요일별 유입 (이번 주)&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-wk&quot;&gt;&#x27;+weekLead.map(function(d){return &#x27;&lt;div class=&quot;mk-wc&quot;&gt;&lt;div class=&quot;mk-wbt&quot;&gt;&lt;div class=&quot;mk-wb&quot; style=&quot;height:&#x27;+Math.round(d[1]/maxW*100)+&#x27;%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;mk-wv&quot;&gt;&#x27;+d[1]+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-wd&quot;&gt;&#x27;+d[0]+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;유입경로별 전환 — ROAS 낮은 곳이 손볼 곳&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-tbl&quot;&gt;&lt;div class=&quot;mk-tr mk-th&quot;&gt;&lt;span&gt;경로&lt;/span&gt;&lt;span&gt;리드&lt;/span&gt;&lt;span&gt;가입전환&lt;/span&gt;&lt;span&gt;CPL&lt;/span&gt;&lt;span&gt;ROAS&lt;/span&gt;&lt;/div&gt;&#x27;+
+    byChannel.map(function(c){return &#x27;&lt;div class=&quot;mk-tr&quot;&gt;&lt;span class=&quot;mk-ch&quot;&gt;&#x27;+c.ch+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.lead+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.cvr+&#x27;%&lt;/span&gt;&lt;span&gt;&#x27;+c.cpl+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-roas &#x27;+c.sev+&#x27;&quot;&gt;&#x27;+(c.roas||&#x27;—&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;+
+  /* 유입경로 상세 (컬럼 많아 전체폭) */
+  &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;유입경로별 상세 — 오늘·월간·전환·ROAS&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mk-tbl wide&quot;&gt;&lt;div class=&quot;mk-tr mk-th ch2&quot;&gt;&lt;span&gt;경로&lt;/span&gt;&lt;span&gt;오늘&lt;/span&gt;&lt;span&gt;어제&lt;/span&gt;&lt;span&gt;월간&lt;/span&gt;&lt;span&gt;방문&lt;/span&gt;&lt;span&gt;세팅&lt;/span&gt;&lt;span&gt;오더&lt;/span&gt;&lt;span&gt;광고비&lt;/span&gt;&lt;span&gt;CPL&lt;/span&gt;&lt;span&gt;ROAS&lt;/span&gt;&lt;/div&gt;&#x27;+
+   chDetail.map(function(c){var sev=c.roas&gt;=3?&#x27;ok&#x27;:c.roas&gt;=1.5?&#x27;warn&#x27;:&#x27;low&#x27;;
+     return &#x27;&lt;div class=&quot;mk-tr ch2&quot;&gt;&lt;span class=&quot;mk-ch&quot;&gt;&#x27;+c.ch+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.today+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.yest+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.mon+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.visit+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.set+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.order+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.ad+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.cpl+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-roas &#x27;+sev+&#x27;&quot;&gt;&#x27;+(c.roas||&#x27;—&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-  /* 캠페인 성과 */
+  /* 캠페인 성과 (전체폭) */
   &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;캠페인별 성과 (소재)&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;mk-tbl&quot;&gt;&lt;div class=&quot;mk-tr mk-th c&quot;&gt;&lt;span&gt;캠페인&lt;/span&gt;&lt;span&gt;DB&lt;/span&gt;&lt;span&gt;전환&lt;/span&gt;&lt;span&gt;CPL&lt;/span&gt;&lt;span&gt;ROAS&lt;/span&gt;&lt;/div&gt;&#x27;+
    camps.map(function(c){var sev=c.roas&gt;=3?&#x27;ok&#x27;:c.roas&gt;=1.5?&#x27;warn&#x27;:&#x27;low&#x27;;return &#x27;&lt;div class=&quot;mk-tr c&quot;&gt;&lt;span class=&quot;mk-cn&quot;&gt;&#x27;+c.n+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.db+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.cvr+&#x27;%&lt;/span&gt;&lt;span&gt;&#x27;+c.cpl+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-roas &#x27;+sev+&#x27;&quot;&gt;&#x27;+c.roas.toFixed(1)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
@@ -5933,7 +6000,51 @@ function go(v){
  if(v===&#x27;assign&#x27;){document.getElementById(&#x27;viewAssign&#x27;).style.display=&#x27;flex&#x27;;document.getElementById(&#x27;mStu&#x27;).classList.add(&#x27;on&#x27;);renderDtDash();buildPlan();}
  window.scrollTo(0,0);}
 
-renderHome();buildPlan();
+/* ===== 역할 기반 접근 제어 (교사·관리자 / 마케터 / 전체관리자) ===== */
+var ROLE_VIEWS={
+ teacher:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;],      /* 교육만 */
+ mkt:[&#x27;mkt&#x27;,&#x27;leads&#x27;],                                         /* 마케팅만 */
+ admin:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;mkt&#x27;,&#x27;leads&#x27;] /* 전부 */
+};
+var ROLE_INFO={
+ teacher:{av:&#x27;김&#x27;,nm:&#x27;김튜터 선생님&#x27;,role:&#x27;담임 · 담당 100명&#x27;,home:&#x27;home&#x27;},
+ mkt:{av:&#x27;우&#x27;,nm:&#x27;우혜림 마케터&#x27;,role:&#x27;퍼포먼스 마케팅 · 리드 관리&#x27;,home:&#x27;mkt&#x27;},
+ admin:{av:&#x27;신&#x27;,nm:&#x27;신상준 CGO&#x27;,role:&#x27;전체 관리자&#x27;,home:&#x27;home&#x27;}
+};
+var curRole=&#x27;teacher&#x27;;
+function setRole(r){
+ curRole=r;
+ var allowed=ROLE_VIEWS[r];
+ /* 메뉴 그룹·버튼 표시/숨김 */
+ document.querySelectorAll(&#x27;.mi[data-role]&#x27;).forEach(function(b){
+   var g=b.getAttribute(&#x27;data-role&#x27;);
+   var show=(r===&#x27;admin&#x27;)||(g===&#x27;edu&#x27;&amp;&amp;(r===&#x27;teacher&#x27;))||(g===&#x27;mkt&#x27;&amp;&amp;(r===&#x27;mkt&#x27;));
+   b.style.display=show?&#x27;&#x27;:&#x27;none&#x27;;
+ });
+ document.querySelectorAll(&#x27;.mdiv.grp&#x27;).forEach(function(d){
+   var g=d.getAttribute(&#x27;data-grp&#x27;);
+   var show=(r===&#x27;admin&#x27;)||(g===&#x27;edu&#x27;&amp;&amp;r===&#x27;teacher&#x27;)||(g===&#x27;mkt&#x27;&amp;&amp;r===&#x27;mkt&#x27;);
+   d.style.display=show?&#x27;&#x27;:&#x27;none&#x27;;
+ });
+ /* 역할 전환 버튼 하이라이트 */
+ [&#x27;Teacher&#x27;,&#x27;Mkt&#x27;,&#x27;Admin&#x27;].forEach(function(x){var el=document.getElementById(&#x27;rs&#x27;+x);if(el)el.classList.remove(&#x27;on&#x27;);});
+ var onBtn=document.getElementById(&#x27;rs&#x27;+(r===&#x27;teacher&#x27;?&#x27;Teacher&#x27;:r===&#x27;mkt&#x27;?&#x27;Mkt&#x27;:&#x27;Admin&#x27;));if(onBtn)onBtn.classList.add(&#x27;on&#x27;);
+ /* 접속자 정보 */
+ var info=ROLE_INFO[r],me=document.querySelector(&#x27;.me&#x27;);
+ if(me&amp;&amp;info)me.innerHTML=&#x27;&lt;div class=&quot;av&quot;&gt;&#x27;+info.av+&#x27;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mn&quot;&gt;&#x27;+info.nm+&#x27;&lt;/div&gt;&lt;div class=&quot;mr&quot;&gt;&#x27;+info.role+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ /* 보안 안내 */
+ var ip=document.querySelector(&#x27;.ipbox&#x27;);
+ if(ip){ if(r===&#x27;mkt&#x27;)ip.innerHTML=&#x27;&lt;b&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;18&quot; height=&quot;11&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M7 11V7a5 5 0 0 1 10 0v4&quot;/&gt;&lt;/svg&gt;마케터 보안 접속&lt;/b&gt;고객 개인정보·영업 데이터 — 허가 마케터만. 2차 인증 + 허용 IP + 전 조회 로그 기록&#x27;;
+   else if(r===&#x27;teacher&#x27;)ip.innerHTML=&#x27;&lt;b&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;18&quot; height=&quot;11&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M7 11V7a5 5 0 0 1 10 0v4&quot;/&gt;&lt;/svg&gt;교사 보안 접속&lt;/b&gt;담당 학생만 조회 가능 (RLS). 유입·마케팅 데이터는 접근 불가&#x27;;
+   else ip.innerHTML=&#x27;&lt;b&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;18&quot; height=&quot;11&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M7 11V7a5 5 0 0 1 10 0v4&quot;/&gt;&lt;/svg&gt;전체관리자 접속&lt;/b&gt;전 구간 조회 가능 · 모든 접근 감사 로그 기록&#x27;;
+ }
+ /* 현재 보고있는 뷰가 허용 안 되면 역할 홈으로 */
+ var cur=null;[&#x27;Home&#x27;,&#x27;Students&#x27;,&#x27;Mastery&#x27;,&#x27;Mkt&#x27;,&#x27;Leads&#x27;,&#x27;Assign&#x27;].forEach(function(n){var el=document.getElementById(&#x27;view&#x27;+n);if(el&amp;&amp;el.style.display!==&#x27;none&#x27;)cur=n.toLowerCase();});
+ if(cur===&#x27;leads&#x27;)cur=&#x27;leads&#x27;; var ok=allowed.indexOf(cur===&#x27;home&#x27;?&#x27;home&#x27;:cur)&gt;=0;
+ if(!ok)go(info.home);
+ toast(info.nm+&#x27;로 전환 — &#x27;+(r===&#x27;mkt&#x27;?&#x27;마케팅&#x27;:r===&#x27;teacher&#x27;?&#x27;교육&#x27;:&#x27;전체&#x27;)+&#x27; 권한&#x27;);
+}
+renderHome();buildPlan();setRole(&#x27;teacher&#x27;);
 &lt;/script&gt;
 &lt;style&gt;
 .nf-sec{margin-bottom:20px}
@@ -6123,23 +6234,23 @@ if(document.getElementById(&#x27;viewHome&#x27;).style.display!==&#x27;none&#x27
  --red:#E23B3B;--red-s:#FDECEC;--vio:#7B61F2;--vio-s:#EEE9FC;--sky:#2E7CF0;--sky-s:#E8F1FE;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Pretendard,&quot;Noto Sans KR&quot;,system-ui,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;padding:74px 16px 60px;overflow-x:hidden}
-.wrap{max-width:1240px;margin:0 auto}
+body{font-family:Pretendard,&quot;Noto Sans KR&quot;,system-ui,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;padding:72px 28px 60px;overflow-x:hidden}
+.wrap{max-width:1440px;margin:0 auto}
 .hd{text-align:center;margin-bottom:24px}
-.hd h1{font-size:25px;font-weight:900;letter-spacing:-.02em}
+.hd h1{font-size:28px;font-weight:900;letter-spacing:-.02em}
 .hd p{font-size:13.5px;color:var(--ink3);font-weight:600;margin-top:5px}
 /* PC: 흐름도 카드를 2열로 흘려 가로폭을 꽉 채움 */
-.fgrid{columns:2;column-gap:16px}
+.fgrid{columns:2;column-gap:22px}
 @media(max-width:860px){.fgrid{columns:1}}
 .fc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;break-inside:avoid;-webkit-column-break-inside:avoid}
-.fc h2{font-size:16.5px;font-weight:900;display:flex;align-items:center;gap:9px;margin-bottom:5px}
+.fc h2{font-size:17.5px;font-weight:900;display:flex;align-items:center;gap:9px;margin-bottom:5px}
 .fc h2 .no{width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:13px;flex:none}
-.fc .fd{font-size:12.5px;color:var(--ink3);margin-bottom:15px;line-height:1.6}
+.fc .fd{font-size:13.5px;color:var(--ink3);margin-bottom:15px;line-height:1.65}
 .fc .fd b{color:var(--ink2)}
 
 /* 흐름 행 */
 .flow{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-bottom:8px}
-.node{font-size:12.5px;font-weight:800;padding:10px 14px;border-radius:11px;background:var(--brand-s);color:var(--brand);white-space:nowrap}
+.node{font-size:13.5px;font-weight:800;padding:11px 15px;border-radius:12px;background:var(--brand-s);color:var(--brand);white-space:nowrap}
 .node small{display:block;font-size:9.5px;font-weight:700;opacity:.75;white-space:normal;line-height:1.3}
 .node.start{background:var(--ink);color:#fff}
 .node.ok{background:var(--ok-s);color:var(--ok)}
