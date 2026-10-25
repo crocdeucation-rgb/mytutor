@@ -20,7 +20,8 @@ body.mob{background:radial-gradient(900px 500px at 50% -10%,#2C3060 0%,#20233F 6
 .dev button{border:0;background:none;color:rgba(255,255,255,.62);font-size:12px;font-weight:800;padding:8px 13px;border-radius:999px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .dev button.on{background:#fff;color:#20233F}
 .dev.off{opacity:.25;pointer-events:none}
-.fr{position:fixed;inset:0;width:1px;min-width:100%;height:100%;border:0;display:none;background:#F4F5FA}
+/* PC: 상단 토글바(고정) 높이만큼 iframe을 내려 가림 방지 */
+.fr{position:fixed;left:0;right:0;top:62px;width:1px;min-width:100%;height:calc(100vh - 62px);border:0;display:none;background:#F4F5FA}
 .fr.on{display:block}
 /* PC 시연용 모바일 프리뷰: 좁은 프레임 (실기기에선 미사용) */
 .fr.on.mobf{inset:auto;left:50%;top:70px;transform:translateX(-50%);min-width:0;width:402px;height:min(844px,calc(100vh - 86px));border:10px solid #111826;border-radius:40px;box-shadow:0 34px 80px -22px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06);background:#fff}
@@ -172,8 +173,12 @@ button{font:inherit;cursor:pointer}
 .rt .rb b{font-size:13.5px;font-weight:800;display:block}
 .rt .rb .rs{font-size:10.5px;color:var(--ink3);font-weight:600}
 .rt .lv{font-size:9px;font-weight:900;color:#fff;background:var(--red);border-radius:999px;padding:2px 7px;flex:none}
-.rt .cb{width:26px;height:26px;border-radius:10px;border:2.5px solid var(--line);background:#fff;flex:none;display:grid;place-items:center;transition:.15s}
+.rt .cb{width:26px;height:26px;border-radius:10px;border:2.5px solid var(--line);background:#fff;flex:none;display:grid;place-items:center;transition:.15s;cursor:pointer}
 .rt .cb svg{width:13px;height:13px;stroke:#fff;stroke-width:3.5;opacity:0}
+.rt .cb.lock{border:0;background:none}
+.rt .cb.lock svg{width:17px;height:17px;stroke:var(--faint);opacity:1;stroke-width:2}
+.rt .cb.done{background:var(--ok);border-color:var(--ok)}
+.rt .cb.done svg{opacity:1}
 .rt li.done .cb{background:var(--ok);border-color:var(--ok)}
 .rt li.done .cb svg{opacity:1}
 .rt li.done .rb b{text-decoration:line-through;text-decoration-color:var(--faint);color:var(--ink3)}
@@ -401,9 +406,13 @@ function buildRT(){
   if(r.done)done++;
   var startBtn=(!r.done&amp;&amp;r.go)?&#x27;&lt;button class=&quot;estart&quot; onclick=&quot;event.stopPropagation();&#x27;+r.go+&#x27;(&#x27;+i+&#x27;)&quot;&gt;시작&lt;/button&gt;&#x27;:&#x27;&#x27;;
   return &#x27;&lt;li class=&quot;&#x27;+(r.done?&#x27;done&#x27;:&#x27;&#x27;)+&#x27;&quot;&#x27;+((!r.done&amp;&amp;r.go)?&#x27; onclick=&quot;&#x27;+r.go+&#x27;(&#x27;+i+&#x27;)&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span class=&quot;ric&quot; style=&quot;background:&#x27;+r.bg+&#x27;&quot;&gt;&#x27;+r.ic+&#x27;&lt;/span&gt;&#x27;+
-   &#x27;&lt;div class=&quot;rb&quot;&gt;&lt;b&gt;&#x27;+r.t+&#x27;&lt;/b&gt;&lt;div class=&quot;rs&quot;&gt;&#x27;+r.s+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;rb&quot;&gt;&lt;b&gt;&#x27;+r.t+&#x27;&lt;/b&gt;&lt;div class=&quot;rs&quot;&gt;&#x27;+r.s+(r.go&amp;&amp;!r.done?&#x27; · 끝내면 자동 체크&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
    (r.live?&#x27;&lt;span class=&quot;lv&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+startBtn+
-   &#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();rtTgl(&#x27;+i+&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/li&gt;&#x27;;
+   /* 학습(영단어·받아쓰기·필기=go 있음)은 잠금, 끝내야 자동 완료. 나머지는 수동 체크 */
+   ((r.go&amp;&amp;!r.done)
+     ? &#x27;&lt;button class=&quot;cb lock&quot; onclick=&quot;event.stopPropagation();toast2(\&#x27;공부를 끝내면 자동으로 체크돼요!\&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;5&quot; y=&quot;11&quot; width=&quot;14&quot; height=&quot;9&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M8 11V8a4 4 0 0 1 8 0v3&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;
+     : &#x27;&lt;button class=&quot;cb&#x27;+(r.go?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;event.stopPropagation();&#x27;+(r.go?&#x27;&#x27;:&#x27;rtTgl(&#x27;+i+&#x27;)&#x27;)+&#x27;&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;)+
+   &#x27;&lt;/li&gt;&#x27;;
  }).join(&#x27;&#x27;);
  document.getElementById(&#x27;rtCnt&#x27;).textContent=done+&#x27;/&#x27;+RT.length+&#x27; 완료&#x27;;
  document.getElementById(&#x27;heroBar&#x27;).style.width=Math.round(done/RT.length*100)+&#x27;%&#x27;;
@@ -800,6 +809,10 @@ button{font:inherit;cursor:pointer}
 .todo li.ext .tb b{color:var(--ink2);font-weight:700}
 .todo .cb{width:24px;height:24px;border-radius:8px;border:2px solid var(--line);background:#fff;flex:none;display:grid;place-items:center;cursor:pointer;transition:.12s}
 .todo .cb svg{width:12px;height:12px;stroke:#fff;stroke-width:3.5;opacity:0}
+.todo .cb.lock{border:0;background:none;cursor:default}
+.todo .cb.lock svg{width:15px;height:15px;stroke:var(--faint);opacity:1;stroke-width:2}
+.todo .cb[disabled]{background:var(--ok);border-color:var(--ok);cursor:default}
+.todo .cb[disabled] svg{opacity:1}
 .todo li.done .cb{background:var(--ok);border-color:var(--ok)}
 .todo li.done .cb svg{opacity:1}
 .todo li.done .tb b{text-decoration:line-through;text-decoration-color:var(--faint);color:var(--ink3)}
@@ -960,6 +973,56 @@ button{font:inherit;cursor:pointer}
 .rpt-note{font-size:11px;color:var(--ink3);margin-top:12px;line-height:1.5}
 .rpt-p{font-size:13.5px;color:var(--ink2);line-height:1.7}.rpt-p b{color:var(--ink);font-weight:800}
 .rpt-foot{font-size:11px;color:var(--ink3);line-height:1.6;padding:16px 24px;background:var(--bg)}
+/* ===== 리포트 심화 섹션 ===== */
+/* 요일별 순공부시간 막대 */
+.rpt-wk{display:flex;gap:6px;align-items:flex-end;height:110px}
+.rwk{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}
+.rwk-bt{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.rwk-b{width:72%;max-width:26px;background:linear-gradient(180deg,var(--brand),#9FD13A);border-radius:6px 6px 3px 3px;min-height:4px}
+.rwk-b.z{background:var(--line2)}
+.rwk-v{font-size:10px;font-weight:800;color:var(--ink3)}
+.rwk-d{font-size:11px;font-weight:800;color:var(--ink2)}
+/* 과목별 학습시간 */
+.rpt-subj{display:flex;flex-direction:column;gap:9px}
+.rsj{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:800;color:var(--ink)}
+.rsj-n{flex:none;width:44px}
+.rsj-bar{flex:1;height:9px;background:var(--line2);border-radius:999px;overflow:hidden}
+.rsj-bar i{display:block;height:100%;border-radius:999px}
+.rsj b{flex:none;width:34px;text-align:right;color:var(--ink2)}
+/* 미니 카드 2열 */
+.rpt-grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
+.rmc{background:var(--bg);border-radius:13px;padding:13px}
+.rmc-t{font-size:12px;font-weight:800;color:var(--ink2)}
+.rmc-v{font-size:17px;font-weight:900;color:var(--ink);margin:3px 0}
+.rmc-d{font-size:11px;color:var(--ink3);line-height:1.5}
+/* 과목별 오답 */
+.rpt-wrong{display:flex;flex-direction:column;gap:8px;background:var(--bg);border-radius:13px;padding:13px}
+.rw-row{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:800;color:var(--ink)}
+.rw-s{flex:none;width:40px}
+.rw-bar{flex:1;height:8px;background:var(--line2);border-radius:999px;overflow:hidden}
+.rw-bar i{display:block;height:100%;background:var(--s-prob,#E89A3C);border-radius:999px}
+.rw-row b{flex:none;width:44px;text-align:right;color:var(--ink2)}
+/* 종이교재 자기보고 */
+.rpt-self{background:var(--bg);border-radius:12px;padding:12px 14px;font-size:13px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px}
+.rpt-self span{margin-left:auto;font-size:11px;font-weight:800;color:var(--ink3);background:var(--card);padding:3px 9px;border-radius:999px}
+/* ===== NEIS 성적표 테이블 ===== */
+.neis{border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.neis-hd{background:var(--ink);color:#fff;padding:12px 14px}
+.neis-hd b{font-size:14px;font-weight:900;display:block}
+.neis-hd span{font-size:11px;opacity:.85;display:block;margin-top:2px}
+.neis-wrap{overflow-x:auto}
+.neis-t{width:100%;border-collapse:collapse;font-size:12px;min-width:420px}
+.neis-t td{border:1px solid var(--line2);padding:9px 8px;text-align:center;color:var(--ink);white-space:nowrap}
+.neis-t tr.nh td{background:var(--bg);font-weight:900;font-size:11px;color:var(--ink2)}
+.neis-t tr.wk{background:#FFF3F3}
+.neis-t td:nth-child(2){text-align:left}
+.nsd{font-size:10px;color:var(--ink3);margin-left:1px}
+.nts{font-weight:900;color:var(--brand)}
+.nach{display:inline-block;width:20px;height:20px;line-height:20px;border-radius:6px;font-weight:900;font-size:11px;color:#fff}
+.nach.a-A{background:#2FA84F}.nach.a-B{background:#4A90D9}.nach.a-C{background:#E0A93A}.nach.a-D{background:#E8803C}.nach.a-E{background:#D04545}
+.neis-t .up{color:#2FA84F;font-weight:900;font-size:10px}
+.neis-t .dn{color:#E23B3B;font-weight:900;font-size:10px}
+.neis-ft{font-size:10px;color:var(--ink3);line-height:1.6;padding:10px 14px;background:var(--bg)}
 .rpt-hd.low{background:linear-gradient(135deg,#9A3B3B,#C25454)}
 .rpt-demotog{padding:12px 16px;background:var(--ink);color:#fff}
 .rpt-demotog .rdt-lbl{font-size:10.5px;opacity:.8;display:block;margin-bottom:7px}
@@ -1053,6 +1116,67 @@ button{font:inherit;cursor:pointer}
 .ex-step .es-lock{opacity:.4}
 .ex-step button{background:var(--brand);color:#fff;border:0;border-radius:10px;padding:9px 16px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:none}
 .ex-foot{font-size:11.5px;color:var(--ink3);line-height:1.6;margin-top:16px;background:var(--bg);border-radius:10px;padding:12px 14px}
+/* === 종이 교재 &quot;다 풀었어요&quot; 모달 === */
+.wordsheet.pp2{max-width:440px;height:auto;max-height:88vh}
+.ppbody{padding:20px 22px 28px;align-items:stretch;text-align:left}
+.pp-ic{font-size:44px;text-align:center}
+.pp-h{font-size:19px;font-weight:900;text-align:center;margin:8px 0 4px}
+.pp-d{font-size:13px;color:var(--ink2);line-height:1.6;text-align:center;margin-bottom:18px}
+.pp-d b{color:var(--ink)}
+.pp-q{font-size:12.5px;font-weight:900;color:var(--ink2);margin-bottom:8px}
+.pp-ta{width:100%;min-height:90px;border:1.5px solid var(--line);border-radius:12px;padding:13px;font-size:14px;font-family:inherit;line-height:1.6;resize:vertical;outline:none}
+.pp-ta:focus{border-color:var(--brand)}
+.pp-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.pp-chips button{font-size:12.5px;font-weight:800;border:1px solid var(--line);background:var(--card);color:var(--ink2);border-radius:999px;padding:8px 14px;cursor:pointer;font-family:inherit}
+.pp-chips button:hover{border-color:var(--brand);color:var(--brand)}
+.ppbody .wbtn{margin-top:18px}
+/* === 특강 담기 모달 === */
+.wordsheet.tk2{max-width:440px;height:auto;max-height:86vh}
+.tk2body{padding:22px 24px 28px;align-items:stretch;text-align:center}
+.tk2-ic{font-size:48px}.tk2-ic.warn{font-size:44px}
+.tk2-h{font-size:20px;font-weight:900;margin:10px 0 8px}
+.tk2-d{font-size:14px;color:var(--ink2);line-height:1.7;margin-bottom:18px}
+.tk2-d b{color:var(--ink);font-weight:800}
+.tk2-cmp{background:var(--bg);border-radius:12px;padding:14px 16px;margin-bottom:18px;text-align:left}
+.tk2-row{display:flex;gap:12px;align-items:center;font-size:13px;color:var(--ink2);padding:6px 0}
+.tk2-row.new{border-top:1px solid var(--line2);color:var(--ink);font-weight:700}
+.tk2-lbl{flex:0 0 42px;font-size:11px;font-weight:900;color:var(--ink3)}
+.tk2-row.new .tk2-lbl{color:var(--s-teuk,#C28A1E)}
+.tk2-btns{display:flex;flex-direction:column;gap:9px}
+.tk2body .wbtn{margin-top:0}
+/* ===== 레벨 진단 모달 ===== */
+.wordsheet.dg{max-width:460px;height:auto;max-height:90vh}
+.dgbody{padding:4px 2px 2px}
+.dg-intro,.dg-done{text-align:center;padding:8px 4px}
+.dg-ic{font-size:40px;margin-bottom:6px}
+.dg-h{font-size:17px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.dg-h b{color:var(--brand)}
+.dg-d{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:14px}
+.dg-d b{color:var(--ink)}
+.dg-units{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:6px}
+.dg-ut{background:var(--bg);color:var(--ink2);font-size:12px;font-weight:800;padding:6px 11px;border-radius:999px}
+.dg-bar{height:6px;background:var(--line2);border-radius:999px;overflow:hidden;margin:2px 0 16px}
+.dg-bar i{display:block;height:100%;background:var(--brand);border-radius:999px;transition:.3s}
+.dg-utag{display:inline-block;background:var(--lime-s);color:#5B7A1E;font-size:12px;font-weight:900;padding:5px 11px;border-radius:999px;margin-bottom:10px}
+.dg-q{font-size:16px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:16px;min-height:44px}
+.dg-opts{display:flex;flex-direction:column;gap:9px}
+.dg-op{display:flex;align-items:center;gap:11px;text-align:left;background:var(--card);border:1.5px solid var(--line2);border-radius:13px;padding:14px 15px;font-size:14.5px;font-weight:700;color:var(--ink);cursor:pointer;font-family:inherit;transition:.12s}
+.dg-op:hover{border-color:var(--brand)}
+.dg-op.on{border-color:var(--brand);background:var(--lime-s)}
+.dg-no{flex:none;width:24px;height:24px;border-radius:7px;background:var(--line2);color:var(--ink3);font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.dg-op.on .dg-no{background:var(--brand);color:#fff}
+.dg-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px}
+.dg-nav .wbtn{margin-top:0;width:auto;padding:11px 16px;font-size:13px;flex:none}
+.dg-score{display:flex;flex-direction:column;gap:10px;margin:14px 0 4px;text-align:left}
+.dg-sr{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--ink)}
+.dg-sr&gt;span{flex:none;width:76px}
+.dg-sr b{flex:none;width:40px;text-align:right}
+.dg-sr.weak{color:#E23B3B}
+.dg-sb{flex:1;height:8px;background:var(--line2);border-radius:999px;overflow:hidden}
+.dg-sb i{display:block;height:100%;background:var(--brand);border-radius:999px}
+.dg-sr.weak .dg-sb i{background:#E23B3B}
+.dg-reco{background:var(--lime-s);border-radius:12px;padding:13px;font-size:13px;font-weight:700;color:var(--ink);line-height:1.6;margin:14px 0 2px;text-align:left}
+.dg-reco b{color:var(--brand)}
 .dlg{background:var(--card);width:100%;max-width:440px;border-radius:22px;padding:24px;animation:pop .18s ease;position:relative;max-height:92vh;overflow-y:auto}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 .dlg .x{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:10px;border:0;background:var(--line2);color:var(--ink3);font-size:15px;font-weight:800}
@@ -1065,6 +1189,42 @@ button{font:inherit;cursor:pointer}
 .dlg .sinfo{margin-top:16px;background:var(--bg);border-radius:14px;padding:15px;display:grid;grid-template-columns:1fr 1fr;gap:13px}
 .dlg .si .sl{font-size:11px;color:var(--ink3);font-weight:700}
 .dlg .si .sv{font-size:14px;font-weight:800;margin-top:2px}
+/* ===== 시험 계획표 직접 입력 ===== */
+.epl-head{display:grid;grid-template-columns:58px 1fr 76px 28px;gap:6px;font-size:11px;font-weight:800;color:var(--ink3);padding:0 2px 6px}
+.epl-list{display:flex;flex-direction:column;gap:7px}
+.epl-row{display:grid;grid-template-columns:58px 1fr 76px 28px;gap:6px;align-items:center}
+.epl-s,.epl-w,.epl-d{border:1.5px solid var(--line2);border-radius:10px;padding:10px 9px;font-size:12.5px;font-family:inherit;color:var(--ink);background:var(--card);min-width:0}
+.epl-s:focus,.epl-w:focus,.epl-d:focus{outline:0;border-color:var(--brand)}
+.epl-x{border:0;background:var(--bg);color:var(--ink3);border-radius:9px;width:28px;height:36px;font-size:13px;font-weight:800;cursor:pointer}
+.epl-empty{background:var(--bg);border-radius:12px;padding:18px 14px;font-size:12.5px;color:var(--ink3);line-height:1.7;text-align:center}
+.epl-empty b{color:var(--ink2)}
+.epl-btns{display:flex;gap:8px;margin-top:9px}
+.epl-add,.epl-sug{flex:1;border:1.5px dashed var(--line);background:none;border-radius:11px;padding:11px;font-size:12.5px;font-weight:800;color:var(--ink2);cursor:pointer;font-family:inherit}
+.epl-sug{border-style:solid;border-color:var(--lime-s);background:var(--lime-s);color:#5B7A1E}
+/* ===== 수행평가 자기주도 준비 패널 ===== */
+.pf-note{background:#FFF6E6;border:1px solid #F3E2BC;border-radius:12px;padding:12px 13px;font-size:12.5px;color:#7A5A12;line-height:1.6;margin:14px 0 4px}
+.pf-note b{color:#5C4208}
+.pf-sec{margin-top:16px}
+.pf-h{font-size:14px;font-weight:900;color:var(--ink);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.pf-cnt{background:var(--lime-s);color:#5B7A1E;font-size:11px;font-weight:900;padding:2px 9px;border-radius:999px}
+.pf-ta{width:100%;min-height:72px;resize:vertical;border:1.5px solid var(--line2);border-radius:12px;padding:12px;font-size:13.5px;font-family:inherit;color:var(--ink);line-height:1.6;box-sizing:border-box}
+.pf-ta:focus{outline:0;border-color:var(--brand)}
+.pf-save{margin-top:8px;background:var(--bg);color:var(--ink2);border:0;border-radius:10px;padding:9px 16px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit}
+.pf-up{display:flex;align-items:center;gap:13px;border:1.5px dashed var(--line);border-radius:13px;padding:16px;cursor:pointer;font-size:12.5px;color:var(--ink2);line-height:1.55;transition:.12s}
+.pf-up:hover{border-color:var(--brand);background:var(--lime-s)}
+.pf-up b{color:var(--ink)}
+.pf-upic{flex:none;width:40px;height:40px;border-radius:11px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px}
+.pf-files{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.pf-file{background:var(--lime-s);color:#5B7A1E;font-size:12px;font-weight:800;padding:6px 11px;border-radius:9px}
+.pf-steps{display:flex;flex-direction:column;gap:7px}
+.pf-step{display:flex;align-items:center;gap:11px;background:var(--card);border:1.5px solid var(--line2);border-radius:12px;padding:12px 14px;font-size:13.5px;font-weight:700;color:var(--ink);cursor:pointer}
+.pf-step input{display:none}
+.pf-cb{flex:none;width:20px;height:20px;border-radius:7px;border:2px solid var(--line);position:relative}
+.pf-step.done{color:var(--ink3)}
+.pf-step.done .pf-cb{background:var(--brand);border-color:var(--brand)}
+.pf-step.done .pf-cb::after{content:&#x27;&#x27;;position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.pf-step.done&gt;span:last-child,.pf-step.done{text-decoration:none}
+.pf-add{margin-top:3px;background:none;border:1.5px dashed var(--line);border-radius:12px;padding:11px;font-size:12.5px;font-weight:800;color:var(--ink3);cursor:pointer;font-family:inherit}
 .dlg .sact{margin-top:17px;display:flex;gap:9px}
 .dlg .sact button{flex:1;font-weight:800;font-size:14px;border:0;border-radius:13px;padding:14px}
 .dlg .sact .pri{background:var(--brand);color:#fff}
@@ -1195,7 +1355,8 @@ button{font:inherit;cursor:pointer}
 .schbar{display:flex;gap:9px}
 .schbar input{flex:1;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:var(--bg)}
 .schbar input:focus{outline:0;border-color:var(--brand-d);background:#fff}
-.schbar .sbtn{background:var(--brand);color:#fff;border-radius:12px;padding:0 22px;font-weight:800;font-size:14px;border:0}
+.sbtn{background:var(--brand);color:#fff;border-radius:12px;padding:12px 22px;font-weight:800;font-size:14px;border:0;cursor:pointer;font-family:inherit;line-height:1.2}
+.schbar .sbtn{border-radius:12px;padding:0 22px}
 .schres{margin-top:13px;display:flex;flex-direction:column;gap:8px}
 .schitem{display:flex;align-items:center;gap:13px;border:1px solid var(--line);border-radius:13px;padding:13px 15px;cursor:pointer;transition:.12s}
 .schitem:hover{border-color:var(--brand-d);background:var(--brand-s)}
@@ -1238,6 +1399,19 @@ button{font:inherit;cursor:pointer}
 @media(max-width:620px){.gcards{grid-template-columns:1fr}}
 .gcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
 .gcard h4{font-size:14px;font-weight:900;margin-bottom:14px}
+/* 학습 기록 추이 = 성장 */
+.gc-growth{margin-bottom:16px;border:1.5px solid var(--lime-s)}
+.gm-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.gm{background:var(--bg);border-radius:13px;padding:13px 13px 6px}
+.gm-top{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.gm-ic{font-size:13px}
+.gm-l{font-size:11.5px;font-weight:800;color:var(--ink2)}
+.gm-up{margin-left:auto;font-size:11px;font-weight:900;color:#2FA84F}
+.gm-now{font-size:21px;font-weight:900;color:var(--ink);line-height:1}
+.gm-now i{font-size:12px;font-weight:800;color:var(--ink3);margin-left:2px;font-style:normal}
+.tl-svg{width:100%;height:38px;margin-top:4px;display:block}
+.gm-note{margin-top:13px;background:var(--lime-s);border-radius:11px;padding:12px;font-size:12px;color:#5B7A1E;line-height:1.6}
+.gm-note b{color:#3F5614}
 .gchart{display:flex;align-items:flex-end;gap:14px;height:120px}
 .gbar2{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
 .gbar2 .gnum{font-size:11px;font-weight:800;margin-bottom:5px}
@@ -1663,6 +1837,10 @@ button{font:inherit;cursor:pointer}
 .m-td .stb.live{background:var(--s-live)}
 .m-td li{cursor:pointer}
 .m-td .cb{width:24px;height:24px;border-radius:9px;border:2px solid var(--line);background:#fff;flex:none;display:grid;place-items:center}
+.m-td .cb.lock{border:0;background:none}
+.m-td .cb.lock svg{width:15px;height:15px;stroke:var(--faint);fill:none;opacity:1}
+.m-td .cb[disabled]{background:var(--ok);border-color:var(--ok)}
+.m-td .cb[disabled] svg{opacity:1;stroke:#fff}
 .m-td .cb svg{width:12px;height:12px;stroke:#fff;stroke-width:3.5;opacity:0}
 .m-td li.done .cb{background:var(--ok);border-color:var(--ok)}
 .m-td li.done .cb svg{opacity:1}
@@ -1793,9 +1971,9 @@ var BLK=[
  // 이번 주 오더
  [0,6,2,&#x27;이번 주 오더 작성·제출&#x27;,&#x27;18:30–19:10&#x27;,&#x27;prob&#x27;,{order:1,done:1}],
  // 시험 스텝업
- [2,8,1,&#x27;[D-10] 국어 문법 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1}],[3,8,1,&#x27;[D-9] 수학 오답 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1}],[5,7,2,&#x27;[D-7] 사회 암기노트&#x27;,&#x27;19:00–20:00&#x27;,&#x27;exam&#x27;,{plan:1}],
+ [2,8,1,&#x27;[D-10] 국어 문법 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1}],[3,8,1,&#x27;[D-9] 수학 오답 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1,done:1}],[5,7,2,&#x27;[D-7] 사회 암기노트&#x27;,&#x27;19:00–20:00&#x27;,&#x27;exam&#x27;,{plan:1}],
  // 과제형
- [0,9,2,&#x27;쎈 수학 p.52–55&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{done:1}],[1,9,2,&#x27;쎈 수학 p.56–59&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{}],[2,9,2,&#x27;수학 오답 재풀이&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{}],[3,9,2,&#x27;국어 문제 1장&#x27;,&#x27;20:00–20:30&#x27;,&#x27;prob&#x27;,{}],[4,9,2,&#x27;English Escape! 특강&#x27;,&#x27;20:00–20:50&#x27;,&#x27;teuk&#x27;,{}],
+ [0,9,2,&#x27;쎈 수학 p.52–55&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{done:1}],[1,9,2,&#x27;쎈 수학 p.56–59&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{}],[2,9,2,&#x27;수학 오답 재풀이&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{}],[3,9,2,&#x27;국어 문제 1장&#x27;,&#x27;20:00–20:30&#x27;,&#x27;prob&#x27;,{done:1}],[4,9,2,&#x27;English Escape! 특강&#x27;,&#x27;20:00–20:50&#x27;,&#x27;teuk&#x27;,{}],
  [6,7,2,&#x27;주간 복습 · 특강 다시보기&#x27;,&#x27;19:00–20:00&#x27;,&#x27;lec&#x27;,{}],
  // ★ 정해진 타임 개념특강 — 중등 21:00 단일 타임, 과목별 로테이션
  [0,11,2,&#x27;개념특강 · 수학 일차함수&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{}],
@@ -1803,28 +1981,55 @@ var BLK=[
  [2,11,2,&#x27;다시보기 · 수학 개념&#x27;,&#x27;21:00–21:40&#x27;,&#x27;lec&#x27;,{}],
  [2,13,1,&#x27;개념체크 · 일차함수&#x27;,&#x27;강의 직후&#x27;,&#x27;check&#x27;,{}],
  [3,11,2,&#x27;개념특강 · 영어 독해 Reading&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{live:1}],
- [3,13,1,&#x27;개념체크 · 일차함수&#x27;,&#x27;강의 직후&#x27;,&#x27;check&#x27;,{}],
+ [3,13,1,&#x27;개념체크 · 일차함수&#x27;,&#x27;강의 직후&#x27;,&#x27;check&#x27;,{done:1}],
  [3,14,1,&#x27;영단어 20개 (시험범위)&#x27;,&#x27;21:30&#x27;,&#x27;word&#x27;,{}],
  [4,11,2,&#x27;개념특강 · 국어 문해력&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{}],
  [6,12,1,&#x27;영단어 복습&#x27;,&#x27;21:30&#x27;,&#x27;word&#x27;,{}]
 ];
 
+/* 수행평가·시험: 학교 허브에서 &quot;일정·배점&quot;만 자동으로 떠 있고,
+   준비(주제·자료·계획)는 AI가 대신 안 하고 학생이 직접 올리고 세운다 */
 var SCH={
- 2:[{k:&#x27;perf&#x27;,t:&#x27;과학 보고서 제출&#x27;,subj:&#x27;과학&#x27;,date:&#x27;10/21 수&#x27;,topic:&#x27;빛의 굴절 실험 보고서&#x27;,pts:&#x27;15점&#x27;,share:&#x27;수행평가 40% 중 15점&#x27;,tip:&#x27;실험 과정 사진 첨부 시 가산&#x27;}],
- 4:[{k:&#x27;perf&#x27;,t:&#x27;국어 말하기 수행&#x27;,subj:&#x27;국어&#x27;,date:&#x27;10/23 금&#x27;,topic:&#x27;설득하는 말하기 — 3분 스피치&#x27;,pts:&#x27;20점&#x27;,share:&#x27;수행평가 40% 중 20점&#x27;,tip:&#x27;원고 제출 후 발표 순서 추첨&#x27;}]
+ 2:[{k:&#x27;perf&#x27;,t:&#x27;과학 보고서 제출&#x27;,subj:&#x27;과학&#x27;,date:&#x27;10/21 수&#x27;,topic:&#x27;빛의 굴절 실험 보고서&#x27;,pts:&#x27;15점&#x27;,share:&#x27;수행평가 40% 중 15점&#x27;,tip:&#x27;실험 과정 사진 첨부 시 가산&#x27;,
+    myTopic:&#x27;&#x27;,files:[],steps:[{t:&#x27;실험 주제·가설 정하기&#x27;,done:false},{t:&#x27;실험 과정 사진 찍어두기&#x27;,done:false},{t:&#x27;보고서 초안 쓰기&#x27;,done:false},{t:&#x27;검토 후 제출&#x27;,done:false}]}],
+ 4:[{k:&#x27;perf&#x27;,t:&#x27;국어 말하기 수행&#x27;,subj:&#x27;국어&#x27;,date:&#x27;10/23 금&#x27;,topic:&#x27;설득하는 말하기 — 3분 스피치&#x27;,pts:&#x27;20점&#x27;,share:&#x27;수행평가 40% 중 20점&#x27;,tip:&#x27;원고 제출 후 발표 순서 추첨&#x27;,
+    myTopic:&#x27;&#x27;,files:[],steps:[{t:&#x27;설득 주제 정하기&#x27;,done:false},{t:&#x27;3분 원고 쓰기&#x27;,done:false},{t:&#x27;소리내어 연습·녹음&#x27;,done:false},{t:&#x27;원고 제출&#x27;,done:false}]}]
 };
+var curSch=null;
 function openSch(d,j){
-  var c=SCH[d][j];
-  document.getElementById(&#x27;dlg&#x27;).classList.remove(&#x27;wide&#x27;);
-  document.getElementById(&#x27;dlg&#x27;).innerHTML=&#x27;&lt;button class=&quot;x&quot; onclick=&quot;closeDlg()&quot;&gt;✕&lt;/button&gt;&#x27;+
-    &#x27;&lt;div class=&quot;shd&quot;&gt;&lt;span class=&quot;sdot&quot; style=&quot;background:var(--s-prob)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;scat&quot; style=&quot;color:#9A6310&quot;&gt;&#x27;+c.subj+&#x27; 수행평가&lt;/span&gt;&lt;span class=&quot;srcb&quot;&gt;반포중 평가계획&lt;/span&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;h3&gt;&#x27;+c.topic+&#x27;&lt;/h3&gt;&lt;div class=&quot;smeta&quot;&gt;&#x27;+c.date+&#x27; · &#x27;+c.t+&#x27;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;sinfo&quot;&gt;&lt;div class=&quot;si&quot;&gt;&lt;div class=&quot;sl&quot;&gt;배점&lt;/div&gt;&lt;div class=&quot;sv&quot;&gt;&#x27;+c.pts+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;si&quot;&gt;&lt;div class=&quot;sl&quot;&gt;반영&lt;/div&gt;&lt;div class=&quot;sv&quot;&gt;&#x27;+c.share+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;si&quot; style=&quot;grid-column:1/3&quot;&gt;&lt;div class=&quot;sl&quot;&gt;참고&lt;/div&gt;&lt;div class=&quot;sv&quot; style=&quot;font-size:13px&quot;&gt;&#x27;+c.tip+&#x27;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;sact&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;toast(\&#x27;준비 계획에 담았어요 — 알림 가요\&#x27;)&quot;&gt;준비 계획 담기&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;openSchFix()&quot;&gt;일정 바뀜&lt;/button&gt;&lt;/div&gt;&#x27;;
+  var c=SCH[d][j]; curSch={d:d,j:j,c:c};
+  renderPerf();
   document.getElementById(&#x27;ovl&#x27;).classList.add(&#x27;show&#x27;);
 }
+/* ===== 수행평가 자기주도 준비 패널 ===== */
+function renderPerf(){
+  var c=curSch.c;
+  var doneN=c.steps.filter(function(s){return s.done;}).length;
+  var dlg=document.getElementById(&#x27;dlg&#x27;); dlg.classList.remove(&#x27;wide&#x27;);
+  dlg.innerHTML=&#x27;&lt;button class=&quot;x&quot; onclick=&quot;closeDlg()&quot;&gt;✕&lt;/button&gt;&#x27;+
+    &#x27;&lt;div class=&quot;shd&quot;&gt;&lt;span class=&quot;sdot&quot; style=&quot;background:var(--s-prob)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;scat&quot; style=&quot;color:#9A6310&quot;&gt;&#x27;+c.subj+&#x27; 수행평가&lt;/span&gt;&lt;span class=&quot;srcb&quot;&gt;반포중 평가계획 · 자동&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;h3&gt;&#x27;+c.topic+&#x27;&lt;/h3&gt;&lt;div class=&quot;smeta&quot;&gt;&#x27;+c.date+&#x27; · &#x27;+c.t+&#x27; · &#x27;+c.pts+&#x27; (&#x27;+c.share+&#x27;)&lt;/div&gt;&#x27;+
+    /* 안내 — 자동은 &#x27;일정&#x27;뿐, 준비는 네가 */
+    &#x27;&lt;div class=&quot;pf-note&quot;&gt;📌 학교 일정·배점은 자동으로 들어와 있어요. &lt;b&gt;준비는 네가 직접&lt;/b&gt; — 어떻게 할지 정하고, 자료를 올리면 선생님이 봐줘요.&lt;/div&gt;&#x27;+
+    /* 1. 내 주제·방향 */
+    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;1. 어떤 주제·방향으로 할까?&lt;/div&gt;&#x27;+
+      &#x27;&lt;textarea class=&quot;pf-ta&quot; id=&quot;pfTopic&quot; placeholder=&quot;예) 빛의 굴절을 물컵·렌즈로 보여주고, 생활 속 예시(안경·무지개)로 연결하려고 해요&quot;&gt;&#x27;+(c.myTopic||&#x27;&#x27;)+&#x27;&lt;/textarea&gt;&#x27;+
+      &#x27;&lt;button class=&quot;pf-save&quot; onclick=&quot;perfSaveTopic()&quot;&gt;주제 저장&lt;/button&gt;&lt;/div&gt;&#x27;+
+    /* 2. 자료 올리기 */
+    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;2. 내가 만든 자료 올리기&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;pf-up&quot; onclick=&quot;perfUpload()&quot;&gt;&lt;div class=&quot;pf-upic&quot;&gt;📎&lt;/div&gt;&lt;div&gt;원고·사진·실험기록·초안을 올려두면&lt;br&gt;&lt;b&gt;선생님이 보고 피드백&lt;/b&gt;해줘요&lt;/div&gt;&lt;/div&gt;&#x27;+
+      (c.files.length?&#x27;&lt;div class=&quot;pf-files&quot;&gt;&#x27;+c.files.map(function(f){return &#x27;&lt;span class=&quot;pf-file&quot;&gt;📄 &#x27;+f+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+    /* 3. 내 준비 체크리스트 */
+    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;3. 내 준비 단계 &lt;span class=&quot;pf-cnt&quot;&gt;&#x27;+doneN+&#x27;/&#x27;+c.steps.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;pf-steps&quot;&gt;&#x27;+c.steps.map(function(s,i){
+        return &#x27;&lt;label class=&quot;pf-step&#x27;+(s.done?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;input type=&quot;checkbox&quot; &#x27;+(s.done?&#x27;checked&#x27;:&#x27;&#x27;)+&#x27; onchange=&quot;perfToggle(&#x27;+i+&#x27;)&quot;&gt;&lt;span class=&quot;pf-cb&quot;&gt;&lt;/span&gt;&#x27;+s.t+&#x27;&lt;/label&gt;&#x27;;}).join(&#x27;&#x27;)+
+      &#x27;&lt;button class=&quot;pf-add&quot; onclick=&quot;perfAddStep()&quot;&gt;+ 단계 직접 추가&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:4px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;closeDlg();toast(\&#x27;준비 현황 저장 — 선생님도 볼 수 있어요\&#x27;)&quot;&gt;저장하고 닫기&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;openSchFix()&quot;&gt;일정 바뀜&lt;/button&gt;&lt;/div&gt;&#x27;;
+}
+function perfSaveTopic(){var v=document.getElementById(&#x27;pfTopic&#x27;).value;curSch.c.myTopic=v;toast(v?&#x27;주제 저장 — 선생님이 확인해요&#x27;:&#x27;주제를 적어주세요&#x27;);}
+function perfUpload(){curSch.c.files.push(&#x27;내자료_&#x27;+(curSch.c.files.length+1)+&#x27;.jpg&#x27;);renderPerf();toast(&#x27;자료 올렸어요 — 선생님 검토 대기&#x27;);}
+function perfToggle(i){curSch.c.steps[i].done=!curSch.c.steps[i].done;renderPerf();}
+function perfAddStep(){var t=prompt(&#x27;추가할 준비 단계를 적어줘&#x27;);if(t){curSch.c.steps.push({t:t,done:false});renderPerf();}}
 
 function openSchFix(){
   document.getElementById(&#x27;dlg&#x27;).classList.remove(&#x27;wide&#x27;);
@@ -1840,18 +2045,110 @@ function openSchFix(){
     &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:16px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;closeDlg();toast(\&#x27;반영했어요 — 알림·D-day도 같이 옮겨요\&#x27;)&quot;&gt;수정 반영&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;closeDlg()&quot;&gt;취소&lt;/button&gt;&lt;/div&gt;&#x27;;
   document.getElementById(&#x27;ovl&#x27;).classList.add(&#x27;show&#x27;);
 }
+/* day=요일(0월~6일), slot=시작행, len=길이 — 특강은 시간이 정해져 있어 그 자리에 담김(겹치면 안내) */
 var TKB=[
- {g:&#x27;linear-gradient(120deg,#E23B3B,#F2683C)&#x27;,cat:&#x27;🔥 수행평가 공략&#x27;,tit:&#x27;수행평가, 뭘 고를지부터&#x27;,desc:&#x27;많은 수행 중 세팅에 유리한 하나를 골라 공략하는 법&#x27;,when:&#x27;10/24 금 20:00&#x27;},
- {g:&#x27;linear-gradient(120deg,#3A3D8F,#6B4FD0)&#x27;,cat:&#x27;✦ 공부 기술&#x27;,tit:&#x27;시험 2주 전 역산 공부법&#x27;,desc:&#x27;벼락치기 말고, D-14부터 거꾸로 짜는 시험 플랜&#x27;,when:&#x27;매주 화 19:30&#x27;},
- {g:&#x27;linear-gradient(120deg,#1E8E7E,#2FB3A0)&#x27;,cat:&#x27;∑ 서술형 대비&#x27;,tit:&#x27;서술형 감점 안 당하는 법&#x27;,desc:&#x27;채점 기준에 맞춰 쓰는 연습 — 태블릿 판서 첨삭&#x27;,when:&#x27;매주 토 10:00&#x27;},
- {g:&#x27;linear-gradient(120deg,#C28A1E,#E0A93A)&#x27;,cat:&#x27;🎓 입시 세미나&#x27;,tit:&#x27;중2 외고·자사고 로드맵&#x27;,desc:&#x27;내신·원서 일정 전략 — 학부모 동반 세미나&#x27;,when:&#x27;11/15 토 19:00&#x27;},
- {g:&#x27;linear-gradient(120deg,#8C5BC2,#B07FE0)&#x27;,cat:&#x27;📒 노트 기술&#x27;,tit:&#x27;오답노트, 진짜 되는 방식&#x27;,desc:&#x27;틀린 걸 다시 안 틀리게 만드는 정리법&#x27;,when:&#x27;10/26 일 20:00&#x27;}
+ {g:&#x27;linear-gradient(120deg,#E23B3B,#F2683C)&#x27;,cat:&#x27;🔥 수행평가 공략&#x27;,tit:&#x27;수행평가, 뭘 고를지부터&#x27;,desc:&#x27;많은 수행 중 세팅에 유리한 하나를 골라 공략하는 법&#x27;,when:&#x27;금 20:00&#x27;,day:4,slot:9,len:2},
+ {g:&#x27;linear-gradient(120deg,#3A3D8F,#6B4FD0)&#x27;,cat:&#x27;✦ 공부 기술&#x27;,tit:&#x27;시험 2주 전 역산 공부법&#x27;,desc:&#x27;벼락치기 말고, D-14부터 거꾸로 짜는 시험 플랜&#x27;,when:&#x27;화 19:30&#x27;,day:1,slot:8,len:1},
+ {g:&#x27;linear-gradient(120deg,#1E8E7E,#2FB3A0)&#x27;,cat:&#x27;∑ 서술형 대비&#x27;,tit:&#x27;서술형 감점 안 당하는 법&#x27;,desc:&#x27;채점 기준에 맞춰 쓰는 연습 — 태블릿 판서 첨삭&#x27;,when:&#x27;토 10:00&#x27;,day:5,slot:9,len:1},
+ {g:&#x27;linear-gradient(120deg,#C28A1E,#E0A93A)&#x27;,cat:&#x27;🎓 입시 세미나&#x27;,tit:&#x27;중2 외고·자사고 로드맵&#x27;,desc:&#x27;내신·원서 일정 전략 — 학부모 동반 세미나&#x27;,when:&#x27;토 19:00&#x27;,day:5,slot:9,len:2},
+ {g:&#x27;linear-gradient(120deg,#8C5BC2,#B07FE0)&#x27;,cat:&#x27;📒 노트 기술&#x27;,tit:&#x27;오답노트, 진짜 되는 방식&#x27;,desc:&#x27;틀린 걸 다시 안 틀리게 만드는 정리법&#x27;,when:&#x27;목 20:00&#x27;,day:3,slot:9,len:1}
 ];
 var tkIdx=0,tkTimer;
+/* 특강 신청 = 그 정해진 타임에 담기. 아이 시간표와 겹치면 물어봄 */
+function teukOverlap(day,slot,len){
+ var hit=null;
+ BLK.forEach(function(b){ if(b[0]!==day)return;
+   var s1=b[1],e1=b[1]+b[2]-1, s2=slot,e2=slot+len-1;
+   if(s1&lt;=e2 &amp;&amp; s2&lt;=e1){hit=b;} });
+ return hit;
+}
+var WDAY=[&#x27;월&#x27;,&#x27;화&#x27;,&#x27;수&#x27;,&#x27;목&#x27;,&#x27;금&#x27;,&#x27;토&#x27;,&#x27;일&#x27;];
+function teukTime(t){return t.when.replace(/^[월화수목금토일]\s/,&#x27;&#x27;);}
+/* 그 요일에 특강이 들어갈 빈 자리가 있나 (len 연속으로 빈 슬롯) */
+function teukFitsAnyDay(t){
+ /* 다른 요일 중 len만큼 빈 자리가 있는 특강 타임을 못 만드니, 내 빈 시간에 &quot;들을 수 있는 다른 과목 특강&quot;을 추천 */
+ return null;
+}
+/* 내 시간표에서 겹치지 않는 다른 특강 추천 */
+function teukSuggest(exceptIdx){
+ var out=[];
+ for(var k=0;k&lt;TKB.length;k++){ if(k===exceptIdx)continue;
+   var tt=TKB[k]; if(!teukOverlap(tt.day,tt.slot,tt.len)){ out.push(k); if(out.length&gt;=2)break; } }
+ return out;
+}
+function teukApply(i){
+ var t=TKB[i];
+ var clash=teukOverlap(t.day,t.slot,t.len);
+ ensureTeukOvl();
+ var dayName=WDAY[t.day]+&#x27;요일&#x27;;
+ var body=document.getElementById(&#x27;teukBody&#x27;);
+ if(!clash){
+   body.innerHTML=&#x27;&lt;div class=&quot;tk2-ic&quot;&gt;⭐&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;tk2-h&quot;&gt;이 특강을 담을까요?&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;tk2-d&quot;&gt;&lt;b&gt;&#x27;+t.tit+&#x27;&lt;/b&gt;&lt;br&gt;&#x27;+dayName+&#x27; &#x27;+teukTime(t)+&#x27; · 시간표 빈 자리예요 ✓&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;tk2-btns&quot;&gt;&lt;button class=&quot;wbtn&quot; onclick=&quot;teukDo(&#x27;+i+&#x27;,false)&quot;&gt;&#x27;+dayName+&#x27; 그 시간에 담기&lt;/button&gt;&#x27;+
+       &#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;closeTeuk()&quot;&gt;취소&lt;/button&gt;&lt;/div&gt;&#x27;;
+ } else {
+   var st=clash[6]||{};
+   var movable = !st.ext; /* 학원·하교·외부가 아니면 = 우리 공부 → 옮길 수 있음 */
+   var head=&#x27;&lt;div class=&quot;tk2-ic warn&quot;&gt;⚠️&lt;/div&gt;&lt;div class=&quot;tk2-h&quot;&gt;시간표가 겹쳐요&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;tk2-d&quot;&gt;&lt;b&gt;&#x27;+t.tit+&#x27;&lt;/b&gt;은 &lt;b&gt;&#x27;+dayName+&#x27; &#x27;+teukTime(t)+&#x27;&lt;/b&gt;인데,&lt;br&gt;그 시간에 이미 &lt;b&gt;&#x27;+clash[3]+&#x27;&lt;/b&gt;&#x27;+(clash[4]?&#x27;(&#x27;+clash[4]+&#x27;)&#x27;:&#x27;&#x27;)+&#x27;가 있어요.&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;tk2-cmp&quot;&gt;&lt;div class=&quot;tk2-row&quot;&gt;&lt;span class=&quot;tk2-lbl&quot;&gt;기존&lt;/span&gt;&lt;span&gt;&#x27;+clash[3]+(clash[4]?&#x27; · &#x27;+clash[4]:&#x27;&#x27;)+(st.ext?&#x27; · 고정(옮기기 불가)&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+       &#x27;&lt;div class=&quot;tk2-row new&quot;&gt;&lt;span class=&quot;tk2-lbl&quot;&gt;특강&lt;/span&gt;&lt;span&gt;&#x27;+t.tit+&#x27; · &#x27;+dayName+&#x27; &#x27;+teukTime(t)+&#x27;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+   var btns;
+   if(movable){
+     /* 우리 공부와 겹침 → 공부를 빈 시간으로 옮기고 특강 넣기 (스마트 정리) */
+     btns=&#x27;&lt;div class=&quot;tk2-btns&quot;&gt;&lt;button class=&quot;wbtn&quot; onclick=&quot;teukSmartMove(&#x27;+i+&#x27;)&quot;&gt;📦 \&#x27;&#x27;+clash[3]+&#x27;\&#x27;을 빈 시간으로 옮기고 특강 넣기&lt;/button&gt;&#x27;+
+       &#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;teukDo(&#x27;+i+&#x27;,true)&quot;&gt;그냥 둘 다 담기&lt;/button&gt;&#x27;+
+       &#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;closeTeuk()&quot;&gt;취소&lt;/button&gt;&lt;/div&gt;&#x27;;
+   } else {
+     /* 학원 등 고정과 겹침 → 다른 회차 없음. 내 빈 시간에 가능한 특강 추천 */
+     var sug=teukSuggest(i);
+     var sugHtml = sug.length
+       ? &#x27;&lt;div class=&quot;tk2-sug&quot;&gt;&lt;div class=&quot;tk2-sugh&quot;&gt;💡 그 시간엔 &#x27;+clash[3]+&#x27;이 있어 못 들어요. 대신 &lt;b&gt;내 빈 시간에 들을 수 있는 특강&lt;/b&gt;이에요:&lt;/div&gt;&#x27;+
+         sug.map(function(k){return &#x27;&lt;button class=&quot;tk2-sugb&quot; onclick=&quot;teukApply(&#x27;+k+&#x27;)&quot;&gt;&lt;b&gt;&#x27;+TKB[k].tit+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+WDAY[TKB[k].day]+&#x27;요일 &#x27;+teukTime(TKB[k])+&#x27; · 빈 자리 ✓&lt;/span&gt;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;
+       : &#x27;&lt;div class=&quot;tk2-sug&quot;&gt;&lt;div class=&quot;tk2-sugh&quot;&gt;이번 주엔 겹치지 않는 특강 타임이 없어요. 다시보기로 들을 수 있어요.&lt;/div&gt;&lt;/div&gt;&#x27;;
+     btns=sugHtml+&#x27;&lt;div class=&quot;tk2-btns&quot;&gt;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;teukDo(&#x27;+i+&#x27;,true)&quot;&gt;그래도 이 특강 담기 (겹쳐서)&lt;/button&gt;&#x27;+
+       &#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;closeTeuk()&quot;&gt;취소&lt;/button&gt;&lt;/div&gt;&#x27;;
+   }
+   body.innerHTML=head+btns;
+ }
+ document.getElementById(&#x27;teukOvl&#x27;).classList.add(&#x27;show&#x27;);
+}
+function teukDo(i,overlap){
+ var t=TKB[i];
+ BLK.push([t.day,t.slot,t.len,t.tit,teukTime(t),&#x27;teuk&#x27;,{teuk:1,clash:overlap?1:0}]);
+ buildGrid();buildTodo();closeTeuk();
+ toast(overlap?&#x27;겹쳐서 담았어요 — 시간표에서 조정하세요&#x27;:WDAY[t.day]+&#x27;요일 시간표에 담겼어요 ✨&#x27;);
+}
+/* 겹친 공부를 그날 빈 시간으로 옮기고 특강을 넣음 */
+function teukSmartMove(i){
+ var t=TKB[i];
+ var clash=teukOverlap(t.day,t.slot,t.len);
+ if(clash){
+   /* 그날 저녁 빈 슬롯 찾기 (8~15 범위에서 겹치지 않는 자리) */
+   var moved=false;
+   for(var s=8;s&lt;=15-clash[2]+1;s++){
+     if(s&gt;=t.slot &amp;&amp; s&lt;t.slot+t.len)continue; /* 특강 자리는 피함 */
+     var busy=false;
+     BLK.forEach(function(b){if(b===clash)return;if(b[0]!==t.day)return;if(s&lt;=b[1]+b[2]-1 &amp;&amp; b[1]&lt;=s+clash[2]-1)busy=true;});
+     if(!busy){clash[1]=s;clash[4]=&#x27;시간 조정됨&#x27;;moved=true;break;}
+   }
+   if(!moved){clash[0]=(t.day+1)%7;clash[4]=&#x27;다음날로 이동&#x27;;} /* 그날 빈칸 없으면 다음날 */
+ }
+ BLK.push([t.day,t.slot,t.len,t.tit,teukTime(t),&#x27;teuk&#x27;,{teuk:1}]);
+ buildGrid();buildTodo();closeTeuk();
+ toast(&#x27;공부를 비켜주고 특강을 넣었어요 ✨&#x27;);
+}
+function ensureTeukOvl(){if(document.getElementById(&#x27;teukOvl&#x27;))return;
+ var d=document.createElement(&#x27;div&#x27;);d.id=&#x27;teukOvl&#x27;;d.className=&#x27;wordovl&#x27;;
+ d.innerHTML=&#x27;&lt;div class=&quot;wordsheet tk2&quot;&gt;&lt;div class=&quot;wtop&quot;&gt;&lt;button class=&quot;wx&quot; onclick=&quot;closeTeuk()&quot;&gt;✕&lt;/button&gt;&lt;span class=&quot;sp-title&quot;&gt;특강 담기&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wbody tk2body&quot; id=&quot;teukBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ document.body.appendChild(d);}
+function closeTeuk(){var o=document.getElementById(&#x27;teukOvl&#x27;);if(o)o.classList.remove(&#x27;show&#x27;);}
 function renderTkb(){
   var rail=document.getElementById(&#x27;tkRail&#x27;),dots=document.getElementById(&#x27;tkDots&#x27;); if(!rail)return;
   rail.innerHTML=TKB.map(function(t,i){
-    return &#x27;&lt;div class=&quot;tkb&quot; style=&quot;background:&#x27;+t.g+&#x27;&quot; onclick=&quot;toast(\&#x27;&#x27;+t.tit+&#x27; 신청 — 슬롯 골라 담겨요\&#x27;)&quot; data-i=&quot;&#x27;+i+&#x27;&quot;&gt;&lt;div class=&quot;tkblob&quot;&gt;&lt;/div&gt;&#x27;+
+    return &#x27;&lt;div class=&quot;tkb&quot; style=&quot;background:&#x27;+t.g+&#x27;&quot; onclick=&quot;teukApply(&#x27;+i+&#x27;)&quot; data-i=&quot;&#x27;+i+&#x27;&quot;&gt;&lt;div class=&quot;tkblob&quot;&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div&gt;&lt;div class=&quot;tkcat&quot;&gt;&#x27;+t.cat+&#x27;&lt;/div&gt;&lt;div class=&quot;tktit&quot;&gt;&#x27;+t.tit+&#x27;&lt;/div&gt;&lt;div class=&quot;tkdesc&quot;&gt;&#x27;+t.desc+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;tkfoot&quot;&gt;&lt;span class=&quot;tkwhen&quot;&gt;🗓 &#x27;+t.when+&#x27;&lt;/span&gt;&lt;span class=&quot;tkcta&quot;&gt;신청하기&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
   }).join(&#x27;&#x27;);
@@ -1884,9 +2181,9 @@ function renderOverdueBanner(){
 /* 이번 달 레이더 — 클릭 없이 노출, 클릭하면 상세 */
 var RADAR=[
  // dd, 제목, 아이콘색, 상태pill색, 서브텍스트, pill텍스트, go
- {dd:&#x27;1&#x27;, t:&#x27;국어 말하기 수행&#x27;, ic:&#x27;ic-perf&#x27;, pill:&#x27;pill-perf&#x27;, pt:&#x27;준비 2/3&#x27;, sub:&#x27;수행평가 허브 자동&#x27;, go:function(){openSch(4,0);}},
- {dd:&#x27;6&#x27;, t:&#x27;과학 실험보고서&#x27;, ic:&#x27;ic-exam&#x27;, pill:&#x27;pill-exam&#x27;, pt:&#x27;시작 안 함&#x27;, sub:&#x27;수행평가 허브 자동&#x27;, go:function(){openSch(2,0);}},
- {dd:&#x27;12&#x27;, t:&#x27;중간고사&#x27;, ic:&#x27;ic-exam&#x27;, exam:1, sub:&#x27;국·영·수·사·과 · 허브 자동&#x27;, go:function(){openForm(&#x27;exam&#x27;);}},
+ {dd:&#x27;1&#x27;, t:&#x27;국어 말하기 수행&#x27;, ic:&#x27;ic-perf&#x27;, pill:&#x27;pill-perf&#x27;, pt:&#x27;내가 준비&#x27;, sub:&#x27;일정 자동 · 준비는 직접&#x27;, go:function(){openSch(4,0);}},
+ {dd:&#x27;6&#x27;, t:&#x27;과학 실험보고서&#x27;, ic:&#x27;ic-exam&#x27;, pill:&#x27;pill-exam&#x27;, pt:&#x27;시작하기&#x27;, sub:&#x27;일정 자동 · 준비는 직접&#x27;, go:function(){openSch(2,0);}},
+ {dd:&#x27;12&#x27;, t:&#x27;중간고사&#x27;, ic:&#x27;ic-exam&#x27;, exam:1, sub:&#x27;국·영·수·사·과 · 계획 직접 세우기&#x27;, go:function(){openForm(&#x27;exam&#x27;);}},
  {dd:&#x27;59&#x27;, t:&#x27;외고·자사고 원서&#x27;, ic:&#x27;ic-dim&#x27;, pill:&#x27;pill-dim&#x27;, pt:&#x27;안내 예정&#x27;, sub:&#x27;입시 일정 허브&#x27;, go:function(){toast(&#x27;입시 일정 — D-30·D-7에 자동 안내돼요 (SCH-04)&#x27;);}}
 ];
 function weekRate(){var tot=0,done=0;BLK.forEach(function(b){var st=b[6]||{};if(st.ext)return;tot++;if(st.done)done++;});return tot?Math.round(done/tot*100):0;}
@@ -1958,12 +2255,19 @@ function buildTodo(){
     var tappable = (!ext &amp;&amp; !st.done &amp;&amp; open &amp;&amp; open.indexOf(&#x27;openDlg&#x27;)!==0);
     var verb = st.live ? &#x27;입장&#x27; : todoVerb(b);
     var startBtn = tappable ? &#x27;&lt;button class=&quot;stb&#x27;+(st.live?&#x27; live&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;event.stopPropagation();&#x27;+open+&#x27;&quot;&gt;&#x27;+verb+&#x27;&lt;/button&gt;&#x27; : &#x27;&#x27;;
+    var paper=(b[5]===&#x27;prob&#x27; &amp;&amp; isPaper(b[3])); /* 쎈 등 종이 교재 = 자기보고(앱 채점 불가) */
+    var autoLearn=tappable &amp;&amp; !paper; /* 앱 채점 학습만 잠금·자동완료 */
     if(!tappable) open=&#x27;openDlg(&#x27;+x.i+&#x27;)&#x27;;
+    var chkBtn;
+    if(ext){chkBtn=&#x27;&#x27;;}
+    else if(autoLearn &amp;&amp; !st.done){chkBtn=&#x27;&lt;button class=&quot;cb lock&quot; onclick=&quot;event.stopPropagation();toast(\&#x27;학습을 끝내면 자동으로 완료돼요\&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;5&quot; y=&quot;11&quot; width=&quot;14&quot; height=&quot;9&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M8 11V8a4 4 0 0 1 8 0v3&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
+    else if(autoLearn &amp;&amp; st.done){chkBtn=&#x27;&lt;button class=&quot;cb&quot; disabled&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
+    else if(paper &amp;&amp; !st.done){chkBtn=&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();setCurTodo(&#x27;+x.i+&#x27;);openPaper(\&#x27;&#x27;+b[3].replace(/&#x27;/g,&#x27;&#x27;)+&#x27;\&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
+    else{chkBtn=&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();tgl(&#x27;+x.i+&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
     return &#x27;&lt;li class=&quot;&#x27;+(st.done?&#x27;done &#x27;:&#x27;&#x27;)+(ext?&#x27;ext&#x27;:&#x27;&#x27;)+(tappable?&#x27; tap&#x27;:&#x27;&#x27;)+&#x27;&quot;&#x27;+(tappable?&#x27; onclick=&quot;&#x27;+open+&#x27;&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+
       &#x27;&lt;span class=&quot;tic&quot; style=&quot;background:var(&#x27;+sk[2]+&#x27;);color:var(&#x27;+sk[1]+&#x27;)&quot;&gt;&#x27;+(sk[3]||&#x27;•&#x27;)+&#x27;&lt;/span&gt;&#x27;+
-      &#x27;&lt;div class=&quot;tb&quot;&gt;&lt;b&gt;&#x27;+b[3]+&#x27;&lt;/b&gt;&lt;div class=&quot;ts&quot;&gt;&#x27;+tm+&#x27; · &#x27;+sk[0]+(ext?&#x27; · 외부&#x27;:&#x27;&#x27;)+(st.ai?&#x27; · AI&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-      (st.live?&#x27;&lt;span class=&quot;lvb&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+startBtn+
-      (ext?&#x27;&#x27;:&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();tgl(&#x27;+x.i+&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;)+
+      &#x27;&lt;div class=&quot;tb&quot;&gt;&lt;b&gt;&#x27;+b[3]+&#x27;&lt;/b&gt;&lt;div class=&quot;ts&quot;&gt;&#x27;+tm+&#x27; · &#x27;+sk[0]+(ext?&#x27; · 외부&#x27;:&#x27;&#x27;)+(st.ai?&#x27; · AI&#x27;:&#x27;&#x27;)+(autoLearn&amp;&amp;!st.done?&#x27; · 학습 완료 시 체크&#x27;:&#x27;&#x27;)+(paper&amp;&amp;!st.done?&#x27; · 책으로 직접 풀기&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+      (st.live?&#x27;&lt;span class=&quot;lvb&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+startBtn+chkBtn+
       &#x27;&lt;/li&gt;&#x27;;
   }).join(&#x27;&#x27;);
   document.getElementById(&#x27;todo&#x27;).innerHTML=html;
@@ -2177,22 +2481,45 @@ function openForm(type){
       &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:15px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;notify(\&#x27;scope\&#x27;);closeDlg();toast(\&#x27;시험범위 등록 완료 — 범위 안 콘텐츠만 추천됩니다\&#x27;)&quot;&gt;이대로 등록&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;closeDlg()&quot;&gt;취소&lt;/button&gt;&lt;/div&gt;&#x27;;
   }
   else if(type===&#x27;exam&#x27;){
-    html+=&#x27;&lt;h3 class=&quot;fh&quot;&gt;시험 계획 세우기&lt;/h3&gt;&#x27;+
-      &#x27;&lt;div class=&quot;fdesc&quot;&gt;반포중 중간고사까지 12일. 등록된 범위·네 레벨에 맞춰 뭘 언제 할지 정하면 공부가 시간표에 자동으로 꽂혀요.&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;examplan&quot;&gt;&lt;div class=&quot;eph&quot;&gt;&lt;b&gt;📅 반포중 중간고사&lt;/b&gt;&lt;span class=&quot;dd3&quot;&gt;11/3(월) · D-12&lt;/span&gt;&lt;/div&gt;&#x27;+
-        &#x27;&lt;div class=&quot;fsub&quot;&gt;범위 등록됨 ✓ · 수학 Lv.3 (일차함수 취약) 기준 추천 배분이에요. 바꿀 수 있어요.&lt;/div&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;공부할 과목 고르기&lt;/span&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+
-        [&#x27;국어&#x27;,&#x27;영어&#x27;,&#x27;수학&#x27;,&#x27;사회&#x27;,&#x27;과학&#x27;].map(function(s,i){return &#x27;&lt;span class=&quot;chip2 sm&#x27;+(i&lt;3?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;pick(this,1)&quot;&gt;&#x27;+s+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;추천 계획 (시간표에 꽂힐 공부)&lt;/span&gt;&#x27;+
-        &#x27;&lt;div class=&quot;examplan&quot; style=&quot;margin:0&quot;&gt;&#x27;+
-        [[&#x27;수학&#x27;,&#x27;일차함수 개념+오답 (취약 보강)&#x27;,&#x27;10/24~10/28&#x27;],[&#x27;국어&#x27;,&#x27;문법 + 지문 정리&#x27;,&#x27;10/27~10/30&#x27;],[&#x27;영어&#x27;,&#x27;본문 암기 + 어법&#x27;,&#x27;10/29~11/1&#x27;],[&#x27;전과목&#x27;,&#x27;최종 점검&#x27;,&#x27;11/2&#x27;]]
-          .map(function(e){return &#x27;&lt;div class=&quot;epline&quot;&gt;&lt;span class=&quot;epsub&quot;&gt;&#x27;+e[0]+&#x27;&lt;/span&gt;&lt;span class=&quot;epwhat&quot;&gt;&#x27;+e[1]+&#x27;&lt;/span&gt;&lt;span class=&quot;epday&quot;&gt;&#x27;+e[2]+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
-        &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;fsub&quot;&gt;&quot;시간표에 넣기&quot;를 누르면 위 계획이 매일 할 일로 들어가고, 하루 전에 알림이 가요.&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:16px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;notify(\&#x27;exam\&#x27;);closeDlg();toast(\&#x27;시험 계획이 시간표에 꽂혔어요\&#x27;)&quot;&gt;시간표에 넣기&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;closeDlg()&quot;&gt;취소&lt;/button&gt;&lt;/div&gt;&#x27;;
+    dlg.innerHTML=&#x27;&#x27;; renderExamPlan(); return;
   }
   dlg.innerHTML=html;
   document.getElementById(&#x27;ovl&#x27;).classList.add(&#x27;show&#x27;);
+}
+/* ===== 시험 계획표 — 일정은 자동, 계획은 학생이 직접 입력 ===== */
+var EXAMPLAN=[]; /* {subj,what,day} — 학생이 채운 행 */
+var EXAM_SUGGEST=[[&#x27;수학&#x27;,&#x27;일차함수 개념+오답 (취약 보강)&#x27;,&#x27;10/24~10/28&#x27;],[&#x27;국어&#x27;,&#x27;문법 + 지문 정리&#x27;,&#x27;10/27~10/30&#x27;],[&#x27;영어&#x27;,&#x27;본문 암기 + 어법&#x27;,&#x27;10/29~11/1&#x27;],[&#x27;전과목&#x27;,&#x27;최종 점검&#x27;,&#x27;11/2&#x27;]];
+function renderExamPlan(){
+  var dlg=document.getElementById(&#x27;dlg&#x27;); dlg.classList.add(&#x27;wide&#x27;);
+  var rows = EXAMPLAN.length ? EXAMPLAN.map(function(e,i){
+    return &#x27;&lt;div class=&quot;epl-row&quot;&gt;&#x27;+
+      &#x27;&lt;select class=&quot;epl-s&quot; onchange=&quot;EXAMPLAN[&#x27;+i+&#x27;].subj=this.value&quot;&gt;&#x27;+
+        [&#x27;국어&#x27;,&#x27;영어&#x27;,&#x27;수학&#x27;,&#x27;사회&#x27;,&#x27;과학&#x27;,&#x27;전과목&#x27;].map(function(s){return &#x27;&lt;option&#x27;+(e.subj===s?&#x27; selected&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+s+&#x27;&lt;/option&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/select&gt;&#x27;+
+      &#x27;&lt;input class=&quot;epl-w&quot; value=&quot;&#x27;+(e.what||&#x27;&#x27;).replace(/&quot;/g,&#x27;&amp;quot;&#x27;)+&#x27;&quot; placeholder=&quot;뭘 할지 (예: 일차함수 오답 정리)&quot; oninput=&quot;EXAMPLAN[&#x27;+i+&#x27;].what=this.value&quot;&gt;&#x27;+
+      &#x27;&lt;input class=&quot;epl-d&quot; value=&quot;&#x27;+(e.day||&#x27;&#x27;)+&#x27;&quot; placeholder=&quot;날짜&quot; oninput=&quot;EXAMPLAN[&#x27;+i+&#x27;].day=this.value&quot;&gt;&#x27;+
+      &#x27;&lt;button class=&quot;epl-x&quot; onclick=&quot;EXAMPLAN.splice(&#x27;+i+&#x27;,1);renderExamPlan()&quot;&gt;✕&lt;/button&gt;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;) : &#x27;&lt;div class=&quot;epl-empty&quot;&gt;아직 계획이 비어 있어요 — 아래 &lt;b&gt;+ 계획 추가&lt;/b&gt;로 직접 채워봐.&lt;br&gt;막막하면 &lt;b&gt;추천 불러오기&lt;/b&gt;로 초안을 가져와 고쳐 써도 돼요.&lt;/div&gt;&#x27;;
+  dlg.innerHTML=&#x27;&lt;button class=&quot;x&quot; onclick=&quot;closeDlg()&quot;&gt;✕&lt;/button&gt;&#x27;+
+    &#x27;&lt;h3 class=&quot;fh&quot;&gt;시험 계획표 직접 세우기&lt;/h3&gt;&#x27;+
+    /* 자동 등록된 일정·범위 (읽기전용) */
+    &#x27;&lt;div class=&quot;examplan&quot;&gt;&lt;div class=&quot;eph&quot;&gt;&lt;b&gt;📅 반포중 중간고사&lt;/b&gt;&lt;span class=&quot;dd3&quot;&gt;11/3(월) · D-12&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;fsub&quot;&gt;✓ 시험 일정·범위는 &lt;b&gt;학교 허브에서 자동 등록&lt;/b&gt;됨 (수학: 일차함수~도형 / 영어 Lesson5~6 …). &lt;b&gt;계획표는 네가 직접&lt;/b&gt; 채워요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+    /* 학생이 채우는 계획표 */
+    &#x27;&lt;div class=&quot;frow&quot; style=&quot;margin-top:4px&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;내 시험 계획표&lt;/span&gt;&#x27;+
+      &#x27;&lt;div class=&quot;epl-head&quot;&gt;&lt;span&gt;과목&lt;/span&gt;&lt;span&gt;할 일&lt;/span&gt;&lt;span&gt;날짜&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;epl-list&quot; id=&quot;eplList&quot;&gt;&#x27;+rows+&#x27;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;epl-btns&quot;&gt;&lt;button class=&quot;epl-add&quot; onclick=&quot;EXAMPLAN.push({subj:\&#x27;수학\&#x27;,what:\&#x27;\&#x27;,day:\&#x27;\&#x27;});renderExamPlan()&quot;&gt;+ 계획 추가&lt;/button&gt;&#x27;+
+        (EXAMPLAN.length?&#x27;&#x27;:&#x27;&lt;button class=&quot;epl-sug&quot; onclick=&quot;EXAMPLAN=EXAM_SUGGEST.map(function(e){return {subj:e[0],what:e[1],day:e[2]};});renderExamPlan()&quot;&gt;💡 추천 불러오기&lt;/button&gt;&#x27;)+
+      &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;fsub&quot;&gt;여기 적은 계획이 &lt;b&gt;매일 할 일&lt;/b&gt;로 시간표에 들어가고, 하루 전에 알림이 가요. 비우면 안 담겨요.&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:16px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;examPlanSave()&quot;&gt;시간표에 넣기&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;closeDlg()&quot;&gt;취소&lt;/button&gt;&lt;/div&gt;&#x27;;
+  document.getElementById(&#x27;ovl&#x27;).classList.add(&#x27;show&#x27;);
+}
+function examPlanSave(){
+  var filled=EXAMPLAN.filter(function(e){return e.what&amp;&amp;e.what.trim();});
+  if(!filled.length){toast(&#x27;계획을 한 줄이라도 적어줘&#x27;);return;}
+  if(typeof notify===&#x27;function&#x27;)notify(&#x27;exam&#x27;);
+  closeDlg();toast(filled.length+&#x27;개 계획이 시간표에 들어갔어요 — 하루 전 알림 예약됨&#x27;);
 }
 function pick(el,multi){ if(!multi){ Array.prototype.forEach.call(el.parentNode.children,function(c){c.classList.remove(&#x27;on&#x27;);}); } el.classList.toggle(&#x27;on&#x27;); if(!multi)el.classList.add(&#x27;on&#x27;); }
 function gtab(el,i){ Array.prototype.forEach.call(el.parentNode.children,function(c){c.classList.remove(&#x27;on&#x27;);}); el.classList.add(&#x27;on&#x27;); document.getElementById(&#x27;gpane0&#x27;).style.display=i===0?&#x27;&#x27;:&#x27;none&#x27;; document.getElementById(&#x27;gpane1&#x27;).style.display=i===1?&#x27;&#x27;:&#x27;none&#x27;; }
@@ -2226,16 +2553,125 @@ function openPage(k){
 }
 function closePage(){document.getElementById(&#x27;page&#x27;).classList.remove(&#x27;show&#x27;);}
 
+/* ===== 레벨 진단 테스트 (실제 작동) =====
+   단원별로 문항을 섞어 출제 → 채점 → 단원 정답률 → 레벨(Lv1~5)·취약단원 산출 */
+var DIAGSETS={
+ &#x27;수학&#x27;:{ lv:3, unit:&#x27;일차함수&#x27;, done:true, /* 데모 기본값(이미 진단함) */
+  q:[
+   {u:&#x27;일차방정식&#x27;,q:&#x27;3x - 7 = 2x + 5 의 해는?&#x27;,o:[&#x27;x = 10&#x27;,&#x27;x = 12&#x27;,&#x27;x = -2&#x27;,&#x27;x = 2&#x27;],a:1},
+   {u:&#x27;일차방정식&#x27;,q:&#x27;2(x-3) = x + 4 를 풀면?&#x27;,o:[&#x27;x = 7&#x27;,&#x27;x = 10&#x27;,&#x27;x = 2&#x27;,&#x27;x = -1&#x27;],a:1},
+   {u:&#x27;일차방정식&#x27;,q:&#x27;0.5x + 1 = 4 의 해는?&#x27;,o:[&#x27;x = 6&#x27;,&#x27;x = 5&#x27;,&#x27;x = 4&#x27;,&#x27;x = 3&#x27;],a:0},
+   {u:&#x27;연립방정식&#x27;,q:&#x27;x+y=7, x-y=1 일 때 x 의 값은?&#x27;,o:[&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;],a:1},
+   {u:&#x27;연립방정식&#x27;,q:&#x27;2x+y=8, y=2 일 때 x 는?&#x27;,o:[&#x27;2&#x27;,&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;],a:1},
+   {u:&#x27;연립방정식&#x27;,q:&#x27;x+2y=10, x=4 일 때 y 는?&#x27;,o:[&#x27;2&#x27;,&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;],a:1},
+   {u:&#x27;일차함수&#x27;,q:&#x27;기울기가 3이고 y절편이 2인 일차함수의 식은?&#x27;,o:[&#x27;y = 2x + 3&#x27;,&#x27;y = 3x + 2&#x27;,&#x27;y = 3x - 2&#x27;,&#x27;y = x + 3&#x27;],a:1},
+   {u:&#x27;일차함수&#x27;,q:&#x27;기울기가 1/2이고 x절편이 4인 일차함수의 식은?&#x27;,o:[&#x27;y = ½x - 2&#x27;,&#x27;y = ½x + 4&#x27;,&#x27;y = 2x - 4&#x27;,&#x27;y = ½x - 4&#x27;],a:0},
+   {u:&#x27;일차함수&#x27;,q:&#x27;기울기가 -2이고 x절편이 ½인 일차함수의 y절편은?&#x27;,o:[&#x27;1&#x27;,&#x27;-1&#x27;,&#x27;2&#x27;,&#x27;½&#x27;],a:0},
+   {u:&#x27;일차함수&#x27;,q:&#x27;x절편 -2, y절편 1 인 일차함수의 식은?&#x27;,o:[&#x27;y = ½x + 1&#x27;,&#x27;y = 2x + 1&#x27;,&#x27;y = -½x + 1&#x27;,&#x27;y = ½x - 1&#x27;],a:0},
+   {u:&#x27;일차함수&#x27;,q:&#x27;두 점 (0,3), (2,7)을 지나는 직선의 기울기는?&#x27;,o:[&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;4&#x27;],a:1},
+   {u:&#x27;도형&#x27;,q:&#x27;닮음비가 2:3인 두 삼각형의 넓이비는?&#x27;,o:[&#x27;2:3&#x27;,&#x27;4:9&#x27;,&#x27;4:6&#x27;,&#x27;2:9&#x27;],a:1},
+   {u:&#x27;도형&#x27;,q:&#x27;직각삼각형에서 빗변 10, 한 변 6일 때 나머지 변은?&#x27;,o:[&#x27;7&#x27;,&#x27;8&#x27;,&#x27;9&#x27;,&#x27;4&#x27;],a:1},
+   {u:&#x27;도형&#x27;,q:&#x27;평행선 사이 선분의 길이비가 같을 조건으로 옳은 것은?&#x27;,o:[&#x27;엇각이 같다&#x27;,&#x27;동위각이 같다&#x27;,&#x27;대응변이 비례&#x27;,&#x27;넓이가 같다&#x27;],a:2},
+   {u:&#x27;확률&#x27;,q:&#x27;주사위 한 번 던져 짝수가 나올 확률은?&#x27;,o:[&#x27;1/6&#x27;,&#x27;1/3&#x27;,&#x27;1/2&#x27;,&#x27;2/3&#x27;],a:2}
+  ]}
+};
+var diagState=null;
+function diagResultHtml(sub){
+ var s=DIAGSETS[sub]; if(!s||!s.done)return &#x27;&#x27;;
+ var chips=(s.byUnit||[[&#x27;일차방정식&#x27;,85],[&#x27;도형&#x27;,70],[&#x27;일차함수&#x27;,40]]).map(function(r){
+   return &#x27;&lt;span class=&quot;lvchip&#x27;+(r[1]&lt;50?&#x27; weak&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+r[0]+&#x27; &#x27;+r[1]+&#x27;%&#x27;+(r[1]&lt;50?&#x27; · 취약&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;);
+ return &#x27;&lt;div class=&quot;lvres show&quot; id=&quot;lvres&quot;&gt;&lt;b&gt;✓ 진단 결과 — &#x27;+sub+&#x27; Lv.&#x27;+s.lv+&#x27;&lt;/b&gt;&#x27;+
+   &#x27;&lt;div class=&quot;lvrow&quot;&gt;&#x27;+chips+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;fsub&quot; style=&quot;margin-top:8px&quot;&gt;→ &lt;b&gt;&#x27;+s.unit+&#x27;&lt;/b&gt; 개념강의·문제가 우선 추천돼요&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
+function ensureDiagOvl(){
+ if(document.getElementById(&#x27;diagOvl&#x27;))return;
+ var d=document.createElement(&#x27;div&#x27;);d.className=&#x27;wordovl&#x27;;d.id=&#x27;diagOvl&#x27;;
+ d.innerHTML=&#x27;&lt;div class=&quot;wordsheet dg&quot;&gt;&lt;div class=&quot;wtop&quot;&gt;&lt;button class=&quot;wx&quot; onclick=&quot;closeDiag()&quot;&gt;✕&lt;/button&gt;&lt;span class=&quot;sp-title&quot; id=&quot;dgTitle&quot;&gt;레벨 진단&lt;/span&gt;&lt;span id=&quot;dgCnt&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wbody dgbody&quot; id=&quot;dgBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ document.body.appendChild(d);
+}
+function openDiag(sub){
+ ensureDiagOvl();
+ var s=DIAGSETS[sub];
+ diagState={sub:sub,i:0,ans:[],set:s};
+ document.getElementById(&#x27;dgTitle&#x27;).textContent=sub+&#x27; 레벨 진단&#x27;;
+ renderDiagIntro();
+ document.getElementById(&#x27;diagOvl&#x27;).classList.add(&#x27;show&#x27;);
+}
+function closeDiag(){var o=document.getElementById(&#x27;diagOvl&#x27;);if(o)o.classList.remove(&#x27;show&#x27;);}
+function renDgCnt(){var c=document.getElementById(&#x27;dgCnt&#x27;);if(c)c.textContent=diagState?(diagState.i+1)+&#x27; / &#x27;+diagState.set.q.length:&#x27;&#x27;;}
+function renderDiagIntro(){
+ document.getElementById(&#x27;dgCnt&#x27;).textContent=&#x27;&#x27;;
+ document.getElementById(&#x27;dgBody&#x27;).innerHTML=
+  &#x27;&lt;div class=&quot;dg-intro&quot;&gt;&lt;div class=&quot;dg-ic&quot;&gt;📐&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-h&quot;&gt;&#x27;+diagState.sub+&#x27; 진단, 시작할까요?&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-d&quot;&gt;문제은행에서 뽑은 &lt;b&gt;&#x27;+diagState.set.q.length+&#x27;문항&lt;/b&gt;이에요. 단원이 섞여 있어요 — 모르는 건 &lt;b&gt;찍지 말고 넘겨도&lt;/b&gt; 돼요. 어디가 약한지 정확히 잡는 게 목적이라서요.&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-units&quot;&gt;&#x27;+[].concat.apply([],diagState.set.q.map(function(x){return x.u;})).filter(function(v,i,a){return a.indexOf(v)===i;}).map(function(u){return &#x27;&lt;span class=&quot;dg-ut&quot;&gt;&#x27;+u+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;renderDiagQ()&quot;&gt;진단 시작&lt;/button&gt;&lt;/div&gt;&#x27;;
+}
+function renderDiagQ(){
+ var st=diagState, q=st.set.q[st.i]; renDgCnt();
+ var pct=Math.round(st.i/st.set.q.length*100);
+ var picked=st.ans[st.i];
+ document.getElementById(&#x27;dgBody&#x27;).innerHTML=
+  &#x27;&lt;div class=&quot;dg-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-utag&quot;&gt;&#x27;+q.u+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-q&quot;&gt;&#x27;+q.q+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-opts&quot;&gt;&#x27;+q.o.map(function(o,k){
+    return &#x27;&lt;button class=&quot;dg-op&#x27;+(picked===k?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;diagPick(&#x27;+k+&#x27;)&quot;&gt;&lt;span class=&quot;dg-no&quot;&gt;&#x27;+(k+1)+&#x27;&lt;/span&gt;&#x27;+o+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-nav&quot;&gt;&#x27;+
+    (st.i&gt;0?&#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;diagMove(-1)&quot;&gt;← 이전&lt;/button&gt;&#x27;:&#x27;&lt;span&gt;&lt;/span&gt;&#x27;)+
+    &#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;diagSkip()&quot;&gt;모르겠어요 · 넘기기&lt;/button&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;;
+}
+function diagPick(k){diagState.ans[diagState.i]=k;setTimeout(diagNext,180);}
+function diagSkip(){diagState.ans[diagState.i]=null;diagNext();}
+function diagMove(d){diagState.i=Math.max(0,diagState.i+d);renderDiagQ();}
+function diagNext(){
+ var st=diagState;
+ if(st.i&gt;=st.set.q.length-1){diagScore();return;}
+ st.i++;renderDiagQ();
+}
+function diagScore(){
+ var st=diagState, byU={}, totC=0;
+ st.set.q.forEach(function(q,k){
+   if(!byU[q.u])byU[q.u]={c:0,t:0};
+   byU[q.u].t++;
+   if(st.ans[k]===q.a){byU[q.u].c++;totC++;}
+ });
+ var rows=Object.keys(byU).map(function(u){return [u,Math.round(byU[u].c/byU[u].t*100)];}).sort(function(a,z){return z[1]-a[1];});
+ var overall=Math.round(totC/st.set.q.length*100);
+ var lv = overall&gt;=90?5:overall&gt;=75?4:overall&gt;=55?3:overall&gt;=35?2:1;
+ var weak=rows.filter(function(r){return r[1]&lt;50;}).map(function(r){return r[0];});
+ var weakUnit=weak.length?weak[weak.length-1]:rows[rows.length-1][0];
+ /* 저장 — 배정에 반영 */
+ st.set.lv=lv; st.set.unit=weakUnit; st.set.done=true; st.set.byUnit=rows;
+ /* 결과 화면 */
+ document.getElementById(&#x27;dgCnt&#x27;).textContent=&#x27;완료&#x27;;
+ document.getElementById(&#x27;dgBody&#x27;).innerHTML=
+  &#x27;&lt;div class=&quot;dg-done&quot;&gt;&lt;div class=&quot;dg-ic&quot;&gt;&#x27;+(lv&gt;=4?&#x27;🎉&#x27;:&#x27;✓&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-h&quot;&gt;&#x27;+st.sub+&#x27; &lt;b&gt;Lv.&#x27;+lv+&#x27;&lt;/b&gt; · &#x27;+st.set.q.length+&#x27;문제 중 &#x27;+totC+&#x27;개 정답&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-score&quot;&gt;&#x27;+rows.map(function(r){
+    return &#x27;&lt;div class=&quot;dg-sr&#x27;+(r[1]&lt;50?&#x27; weak&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;span&gt;&#x27;+r[0]+&#x27;&lt;/span&gt;&lt;div class=&quot;dg-sb&quot;&gt;&lt;i style=&quot;width:&#x27;+r[1]+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;&#x27;+r[1]+&#x27;%&lt;/b&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;dg-reco&quot;&gt;→ &lt;b&gt;&#x27;+weakUnit+&#x27;&lt;/b&gt;이(가) 가장 약해요. 이 단원 개념강의·문제가 &lt;b&gt;오늘 할 일 맨 위로&lt;/b&gt; 올라가요.&lt;/div&gt;&#x27;+
+  &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;diagApply()&quot;&gt;이 레벨로 배정받기&lt;/button&gt;&lt;/div&gt;&#x27;;
+}
+function diagApply(){
+ var sub=diagState.sub;
+ var w=document.getElementById(&#x27;lvresWrap&#x27;);
+ if(w)w.innerHTML=diagResultHtml(sub);
+ closeDiag();
+ toast(sub+&#x27; Lv.&#x27;+DIAGSETS[sub].lv+&#x27; 배정 완료 — &#x27;+DIAGSETS[sub].unit+&#x27;부터 챙길게요&#x27;);
+}
 function pgOnboard(){
   return &#x27;&lt;div class=&quot;ob-sec&quot;&gt;&lt;h4&gt;학생 정보&lt;/h4&gt;&lt;div class=&quot;d&quot;&gt;기본 정보를 입력하면 학년에 맞는 개념특강 타임이 자동 편성돼요.&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;myrow&quot;&gt;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;이름&lt;/span&gt;&lt;input class=&quot;fin&quot; value=&quot;김민준&quot;&gt;&lt;/div&gt;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;학년&lt;/span&gt;&lt;input class=&quot;fin&quot; value=&quot;중2&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;ob-sec&quot;&gt;&lt;h4&gt;교과서 출판사 (국어·영어)&lt;/h4&gt;&lt;div class=&quot;d&quot;&gt;국어·영어는 출판사마다 지문이 달라요. 골라두면 문제·강의가 우리 교과서 기준으로 나와요.&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;국어&lt;/span&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+[&#x27;비상&#x27;,&#x27;미래엔&#x27;,&#x27;천재(박)&#x27;,&#x27;창비&#x27;,&#x27;지학사&#x27;].map(function(x,i){return &#x27;&lt;span class=&quot;chip2 sm&#x27;+(i===0?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;pick(this)&quot;&gt;&#x27;+x+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;영어&lt;/span&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+[&#x27;동아(윤)&#x27;,&#x27;천재(이)&#x27;,&#x27;YBM(박)&#x27;,&#x27;능률(김)&#x27;,&#x27;미래엔&#x27;].map(function(x,i){return &#x27;&lt;span class=&quot;chip2 sm&#x27;+(i===0?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;pick(this)&quot;&gt;&#x27;+x+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;국어&lt;/span&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+[&#x27;비상&#x27;,&#x27;창비&#x27;,&#x27;동아&#x27;,&#x27;금성&#x27;,&#x27;지학사&#x27;,&#x27;교학사&#x27;,&#x27;미래엔&#x27;,&#x27;천재(노)&#x27;,&#x27;천재(박)&#x27;].map(function(x,i){return &#x27;&lt;span class=&quot;chip2 sm&#x27;+(i===0?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;pick(this)&quot;&gt;&#x27;+x+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;frow&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;영어&lt;/span&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+[&#x27;비상&#x27;,&#x27;다락원&#x27;,&#x27;지학사&#x27;,&#x27;미래엔&#x27;,&#x27;YBM&#x27;,&#x27;능률(김)&#x27;,&#x27;능률(양)&#x27;,&#x27;천재(이)&#x27;,&#x27;천재(정)&#x27;,&#x27;동아(이)&#x27;,&#x27;동아(윤)&#x27;,&#x27;금성&#x27;].map(function(x,i){return &#x27;&lt;span class=&quot;chip2 sm&#x27;+(i===10?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;pick(this)&quot;&gt;&#x27;+x+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;ob-sec&quot;&gt;&lt;h4&gt;레벨 진단 테스트&lt;/h4&gt;&lt;div class=&quot;d&quot;&gt;문제은행에서 뽑은 진단 문제를 풀면 과목 레벨과 취약 단원이 잡혀요. 이후 모든 풀이 기록으로 계속 보정돼요.&lt;/div&gt;&#x27;+
-    &#x27;&lt;button class=&quot;sbtn&quot; style=&quot;padding:12px 22px&quot; onclick=&quot;document.getElementById(\&#x27;lvres\&#x27;).classList.add(\&#x27;show\&#x27;);toast(\&#x27;진단 완료 — 레벨이 배정에 반영돼요\&#x27;)&quot;&gt;수학 진단 시작 (15문항 · 약 20분)&lt;/button&gt;&#x27;+
-    &#x27;&lt;div class=&quot;lvres&quot; id=&quot;lvres&quot;&gt;&lt;b&gt;✓ 진단 결과 — 수학 Lv.3&lt;/b&gt;&lt;div class=&quot;lvrow&quot;&gt;&lt;span class=&quot;lvchip&quot;&gt;일차방정식 85%&lt;/span&gt;&lt;span class=&quot;lvchip&quot;&gt;도형 70%&lt;/span&gt;&lt;span class=&quot;lvchip weak&quot;&gt;일차함수 40% · 취약&lt;/span&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;fsub&quot; style=&quot;margin-top:8px&quot;&gt;→ 일차함수 개념강의·문제가 우선 추천돼요&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;button class=&quot;sbtn&quot; style=&quot;padding:12px 22px&quot; onclick=&quot;openDiag(\&#x27;수학\&#x27;)&quot;&gt;수학 진단 시작 (&#x27;+DIAGSETS[&#x27;수학&#x27;].q.length+&#x27;문항 · 약 15분)&lt;/button&gt;&#x27;+
+    &#x27;&lt;div id=&quot;lvresWrap&quot;&gt;&#x27;+diagResultHtml(&#x27;수학&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;ob-sec&quot;&gt;&lt;h4&gt;학교 찾기&lt;/h4&gt;&lt;div class=&quot;d&quot;&gt;같은 이름의 학교가 여러 곳일 수 있어요. 지역으로 구분해서 정확한 학교를 골라주세요. (전국 초·중·고 · 나이스 교육정보)&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;schbar&quot;&gt;&lt;input class=&quot;fin&quot; id=&quot;schInput&quot; value=&quot;반포중학교&quot; placeholder=&quot;학교 이름을 입력하세요&quot;&gt;&lt;button class=&quot;sbtn&quot; onclick=&quot;doSchSearch()&quot;&gt;검색&lt;/button&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;schres&quot; id=&quot;schRes&quot;&gt;&lt;/div&gt;&#x27;+
@@ -2277,10 +2713,37 @@ function selSchool(el,real){
   next();
 }
 
+/* 꺾은선 추이 미니 차트 (SVG) */
+function trendLine(vals,unit,color){
+ var max=Math.max.apply(null,vals), min=Math.min.apply(null,vals);
+ var rng=(max-min)||1, W=100, H=38;
+ var pts=vals.map(function(v,i){var x=i/(vals.length-1)*W;var y=H-((v-min)/rng)*(H-8)-4;return [x,y];});
+ var line=pts.map(function(p,i){return (i?&#x27;L&#x27;:&#x27;M&#x27;)+p[0].toFixed(1)+&#x27; &#x27;+p[1].toFixed(1);}).join(&#x27; &#x27;);
+ var area=&#x27;M0 &#x27;+H+&#x27; &#x27;+pts.map(function(p){return &#x27;L&#x27;+p[0].toFixed(1)+&#x27; &#x27;+p[1].toFixed(1);}).join(&#x27; &#x27;)+&#x27; L&#x27;+W+&#x27; &#x27;+H+&#x27; Z&#x27;;
+ var dots=pts.map(function(p,i){return &#x27;&lt;circle cx=&quot;&#x27;+p[0].toFixed(1)+&#x27;&quot; cy=&quot;&#x27;+p[1].toFixed(1)+&#x27;&quot; r=&quot;&#x27;+(i===pts.length-1?2.6:1.6)+&#x27;&quot; fill=&quot;&#x27;+color+&#x27;&quot;/&gt;&#x27;;}).join(&#x27;&#x27;);
+ return &#x27;&lt;svg class=&quot;tl-svg&quot; viewBox=&quot;0 0 100 38&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;path d=&quot;&#x27;+area+&#x27;&quot; fill=&quot;&#x27;+color+&#x27;&quot; opacity=&quot;0.1&quot;/&gt;&lt;path d=&quot;&#x27;+line+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;&#x27;+color+&#x27;&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&#x27;+dots+&#x27;&lt;/svg&gt;&#x27;;
+}
+function growthMetric(icon,label,vals,unit,color){
+ var now=vals[vals.length-1], first=vals[0], up=Math.round((now-first)*10)/10;
+ return &#x27;&lt;div class=&quot;gm&quot;&gt;&lt;div class=&quot;gm-top&quot;&gt;&lt;span class=&quot;gm-ic&quot;&gt;&#x27;+icon+&#x27;&lt;/span&gt;&lt;span class=&quot;gm-l&quot;&gt;&#x27;+label+&#x27;&lt;/span&gt;&#x27;+
+   &#x27;&lt;span class=&quot;gm-up&quot;&gt;&#x27;+(up&gt;=0?&#x27;▲&#x27;:&#x27;▼&#x27;)+Math.abs(up)+unit+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;gm-now&quot;&gt;&#x27;+now+&#x27;&lt;i&gt;&#x27;+unit+&#x27;&lt;/i&gt;&lt;/div&gt;&#x27;+
+   trendLine(vals,unit,color)+&#x27;&lt;/div&gt;&#x27;;
+}
 function pgGrades(){
-  return &#x27;&lt;div class=&quot;gp-hero&quot;&gt;&lt;div class=&quot;gt&quot;&gt;2학기 중간 목표까지&lt;/div&gt;&lt;div class=&quot;gv&quot;&gt;평균 82.8점&lt;/div&gt;&lt;div class=&quot;gc&quot;&gt;지난 중간 78.5 → ▲4.3 상승 중&lt;/div&gt;&lt;/div&gt;&#x27;+
+  var t=GROWTH.trend;
+  return &#x27;&lt;div class=&quot;gp-hero&quot;&gt;&lt;div class=&quot;gt&quot;&gt;민준이 성장 — 시험점수 + 학습기록&lt;/div&gt;&lt;div class=&quot;gv&quot;&gt;꾸준히 올라가는 중 📈&lt;/div&gt;&lt;div class=&quot;gc&quot;&gt;시험은 분기마다지만, &lt;b&gt;학습 기록은 매일 쌓여서&lt;/b&gt; 성장이 보여요&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ★ 학습 기록 추이 = 성장 (매일 쌓이는 데이터) */
+   &#x27;&lt;div class=&quot;gcard gc-growth&quot;&gt;&lt;h4&gt;📊 학습 기록 추이 (최근 4주) — 매일 쌓인 성장&lt;/h4&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gm-grid&quot;&gt;&#x27;+
+     growthMetric(&#x27;🧩&#x27;,&#x27;개념 이해도&#x27;,t.mastery,&#x27;%&#x27;,&#x27;#7B61F2&#x27;)+
+     growthMetric(&#x27;✏️&#x27;,&#x27;문제 정답률&#x27;,t.accuracy,&#x27;%&#x27;,&#x27;#2FA84F&#x27;)+
+     growthMetric(&#x27;⏱&#x27;,&#x27;주간 공부시간&#x27;,t.studyHours,&#x27;h&#x27;,&#x27;#E8803C&#x27;)+
+     growthMetric(&#x27;🔤&#x27;,&#x27;영단어 누적&#x27;,t.vocabCumul,&#x27;개&#x27;,&#x27;#4A90D9&#x27;)+
+    &#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gm-note&quot;&gt;시험 점수가 나오기 전에도, &lt;b&gt;개념 이해도·정답률·공부량이 오르는 게 진짜 성장&lt;/b&gt;이에요. 이 추이가 다음 시험 점수로 이어져요.&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;gcards&quot;&gt;&#x27;+
-    &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;평균 성적 추이&lt;/h4&gt;&lt;div class=&quot;gchart&quot;&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;시험 평균 추이&lt;/h4&gt;&lt;div class=&quot;gchart&quot;&gt;&#x27;+
       &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;72.1&lt;/div&gt;&lt;i style=&quot;height:52%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-1&lt;br&gt;중간&lt;/em&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;75.3&lt;/div&gt;&lt;i style=&quot;height:62%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-1&lt;br&gt;기말&lt;/em&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;76.8&lt;/div&gt;&lt;i style=&quot;height:68%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-2&lt;br&gt;중간&lt;/em&gt;&lt;/div&gt;&#x27;+
@@ -2295,7 +2758,7 @@ function pgGrades(){
       &#x27;&lt;tr&gt;&lt;td&gt;과학&lt;/td&gt;&lt;td&gt;77&lt;/td&gt;&lt;td&gt;79 &lt;span class=&quot;up&quot;&gt;▲2&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;+
     &#x27;&lt;/table&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;성적표 보관함&lt;/h4&gt;&lt;div style=&quot;font-size:12.5px;color:var(--ink3);margin-bottom:12px&quot;&gt;올린 성적표 3개 · 사진 찍어 올리면 자동으로 읽어 추이에 반영돼요.&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;성적표 보관함&lt;/h4&gt;&lt;div style=&quot;font-size:12.5px;color:var(--ink3);margin-bottom:12px&quot;&gt;올린 성적표 3개 · 사진 찍어 올리면 NEIS 양식(원점수·과목평균·성취도)으로 자동 정리돼요.&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;gp-upload&quot; onclick=&quot;toast(\&#x27;성적표 사진 업로드 → AI가 자동 입력\&#x27;)&quot;&gt;＋ 성적표 올리기 (사진·파일)&lt;/div&gt;&lt;/div&gt;&#x27;;
 }
 
@@ -2314,6 +2777,13 @@ function pgParent(){
     &#x27;&lt;div style=&quot;font-size:10.5px;color:var(--faint);margin-top:8px;text-align:center&quot;&gt;일간(저녁 요약)이 쌓여 → 주간으로 발송 · 시험후·학기말·갱신 때 시즌 리포트&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;pv-card&quot;&gt;&lt;h4&gt;📅 이번 주 학습&lt;/h4&gt;&lt;div class=&quot;pv-week&quot;&gt;&#x27;+
     wk.map(function(d){return &#x27;&lt;div class=&quot;pw &#x27;+(d[1]?&#x27;ok&#x27;:&#x27;no&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;pwd&quot;&gt;&#x27;+d[0]+&#x27;&lt;/div&gt;&lt;div class=&quot;pwi&quot;&gt;&#x27;+(d[1]?&#x27;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ★ 어머니가 보는 성장 추이 — 시험 점수 전에도 &quot;오르고 있다&quot;가 보이게 */
+   &#x27;&lt;div class=&quot;pv-card&quot;&gt;&lt;h4&gt;📈 민준이 성장 추이 &lt;span style=&quot;font-size:10px;color:var(--faint);font-weight:700&quot;&gt;· 시험 점수가 아니라 매일의 학습 기록&lt;/span&gt;&lt;/h4&gt;&#x27;+
+    &#x27;&lt;div style=&quot;font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:12px&quot;&gt;시험은 아직이지만, &lt;b&gt;개념 이해도·공부량이 4주째 꾸준히 오르고 있어요.&lt;/b&gt; 이게 다음 시험 점수로 이어집니다.&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gm-grid&quot;&gt;&#x27;+
+     growthMetric(&#x27;🧩&#x27;,&#x27;개념 이해도&#x27;,GROWTH.trend.mastery,&#x27;%&#x27;,&#x27;#7B61F2&#x27;)+
+     growthMetric(&#x27;⏱&#x27;,&#x27;주간 공부시간&#x27;,GROWTH.trend.studyHours,&#x27;h&#x27;,&#x27;#E8803C&#x27;)+
     &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;pv-card&quot;&gt;&lt;h4&gt;🔔 이번 주 주요 알림&lt;/h4&gt;&#x27;+
     &#x27;&lt;div class=&quot;pv-al&quot;&gt;&lt;span class=&quot;pai&quot; style=&quot;background:var(--ok)&quot;&gt;&lt;/span&gt;&lt;div class=&quot;pab&quot;&gt;&lt;b&gt;스스로 계획 소식&lt;/b&gt;&lt;p&gt;민준이가 튜터(AI)와 상의해 시험 공부를 스스로 플래너에 담았어요 👏&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;patm&quot;&gt;10/22&lt;/span&gt;&lt;/div&gt;&#x27;+
@@ -2395,12 +2865,13 @@ function pgProblem(){
 }
 function pgSpecial(){
   var sp=[
-    [&#x27;#E23B3B&#x27;,&#x27;🔥&#x27;,&#x27;시즌&#x27;,&#x27;중간고사 7일 벼락치기&#x27;,&#x27;D-7 집중반&#x27;,&#x27;시험 범위만 콕 집어 핵심 정리 + 예상문제. 과목별 저녁 라이브.&#x27;,&#x27;11/3 시작 · 매일 20:00&#x27;],
+    [&#x27;#E23B3B&#x27;,&#x27;🔥&#x27;,&#x27;공부법&#x27;,&#x27;시험 D-14 역산 공부법&#x27;,&#x27;누구나 · 시험 전 공통&#x27;,&#x27;벼락치기 말고, 시험 며칠 전부터 뭘 할지 거꾸로 짜는 법. 범위·학교 상관없이 쓰는 기술.&#x27;,&#x27;매주 화 19:30&#x27;],
     [&#x27;#3A3D8F&#x27;,&#x27;✦&#x27;,&#x27;영어&#x27;,&#x27;English Escape! 독해 스피드&#x27;,&#x27;주 1회 · 목 20:00&#x27;,&#x27;긴 지문을 빠르게 읽는 법. 수능형 독해 기초.&#x27;,&#x27;매주 목요일 20:00&#x27;],
     [&#x27;#1E8E7E&#x27;,&#x27;∑&#x27;,&#x27;수학&#x27;,&#x27;서술형 완전정복&#x27;,&#x27;주말 특강&#x27;,&#x27;풀이 과정 서술형 대비 — 태블릿 판서로 첨삭.&#x27;,&#x27;매주 토 10:00&#x27;],
     [&#x27;#C28A1E&#x27;,&#x27;🎓&#x27;,&#x27;입시&#x27;,&#x27;중2를 위한 외고·자사고 로드맵&#x27;,&#x27;학부모 동반&#x27;,&#x27;원서 일정·내신 관리 전략 세미나. 리포트 자동 발송.&#x27;,&#x27;11/15 토 19:00&#x27;]
   ];
-  return sp.map(function(s){
+  return &#x27;&lt;div class=&quot;sp-why&quot;&gt;💡 특강은 &lt;b&gt;전국 회원이 함께 듣는 단일 라이브&lt;/b&gt;라, 학교마다 다른 &lt;b&gt;시험 범위·일정에 맞추지 않아요.&lt;/b&gt; 범위 대비는 &lt;b&gt;개인 계획표·AI 튜터&lt;/b&gt;가 맡고, 특강은 &lt;b&gt;누구에게나 통하는 공부 기술·입시 전략&lt;/b&gt;으로 구성돼요.&lt;/div&gt;&#x27;+
+   sp.map(function(s){
     return &#x27;&lt;div class=&quot;sp-card&quot; onclick=&quot;toast(\&#x27;&#x27;+s[3]+&#x27; 신청\&#x27;)&quot;&gt;&#x27;+
       &#x27;&lt;div class=&quot;sp-thumb&quot; style=&quot;background:&#x27;+s[0]+&#x27;&quot;&gt;&#x27;+s[1]+&#x27;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;sp-mid&quot;&gt;&lt;span class=&quot;spt&quot; style=&quot;background:&#x27;+s[0]+&#x27;1a;color:&#x27;+s[0]+&#x27;&quot;&gt;&#x27;+s[2]+&#x27; · &#x27;+s[4]+&#x27;&lt;/span&gt;&#x27;+
@@ -2634,7 +3105,7 @@ function nextWord(score){
    document.getElementById(&#x27;wbody&#x27;).innerHTML=&#x27;&lt;div class=&quot;wdone&quot;&gt;&lt;div class=&quot;wdemoji&quot;&gt;🎉&lt;/div&gt;&lt;h3&gt;오늘 영단어 &#x27;+VOCAB.length+&#x27;개 끝!&lt;/h3&gt;&#x27;+
      &#x27;&lt;div class=&quot;wdstats&quot;&gt;&lt;div class=&quot;wds&quot;&gt;&lt;b&gt;&#x27;+avg+&#x27;점&lt;/b&gt;&lt;span&gt;평균 발음&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wds&quot;&gt;&lt;b&gt;&#x27;+(VOCAB.length-corr)+&#x27;/&#x27;+VOCAB.length+&#x27;&lt;/b&gt;&lt;span&gt;발음 통과&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wds&quot;&gt;&lt;b&gt;&#x27;+corr+&#x27;개&lt;/b&gt;&lt;span&gt;내일 복습&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;wdnote&quot;&gt;발음 교정 &#x27;+corr+&#x27;건과 암기율이 성장 기록에 쌓였어요. 주말 누적 테스트 후 어머니께 요약이 자동으로 가요.&lt;/div&gt;&#x27;+
-     &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;closeWord();toast(\&#x27;오늘 할 일 하나 완료!\&#x27;)&quot;&gt;완료&lt;/button&gt;&lt;/div&gt;&#x27;;
+     &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;completeTodo();closeWord();toast(\&#x27;영단어 끝 — 할 일 자동 완료!\&#x27;)&quot;&gt;완료&lt;/button&gt;&lt;/div&gt;&#x27;;
    document.getElementById(&#x27;wcount&#x27;).textContent=&#x27;완료&#x27;;
  }
 }
@@ -2656,8 +3127,43 @@ var GROWTH={
    {unit:&#x27;현재완료&#x27;,sub:&#x27;영어&#x27;,prev:55,now:70,checks:2},
    {unit:&#x27;시의 심상&#x27;,sub:&#x27;국어&#x27;,prev:60,now:62,checks:1}
  ],
- history:[78.5,80.1,82.8] /* 평균 성적 추이 (성적표 업로드분) */
+ history:[78.5,80.1,82.8], /* 평균 성적 추이 (성적표 업로드분) */
+ /* ▼ 학습 활동 심화 (주간 리포트가 읽음) — 전부 앱에 쌓인 데이터 */
+ studyMin:[45,60,55,70,0,80,30],        /* 월~일 순공부시간(분) */
+ subjTime:[[&#x27;수학&#x27;,210,&#x27;--s-math&#x27;],[&#x27;영어&#x27;,140,&#x27;--s-eng&#x27;],[&#x27;국어&#x27;,90,&#x27;--s-school&#x27;],[&#x27;과학&#x27;,70,&#x27;--s-live&#x27;],[&#x27;사회&#x27;,40,&#x27;--s-exam&#x27;]], /* 과목별 주간 학습시간(분) */
+ wrongBySub:[[&#x27;수학&#x27;,9,7],[&#x27;영어&#x27;,3,3],[&#x27;국어&#x27;,2,1]],  /* [과목, 오답수, 해결수] */
+ vocabTrend:[70,73,75,78],              /* 발음 점수 추이 */
+ lectures:{watched:6,assigned:7,rewatch:2}, /* 강의: 본 것/배정/다시보기 */
+ selfReport:[{subj:&#x27;수학&#x27;,book:&#x27;쎈 수학 2-2&#x27;,note:&#x27;일차함수 활용 어려웠음&#x27;}], /* 종이교재 자기보고 */
+ streak:5, bestStreak:9,                 /* 연속 학습일 */
+ /* ▼ 학습 기록 추이 (성장) — 주차별 누적, 시험점수와 별개의 성장 지표 */
+ trend:{
+   labels:[&#x27;1주&#x27;,&#x27;2주&#x27;,&#x27;3주&#x27;,&#x27;4주&#x27;],
+   mastery:[48,55,62,71],               /* 개념 이해도 평균 추이 */
+   accuracy:[61,66,70,76],              /* 문제 정답률 추이 */
+   attendRate:[60,80,80,80],            /* 특강 출석률 */
+   studyHours:[5.2,6.8,7.5,9.1],        /* 주간 순공부시간(h) */
+   vocabCumul:[42,76,110,144]           /* 영단어 누적 */
+ }
 };
+/* ===== NEIS 교과학습발달상황 양식 성적표 (시즌 리포트) =====
+   항목: 학기 | 교과 | 과목 | 원점수/과목평균(표준편차) | 성취도(수강자수) */
+var NEIS={
+ school:&#x27;반포중학교&#x27;, grade:2, term:1, name:&#x27;김민준&#x27;, classInfo:&#x27;2학년 7반 8번&#x27;,
+ rows:[
+  {gyo:&#x27;교과&#x27;,subj:&#x27;과목&#x27;,raw:&#x27;&#x27;,avg:&#x27;&#x27;,sd:&#x27;&#x27;,ach:&#x27;&#x27;,n:&#x27;&#x27;,head:true},
+  {gyo:&#x27;국어&#x27;,subj:&#x27;국어&#x27;,raw:93,avg:80.3,sd:12.1,ach:&#x27;A&#x27;,n:280,my:true},
+  {gyo:&#x27;사회(역사포함)/도덕&#x27;,subj:&#x27;사회&#x27;,raw:100,avg:78.7,sd:14.0,ach:&#x27;A&#x27;,n:280,my:true},
+  {gyo:&#x27;수학&#x27;,subj:&#x27;수학&#x27;,raw:75,avg:68.2,sd:18.5,ach:&#x27;B&#x27;,n:279,my:true,weak:true},
+  {gyo:&#x27;과학/기술·가정/정보&#x27;,subj:&#x27;과학&#x27;,raw:79,avg:72.4,sd:13.2,ach:&#x27;B&#x27;,n:280,my:true},
+  {gyo:&#x27;영어&#x27;,subj:&#x27;영어&#x27;,raw:82,avg:75.1,sd:15.6,ach:&#x27;B&#x27;,n:280,my:true}
+ ],
+ /* 성취도 기준: 90↑A 80↑B 70↑C 60↑D 60미만E (성취평가제) */
+ prevRaw:{국어:88,사회:92,수학:79,과학:77,영어:80}  /* 지난 시험 원점수 */
+};
+/* 표준점수(Z 기반 T점수) = 50 + 10*(원점수-평균)/표준편차 */
+function tScore(raw,avg,sd){return sd?Math.round(50+10*(raw-avg)/sd):&#x27;—&#x27;;}
+function achGrade(raw){return raw&gt;=90?&#x27;A&#x27;:raw&gt;=80?&#x27;B&#x27;:raw&gt;=70?&#x27;C&#x27;:raw&gt;=60?&#x27;D&#x27;:&#x27;E&#x27;;}
 /* 참여 점수 — 출석·완료·학습활동 종합 (0~100). 한 지표에 안 흔들리게 가중 합산 */
 function engageScore(w){
  var attend = w.attend.reduce(function(a,c){return a+c;},0)/5;           /* 출석률 */
@@ -2769,7 +3275,7 @@ function nextCheck(){
          &#x27;&lt;div class=&quot;cqwnote&quot;&gt;🔁 이 개념은 데이터에 기록돼서, 매니저 화면에 &quot;강의는 들었는데 개념체크 &#x27;+score+&#x27;점&quot; 으로 떠요. 자동으로 보강이 추천돼요.&lt;/div&gt;&#x27;)+
      &#x27;&lt;div class=&quot;cqlogged&quot;&gt;✓ 개념 이해도 &lt;b&gt;&#x27;+score+&#x27;점&lt;/b&gt;이 성장 기록·주간 리포트에 반영됐어요 (단원: &#x27;+checkUnit+&#x27;)&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;wresbtns&quot;&gt;&#x27;+(pass?&#x27;&#x27;:&#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;askTutorConcept(\&#x27;&#x27;+(cqWrong[0]||&#x27;&#x27;)+&#x27;\&#x27;)&quot;&gt;🤖 튜터에게&lt;/button&gt;&#x27;)+
-     &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;closeCheck();&#x27;+(pass?&#x27;toast(\&#x27;개념 통과 — 문제풀이로!\&#x27;)&#x27;:&#x27;toast(\&#x27;보강 먼저 추천했어요\&#x27;)&#x27;)+&#x27;&quot;&gt;&#x27;+(pass?&#x27;문제 풀러 가기&#x27;:&#x27;확인&#x27;)+&#x27;&lt;/button&gt;&lt;/div&gt;&#x27;;
+     &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;completeTodo();closeCheck();&#x27;+(pass?&#x27;toast(\&#x27;개념체크 완료 — 문제풀이로!\&#x27;)&#x27;:&#x27;toast(\&#x27;개념체크 완료 — 보강 추천했어요\&#x27;)&#x27;)+&#x27;&quot;&gt;&#x27;+(pass?&#x27;문제 풀러 가기&#x27;:&#x27;확인&#x27;)+&#x27;&lt;/button&gt;&lt;/div&gt;&#x27;;
  }
 }
 function askTutorConcept(concept){closeCheck();
@@ -2853,31 +3359,94 @@ function renderReport(kind){
    foot=&#x27;🔒 &quot;안 된 주&quot;가 자동 리포트의 맹점 — 그래서 참여 점수가 낮으면 사람(담임)이 먼저 봅니다. 나쁜 소식을 날것으로 보내지 않는 CHK 원칙과 동일.&#x27;;
   }
   b.innerHTML=toggle+head+badge+facts+
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;② 개념 이해도 — 단원별 (개념체크 집계)&lt;/div&gt;&#x27;+
+   /* ②-A 요일별 학습 리듬 (순공부시간) */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;② 요일별 학습 리듬 — 순공부시간&lt;/div&gt;&#x27;+
+   weekBars(g.studyMin)+
+   &#x27;&lt;div class=&quot;rpt-note&quot;&gt;월~일 실제 공부한 시간이에요. 금요일은 비었고, 주말에 몰아서 보충했어요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ②-B 과목별 학습 배분 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 과목별 학습 배분 (이번 주)&lt;/div&gt;&#x27;+
+   subjBars(g.subjTime)+
+   &#x27;&lt;div class=&quot;rpt-note&quot;&gt;수학에 가장 많이 썼어요 — 취약 단원 보강 중이라 자연스러운 배분이에요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ③ 개념 이해도 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 개념 이해도 — 단원별 (개념체크 집계)&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-mastery&quot;&gt;&#x27;+mastery+&#x27;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-note&quot;&gt;개념체크로 &quot;강의만 듣고 넘어간 게 아니라 이해했는지&quot;를 단원마다 점수로 쌓아요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ④ 강의·오답·영단어 상세 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑤ 학습 활동 상세&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;rpt-grid2&quot;&gt;&#x27;+
+     miniCard(&#x27;🎬 강의&#x27;,g.lectures.watched+&#x27;/&#x27;+g.lectures.assigned+&#x27; 수강&#x27;, &#x27;다시보기 &#x27;+g.lectures.rewatch+&#x27;회 — 놓친 특강 보완&#x27;)+
+     miniCard(&#x27;✏️ 오답&#x27;, (w.wrong.solved)+&#x27;/&#x27;+w.wrong.total+&#x27; 소화&#x27;, &#x27;수학 오답이 &#x27;+g.wrongBySub[0][1]+&#x27;개로 가장 많아요&#x27;)+
+     miniCard(&#x27;🔤 영단어&#x27;, w.vocab.learned+&#x27;/&#x27;+w.vocab.total+&#x27;개&#x27;, &#x27;발음 &#x27;+g.vocabTrend[0]+&#x27;→&#x27;+g.vocabTrend[g.vocabTrend.length-1]+&#x27;점 상승&#x27;)+
+     miniCard(&#x27;🔥 연속&#x27;, g.streak+&#x27;일 연속&#x27;, &#x27;최고 기록 &#x27;+g.bestStreak+&#x27;일&#x27;)+
+   &#x27;&lt;/div&gt;&#x27;+
+   /* 과목별 오답 바 */
+   &#x27;&lt;div class=&quot;rpt-wrong&quot;&gt;&#x27;+g.wrongBySub.map(function(r){
+     var pct=r[1]?Math.round(r[2]/r[1]*100):0;
+     return &#x27;&lt;div class=&quot;rw-row&quot;&gt;&lt;span class=&quot;rw-s&quot;&gt;&#x27;+r[0]+&#x27;&lt;/span&gt;&lt;div class=&quot;rw-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;&#x27;+r[2]+&#x27;/&#x27;+r[1]+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* 종이교재 자기보고 */
+   (g.selfReport.length?&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑥ 종이 교재 (자기보고)&lt;/div&gt;&#x27;+
+     g.selfReport.map(function(s){return &#x27;&lt;div class=&quot;rpt-self&quot;&gt;📕 &lt;b&gt;&#x27;+s.book+&#x27;&lt;/b&gt; — &quot;&#x27;+s.note+&#x27;&quot;&lt;span&gt;&#x27;+s.subj+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+     &#x27;&lt;div class=&quot;rpt-note&quot;&gt;쎈 같은 종이 문제집은 직접 &quot;다 풀었어요 + 메모&quot;로 기록돼요.&lt;/div&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;)+
    interp+nextSec+&#x27;&lt;div class=&quot;rpt-foot&quot;&gt;&#x27;+foot+&#x27;&lt;/div&gt;&#x27;;
  } else {
   /* 시즌 리포트 — 이벤트성 (시험후·학기말·갱신) */
   b.innerHTML=
    &#x27;&lt;div class=&quot;rpt-hd season&quot;&gt;&lt;div class=&quot;rpt-kick&quot;&gt;🗓 시즌 리포트 · 중간고사 종료 시점 발송&lt;/div&gt;&lt;h2&gt;민준이 중간고사 시즌 결산&lt;/h2&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-sub&quot;&gt;주간들이 모인 &lt;b&gt;시험 한 사이클 전체&lt;/b&gt;를 묶은 리포트예요. 결제 안내(갱신) 때도 이 요약이 함께 가요.&lt;/div&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;① 시험 사이클 성과&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;① 시험 성적표 (NEIS 교과학습발달상황 양식)&lt;/div&gt;&#x27;+
+   neisTable()+
+   &#x27;&lt;div class=&quot;rpt-note&quot;&gt;학교 성적표를 올리면 AI가 읽어 &lt;b&gt;원점수·과목평균·표준편차·성취도&lt;/b&gt;를 그대로 정리하고, 지난 시험 대비 변화와 &lt;b&gt;표준점수&lt;/b&gt;까지 계산해요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;② 시험 사이클 성과&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-facts&quot;&gt;&#x27;+
      fact(&#x27;평균 성적&#x27;, g.history[g.history.length-1]+&#x27;점&#x27;) + fact(&#x27;지난 대비&#x27;, &#x27;▲&#x27;+(g.history[2]-g.history[0]).toFixed(1)) +
      fact(&#x27;범위 준비&#x27;, g.week.examCover+&#x27;% → 100%&#x27;) + fact(&#x27;수행평가&#x27;, &#x27;1/1 제출&#x27;) +
    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;② 이번 시즌 가장 큰 성장&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 이번 시즌 가장 큰 성장 (개념 이해도)&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-mastery&quot;&gt;&#x27;+mastery+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 선생님 총평 (AI 초안 → 담임 확인)&lt;/div&gt;&#x27;+
-   &#x27;&lt;p class=&quot;rpt-p&quot;&gt;이번 시험기간 민준이는 &lt;b&gt;약점이던 일차함수를 개념부터 다시 잡아&lt;/b&gt; 가장 크게 성장했어요. 매일의 작은 완료가 쌓여 범위를 제때 커버했고, 스스로 공부를 담는 습관도 자리잡고 있어요. 다음 시즌엔 서술형 비중을 조금 더 늘려볼 것을 권합니다.&lt;/p&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 다음 시즌 플랜 + 구독&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 선생님 총평 (AI 초안 → 담임 확인)&lt;/div&gt;&#x27;+
+   &#x27;&lt;p class=&quot;rpt-p&quot;&gt;이번 시험기간 민준이는 &lt;b&gt;약점이던 일차함수를 개념부터 다시 잡아&lt;/b&gt; 가장 크게 성장했어요. 매일의 작은 완료가 쌓여 범위를 제때 커버했고, 스스로 공부를 담는 습관도 자리잡고 있어요. 수학은 아직 과목평균 대비 표준점수 여지가 있으니, 다음 시즌엔 서술형 비중을 조금 더 늘려볼 것을 권합니다.&lt;/p&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑤ 다음 시즌 플랜 + 구독&lt;/div&gt;&#x27;+
    &#x27;&lt;p class=&quot;rpt-p&quot;&gt;기말 대비는 11월 3주부터 자동 편성돼요. &lt;b&gt;다음 결제일(11/20)&lt;/b&gt;에 이 리포트가 함께 안내되고, 원하시면 수행관리 애드온으로 수행평가까지 챙길 수 있어요.&lt;/p&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-foot&quot;&gt;🔒 갱신 영업 = 성과 리포트. &quot;잘하고 있다&quot;가 숫자로 보이는 게 재등록의 이유가 되는 구조예요.&lt;/div&gt;&#x27;;
  }
  b.scrollTop=0;
 }
 function fact(label,val){return &#x27;&lt;div class=&quot;rf&quot;&gt;&lt;div class=&quot;rf-v&quot;&gt;&#x27;+val+&#x27;&lt;/div&gt;&lt;div class=&quot;rf-l&quot;&gt;&#x27;+label+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;}
+var _WD=[&#x27;월&#x27;,&#x27;화&#x27;,&#x27;수&#x27;,&#x27;목&#x27;,&#x27;금&#x27;,&#x27;토&#x27;,&#x27;일&#x27;];
+function weekBars(arr){
+ var max=Math.max.apply(null,arr)||1;
+ return &#x27;&lt;div class=&quot;rpt-wk&quot;&gt;&#x27;+arr.map(function(v,i){
+   var h=Math.round(v/max*100);
+   return &#x27;&lt;div class=&quot;rwk&quot;&gt;&lt;div class=&quot;rwk-bt&quot;&gt;&lt;div class=&quot;rwk-b&#x27;+(v===0?&#x27; z&#x27;:&#x27;&#x27;)+&#x27;&quot; style=&quot;height:&#x27;+(v?h:4)+&#x27;%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;rwk-v&quot;&gt;&#x27;+(v?v:&#x27;·&#x27;)+&#x27;&lt;/div&gt;&lt;div class=&quot;rwk-d&quot;&gt;&#x27;+_WD[i]+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+function subjBars(rows){
+ var tot=rows.reduce(function(a,r){return a+r[1];},0)||1;
+ return &#x27;&lt;div class=&quot;rpt-subj&quot;&gt;&#x27;+rows.map(function(r){
+   var pct=Math.round(r[1]/tot*100);
+   return &#x27;&lt;div class=&quot;rsj&quot;&gt;&lt;span class=&quot;rsj-n&quot;&gt;&#x27;+r[0]+&#x27;&lt;/span&gt;&lt;div class=&quot;rsj-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%;background:var(&#x27;+r[2]+&#x27;)&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;&#x27;+Math.round(r[1]/60*10)/10+&#x27;h&lt;/b&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+function miniCard(t,v,d){return &#x27;&lt;div class=&quot;rmc&quot;&gt;&lt;div class=&quot;rmc-t&quot;&gt;&#x27;+t+&#x27;&lt;/div&gt;&lt;div class=&quot;rmc-v&quot;&gt;&#x27;+v+&#x27;&lt;/div&gt;&lt;div class=&quot;rmc-d&quot;&gt;&#x27;+d+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;}
+/* NEIS 성적표 테이블 렌더 */
+function neisTable(){
+ var n=NEIS;
+ var body=n.rows.map(function(r){
+   if(r.head)return &#x27;&lt;tr class=&quot;nh&quot;&gt;&lt;td&gt;&#x27;+r.gyo+&#x27;&lt;/td&gt;&lt;td&gt;&#x27;+r.subj+&#x27;&lt;/td&gt;&lt;td&gt;원점수/과목평균(표준편차)&lt;/td&gt;&lt;td&gt;성취도(수강자수)&lt;/td&gt;&lt;td&gt;표준점수&lt;/td&gt;&lt;/tr&gt;&#x27;;
+   var t=tScore(r.raw,r.avg,r.sd);
+   var prev=n.prevRaw[r.subj];
+   var dv=prev!=null?(r.raw-prev):null;
+   var delta=dv!=null?&#x27;&lt;span class=&quot;&#x27;+(dv&gt;=0?&#x27;up&#x27;:&#x27;dn&#x27;)+&#x27;&quot;&gt;&#x27;+(dv&gt;=0?&#x27;▲&#x27;:&#x27;▼&#x27;)+Math.abs(dv)+&#x27;&lt;/span&gt;&#x27;:&#x27;&#x27;;
+   return &#x27;&lt;tr&#x27;+(r.weak?&#x27; class=&quot;wk&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;td&gt;&#x27;+r.gyo+&#x27;&lt;/td&gt;&lt;td&gt;&lt;b&gt;&#x27;+r.subj+&#x27;&lt;/b&gt;&lt;/td&gt;&#x27;+
+     &#x27;&lt;td&gt;&#x27;+r.raw+&#x27; / &#x27;+r.avg+&#x27;&lt;span class=&quot;nsd&quot;&gt;(&#x27;+r.sd+&#x27;)&lt;/span&gt; &#x27;+delta+&#x27;&lt;/td&gt;&#x27;+
+     &#x27;&lt;td&gt;&lt;span class=&quot;nach a-&#x27;+r.ach+&#x27;&quot;&gt;&#x27;+r.ach+&#x27;&lt;/span&gt; (&#x27;+r.n+&#x27;)&lt;/td&gt;&#x27;+
+     &#x27;&lt;td class=&quot;nts&quot;&gt;&#x27;+t+&#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;;
+ }).join(&#x27;&#x27;);
+ return &#x27;&lt;div class=&quot;neis&quot;&gt;&lt;div class=&quot;neis-hd&quot;&gt;&lt;b&gt;6. 교과학습발달상황&lt;/b&gt;&lt;span&gt;&#x27;+n.school+&#x27; · &#x27;+n.grade+&#x27;학년 &#x27;+n.term+&#x27;학기 · &#x27;+n.name+&#x27; (&#x27;+n.classInfo+&#x27;)&lt;/span&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;neis-wrap&quot;&gt;&lt;table class=&quot;neis-t&quot;&gt;&#x27;+body+&#x27;&lt;/table&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;neis-ft&quot;&gt;※ 성취도 A(90↑) B(80↑) C(70↑) D(60↑) E / 표준점수 = 50+10×(원점수−평균)÷표준편차 · NEIS 교과학습발달상황 양식&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
 
 /* ===== 할 일 → 실제 화면 라우팅 (모든 종류가 실제로 열림) ===== */
 function todoSubj(title){ /* 제목에서 과목 추출 */
@@ -2888,19 +3457,60 @@ function todoSubj(title){ /* 제목에서 과목 추출 */
  if(/사회|경제|역사/.test(title))return &#x27;사회&#x27;;
  return &#x27;수학&#x27;;
 }
+/* 지금 연 학습이 어느 투두였는지 기억 → 학습을 끝내면 그 투두를 자동 완료 */
+var curTodoIdx=-1;
+function setCurTodo(i){curTodoIdx=i;}
+function completeTodo(){
+ if(curTodoIdx&lt;0)return;
+ var st=BLK[curTodoIdx][6]=BLK[curTodoIdx][6]||{};
+ if(!st.done){st.done=1;buildGrid&amp;&amp;buildGrid();buildTodo&amp;&amp;buildTodo();}
+ curTodoIdx=-1;
+}
+/* 종이 교재 판별 — 쎈·RPM·개념원리 등이나 &quot;p.00&quot; 페이지 표기 = 아이가 책으로 직접 풂 (앱 채점 불가) */
+function isPaper(title){
+ return /쎈|RPM|알피엠|개념원리|일품|마플|블랙라벨|자이스토리|교과서|익힘|워크북|워크시트|p\.?\s?\d/.test(title);
+}
 function todoOpen(b,i){
  var t=b[3], sub=todoSubj(t);
  switch(b[5]){
-   case &#x27;word&#x27;:  return &#x27;openWord()&#x27;;
-   case &#x27;check&#x27;: return &quot;openCheck(&#x27;&quot;+sub+&quot;&#x27;)&quot;;
-   case &#x27;prob&#x27;:  return &quot;openSolve(&#x27;&quot;+sub+&quot;&#x27;,&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;)&quot;;
-   case &#x27;live&#x27;:  return (b[6]&amp;&amp;b[6].live)? &#x27;openDlg(&#x27;+i+&#x27;)&#x27; : &quot;openLec(&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;,&#x27;live&#x27;)&quot;;
-   case &#x27;lec&#x27;:   return &quot;openLec(&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;,&#x27;lec&#x27;)&quot;;
-   case &#x27;exam&#x27;:  return &quot;openExam(&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;)&quot;;
+   case &#x27;word&#x27;:  return &#x27;setCurTodo(&#x27;+i+&#x27;);openWord()&#x27;;
+   case &#x27;check&#x27;: return &quot;setCurTodo(&quot;+i+&quot;);openCheck(&#x27;&quot;+sub+&quot;&#x27;)&quot;;
+   case &#x27;prob&#x27;:  return isPaper(t)
+     ? &quot;setCurTodo(&quot;+i+&quot;);openPaper(&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;)&quot;       /* 종이 교재 → 다 풀었어요 + 메모 */
+     : &quot;setCurTodo(&quot;+i+&quot;);openSolve(&#x27;&quot;+sub+&quot;&#x27;,&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;)&quot;; /* 앱 문제은행 → 풀기 */
+   case &#x27;live&#x27;:  return (b[6]&amp;&amp;b[6].live)? &#x27;openDlg(&#x27;+i+&#x27;)&#x27; : &quot;setCurTodo(&quot;+i+&quot;);openLec(&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;,&#x27;live&#x27;)&quot;;
+   case &#x27;lec&#x27;:   return &quot;setCurTodo(&quot;+i+&quot;);openLec(&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;,&#x27;lec&#x27;)&quot;;
+   case &#x27;exam&#x27;:  return &quot;setCurTodo(&quot;+i+&quot;);openExam(&#x27;&quot;+t.replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;)&quot;;
    default:      return &#x27;openDlg(&#x27;+i+&#x27;)&#x27;;
  }
 }
-function todoVerb(b){return {word:&#x27;외우기&#x27;,check:&#x27;개념체크&#x27;,prob:&#x27;풀기&#x27;,live:&#x27;듣기&#x27;,lec:&#x27;다시보기&#x27;,exam:&#x27;공부&#x27;}[b[5]]||&#x27;시작&#x27;;}
+function todoVerb(b){
+ if(b[5]===&#x27;prob&#x27;&amp;&amp;isPaper(b[3]))return &#x27;다 풀었어요&#x27;;
+ return {word:&#x27;외우기&#x27;,check:&#x27;개념체크&#x27;,prob:&#x27;풀기&#x27;,live:&#x27;듣기&#x27;,lec:&#x27;다시보기&#x27;,exam:&#x27;공부&#x27;}[b[5]]||&#x27;시작&#x27;;}
+
+/* 종이 교재 &quot;다 풀었어요&quot; — 완료 체크 + 어려웠던 문제 메모 (매니저에게 전달) */
+function ensurePaperOvl(){if(document.getElementById(&#x27;paperOvl&#x27;))return;
+ var d=document.createElement(&#x27;div&#x27;);d.id=&#x27;paperOvl&#x27;;d.className=&#x27;wordovl&#x27;;
+ d.innerHTML=&#x27;&lt;div class=&quot;wordsheet pp2&quot;&gt;&lt;div class=&quot;wtop&quot;&gt;&lt;button class=&quot;wx&quot; onclick=&quot;closePaper()&quot;&gt;✕&lt;/button&gt;&lt;span class=&quot;sp-title&quot; id=&quot;ppTitle&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wbody ppbody&quot; id=&quot;ppBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ document.body.appendChild(d);}
+function openPaper(title){ensurePaperOvl();document.getElementById(&#x27;ppTitle&#x27;).textContent=title;
+ document.getElementById(&#x27;ppBody&#x27;).innerHTML=
+  &#x27;&lt;div class=&quot;pp-ic&quot;&gt;📘&lt;/div&gt;&lt;div class=&quot;pp-h&quot;&gt;&#x27;+title+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;pp-d&quot;&gt;이건 책으로 직접 푸는 과제예요. 다 풀었으면 아래에서 완료하고, &lt;b&gt;어려웠던 문제가 있으면 메모&lt;/b&gt;를 남겨요. 선생님이 보고 도와줄 수 있어요.&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;pp-q&quot;&gt;어려웠던 문제 · 모르겠던 것 (선택)&lt;/div&gt;&#x27;+
+  &#x27;&lt;textarea class=&quot;pp-ta&quot; id=&quot;ppMemo&quot; placeholder=&quot;예: 14번 비례식이 이해가 안 됐어요 / p.57 마지막 문제 풀이가 헷갈려요&quot;&gt;&lt;/textarea&gt;&#x27;+
+  &#x27;&lt;div class=&quot;pp-chips&quot;&gt;&lt;button onclick=&quot;ppQuick(\&#x27;다 풀었고 쉬웠어요 👍\&#x27;)&quot;&gt;쉬웠어요&lt;/button&gt;&lt;button onclick=&quot;ppQuick(\&#x27;풀긴 했는데 몇 개 헷갈렸어요\&#x27;)&quot;&gt;조금 헷갈림&lt;/button&gt;&lt;button onclick=&quot;ppQuick(\&#x27;어려워서 많이 틀린 것 같아요\&#x27;)&quot;&gt;어려웠어요&lt;/button&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;paperDone()&quot;&gt;다 풀었어요 — 완료&lt;/button&gt;&#x27;+
+  &#x27;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;closePaper()&quot;&gt;아직이요&lt;/button&gt;&#x27;;
+ document.getElementById(&#x27;paperOvl&#x27;).classList.add(&#x27;show&#x27;);}
+function closePaper(){document.getElementById(&#x27;paperOvl&#x27;).classList.remove(&#x27;show&#x27;);}
+function ppQuick(t){var el=document.getElementById(&#x27;ppMemo&#x27;);el.value=el.value?el.value+&#x27; · &#x27;+t:t;}
+function paperDone(){
+ var memo=(document.getElementById(&#x27;ppMemo&#x27;)||{}).value||&#x27;&#x27;;
+ completeTodo();closePaper();
+ if(memo.trim()){toast(&#x27;완료! 메모를 선생님께 전했어요&#x27;);}
+ else{toast(&#x27;다 풀었어요 — 완료 체크!&#x27;);}
+}
 
 /* 강의 재생 모듈 (라이브/다시보기) */
 function ensureLecOvl(){if(document.getElementById(&#x27;lecOvl&#x27;))return;
@@ -2931,7 +3541,7 @@ function toggleLec(){var s=lecState;if(s.done){s.prog=0;s.done=false;s.playing=f
  if(s.playing){ s.iv=setInterval(function(){
      if(!document.getElementById(&#x27;lecOvl&#x27;).classList.contains(&#x27;show&#x27;)){clearInterval(s.iv);return;}
      s.prog+=5; /* 데모 속도 — 재생 눌러야만 차오름 */
-     if(s.prog&gt;=100){s.prog=100;s.done=true;s.playing=false;clearInterval(s.iv);}
+     if(s.prog&gt;=100){s.prog=100;s.done=true;s.playing=false;clearInterval(s.iv);if(typeof completeTodo===&#x27;function&#x27;)completeTodo();}
      var pb=document.getElementById(&#x27;lecProg&#x27;);if(pb)pb.style.width=Math.round(s.prog)+&#x27;%&#x27;;
      if(s.done)renderLec(); else { var tt=document.querySelector(&#x27;.lec-t&#x27;);var bt=document.querySelector(&#x27;.wbtn.locked&#x27;);
        if(bt)bt.textContent=&#x27;🔒 개념체크 — 강의를 다 들어야 열려요 (&#x27;+Math.round(s.prog)+&#x27;%)&#x27;; }
@@ -3105,7 +3715,7 @@ function nextSolve(){
      &#x27;&lt;div class=&quot;sd&quot;&gt;&lt;b&gt;&#x27;+(Object.keys(ATTEMPTS).reduce(function(a,k){return a+ATTEMPTS[k].length;},0))+&#x27;회&lt;/b&gt;&lt;span&gt;총 시도 (다 기록됨)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;sp-donenote&quot;&gt;성적에는 &lt;b&gt;1차 실측만&lt;/b&gt; 들어가요. 복습·재풀이는 &quot;노력 기록&quot;으로 남되 점수는 안 올라가요 — 답 외워 찍는 걸로는 성적이 안 오르게.&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;sp-donenote2&quot;&gt;매니저 화면엔 &quot;1차 틀림 → 이유 쓰고 복습 → 극복&quot; 같은 &lt;b&gt;학습 궤적&lt;/b&gt;이 보여요. 3초컷 정답은 🚩로 떠요.&lt;/div&gt;&#x27;+
-     &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;closeSolve();toast(\&#x27;풀이 기록이 저장됐어요\&#x27;)&quot;&gt;완료&lt;/button&gt;&lt;/div&gt;&#x27;;
+     &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;completeTodo();closeSolve();toast(\&#x27;문제풀이 끝 — 할 일 자동 완료!\&#x27;)&quot;&gt;완료&lt;/button&gt;&lt;/div&gt;&#x27;;
  }
 }
 
@@ -3130,15 +3740,24 @@ function mRender(){
     var b=x.b,sk=SUB[b[5]],st=b[6]||{};
     if(!st.ext){tot++;if(st.done)done++;}
     /* 학습 종류별 열기 — 전부 실제 화면으로 */
+    var paper = (b[5]===&#x27;prob&#x27; &amp;&amp; typeof isPaper===&#x27;function&#x27; &amp;&amp; isPaper(b[3])); /* 쎈 등 종이 교재 = 자기보고 */
     var open= st.live ? &quot;openLec(&#x27;&quot;+b[3].replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;,&#x27;live&#x27;)&quot; : todoOpen(b,x.i);
     var isLearn = (b[5]===&#x27;word&#x27;||b[5]===&#x27;check&#x27;||b[5]===&#x27;prob&#x27;||b[5]===&#x27;lec&#x27;||b[5]===&#x27;exam&#x27;||b[5]===&#x27;live&#x27;);
+    var autoLearn = isLearn &amp;&amp; !paper; /* 앱이 채점하는 학습만 자동완료·잠금 */
     var verb = st.live ? &#x27;입장&#x27; : todoVerb(b);
     var startBtn = (!st.ext &amp;&amp; !st.done &amp;&amp; isLearn) ? &#x27;&lt;button class=&quot;stb&#x27;+(st.live?&#x27; live&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;event.stopPropagation();&#x27;+open+&#x27;&quot;&gt;&#x27;+verb+&#x27;&lt;/button&gt;&#x27; : &#x27;&#x27;;
+    /* 앱 채점 학습은 잠금(끝내야 자동완료). 종이교재·자기보고는 수동 체크 */
+    var chkBtn;
+    if(st.ext){chkBtn=&#x27;&#x27;;}
+    else if(autoLearn){chkBtn=st.done
+      ? &#x27;&lt;button class=&quot;cb&quot; disabled&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;
+      : &#x27;&lt;button class=&quot;cb lock&quot; onclick=&quot;event.stopPropagation();toast(\&#x27;학습을 끝내면 자동으로 완료돼요\&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;5&quot; y=&quot;11&quot; width=&quot;14&quot; height=&quot;9&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M8 11V8a4 4 0 0 1 8 0v3&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
+    else if(paper &amp;&amp; !st.done){chkBtn=&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();setCurTodo(&#x27;+x.i+&#x27;);openPaper(\&#x27;&#x27;+b[3].replace(/&#x27;/g,&#x27;&#x27;)+&#x27;\&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
+    else{chkBtn=&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();tgl(&#x27;+x.i+&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
     return &#x27;&lt;li class=&quot;&#x27;+(st.done?&#x27;done &#x27;:&#x27;&#x27;)+(st.ext?&#x27;ext&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;&#x27;+open+&#x27;&quot;&gt;&#x27;+
       &#x27;&lt;span class=&quot;dot&quot; style=&quot;background:var(&#x27;+sk[1]+&#x27;)&quot;&gt;&lt;/span&gt;&#x27;+
-      &#x27;&lt;div class=&quot;tb&quot;&gt;&lt;b&gt;&#x27;+b[3]+&#x27;&lt;/b&gt;&lt;div class=&quot;ts&quot;&gt;&#x27;+b[4]+&#x27; · &#x27;+sk[0]+(st.ai?&#x27; · AI 담음&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-      (st.live?&#x27;&lt;span class=&quot;lvb&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+startBtn+
-      (st.ext?&#x27;&#x27;:&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();tgl(&#x27;+x.i+&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;)+&#x27;&lt;/li&gt;&#x27;;
+      &#x27;&lt;div class=&quot;tb&quot;&gt;&lt;b&gt;&#x27;+b[3]+&#x27;&lt;/b&gt;&lt;div class=&quot;ts&quot;&gt;&#x27;+b[4]+&#x27; · &#x27;+sk[0]+(st.ai?&#x27; · AI 담음&#x27;:&#x27;&#x27;)+(autoLearn&amp;&amp;!st.done?&#x27; · 학습 완료 시 체크&#x27;:&#x27;&#x27;)+(paper&amp;&amp;!st.done?&#x27; · 책으로 직접 풀기&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+      (st.live?&#x27;&lt;span class=&quot;lvb&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+startBtn+chkBtn+&#x27;&lt;/li&gt;&#x27;;
   }).join(&#x27;&#x27;);
   document.getElementById(&#x27;mToday&#x27;).innerHTML=h;
   document.getElementById(&#x27;mTdCnt&#x27;).textContent=done+&#x27;/&#x27;+tot+&#x27; 완료&#x27;;
@@ -3285,6 +3904,33 @@ button{font:inherit;cursor:pointer}
 .kghost .kbub{background:rgba(255,255,255,.55);border:1.5px dashed rgba(90,99,119,.5);color:#5A6377}
 .kghost .kbub .kt{color:#5A6377}
 .krep .kbub{outline:2px solid var(--ok)}
+/* 주간 리포트 모달 */
+.nrovl{position:fixed;inset:0;background:rgba(20,22,40,.55);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.nrovl.show{display:flex}
+.nrsheet{background:var(--card,#fff);width:100%;max-width:460px;max-height:90vh;border-radius:20px;overflow-y:auto;position:relative;animation:nrup .25s ease}
+@keyframes nrup{from{transform:translateY(16px);opacity:.6}to{transform:none;opacity:1}}
+.nrx{position:absolute;top:14px;right:14px;z-index:2;border:0;background:rgba(255,255,255,.2);color:#fff;width:34px;height:34px;border-radius:50%;font-size:14px;cursor:pointer}
+.nr-hd{background:linear-gradient(135deg,#3A3D8F,#5457B5);color:#fff;padding:24px 24px 20px}
+.nr-kick{font-size:11px;font-weight:800;opacity:.85}
+.nr-hd h2{font-size:20px;font-weight:900;margin:10px 0 8px;color:#fff}
+.nr-sub{font-size:12.5px;opacity:.9}
+.nr-sec{padding:18px 24px;border-bottom:1px solid var(--line,#E7EAF0)}
+.nr-sec.next{background:var(--brand-s,#EEF0FB)}
+.nr-st{font-size:12.5px;font-weight:900;color:var(--ink,#1C2033);margin-bottom:12px}
+.nr-facts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.nrf{background:var(--bg,#F7F8FA);border-radius:12px;padding:12px 8px;text-align:center}
+.nrf-v{font-size:16px;font-weight:900;color:var(--brand,#3A3D8F)}
+.nrf-l{font-size:10.5px;color:var(--ink3,#8C96AD);font-weight:700;margin-top:3px}
+.nrm{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.nrm-u{flex:0 0 92px;font-size:12.5px;font-weight:800;color:var(--ink,#1C2033)}
+.nrm-u em{font-size:10px;color:var(--ink3,#8C96AD);font-style:normal;margin-left:4px}
+.nrm-bar{flex:1;height:8px;background:var(--line2,#EEF1F6);border-radius:999px;overflow:hidden}
+.nrm-bar i{display:block;height:100%;border-radius:999px}
+.nrm-v{flex:0 0 62px;text-align:right;font-size:12.5px;font-weight:900;color:var(--ink,#1C2033)}
+.nrm-v b{font-size:10px;margin-left:2px}
+.nr-note{font-size:11px;color:var(--ink3,#8C96AD);margin-top:10px;line-height:1.5}
+.nr-p{font-size:13.5px;color:var(--ink2,#55607A);line-height:1.7}.nr-p b{color:var(--ink,#1C2033);font-weight:800}
+.nr-foot{font-size:11px;color:var(--ink3,#8C96AD);line-height:1.6;padding:16px 24px;background:var(--bg,#F7F8FA)}
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -3367,7 +4013,9 @@ function stuPush(r){
 function parKakao(r,opt){
  var L=document.getElementById(&#x27;plist&#x27;);
  var el=document.createElement(&#x27;div&#x27;);el.className=&#x27;krow&#x27;+(opt&amp;&amp;opt.cls?&#x27; &#x27;+opt.cls:&#x27;&#x27;);
- var btn=r.btn?&#x27;&lt;span class=&quot;kbtn&quot;&gt;&#x27;+r.btn+&#x27;&lt;/span&gt;&#x27;:&#x27;&lt;span class=&quot;kbtn&quot;&gt;앱에서 자세히 보기&lt;/span&gt;&#x27;;
+ var btnTxt=r.btn||&#x27;앱에서 자세히 보기&#x27;;
+ var onc = /리포트/.test(btnTxt)?&#x27;openNotiReport()&#x27; : (/성장/.test(btnTxt)?&quot;openNotiReport(&#x27;growth&#x27;)&quot; : &#x27;toast(&quot;앱에서 열려요&quot;)&#x27;);
+ var btn=&#x27;&lt;span class=&quot;kbtn&quot; style=&quot;cursor:pointer&quot; onclick=&quot;&#x27;+onc+&#x27;&quot;&gt;&#x27;+btnTxt+&#x27; →&lt;/span&gt;&#x27;;
  el.innerHTML=&#x27;&lt;span class=&quot;kav2&quot;&gt;&lt;svg viewBox=&quot;0 0 52 52&quot;&gt;&lt;path d=&quot;M14 15h24a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H24l-7 6v-6h-3a3 3 0 0 1-3-3V18a3 3 0 0 1 3-3z&quot; fill=&quot;#fff&quot;/&gt;&lt;path d=&quot;M20 25l4 4 9-9&quot; stroke=&quot;#3A3D8F&quot; stroke-width=&quot;3.2&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;&#x27;+
   &#x27;&lt;div class=&quot;kb&quot;&gt;&lt;div class=&quot;kn&quot;&gt;마이플래너&#x27;+(opt&amp;&amp;opt.kn?(&#x27; · &#x27;+opt.kn):&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;div class=&quot;kbub&quot;&gt;&lt;span class=&quot;kt&quot;&gt;&#x27;+r.t+&#x27; &lt;span class=&quot;rid&quot;&gt;&#x27;+r.rid+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;+r.m+(opt&amp;&amp;opt.nobtn?&#x27;&#x27;:btn)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
   &#x27;&lt;span class=&quot;ktm&quot;&gt;&#x27;+tm()+&#x27;&lt;/span&gt;&#x27;;
@@ -3422,6 +4070,48 @@ function go(k){
   },2300);
  }
 }
+/* 간단 토스트 */
+var _nt;function toast(m){var t=document.getElementById(&#x27;ntoast&#x27;);if(!t){t=document.createElement(&#x27;div&#x27;);t.id=&#x27;ntoast&#x27;;t.style.cssText=&#x27;position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1C2030;color:#fff;font-size:13px;font-weight:700;padding:11px 20px;border-radius:999px;z-index:400;opacity:0;transition:.2s;pointer-events:none&#x27;;document.body.appendChild(t);}t.textContent=m;t.style.opacity=&#x27;1&#x27;;clearTimeout(_nt);_nt=setTimeout(function(){t.style.opacity=&#x27;0&#x27;;},1800);}
+
+/* 주간 학습 리포트 전문 — &quot;리포트 전체 보기&quot; 누르면 열림 */
+function openNotiReport(kind){
+ ensureNRpt();
+ document.getElementById(&#x27;nrBody&#x27;).innerHTML = kind===&#x27;growth&#x27; ? nrGrowth() : nrWeekly();
+ document.getElementById(&#x27;nrOvl&#x27;).classList.add(&#x27;show&#x27;);
+ document.getElementById(&#x27;nrBody&#x27;).scrollTop=0;
+}
+function closeNRpt(){document.getElementById(&#x27;nrOvl&#x27;).classList.remove(&#x27;show&#x27;);}
+function ensureNRpt(){if(document.getElementById(&#x27;nrOvl&#x27;))return;
+ var d=document.createElement(&#x27;div&#x27;);d.id=&#x27;nrOvl&#x27;;d.className=&#x27;nrovl&#x27;;
+ d.innerHTML=&#x27;&lt;div class=&quot;nrsheet&quot;&gt;&lt;button class=&quot;nrx&quot; onclick=&quot;closeNRpt()&quot;&gt;✕&lt;/button&gt;&lt;div class=&quot;nrbody&quot; id=&quot;nrBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ document.body.appendChild(d);}
+function nf(label,val){return &#x27;&lt;div class=&quot;nrf&quot;&gt;&lt;div class=&quot;nrf-v&quot;&gt;&#x27;+val+&#x27;&lt;/div&gt;&lt;div class=&quot;nrf-l&quot;&gt;&#x27;+label+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;}
+function nrMast(){
+ var m=[[&#x27;일차함수&#x27;,&#x27;수학&#x27;,67,40],[&#x27;일차방정식&#x27;,&#x27;수학&#x27;,85,72],[&#x27;현재완료&#x27;,&#x27;영어&#x27;,70,55]];
+ return m.map(function(x){var up=x[2]-x[3];var c=x[2]&lt;55?&#x27;#D64545&#x27;:x[2]&lt;70?&#x27;#C98018&#x27;:&#x27;#1E8E6E&#x27;;
+  return &#x27;&lt;div class=&quot;nrm&quot;&gt;&lt;span class=&quot;nrm-u&quot;&gt;&#x27;+x[0]+&#x27;&lt;em&gt;&#x27;+x[1]+&#x27;&lt;/em&gt;&lt;/span&gt;&lt;div class=&quot;nrm-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+x[2]+&#x27;%;background:&#x27;+c+&#x27;&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class=&quot;nrm-v&quot;&gt;&#x27;+x[2]+&#x27;% &lt;b style=&quot;color:&#x27;+(up&gt;=0?&#x27;#1E8E6E&#x27;:&#x27;#D64545&#x27;)+&#x27;&quot;&gt;&#x27;+(up&gt;=0?&#x27;▲&#x27;:&#x27;▼&#x27;)+Math.abs(up)+&#x27;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;);
+}
+function nrWeekly(){
+ return &#x27;&lt;div class=&quot;nr-hd&quot;&gt;&lt;div class=&quot;nr-kick&quot;&gt;10월 4주차 · 일요일 자동 발송&lt;/div&gt;&lt;h2&gt;민준이 주간 학습 리포트&lt;/h2&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-sub&quot;&gt;매일의 기록(저녁 요약)이 모여 만든 한 주 리포트예요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-sec&quot;&gt;&lt;div class=&quot;nr-st&quot;&gt;① 이번 주 사실 (숫자는 기록에서 그대로)&lt;/div&gt;&lt;div class=&quot;nr-facts&quot;&gt;&#x27;+
+    nf(&#x27;특강 출석&#x27;,&#x27;4/5&#x27;)+nf(&#x27;숙제 완료&#x27;,&#x27;11/12&#x27;)+nf(&#x27;영단어&#x27;,&#x27;34/40&#x27;)+nf(&#x27;발음 평균&#x27;,&#x27;78점&#x27;)+nf(&#x27;오답 소화&#x27;,&#x27;11/14&#x27;)+nf(&#x27;시험범위&#x27;,&#x27;58%&#x27;)+
+  &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-sec&quot;&gt;&lt;div class=&quot;nr-st&quot;&gt;② 개념 이해도 — 단원별 (개념체크 집계)&lt;/div&gt;&#x27;+nrMast()+
+  &#x27;&lt;div class=&quot;nr-note&quot;&gt;개념체크로 &quot;강의만 듣고 넘어간 게 아니라 이해했는지&quot;를 단원마다 점수로 쌓아요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-sec&quot;&gt;&lt;div class=&quot;nr-st&quot;&gt;③ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
+  &#x27;&lt;p class=&quot;nr-p&quot;&gt;중간고사 준비가 궤도에 올랐어요. 약했던 &lt;b&gt;일차함수 개념 이해도가 67%까지&lt;/b&gt; 올라왔고, 영단어 34개를 외우며 발음 교정 3건을 받았어요. 영어 특강을 한 번 놓쳤지만 주말 다시보기로 보완했습니다.&lt;/p&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-sec next&quot;&gt;&lt;div class=&quot;nr-st&quot;&gt;④ 다음에 할 것 (이미 플래너에 담겨 있어요)&lt;/div&gt;&#x27;+
+  &#x27;&lt;p class=&quot;nr-p&quot;&gt;다음 주는 &lt;b&gt;도형의 성질 개념&lt;/b&gt;부터 — D-9~7에 개념강의+개념체크+문제 세트가 배치됐어요. 시험 3일 전엔 오답 총정리로 마무리합니다.&lt;/p&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-foot&quot;&gt;🔒 숫자는 학습 기록에서만, AI는 문장만 써요 (없는 성과는 지어내지 않음). 민감한 내용은 담임이 톤을 확인한 뒤 나가요.&lt;/div&gt;&#x27;;
+}
+function nrGrowth(){
+ return &#x27;&lt;div class=&quot;nr-hd&quot; style=&quot;background:linear-gradient(135deg,#1E8E6E,#2FB3A0)&quot;&gt;&lt;div class=&quot;nr-kick&quot;&gt;🌙 오늘의 성장 기록&lt;/div&gt;&lt;h2&gt;민준이 오늘 한 것&lt;/h2&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-sub&quot;&gt;오늘 하루 작은 완료들이 이렇게 쌓였어요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-sec&quot;&gt;&lt;div class=&quot;nr-st&quot;&gt;오늘&lt;/div&gt;&lt;div class=&quot;nr-facts&quot;&gt;&#x27;+nf(&#x27;개념특강&#x27;,&#x27;출석 ✓&#x27;)+nf(&#x27;할 일&#x27;,&#x27;5/5&#x27;)+nf(&#x27;스스로 담기&#x27;,&#x27;1건&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;nr-foot&quot;&gt;이 작은 기록들이 주간 리포트로 모여요. &quot;잘하고 있다&quot;가 숫자로 보이는 구조예요.&lt;/div&gt;&#x27;;
+}
+
 /* 시작 데모 — 즉시 안내 1 + 저녁묶음 대기 2건 쌓인 상태 */
 setTimeout(function(){go(&#x27;s1&#x27;);},500);
 setTimeout(function(){go(&#x27;g1&#x27;);},1100);
