@@ -1530,6 +1530,50 @@ button{font:inherit;cursor:pointer}
 .tl-svg{width:100%;height:38px;margin-top:4px;display:block}
 .gm-note{margin-top:13px;background:var(--lime-s);border-radius:11px;padding:12px;font-size:12px;color:#5B7A1E;line-height:1.6}
 .gm-note b{color:#3F5614}
+/* 시험별 성적 기록 */
+.eh-tabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:10px;margin-bottom:4px;-ms-overflow-style:none;scrollbar-width:none}
+.eh-tabs::-webkit-scrollbar{display:none}
+.eh-tab{flex:none;border:1.5px solid var(--line2);background:var(--card);border-radius:10px;padding:8px 13px;font-size:12px;font-weight:800;color:var(--ink2);cursor:pointer;font-family:inherit;white-space:nowrap}
+.eh-tab.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.eh-tab.latest:not(.on){border-color:var(--brand);color:var(--brand)}
+.eh-sheet{border:1px solid var(--line2);border-radius:13px;overflow:hidden}
+.eh-sh{background:var(--bg);padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
+.eh-sh b{font-size:13.5px;font-weight:900;color:var(--ink)}
+.eh-sh span{font-size:11px;font-weight:700;color:var(--ink3)}
+.eh-free{padding:14px;font-size:13px;font-weight:800;color:#1F9D64}
+.eh-freed{font-size:12px;font-weight:600;color:var(--ink3);margin-top:6px;line-height:1.6}
+.eh-rows{padding:4px 0}
+.eh-row{display:grid;grid-template-columns:50px 1fr 50px 54px;gap:8px;align-items:center;padding:11px 14px;font-size:12.5px;border-top:1px solid var(--line2)}
+.eh-row.head{font-size:10.5px;font-weight:900;color:var(--ink3);border-top:0;background:var(--card)}
+.eh-row.free{grid-template-columns:60px 1fr}
+.eh-row.weak{background:#FFF5F5}
+.eh-sub{font-weight:800;color:var(--ink)}
+.eh-raw{color:var(--ink2);font-weight:600}
+.eh-raw b{color:var(--ink);font-weight:900;font-size:14px}
+.eh-raw i{font-size:10px;color:var(--faint);font-style:normal;margin-left:1px}
+.eh-raw em{font-style:normal;font-weight:900;font-size:10px;margin-left:3px}
+.eh-raw em.u{color:#2FA84F}.eh-raw em.d{color:#E23B3B}
+.eh-p{color:#1F9D64;font-weight:800;font-size:12px}
+.eh-ach{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;border-radius:6px;font-weight:900;font-size:11px;color:#fff}
+.eh-ach.a-A{background:#2FA84F}.eh-ach.a-B{background:#4A90D9}.eh-ach.a-C{background:#E0A93A}.eh-ach.a-D{background:#E8803C}.eh-ach.a-E{background:#D04545}
+.eh-ts{font-weight:900;color:var(--brand);text-align:center}
+.eh-ft{font-size:10.5px;color:var(--ink3);line-height:1.6;padding:11px 14px;background:var(--bg)}
+/* 세운 시험 계획 이력 */
+.ph-list{display:flex;flex-direction:column;gap:11px}
+.ph-card{background:var(--bg);border-radius:13px;padding:14px}
+.ph-top{display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap}
+.ph-top b{font-size:13.5px;font-weight:900;color:var(--ink)}
+.ph-made{font-size:11px;font-weight:700;color:var(--ink3)}
+.ph-rate{margin-left:auto;font-size:11px;font-weight:900;padding:3px 10px;border-radius:999px}
+.ph-rate.ok{background:var(--ok-s,#E6F6EA);color:#1F9D64}
+.ph-rate.warn{background:#FBF0DC;color:#B57B18}
+.ph-rate.low{background:#FBE4E4;color:#C23A3A}
+.ph-bar{height:7px;background:var(--line2);border-radius:999px;overflow:hidden;margin-bottom:10px}
+.ph-bar i{display:block;height:100%;border-radius:999px}
+.ph-bar i.ok{background:#2FA84F}.ph-bar i.warn{background:#E0A94B}.ph-bar i.low{background:#E23B3B}
+.ph-items{display:flex;flex-wrap:wrap;gap:6px}
+.ph-it{font-size:11px;font-weight:700;color:var(--ink3);background:var(--card);padding:5px 9px;border-radius:999px}
+.ph-it.done{color:#2FA84F}
 .gchart{display:flex;align-items:flex-end;gap:14px;height:120px}
 .gbar2{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
 .gbar2 .gnum{font-size:11px;font-weight:800;margin-bottom:5px}
@@ -1612,6 +1656,8 @@ button{font:inherit;cursor:pointer}
 .pb-chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .pb-ai{background:linear-gradient(120deg,#2A2D6B,#3A3D8F);color:#fff;border-radius:16px;padding:18px 20px;margin-top:4px}
 .pb-ai b{font-size:14px;font-weight:900}
+.pb-paper{background:#FFF6E6;border:1px solid #F3E2BC;border-radius:13px;padding:14px 16px;margin-top:12px;font-size:12.5px;color:#7A5A12;line-height:1.65}
+.pb-paper b{color:#5C4208}
 .pb-ai p{font-size:12.5px;opacity:.9;margin-top:5px;line-height:1.55}
 
 .sp-card{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:13px;cursor:pointer;transition:.15s}
@@ -2946,24 +2992,28 @@ function pgGrades(){
      growthMetric(&#x27;🔤&#x27;,&#x27;영단어 누적&#x27;,t.vocabCumul,&#x27;개&#x27;,&#x27;#4A90D9&#x27;)+
     &#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;gm-note&quot;&gt;시험 점수가 나오기 전에도, &lt;b&gt;개념 이해도·정답률·공부량이 오르는 게 진짜 성장&lt;/b&gt;이에요. 이 추이가 다음 시험 점수로 이어져요.&lt;/div&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;gcards&quot;&gt;&#x27;+
-    &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;시험 평균 추이&lt;/h4&gt;&lt;div class=&quot;gchart&quot;&gt;&#x27;+
-      &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;72.1&lt;/div&gt;&lt;i style=&quot;height:52%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-1&lt;br&gt;중간&lt;/em&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;75.3&lt;/div&gt;&lt;i style=&quot;height:62%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-1&lt;br&gt;기말&lt;/em&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;76.8&lt;/div&gt;&lt;i style=&quot;height:68%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-2&lt;br&gt;중간&lt;/em&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;gbar2 on&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;78.5&lt;/div&gt;&lt;i style=&quot;height:74%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-2&lt;br&gt;기말&lt;/em&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;gbar2 tgt&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;85&lt;/div&gt;&lt;i style=&quot;height:88%&quot;&gt;&lt;/i&gt;&lt;em&gt;2-1&lt;br&gt;목표&lt;/em&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;과목별 (지난 → 이번)&lt;/h4&gt;&lt;table class=&quot;subtbl&quot;&gt;&#x27;+
-      &#x27;&lt;tr&gt;&lt;td&gt;국어&lt;/td&gt;&lt;td&gt;84&lt;/td&gt;&lt;td&gt;88 &lt;span class=&quot;up&quot;&gt;▲4&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;+
-      &#x27;&lt;tr&gt;&lt;td&gt;영어&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;td&gt;82 &lt;span class=&quot;up&quot;&gt;▲2&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;+
-      &#x27;&lt;tr&gt;&lt;td&gt;수학&lt;/td&gt;&lt;td&gt;79&lt;/td&gt;&lt;td&gt;75 &lt;span class=&quot;dn&quot;&gt;▼4&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;+
-      &#x27;&lt;tr&gt;&lt;td&gt;사회&lt;/td&gt;&lt;td&gt;86&lt;/td&gt;&lt;td&gt;90 &lt;span class=&quot;up&quot;&gt;▲4&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;+
-      &#x27;&lt;tr&gt;&lt;td&gt;과학&lt;/td&gt;&lt;td&gt;77&lt;/td&gt;&lt;td&gt;79 &lt;span class=&quot;up&quot;&gt;▲2&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;+
-    &#x27;&lt;/table&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;성적표 보관함&lt;/h4&gt;&lt;div style=&quot;font-size:12.5px;color:var(--ink3);margin-bottom:12px&quot;&gt;올린 성적표 3개 · 사진 찍어 올리면 NEIS 양식(원점수·과목평균·성취도)으로 자동 정리돼요.&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;gp-upload&quot; onclick=&quot;toast(\&#x27;성적표 사진 업로드 → AI가 자동 입력\&#x27;)&quot;&gt;＋ 성적표 올리기 (사진·파일)&lt;/div&gt;&lt;/div&gt;&#x27;;
+   /* ★ 시험 평균 추이 (학기별) — 막대 */
+   &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;📈 시험 평균 추이 (학기별 누적)&lt;/h4&gt;&lt;div class=&quot;gchart&quot;&gt;&#x27;+
+      &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;P&lt;/div&gt;&lt;i style=&quot;height:30%;background:var(--line2)&quot;&gt;&lt;/i&gt;&lt;em&gt;1-1&lt;br&gt;자유&lt;/em&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;P&lt;/div&gt;&lt;i style=&quot;height:30%;background:var(--line2)&quot;&gt;&lt;/i&gt;&lt;em&gt;1-1&lt;br&gt;자유&lt;/em&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;76.8&lt;/div&gt;&lt;i style=&quot;height:62%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-2&lt;br&gt;중간&lt;/em&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;78.5&lt;/div&gt;&lt;i style=&quot;height:70%&quot;&gt;&lt;/i&gt;&lt;em&gt;1-2&lt;br&gt;기말&lt;/em&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;gbar2 on&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;82.8&lt;/div&gt;&lt;i style=&quot;height:84%&quot;&gt;&lt;/i&gt;&lt;em&gt;2-1&lt;br&gt;중간&lt;/em&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;gbar2 tgt&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;85&lt;/div&gt;&lt;i style=&quot;height:90%&quot;&gt;&lt;/i&gt;&lt;em&gt;2-1&lt;br&gt;목표&lt;/em&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;/div&gt;&lt;div class=&quot;gm-note&quot; style=&quot;margin-top:12px&quot;&gt;중1은 &lt;b&gt;자유학기(P·이수)&lt;/b&gt;라 지필점수가 없어요. 중2부터 원점수가 쌓여요. 과목이 학기마다 달라지니 &lt;b&gt;시험별로&lt;/b&gt; 기록돼요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ★ 시험별 성적 기록 — 탭 + NEIS 양식 성적표 */
+   &#x27;&lt;div class=&quot;gcard&quot; id=&quot;ehCard&quot;&gt;&lt;h4&gt;🗂 시험별 성적 기록 — 원점수·표준점수&lt;/h4&gt;&#x27;+
+    &#x27;&lt;div id=&quot;ehInner&quot;&gt;&#x27;+examHistoryTabs()+examSheet()+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gp-upload&quot; style=&quot;margin-top:14px&quot; onclick=&quot;openForm(\&#x27;grade\&#x27;)&quot;&gt;＋ 새 성적표 올리기 (사진·파일) — 자동으로 여기 쌓여요&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ★ 세운 시험 계획 + 이행 이력 */
+   &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;📋 내가 세운 시험 계획 · 이행 이력&lt;/h4&gt;&#x27;+
+    planHistory()+
+    &#x27;&lt;div class=&quot;gm-note&quot; style=&quot;margin-top:4px&quot;&gt;시험마다 &lt;b&gt;직접 세운 계획&lt;/b&gt;과 &lt;b&gt;얼마나 지켰는지&lt;/b&gt;가 남아요. 이행률이 높을수록 성적이 올라간 게 보여요 — 계획 습관이 곧 성장이에요.&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
+/* 시험 탭 전환 시 성적표만 다시 그림 */
+function rerenderGrades(){
+ var inner=document.getElementById(&#x27;ehInner&#x27;);
+ if(inner)inner.innerHTML=examHistoryTabs()+examSheet();
 }
 
 function pgParent(){
@@ -3051,7 +3101,6 @@ function pgProblem(){
     [&#x27;영어&#x27;,&#x27;Reading Unit 5&#x27;,&#x27;객관식&#x27;,&#x27;40%&#x27;,&#x27;#C25B3A&#x27;],
     [&#x27;국어&#x27;,&#x27;문법 — 품사&#x27;,&#x27;객관식·서술형&#x27;,&#x27;85%&#x27;,&#x27;#8C5BC2&#x27;],
     [&#x27;과학&#x27;,&#x27;빛과 파동&#x27;,&#x27;객관식&#x27;,&#x27;0%&#x27;,&#x27;#2F7FC2&#x27;],
-    [&#x27;수학&#x27;,&#x27;쎈 유형 p.56–59&#x27;,&#x27;주관식&#x27;,&#x27;30%&#x27;,&#x27;#1E8E7E&#x27;],
     [&#x27;사회&#x27;,&#x27;경제생활&#x27;,&#x27;서술형&#x27;,&#x27;55%&#x27;,&#x27;#C28A1E&#x27;]
   ];
   return &#x27;&lt;div class=&quot;pb-hero&quot;&gt;&lt;div class=&quot;pb-stat&quot;&gt;&lt;div class=&quot;pbv&quot;&gt;199,241&lt;/div&gt;&lt;div class=&quot;pbl&quot;&gt;보유 문항 (자체 저작권)&lt;/div&gt;&lt;/div&gt;&#x27;+
@@ -3066,7 +3115,8 @@ function pgProblem(){
           &#x27;&lt;b&gt;&#x27;+s[1]+&#x27;&lt;/b&gt;&lt;div class=&quot;pbm&quot;&gt;&#x27;+s[2]+&#x27;&lt;/div&gt;&#x27;+
           &#x27;&lt;div class=&quot;pbbar&quot;&gt;&lt;i style=&quot;width:&#x27;+s[3]+&#x27;;background:&#x27;+s[4]+&#x27;&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;pbpct&quot;&gt;정답률 &#x27;+s[3]+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
       }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;pb-ai&quot;&gt;&lt;b&gt;✦ 서술형도 자동 채점&lt;/b&gt;&lt;p&gt;국어·영어는 출판사별 교과서에 맞춰, 수학·사회·과학은 공통으로. 객관식·주관식은 즉시 채점, &lt;b&gt;서술형은 AI가 채점 기준에 맞춰 1차 채점 후 선생님이 확인&lt;/b&gt;해요. 태블릿 필기(판서)로 풀이 과정까지 남아요.&lt;/p&gt;&lt;/div&gt;&#x27;;
+    &#x27;&lt;div class=&quot;pb-ai&quot;&gt;&lt;b&gt;✦ 서술형도 자동 채점&lt;/b&gt;&lt;p&gt;국어·영어는 출판사별 교과서에 맞춰, 수학·사회·과학은 공통으로. 객관식·주관식은 즉시 채점, &lt;b&gt;서술형은 AI가 채점 기준에 맞춰 1차 채점 후 선생님이 확인&lt;/b&gt;해요. 태블릿 필기(판서)로 풀이 과정까지 남아요.&lt;/p&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;pb-paper&quot;&gt;📕 쎈·RPM 같은 &lt;b&gt;종이 문제집&lt;/b&gt;은 우리 앱에서 풀 수 없어요 (남의 저작물). 시간표에 담되 &lt;b&gt;&quot;다 풀었어요 + 어려웠던 점 메모&quot;&lt;/b&gt;로 자기보고만 돼요 — 앱 채점은 위 자체 문항으로.&lt;/div&gt;&#x27;;
 }
 function pgSpecial(){
   var sp=[
@@ -3393,6 +3443,28 @@ var NEIS={
 /* 표준점수(Z 기반 T점수) = 50 + 10*(원점수-평균)/표준편차 */
 function tScore(raw,avg,sd){return sd?Math.round(50+10*(raw-avg)/sd):&#x27;—&#x27;;}
 function achGrade(raw){return raw&gt;=90?&#x27;A&#x27;:raw&gt;=80?&#x27;B&#x27;:raw&gt;=70?&#x27;C&#x27;:raw&gt;=60?&#x27;D&#x27;:&#x27;E&#x27;;}
+/* ===== 시험별 성적 기록 (학기마다 누적) =====
+   과목이 학기마다 다름 — 중1 자유학기는 P(이수), 중2부터 원점수.
+   각 시험: 원점수/과목평균(표준편차)/성취도. 표준점수는 tScore로 계산 */
+var EXAM_HISTORY=[
+ {key:&#x27;1-1 중간&#x27;,grade:1,free:true, note:&#x27;자유학기 — 성취도 P(이수)&#x27;, avg:null,
+   rows:[[&#x27;국어&#x27;,&#x27;P&#x27;],[&#x27;영어&#x27;,&#x27;P&#x27;],[&#x27;수학&#x27;,&#x27;P&#x27;],[&#x27;사회&#x27;,&#x27;P&#x27;],[&#x27;과학&#x27;,&#x27;P&#x27;]]},
+ {key:&#x27;1-1 기말&#x27;,grade:1,free:true, note:&#x27;자유학기 — 성취도 P(이수)&#x27;, avg:null,
+   rows:[[&#x27;국어&#x27;,&#x27;P&#x27;],[&#x27;영어&#x27;,&#x27;P&#x27;],[&#x27;수학&#x27;,&#x27;P&#x27;],[&#x27;사회&#x27;,&#x27;P&#x27;],[&#x27;과학&#x27;,&#x27;P&#x27;]]},
+ {key:&#x27;1-2 중간&#x27;,grade:1,free:false, avg:76.8,
+   rows:[[&#x27;국어&#x27;,84,79.1,11.8],[&#x27;영어&#x27;,80,74.2,13.0],[&#x27;수학&#x27;,71,66.5,16.2],[&#x27;사회&#x27;,78,75.0,12.1],[&#x27;과학&#x27;,71,70.3,13.5]]},
+ {key:&#x27;1-2 기말&#x27;,grade:1,free:false, avg:78.5,
+   rows:[[&#x27;국어&#x27;,86,80.0,12.3],[&#x27;영어&#x27;,82,75.5,13.8],[&#x27;수학&#x27;,75,68.2,17.1],[&#x27;사회&#x27;,80,76.2,11.9],[&#x27;과학&#x27;,79,72.4,13.2]]},
+ {key:&#x27;2-1 중간&#x27;,grade:2,free:false, latest:true, avg:82.8,
+   rows:[[&#x27;국어&#x27;,93,80.3,12.1],[&#x27;영어&#x27;,82,75.1,15.6],[&#x27;수학&#x27;,75,68.2,18.5],[&#x27;사회&#x27;,100,78.7,14.0],[&#x27;과학&#x27;,79,72.4,13.2]]}
+];
+var curExamIdx=EXAM_HISTORY.length-1; /* 기본: 최신 시험 */
+/* 학생이 세운 시험 계획 + 이행 이력 (성장 화면용) */
+var PLAN_HISTORY=[
+ {exam:&#x27;2-1 중간&#x27;,dday:&#x27;11/3&#x27;,made:&#x27;10/20&#x27;,items:[[&#x27;수학&#x27;,&#x27;일차함수 개념+오답&#x27;,1],[&#x27;국어&#x27;,&#x27;문법+지문 정리&#x27;,1],[&#x27;영어&#x27;,&#x27;본문 암기+어법&#x27;,0],[&#x27;전과목&#x27;,&#x27;최종 점검&#x27;,0]],rate:50},
+ {exam:&#x27;1-2 기말&#x27;,dday:&#x27;7/8&#x27;,made:&#x27;6/25&#x27;,items:[[&#x27;수학&#x27;,&#x27;함수 복습&#x27;,1],[&#x27;영어&#x27;,&#x27;본문 암기&#x27;,1],[&#x27;국어&#x27;,&#x27;문법&#x27;,1],[&#x27;과학&#x27;,&#x27;단원평가 대비&#x27;,1]],rate:100},
+ {exam:&#x27;1-2 중간&#x27;,dday:&#x27;5/1&#x27;,made:&#x27;4/20&#x27;,items:[[&#x27;수학&#x27;,&#x27;정수와 유리수&#x27;,1],[&#x27;영어&#x27;,&#x27;Lesson 1-3&#x27;,1],[&#x27;국어&#x27;,&#x27;시 단원&#x27;,0]],rate:67}
+];
 /* 참여 점수 — 출석·완료·학습활동 종합 (0~100). 한 지표에 안 흔들리게 가중 합산 */
 function engageScore(w){
  var attend = w.attend.reduce(function(a,c){return a+c;},0)/5;           /* 출석률 */
@@ -3737,6 +3809,47 @@ function neisTable(){
  return &#x27;&lt;div class=&quot;neis&quot;&gt;&lt;div class=&quot;neis-hd&quot;&gt;&lt;b&gt;6. 교과학습발달상황&lt;/b&gt;&lt;span&gt;&#x27;+n.school+&#x27; · &#x27;+n.grade+&#x27;학년 &#x27;+n.term+&#x27;학기 · &#x27;+n.name+&#x27; (&#x27;+n.classInfo+&#x27;)&lt;/span&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;neis-wrap&quot;&gt;&lt;table class=&quot;neis-t&quot;&gt;&#x27;+body+&#x27;&lt;/table&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;neis-ft&quot;&gt;※ 성취도 A(90↑) B(80↑) C(70↑) D(60↑) E / 표준점수 = 50+10×(원점수−평균)÷표준편차 · NEIS 교과학습발달상황 양식&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
+/* ===== 성적·성장: 시험별 성적 기록 (학기마다 누적, 원점수·표준점수) ===== */
+function examHistoryTabs(){
+ return &#x27;&lt;div class=&quot;eh-tabs&quot;&gt;&#x27;+EXAM_HISTORY.map(function(e,i){
+   return &#x27;&lt;button class=&quot;eh-tab&#x27;+(i===curExamIdx?&#x27; on&#x27;:&#x27;&#x27;)+(e.latest?&#x27; latest&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;curExamIdx=&#x27;+i+&#x27;;rerenderGrades()&quot;&gt;&#x27;+e.key+(e.latest?&#x27; ·최신&#x27;:&#x27;&#x27;)+&#x27;&lt;/button&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+function examSheet(){
+ var e=EXAM_HISTORY[curExamIdx];
+ if(e.free){ /* 자유학기 — P */
+   return &#x27;&lt;div class=&quot;eh-sheet&quot;&gt;&lt;div class=&quot;eh-sh&quot;&gt;&lt;b&gt;&#x27;+e.key+&#x27; 성적표&lt;/b&gt;&lt;span&gt;중&#x27;+e.grade+&#x27; · 자유학기&lt;/span&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;eh-free&quot;&gt;🟢 &#x27;+e.note+&#x27;&lt;div class=&quot;eh-freed&quot;&gt;자유학기제는 지필평가(원점수·석차)가 없어요. 과정 중심 평가로 &lt;b&gt;이수(P)&lt;/b&gt;만 기록돼요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;eh-rows&quot;&gt;&#x27;+e.rows.map(function(r){return &#x27;&lt;div class=&quot;eh-row free&quot;&gt;&lt;span class=&quot;eh-sub&quot;&gt;&#x27;+r[0]+&#x27;&lt;/span&gt;&lt;span class=&quot;eh-p&quot;&gt;P · 이수&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }
+ /* 지필평가 — 원점수/과목평균(표준편차)/성취도/표준점수 */
+ var prevE=null; for(var k=curExamIdx-1;k&gt;=0;k--){if(!EXAM_HISTORY[k].free){prevE=EXAM_HISTORY[k];break;}}
+ var head=&#x27;&lt;div class=&quot;eh-row head&quot;&gt;&lt;span&gt;과목&lt;/span&gt;&lt;span&gt;원점수/평균(편차)&lt;/span&gt;&lt;span&gt;성취도&lt;/span&gt;&lt;span&gt;표준점수&lt;/span&gt;&lt;/div&gt;&#x27;;
+ var body=e.rows.map(function(r){
+   var raw=r[1],avg=r[2],sd=r[3];
+   var t=tScore(raw,avg,sd), ach=achGrade(raw);
+   var dv=null; if(prevE){var pr=prevE.rows.filter(function(x){return x[0]===r[0];})[0];if(pr&amp;&amp;typeof pr[1]===&#x27;number&#x27;)dv=raw-pr[1];}
+   var delta=dv!=null?&#x27;&lt;em class=&quot;&#x27;+(dv&gt;=0?&#x27;u&#x27;:&#x27;d&#x27;)+&#x27;&quot;&gt;&#x27;+(dv&gt;=0?&#x27;▲&#x27;:&#x27;▼&#x27;)+Math.abs(dv)+&#x27;&lt;/em&gt;&#x27;:&#x27;&#x27;;
+   var weak=raw&lt;avg;
+   return &#x27;&lt;div class=&quot;eh-row&#x27;+(weak?&#x27; weak&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;span class=&quot;eh-sub&quot;&gt;&#x27;+r[0]+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span class=&quot;eh-raw&quot;&gt;&lt;b&gt;&#x27;+raw+&#x27;&lt;/b&gt; / &#x27;+avg+&#x27;&lt;i&gt;(&#x27;+sd+&#x27;)&lt;/i&gt; &#x27;+delta+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span&gt;&lt;span class=&quot;eh-ach a-&#x27;+ach+&#x27;&quot;&gt;&#x27;+ach+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span class=&quot;eh-ts&quot;&gt;&#x27;+t+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;);
+ return &#x27;&lt;div class=&quot;eh-sheet&quot;&gt;&lt;div class=&quot;eh-sh&quot;&gt;&lt;b&gt;&#x27;+e.key+&#x27; 성적표&lt;/b&gt;&lt;span&gt;중&#x27;+e.grade+&#x27; · 평균 &#x27;+e.avg+&#x27;점 · NEIS 양식&lt;/span&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;eh-rows&quot;&gt;&#x27;+head+body+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;eh-ft&quot;&gt;※ 원점수/과목평균(표준편차) · 성취도 A~E · 표준점수=50+10×(원점수−평균)÷편차. ▲▼는 지난 지필 대비.&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
+/* 세운 시험 계획 + 이행 이력 */
+function planHistory(){
+ return &#x27;&lt;div class=&quot;ph-list&quot;&gt;&#x27;+PLAN_HISTORY.map(function(p){
+   var done=p.items.filter(function(i){return i[2];}).length;
+   return &#x27;&lt;div class=&quot;ph-card&quot;&gt;&lt;div class=&quot;ph-top&quot;&gt;&lt;b&gt;&#x27;+p.exam+&#x27;&lt;/b&gt;&lt;span class=&quot;ph-made&quot;&gt;&#x27;+p.made+&#x27; 계획 세움&lt;/span&gt;&#x27;+
+     &#x27;&lt;span class=&quot;ph-rate &#x27;+(p.rate&gt;=90?&#x27;ok&#x27;:p.rate&gt;=60?&#x27;warn&#x27;:&#x27;low&#x27;)+&#x27;&quot;&gt;이행 &#x27;+p.rate+&#x27;%&lt;/span&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;ph-bar&quot;&gt;&lt;i class=&quot;&#x27;+(p.rate&gt;=90?&#x27;ok&#x27;:p.rate&gt;=60?&#x27;warn&#x27;:&#x27;low&#x27;)+&#x27;&quot; style=&quot;width:&#x27;+p.rate+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;ph-items&quot;&gt;&#x27;+p.items.map(function(it){return &#x27;&lt;span class=&quot;ph-it&#x27;+(it[2]?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+(it[2]?&#x27;✓&#x27;:&#x27;○&#x27;)+&#x27; &#x27;+it[0]+&#x27; &#x27;+it[1]+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
 }
 
 /* ===== 할 일 → 실제 화면 라우팅 (모든 종류가 실제로 열림) ===== */
@@ -4850,6 +4963,34 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .onb-empty{font-size:12px;color:var(--faint);text-align:center;padding:14px 0}
 .onb-flow{font-size:12px;color:var(--ink2);background:var(--brand-s);border-radius:12px;padding:14px 16px;line-height:1.7}
 .onb-flow b{color:var(--ink)}
+.onb-div2{font-size:12px;font-weight:800;color:var(--ink3);text-align:center;margin:18px 0}
+/* ===== 노션식 리드 관리 DB ===== */
+.ldb{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:8px}
+.ldb-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ldb-h{font-size:16px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:9px}
+.ldb-h span{font-size:11px;font-weight:800;color:var(--ink3);background:var(--bg);padding:3px 10px;border-radius:999px}
+.ldb-tops{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ldb-flts{display:flex;gap:6px}
+.ldb-flt{border:1px solid var(--line);background:var(--card);border-radius:9px;padding:7px 12px;font-size:12px;font-weight:800;color:var(--ink2);cursor:pointer;font-family:inherit}
+.ldb-flt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ldb-new{border:0;background:var(--brand);color:#fff;border-radius:9px;padding:8px 14px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit}
+.ldb-tbl{border:1px solid var(--line2);border-radius:12px;overflow:hidden;overflow-x:auto}
+.ldb-tr{display:grid;grid-template-columns:110px 92px 72px 54px 128px 62px 94px;gap:8px;padding:11px 14px;font-size:12.5px;color:var(--ink);align-items:center;border-top:1px solid var(--line2);min-width:620px}
+.ldb-tr:not(.ldb-head){cursor:pointer}
+.ldb-tr:not(.ldb-head):hover{background:var(--brand-s)}
+.ldb-head{background:var(--bg);font-weight:900;font-size:11px;color:var(--ink3);border-top:0;position:sticky;top:0}
+.ldb-dt{color:var(--ink3);font-weight:700;font-size:11.5px}
+.ldb-mgr{display:flex;align-items:center;gap:6px;font-weight:700;font-size:11.5px}
+.ldb-mgr i{width:18px;height:18px;border-radius:6px;background:var(--brand-s);color:var(--brand);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;font-style:normal;flex:none}
+.ldb-nm{font-weight:900;color:var(--ink)}
+.ldb-gr{font-size:11px;font-weight:800;background:#EDE9FB;color:#6B4FD0;padding:2px 8px;border-radius:999px}
+.ldb-tel{font-weight:700;color:var(--ink2);font-size:11.5px}
+.ldb-st{font-size:11px;font-weight:900;padding:3px 9px;border-radius:999px}
+.ldb-st.new{background:#FEF3D7;color:#A6791A}
+.ldb-st.dup{background:#F0E7FB;color:#7B52C9}
+.ldb-src{font-size:11px;font-weight:800;background:var(--bg);color:var(--ink2);padding:3px 9px;border-radius:7px}
+.ldb-note{font-size:12px;color:var(--ink3);line-height:1.6;margin-top:12px}
+.ldb-note b{color:var(--ink2)}
 @media(max-width:760px){.mk-kpi{grid-template-columns:1fr 1fr}.onb-kanban{grid-template-columns:1fr 1fr}}
 .funnel{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
 .fstep{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px 17px;position:relative}
@@ -5497,6 +5638,48 @@ function marketingDash(){
  &#x27;&lt;/div&gt;&#x27;;
 }
 function renderMkt(){var w=document.getElementById(&#x27;mktWrap&#x27;);if(w)w.innerHTML=marketingDash();}
+/* ===== 노션식 리드 관리 DB (시트·노션 대체 — 여기서 다 함) ===== */
+/* 컬럼: 신청일 · 담당자 · 이름(학생) · 학년 · 연락처 · 상태 · 유입경로 */
+var LEADDB=[
+ {date:&#x27;10/25 22:05&#x27;,mgr:&#x27;김튜터&#x27;,name:&#x27;이민O&#x27;,grade:&#x27;초6&#x27;,tel:&#x27;010-9336-2899&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 21:58&#x27;,mgr:&#x27;안준섭&#x27;,name:&#x27;정예O&#x27;,grade:&#x27;초6&#x27;,tel:&#x27;010-4707-4886&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 21:55&#x27;,mgr:&#x27;장건우&#x27;,name:&#x27;안예솔&#x27;,grade:&#x27;중3&#x27;,tel:&#x27;010-2600-4822&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 21:27&#x27;,mgr:&#x27;노영호&#x27;,name:&#x27;이도윤&#x27;,grade:&#x27;초4&#x27;,tel:&#x27;010-7159-0622&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 21:18&#x27;,mgr:&#x27;김태석&#x27;,name:&#x27;노규민&#x27;,grade:&#x27;중2&#x27;,tel:&#x27;010-8516-0414&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 20:58&#x27;,mgr:&#x27;김주환&#x27;,name:&#x27;유시우&#x27;,grade:&#x27;중1&#x27;,tel:&#x27;010-6406-2798&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 20:16&#x27;,mgr:&#x27;김원득&#x27;,name:&#x27;노지윤&#x27;,grade:&#x27;중1&#x27;,tel:&#x27;010-9290-0866&#x27;,st:&#x27;신규&#x27;,src:&#x27;네이버&#x27;},
+ {date:&#x27;10/25 19:58&#x27;,mgr:&#x27;김우진&#x27;,name:&#x27;오연솔&#x27;,grade:&#x27;초5&#x27;,tel:&#x27;010-2909-9294&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 19:55&#x27;,mgr:&#x27;김튜터&#x27;,name:&#x27;하진유&#x27;,grade:&#x27;중1&#x27;,tel:&#x27;010-9512-4347&#x27;,st:&#x27;신규&#x27;,src:&#x27;카카오&#x27;},
+ {date:&#x27;10/25 19:45&#x27;,mgr:&#x27;안준섭&#x27;,name:&#x27;김나윤&#x27;,grade:&#x27;중1&#x27;,tel:&#x27;010-2898-3722&#x27;,st:&#x27;신규&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 18:23&#x27;,mgr:&#x27;장건우&#x27;,name:&#x27;강민우&#x27;,grade:&#x27;중3&#x27;,tel:&#x27;010-9920-4914&#x27;,st:&#x27;중복&#x27;,src:&#x27;인스타그램&#x27;},
+ {date:&#x27;10/25 17:15&#x27;,mgr:&#x27;노영호&#x27;,name:&#x27;전민&#x27;,grade:&#x27;중3&#x27;,tel:&#x27;010-5652-6347&#x27;,st:&#x27;신규&#x27;,src:&#x27;메타&#x27;}
+];
+var leadFilter=&#x27;all&#x27;;
+function leadDB(){
+ var rows=LEADDB.filter(function(l){
+   if(leadFilter===&#x27;new&#x27;)return l.st===&#x27;신규&#x27;;
+   if(leadFilter===&#x27;dup&#x27;)return l.st===&#x27;중복&#x27;;
+   if(leadFilter===&#x27;mine&#x27;)return l.mgr===&#x27;김튜터&#x27;;
+   return true;});
+ var fltBtns=[[&#x27;all&#x27;,&#x27;전체 &#x27;+LEADDB.length],[&#x27;new&#x27;,&#x27;신규&#x27;],[&#x27;dup&#x27;,&#x27;중복&#x27;],[&#x27;mine&#x27;,&#x27;내 담당&#x27;]].map(function(f){
+   return &#x27;&lt;button class=&quot;ldb-flt&#x27;+(leadFilter===f[0]?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;leadFilter=\&#x27;&#x27;+f[0]+&#x27;\&#x27;;renderLeads()&quot;&gt;&#x27;+f[1]+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;);
+ var head=&#x27;&lt;div class=&quot;ldb-tr ldb-head&quot;&gt;&lt;span&gt;신청일&lt;/span&gt;&lt;span&gt;담당자&lt;/span&gt;&lt;span&gt;이름&lt;/span&gt;&lt;span&gt;학년&lt;/span&gt;&lt;span&gt;연락처&lt;/span&gt;&lt;span&gt;상태&lt;/span&gt;&lt;span&gt;유입경로&lt;/span&gt;&lt;/div&gt;&#x27;;
+ var body=rows.map(function(l){
+   return &#x27;&lt;div class=&quot;ldb-tr&quot; onclick=&quot;toast(\&#x27;&#x27;+l.name+&#x27; (&#x27;+l.grade+&#x27;) · &#x27;+l.tel+&#x27; — &#x27;+l.src+&#x27; 유입. 상세·상담 메모 열기\&#x27;)&quot;&gt;&#x27;+
+     &#x27;&lt;span class=&quot;ldb-dt&quot;&gt;&#x27;+l.date+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span class=&quot;ldb-mgr&quot;&gt;&lt;i&gt;&#x27;+l.mgr.slice(0,1)+&#x27;&lt;/i&gt;&#x27;+l.mgr+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span class=&quot;ldb-nm&quot;&gt;&#x27;+l.name+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span&gt;&lt;span class=&quot;ldb-gr&quot;&gt;&#x27;+l.grade+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span class=&quot;ldb-tel&quot;&gt;&#x27;+l.tel+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span&gt;&lt;span class=&quot;ldb-st &#x27;+(l.st===&#x27;중복&#x27;?&#x27;dup&#x27;:&#x27;new&#x27;)+&#x27;&quot;&gt;&#x27;+l.st+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;+
+     &#x27;&lt;span&gt;&lt;span class=&quot;ldb-src&quot;&gt;&#x27;+l.src+&#x27;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;);
+ return &#x27;&lt;div class=&quot;ldb&quot;&gt;&lt;div class=&quot;ldb-top&quot;&gt;&lt;div class=&quot;ldb-h&quot;&gt;🗂 리드 관리 DB &lt;span&gt;&#x27;+LEADDB.length+&#x27;건 · 실시간&lt;/span&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ldb-tops&quot;&gt;&lt;div class=&quot;ldb-flts&quot;&gt;&#x27;+fltBtns+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;button class=&quot;ldb-new&quot; onclick=&quot;toast(\&#x27;리드 직접 추가 — 전화·방문 유입도 여기에\&#x27;)&quot;&gt;＋ 리드 추가&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ldb-tbl&quot;&gt;&#x27;+head+body+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ldb-note&quot;&gt;광고·폼에서 들어온 리드가 &lt;b&gt;실시간으로 여기 쌓여요&lt;/b&gt; — 시트·노션 따로 안 씀. 담당자 자동 배정(라운드로빈), 중복 신청은 자동 감지. 행을 누르면 상담 메모·온보딩 단계로 이어져요.&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
 /* ===== 온보딩 진행 현황판 — 비회원 초대링크 방식 ===== */
 function renderLeads(){
  var w=document.getElementById(&#x27;leadWrap&#x27;);
@@ -5517,7 +5700,9 @@ function renderLeads(){
          &#x27;&lt;div class=&quot;onb-src&quot;&gt;&#x27;+l.src+&#x27;&lt;/div&gt;&#x27;+(l.stt?&#x27;&lt;div class=&quot;onb-stt&quot;&gt;&#x27;+l.stt+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
      }).join(&#x27;&#x27;):&#x27;&lt;div class=&quot;onb-empty&quot;&gt;—&lt;/div&gt;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
  }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
- var h=&#x27;&lt;div class=&quot;funnel&quot;&gt;&#x27;+
+ var h=leadDB()+
+ &#x27;&lt;div class=&quot;onb-div2&quot;&gt;↓ 쌓인 리드를 온보딩(초대링크 → 상담 → 등록)으로&lt;/div&gt;&#x27;+
+ &#x27;&lt;div class=&quot;funnel&quot;&gt;&#x27;+
    &#x27;&lt;div class=&quot;fstep&quot;&gt;&lt;div class=&quot;fv&quot;&gt;142&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;이번 달 리드&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;fstep&quot;&gt;&lt;div class=&quot;fv&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;사이트 상담(미팅)&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;fstep gain&quot;&gt;&lt;div class=&quot;fv&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;1달 등록 전환 (71%)&lt;/div&gt;&lt;/div&gt;&#x27;+
@@ -5939,20 +6124,22 @@ if(document.getElementById(&#x27;viewHome&#x27;).style.display!==&#x27;none&#x27
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Pretendard,&quot;Noto Sans KR&quot;,system-ui,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;padding:74px 16px 60px;overflow-x:hidden}
-.wrap{max-width:900px;margin:0 auto}
-.hd{text-align:center;margin-bottom:22px}
-.hd h1{font-size:21px;font-weight:900;letter-spacing:-.02em}
-.hd p{font-size:12.5px;color:var(--ink3);font-weight:600;margin-top:4px}
-
-.fc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin-bottom:16px}
-.fc h2{font-size:15.5px;font-weight:900;display:flex;align-items:center;gap:9px;margin-bottom:4px}
-.fc h2 .no{width:24px;height:24px;border-radius:8px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:12px;flex:none}
-.fc .fd{font-size:12px;color:var(--ink3);margin-bottom:15px;line-height:1.55}
+.wrap{max-width:1240px;margin:0 auto}
+.hd{text-align:center;margin-bottom:24px}
+.hd h1{font-size:25px;font-weight:900;letter-spacing:-.02em}
+.hd p{font-size:13.5px;color:var(--ink3);font-weight:600;margin-top:5px}
+/* PC: 흐름도 카드를 2열로 흘려 가로폭을 꽉 채움 */
+.fgrid{columns:2;column-gap:16px}
+@media(max-width:860px){.fgrid{columns:1}}
+.fc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;break-inside:avoid;-webkit-column-break-inside:avoid}
+.fc h2{font-size:16.5px;font-weight:900;display:flex;align-items:center;gap:9px;margin-bottom:5px}
+.fc h2 .no{width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:13px;flex:none}
+.fc .fd{font-size:12.5px;color:var(--ink3);margin-bottom:15px;line-height:1.6}
 .fc .fd b{color:var(--ink2)}
 
 /* 흐름 행 */
 .flow{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-bottom:8px}
-.node{font-size:12px;font-weight:800;padding:9px 13px;border-radius:11px;background:var(--brand-s);color:var(--brand);white-space:nowrap}
+.node{font-size:12.5px;font-weight:800;padding:10px 14px;border-radius:11px;background:var(--brand-s);color:var(--brand);white-space:nowrap}
 .node small{display:block;font-size:9.5px;font-weight:700;opacity:.75;white-space:normal;line-height:1.3}
 .node.start{background:var(--ink);color:#fff}
 .node.ok{background:var(--ok-s);color:var(--ok)}
@@ -6065,6 +6252,7 @@ body{font-family:Pretendard,&quot;Noto Sans KR&quot;,system-ui,sans-serif;backgr
     &lt;/div&gt;
   &lt;/div&gt;
 
+  &lt;div class=&quot;fgrid&quot;&gt;
   &lt;!-- 1. 코칭 루프 --&gt;
   &lt;div class=&quot;fc&quot;&gt;
     &lt;h2&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt;코칭 루프 — 제품의 심장&lt;/h2&gt;
@@ -6182,6 +6370,7 @@ body{font-family:Pretendard,&quot;Noto Sans KR&quot;,system-ui,sans-serif;backgr
       &lt;div class=&quot;bline&quot;&gt;&lt;span class=&quot;bcase c&quot;&gt;실패 2회&lt;/span&gt;&lt;span class=&quot;ar&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;node coach&quot;&gt;담임 확인 후 연락&lt;small&gt;독촉이 아니라 도움 톤 (coach)&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;note&quot;&gt;기간은 소비자 선택(월/3/6/12) · 위약금 락인 없음 · 해지는 웹 셀프서비스. &lt;b&gt;리텐션은 락인이 아니라 리포트(성과)가 만든다.&lt;/b&gt;&lt;/div&gt;
+  &lt;/div&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;
