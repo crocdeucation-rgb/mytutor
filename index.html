@@ -1059,6 +1059,50 @@ button{font:inherit;cursor:pointer}
 /* 종이교재 자기보고 */
 .rpt-self{background:var(--bg);border-radius:12px;padding:12px 14px;font-size:13px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px}
 .rpt-self span{margin-left:auto;font-size:11px;font-weight:800;color:var(--ink3);background:var(--card);padding:3px 9px;border-radius:999px}
+/* 부분별 이행률 */
+.rpt-prog{display:flex;flex-direction:column;gap:9px}
+.rp-row{display:flex;align-items:center;gap:9px}
+.rp-ic{flex:none;font-size:14px;width:18px;text-align:center}
+.rp-k{flex:none;width:82px;font-size:12.5px;font-weight:800;color:var(--ink)}
+.rp-bar{flex:1;height:9px;background:var(--line2);border-radius:999px;overflow:hidden}
+.rp-bar i{display:block;height:100%;border-radius:999px}
+.rp-bar i.ok{background:#2FA84F}.rp-bar i.warn{background:#E0A94B}.rp-bar i.low{background:#E23B3B}
+.rp-v{flex:none;width:42px;text-align:right;font-size:12px;font-weight:900}
+.rp-v.ok{color:#2FA84F}.rp-v.warn{color:#C78A22}.rp-v.low{color:#E23B3B}
+/* 시험 계획 이행 */
+.rpt-ep{background:var(--bg);border-radius:13px;padding:14px}
+.rep-h{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:11px;display:flex;align-items:center;gap:8px}
+.rep-h span{margin-left:auto;font-size:11px;font-weight:800;color:var(--brand);background:var(--card);padding:3px 10px;border-radius:999px}
+.rep-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line2);font-size:12.5px}
+.rep-row:first-of-type{border-top:0}
+.rep-chk{flex:none;width:18px;height:18px;border-radius:6px;background:var(--line2);color:var(--ink3);font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.rep-row.done .rep-chk{background:#2FA84F;color:#fff}
+.rep-sub{flex:none;width:44px;font-weight:800;color:var(--ink2)}
+.rep-what{flex:1;color:var(--ink);font-weight:700}
+.rep-row.done .rep-what{color:var(--ink3);text-decoration:line-through}
+.rep-day{flex:none;font-size:11px;font-weight:700;color:var(--ink3)}
+/* 수행평가 준비 */
+.rpt-perf{background:var(--bg);border-radius:13px;padding:14px;margin-bottom:9px}
+.rpf-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.rpf-top b{font-size:13.5px;font-weight:900;color:var(--ink)}
+.rpf-top span{font-size:11px;font-weight:800;color:var(--ink3)}
+.rpf-bar{height:7px;background:var(--line2);border-radius:999px;overflow:hidden;margin-bottom:10px}
+.rpf-bar i{display:block;height:100%;background:var(--brand);border-radius:999px}
+.rpf-steps{display:flex;flex-wrap:wrap;gap:6px}
+.rpf-step{font-size:11px;font-weight:700;color:var(--ink3);background:var(--card);padding:5px 9px;border-radius:999px}
+.rpf-step.done{color:#2FA84F;background:var(--ok-s,#E6F6EA)}
+/* 상세 학습 로그 타임라인 */
+.rpt-log{display:flex;flex-direction:column}
+.rl-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line2)}
+.rl-row:first-child{border-top:0}
+.rl-row.off{opacity:.55}
+.rl-day{flex:none;width:34px;font-size:12px;font-weight:900;color:var(--ink);text-align:center}
+.rl-day span{display:block;font-size:9.5px;font-weight:700;color:var(--ink3)}
+.rl-ic{flex:none;font-size:15px;width:20px;text-align:center}
+.rl-mid{flex:1;min-width:0}
+.rl-mid b{font-size:12.5px;font-weight:700;color:var(--ink)}
+.rl-r{flex:none;font-size:11px;font-weight:800;color:var(--ink2);background:var(--bg);padding:3px 9px;border-radius:999px}
+.rl-row.off .rl-r{background:#FBE9E9;color:#C25}
 /* ===== NEIS 성적표 테이블 ===== */
 .neis{border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
 .neis-hd{background:var(--ink);color:#fff;padding:12px 14px}
@@ -1199,7 +1243,13 @@ button{font:inherit;cursor:pointer}
 .tk2-btns{display:flex;flex-direction:column;gap:9px}
 .tk2body .wbtn{margin-top:0}
 /* ===== 레벨 진단 모달 ===== */
-.wordsheet.dg{max-width:460px;height:auto;max-height:90vh}
+/* 진단 모달 — bottom-sheet 대신 화면 중앙 카드로 */
+.wordovl.dg-center{align-items:center}
+.wordsheet.dg{max-width:440px;height:auto;max-height:88vh;border-radius:22px;margin:0 16px}
+.wordsheet.dg .wtop{padding:18px 20px 14px;border-bottom:1px solid var(--line2)}
+.wordsheet.dg .sp-title{font-size:16px}
+.wordsheet.dg .dgbody{padding:20px}
+#dgCnt{font-size:12px;font-weight:800;color:var(--ink3);flex:none;white-space:nowrap}
 .dgbody{padding:4px 2px 2px}
 .dg-intro,.dg-done{text-align:center;padding:8px 4px}
 .dg-ic{font-size:40px;margin-bottom:6px}
@@ -1417,6 +1467,7 @@ button{font:inherit;cursor:pointer}
 @media(max-width:720px){.pg-hd{padding:16px}.pg-body{padding:18px 16px 40px}}
 
 .ob-sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:16px}
+.ob-save{margin:4px 0 30px}
 .ob-sec h4{font-size:15px;font-weight:900;margin-bottom:4px}
 .ob-sec .d{font-size:12.5px;color:var(--ink3);margin-bottom:16px}
 .schbar{display:flex;gap:9px}
@@ -1494,6 +1545,8 @@ button{font:inherit;cursor:pointer}
 .gp-upload:hover{border-color:var(--brand-d);color:var(--brand);background:var(--brand-s)}
 
 .pv-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:14px}
+.pv-demobar{background:#FFF3E0;border:1px solid #F3DDB8;border-radius:12px;padding:12px 15px;font-size:12.5px;color:#8A6310;line-height:1.6;margin-bottom:14px}
+.pv-demobar b{color:#6B4D0C}
 .pv-top{background:linear-gradient(150deg,#2B2E70,#4B4FB0);border-radius:20px;padding:24px;color:#fff;margin-bottom:16px}
 .pv-top .pt1{font-size:13px;opacity:.75;font-weight:600}
 .pv-top .pt2{font-size:22px;font-weight:900;margin-top:3px}
@@ -1707,12 +1760,12 @@ button{font:inherit;cursor:pointer}
       &lt;button class=&quot;mi on&quot; onclick=&quot;closePage()&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;스터디룸&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; onclick=&quot;openPage(&#x27;onboard&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M4 21c0-4 4-6 8-6s8 2 8 6&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;내 정보·학교·레벨&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; onclick=&quot;openPage(&#x27;grades&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M4 20V10M10 20V4M16 20v-7M22 20H2&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;성적·성장&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; onclick=&quot;openPage(&#x27;parent&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;학부모 보기&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; onclick=&quot;openPage(&#x27;live&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;3&quot;/&gt;&lt;path d=&quot;M5 6a9 9 0 0 0 0 12M19 6a9 9 0 0 1 0 12&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;개념특강&lt;/span&gt;&lt;span class=&quot;lvb&quot;&gt;LIVE&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; onclick=&quot;openPage(&#x27;replay&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;4&quot; width=&quot;20&quot; height=&quot;15&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M10 9l5 3-5 3z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;다시보기&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; onclick=&quot;openPage(&#x27;prob&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;문제풀이&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; onclick=&quot;openPage(&#x27;special&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M12 2l2.4 7.4H22l-6 4.4 2.3 7.4-6.3-4.6L5.7 21 8 13.8 2 9.4h7.6z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;특강&lt;/span&gt;&lt;/button&gt;
-      &lt;div class=&quot;mdiv&quot;&gt;설계 · 기획&lt;/div&gt;
+      &lt;div class=&quot;mdiv&quot;&gt;🔒 시연 전용 · 학생 앱엔 없음&lt;/div&gt;
+      &lt;button class=&quot;mi mi2&quot; onclick=&quot;openPage(&#x27;parent&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;학부모 보기&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi mi2&quot; onclick=&quot;openPage(&#x27;plan&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;7&quot; width=&quot;20&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;상품 구조&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi mi2&quot; onclick=&quot;openPage(&#x27;system&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;1.5&quot;/&gt;&lt;rect x=&quot;14&quot; y=&quot;3&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;1.5&quot;/&gt;&lt;rect x=&quot;3&quot; y=&quot;14&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;1.5&quot;/&gt;&lt;rect x=&quot;14&quot; y=&quot;14&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;1.5&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;시스템 구조&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi mi2&quot; onclick=&quot;openPage(&#x27;devspec&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M9 11l3 3L22 4&quot;/&gt;&lt;path d=&quot;M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;lb&quot;&gt;알림 기준표&lt;/span&gt;&lt;/button&gt;
@@ -1944,6 +1997,8 @@ button{font:inherit;cursor:pointer}
 /* 더보기 */
 .m-menu{display:flex;flex-direction:column;gap:8px}
 .m-mi{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;font-size:13.5px;font-weight:800;color:var(--ink);cursor:pointer}
+.m-demodiv{font-size:11px;font-weight:800;color:var(--ink3);background:var(--bg);border-radius:10px;padding:9px 13px;margin:14px 0 2px;text-align:center}
+.m-mi.demo{opacity:.72;border-style:dashed}
 .m-mi .ar{margin-left:auto;color:var(--faint);font-weight:900}
 .m-mi .mic{width:32px;height:32px;border-radius:10px;background:var(--brand-s);display:grid;place-items:center;font-size:15px;flex:none}
 /* 하단 탭 */
@@ -2664,7 +2719,7 @@ function diagResultHtml(sub){
 }
 function ensureDiagOvl(){
  if(document.getElementById(&#x27;diagOvl&#x27;))return;
- var d=document.createElement(&#x27;div&#x27;);d.className=&#x27;wordovl&#x27;;d.id=&#x27;diagOvl&#x27;;
+ var d=document.createElement(&#x27;div&#x27;);d.className=&#x27;wordovl dg-center&#x27;;d.id=&#x27;diagOvl&#x27;;
  d.innerHTML=&#x27;&lt;div class=&quot;wordsheet dg&quot;&gt;&lt;div class=&quot;wtop&quot;&gt;&lt;button class=&quot;wx&quot; onclick=&quot;closeDiag()&quot;&gt;✕&lt;/button&gt;&lt;span class=&quot;sp-title&quot; id=&quot;dgTitle&quot;&gt;레벨 진단&lt;/span&gt;&lt;span id=&quot;dgCnt&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wbody dgbody&quot; id=&quot;dgBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
  document.body.appendChild(d);
 }
@@ -2814,6 +2869,10 @@ function pgOnboard(){
    &#x27;&lt;div class=&quot;ob-sec&quot;&gt;&lt;h4&gt;레벨 진단 테스트&lt;/h4&gt;&lt;div class=&quot;d&quot;&gt;문제은행에서 뽑은 진단 문제를 풀면 과목 레벨과 취약 단원이 잡혀요. 이후 모든 풀이 기록으로 계속 보정돼요.&lt;/div&gt;&#x27;+
     &#x27;&lt;button class=&quot;sbtn&quot; style=&quot;padding:12px 22px&quot; onclick=&quot;openDiag(\&#x27;수학\&#x27;)&quot;&gt;수학 진단 다시 보기 (맞춤 · 약 10분)&lt;/button&gt;&#x27;+
     &#x27;&lt;div id=&quot;lvresWrap&quot;&gt;&#x27;+diagResultHtml(&#x27;수학&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* 성적표 올리기 — 레벨·성적 맥락이라 여기에 두는 게 자연스러움 */
+   &#x27;&lt;div class=&quot;ob-sec&quot;&gt;&lt;h4&gt;성적표 올리기&lt;/h4&gt;&lt;div class=&quot;d&quot;&gt;학교 성적표를 올리면 AI가 &lt;b&gt;원점수·과목평균·성취도(NEIS 양식)&lt;/b&gt;로 읽어 레벨 보정과 성장 추이에 반영해요. 사진·파일·직접입력 다 돼요.&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gp-upload&quot; style=&quot;margin-top:4px&quot; onclick=&quot;openForm(\&#x27;grade\&#x27;)&quot;&gt;＋ 성적표 올리기 (사진·파일·직접입력)&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;fsub&quot; style=&quot;margin-top:8px&quot;&gt;올린 성적표는 &lt;b&gt;성적·성장&lt;/b&gt; 화면에 NEIS 성적표로 정리돼요.&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;ob-sec&quot;&gt;&lt;h4&gt;학교 찾기&lt;/h4&gt;&lt;div class=&quot;d&quot;&gt;같은 이름의 학교가 여러 곳일 수 있어요. 지역으로 구분해서 정확한 학교를 골라주세요. (전국 초·중·고 · 나이스 교육정보)&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;schbar&quot;&gt;&lt;input class=&quot;fin&quot; id=&quot;schInput&quot; value=&quot;반포중학교&quot; placeholder=&quot;학교 이름을 입력하세요&quot;&gt;&lt;button class=&quot;sbtn&quot; onclick=&quot;doSchSearch()&quot;&gt;검색&lt;/button&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;schres&quot; id=&quot;schRes&quot;&gt;&lt;/div&gt;&#x27;+
@@ -2829,7 +2888,10 @@ function pgOnboard(){
       &#x27;&lt;div class=&quot;orline&quot;&gt;&lt;span class=&quot;od&quot;&gt;11/3 월&lt;/span&gt;&lt;span class=&quot;ot test&quot;&gt;시험&lt;/span&gt;중간고사 (국영수사과) · D-12&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;orline&quot;&gt;&lt;span class=&quot;od&quot;&gt;12/20 토&lt;/span&gt;&lt;span class=&quot;ot etc&quot;&gt;입시&lt;/span&gt;외고·자사고 원서접수 시작 · D-59&lt;/div&gt;&#x27;+
       &#x27;&lt;div style=&quot;margin-top:13px&quot;&gt;&lt;button class=&quot;sbtn&quot; style=&quot;width:100%;padding:13px&quot; onclick=&quot;closePage();toast(\&#x27;학교 등록 완료 — 일정이 시간표에 반영됐어요\&#x27;)&quot;&gt;이 학교로 등록하기&lt;/button&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* 전체 저장 */
+   &#x27;&lt;div class=&quot;ob-save&quot;&gt;&lt;button class=&quot;sbtn&quot; style=&quot;width:100%;padding:15px;font-size:15px&quot; onclick=&quot;closePage();toast(\&#x27;내 정보·출판사·레벨·성적표가 저장됐어요 ✓\&#x27;)&quot;&gt;전체 저장&lt;/button&gt;&#x27;+
+    &#x27;&lt;div class=&quot;fsub&quot; style=&quot;text-align:center;margin-top:8px&quot;&gt;바꾼 내용(출판사·학교·레벨·성적표)이 한 번에 저장돼요&lt;/div&gt;&lt;/div&gt;&#x27;;
 }
 function doSchSearch(){
   document.getElementById(&#x27;schRes&#x27;).innerHTML=
@@ -2906,7 +2968,8 @@ function pgGrades(){
 
 function pgParent(){
   var wk=[[&#x27;월&#x27;,1],[&#x27;화&#x27;,1],[&#x27;수&#x27;,1],[&#x27;목&#x27;,1],[&#x27;금&#x27;,0],[&#x27;토&#x27;,1],[&#x27;일&#x27;,0]];
-  return &#x27;&lt;div class=&quot;pv-top&quot;&gt;&lt;div class=&quot;pt1&quot;&gt;민준이 어머님 · 10월 4주&lt;/div&gt;&lt;div class=&quot;pt2&quot;&gt;이번 주 민준이는 잘 하고 있어요 👍&lt;/div&gt;&#x27;+
+  return &#x27;&lt;div class=&quot;pv-demobar&quot;&gt;🔒 이 화면은 &lt;b&gt;학부모 전용&lt;/b&gt;이에요 — 학생 앱에는 안 보이고, 어머님은 별도 계정·링크로 들어와요. (지금은 시연용으로 열어본 거예요)&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;pv-top&quot;&gt;&lt;div class=&quot;pt1&quot;&gt;민준이 어머님 · 10월 4주&lt;/div&gt;&lt;div class=&quot;pt2&quot;&gt;이번 주 민준이는 잘 하고 있어요 👍&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;pv-stat&quot;&gt;&lt;div class=&quot;ps&quot;&gt;&lt;div class=&quot;pv&quot;&gt;4/5&lt;/div&gt;&lt;div class=&quot;pl&quot;&gt;특강 출석&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ps&quot;&gt;&lt;div class=&quot;pv&quot;&gt;11/12&lt;/div&gt;&lt;div class=&quot;pl&quot;&gt;숙제 완료&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ps&quot;&gt;&lt;div class=&quot;pv&quot;&gt;D-12&lt;/div&gt;&lt;div class=&quot;pl&quot;&gt;중간고사&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;pv-card&quot;&gt;&lt;h4&gt;🤖 이번 주 AI 리포트 &lt;span style=&quot;font-size:10px;color:var(--faint);font-weight:700&quot;&gt;· 일요일 자동 발송 · 팩트+해석+다음 액션&lt;/span&gt;&lt;/h4&gt;&#x27;+
     &#x27;&lt;div style=&quot;display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px&quot;&gt;&#x27;+
@@ -3286,7 +3349,31 @@ var GROWTH={
    attendRate:[60,80,80,80],            /* 특강 출석률 */
    studyHours:[5.2,6.8,7.5,9.1],        /* 주간 순공부시간(h) */
    vocabCumul:[42,76,110,144]           /* 영단어 누적 */
- }
+ },
+ /* 부분별 이행률 — 영역마다 배정 대비 완료 (리포트가 &quot;대충 퉁친&quot; 느낌 없게 쪼갬) */
+ progress:[
+   {k:&#x27;개념특강 출석&#x27;,done:4,total:5,ic:&#x27;📣&#x27;},
+   {k:&#x27;강의 수강&#x27;,done:6,total:7,ic:&#x27;🎬&#x27;},
+   {k:&#x27;개념체크&#x27;,done:5,total:6,ic:&#x27;🧩&#x27;},
+   {k:&#x27;문제풀이&#x27;,done:9,total:12,ic:&#x27;✏️&#x27;},
+   {k:&#x27;영단어&#x27;,done:34,total:40,ic:&#x27;🔤&#x27;},
+   {k:&#x27;오답 소화&#x27;,done:11,total:14,ic:&#x27;🔁&#x27;},
+   {k:&#x27;과제·숙제&#x27;,done:8,total:9,ic:&#x27;📒&#x27;}
+ ],
+ /* 상세 학습 로그 — 이번 주 타임라인 (언제 뭘 했는지) */
+ log:[
+   {d:&#x27;월&#x27;,t:&#x27;21:00&#x27;,a:&#x27;개념특강 · 수학 일차함수&#x27;,r:&#x27;출석 ✓&#x27;,ic:&#x27;📣&#x27;,ok:1},
+   {d:&#x27;월&#x27;,t:&#x27;21:40&#x27;,a:&#x27;개념체크 · 일차함수&#x27;,r:&#x27;80점&#x27;,ic:&#x27;🧩&#x27;,ok:1},
+   {d:&#x27;화&#x27;,t:&#x27;19:30&#x27;,a:&#x27;쎈 수학 p.52–55&#x27;,r:&#x27;다 풀었어요&#x27;,ic:&#x27;✏️&#x27;,ok:1},
+   {d:&#x27;화&#x27;,t:&#x27;21:30&#x27;,a:&#x27;영단어 12개&#x27;,r:&#x27;발음 76점&#x27;,ic:&#x27;🔤&#x27;,ok:1},
+   {d:&#x27;수&#x27;,t:&#x27;21:00&#x27;,a:&#x27;개념특강 · 영어 독해&#x27;,r:&#x27;출석 ✓&#x27;,ic:&#x27;📣&#x27;,ok:1},
+   {d:&#x27;목&#x27;,t:&#x27;19:30&#x27;,a:&#x27;[D-9] 수학 오답 정리&#x27;,r:&#x27;완료&#x27;,ic:&#x27;🔁&#x27;,ok:1},
+   {d:&#x27;목&#x27;,t:&#x27;20:00&#x27;,a:&#x27;국어 문제 1장&#x27;,r:&#x27;정답률 70%&#x27;,ic:&#x27;✏️&#x27;,ok:1},
+   {d:&#x27;금&#x27;,t:&#x27;—&#x27;,a:&#x27;(학습 없음)&#x27;,r:&#x27;컨디션 난조&#x27;,ic:&#x27;😴&#x27;,ok:0},
+   {d:&#x27;토&#x27;,t:&#x27;10:00&#x27;,a:&#x27;특강 · 서술형 대비&#x27;,r:&#x27;참여&#x27;,ic:&#x27;⭐&#x27;,ok:1},
+   {d:&#x27;토&#x27;,t:&#x27;19:00&#x27;,a:&#x27;밀린 영단어 22개&#x27;,r:&#x27;주말 보충&#x27;,ic:&#x27;🔤&#x27;,ok:1},
+   {d:&#x27;일&#x27;,t:&#x27;20:00&#x27;,a:&#x27;주간 복습 · 다시보기&#x27;,r:&#x27;2편 시청&#x27;,ic:&#x27;🎬&#x27;,ok:1}
+ ]
 };
 /* ===== NEIS 교과학습발달상황 양식 성적표 (시즌 리포트) =====
    항목: 학기 | 교과 | 과목 | 원점수/과목평균(표준편차) | 성취도(수강자수) */
@@ -3474,47 +3561,59 @@ function renderReport(kind){
   if(T.tier===&#x27;good&#x27;){
    head=&#x27;&lt;div class=&quot;rpt-hd&quot;&gt;&lt;div class=&quot;rpt-kick&quot;&gt;10월 4주차 · 일요일 자동 발송&lt;/div&gt;&lt;h2&gt;민준이 이번 주 학습 리포트&lt;/h2&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-sub&quot;&gt;월~일 &lt;b&gt;매일의 기록(저녁 요약)&lt;/b&gt;이 모여 만든 주간 리포트예요.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
+   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑪ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;중간고사 준비가 궤도에 올랐어요. 약했던 &lt;b&gt;일차함수 개념 이해도가 &#x27;+g.unitMastery[0].now+&#x27;%까지&lt;/b&gt; 올라왔고, 영단어 &#x27;+w.vocab.learned+&#x27;개를 외우며 발음 교정 &#x27;+w.vocab.corrected+&#x27;건을 받았어요. 영어 특강을 한 번 놓쳤지만 주말 다시보기로 보완했습니다.&lt;/p&gt;&lt;/div&gt;&#x27;;
-   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 다음에 할 것 (이미 플래너에 담겨 있어요)&lt;/div&gt;&#x27;+
+   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 다음에 할 것 (이미 플래너에 담겨 있어요)&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;다음 주는 &lt;b&gt;도형의 성질 개념&lt;/b&gt;부터 — D-9~7에 개념강의+개념체크+문제 세트가 배치됐어요. 시험 3일 전엔 오답 총정리로 마무리합니다.&lt;/p&gt;&lt;/div&gt;&#x27;;
    foot=&#x27;🔒 숫자는 학습 기록에서만, AI는 문장만 써요 (없는 성과는 지어내지 않음).&#x27;;
   } else if(T.tier===&#x27;mid&#x27;){
    head=&#x27;&lt;div class=&quot;rpt-hd&quot;&gt;&lt;div class=&quot;rpt-kick&quot;&gt;10월 4주차 · 일요일 자동 발송&lt;/div&gt;&lt;h2&gt;민준이 이번 주 학습 리포트&lt;/h2&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-sub&quot;&gt;잘한 것과 &lt;b&gt;덜 된 것&lt;/b&gt;을 함께 정리했어요.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
+   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑪ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;이번 주는 리듬이 조금 느렸어요. 출석 &#x27;+attendN+&#x27;/5, 할 일 &#x27;+w.todo.done+&#x27;/&#x27;+w.todo.total+&#x27;로 평소보다 덜 됐지만, 한 날은 몰아서 따라잡았어요.&lt;/p&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-less&quot;&gt;&lt;b&gt;덜 된 것&lt;/b&gt; — 영단어·오답이 밀렸어요. 책망보다 다음 주 분량을 조금 가볍게 조정했습니다.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 다음 주 계획 (조정됨)&lt;/div&gt;&#x27;+
+   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 다음 주 계획 (조정됨)&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;밀린 오답은 주 초에 나눠 담았고, 하루 분량을 줄여 다시 리듬을 잡아요. 시험범위는 아직 여유 있어요.&lt;/p&gt;&lt;/div&gt;&#x27;;
    foot=&#x27;🔒 &quot;덜 된 것&quot;도 숨기지 않되, 아이 탓이 아니라 다음 주 조치로 바꿔서 전해요.&#x27;;
   } else { /* low — 매니저 검수 */
    head=&#x27;&lt;div class=&quot;rpt-hd low&quot;&gt;&lt;div class=&quot;rpt-kick&quot;&gt;⚠️ 자동 발송 보류 · 담임 검수 대기&lt;/div&gt;&lt;h2&gt;민준이 이번 주 — 담임 확인이 필요해요&lt;/h2&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-sub&quot;&gt;참여가 많이 낮은 주는 &lt;b&gt;자동으로 안 나가요.&lt;/b&gt; 담임이 원인을 확인하고 톤을 다듬어 보냅니다.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 담임이 보기 전 (초안 — 학부모 미발송)&lt;/div&gt;&#x27;+
+   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑪ 담임이 보기 전 (초안 — 학부모 미발송)&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-held&quot;&gt;이번 주 민준이 학습이 많이 느렸어요 (출석 &#x27;+attendN+&#x27;/5, 완료 &#x27;+w.todo.done+&#x27;/&#x27;+w.todo.total+&#x27;). &#x27;+
      &#x27;&lt;b&gt;이 내용은 아직 어머니께 가지 않았어요.&lt;/b&gt; 숫자만 보내면 책망이 되기 쉬워, 담임 김튜터 선생님이 먼저 원인(컨디션·외부일정 등)을 확인합니다.&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-willsend&quot;&gt;&lt;div class=&quot;rw-h&quot;&gt;담임이 다듬어 나갈 문구 (예시)&lt;/div&gt;&#x27;+
      &#x27;&quot;이번 주 민준이 리듬이 조금 흐트러졌어요. 제가 원인을 확인하고 다음 주 계획을 함께 다시 잡았습니다. 집에서도 가볍게 챙겨주시면 좋아요 🙂&quot;&lt;/div&gt;&lt;/div&gt;&#x27;;
-   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 담임 조치&lt;/div&gt;&#x27;+
+   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 담임 조치&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;3일 미접속으로 이미 매니저 홈 📞통화할 것에 올라갔어요. 통화로 상태 확인 → 다음 주 계획 재설정 후, 어머니께는 &lt;b&gt;대책과 함께&lt;/b&gt; 안내가 나갑니다.&lt;/p&gt;&lt;/div&gt;&#x27;;
    foot=&#x27;🔒 &quot;안 된 주&quot;가 자동 리포트의 맹점 — 그래서 참여 점수가 낮으면 사람(담임)이 먼저 봅니다. 나쁜 소식을 날것으로 보내지 않는 CHK 원칙과 동일.&#x27;;
   }
   b.innerHTML=toggle+head+badge+facts+
-   /* ②-A 요일별 학습 리듬 (순공부시간) */
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;② 요일별 학습 리듬 — 순공부시간&lt;/div&gt;&#x27;+
+   /* ②-0 부분별 이행률 — 영역마다 얼마나 했나 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;② 부분별 이행률&lt;/div&gt;&#x27;+
+   progressRows(g.progress)+
+   &#x27;&lt;div class=&quot;rpt-note&quot;&gt;영역마다 배정 대비 얼마나 했는지예요 — 한 숫자로 뭉뚱그리지 않고 쪼개서 봐요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* 학생이 세운 시험 계획 + 이행 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 시험 계획 — 세운 대로 하고 있나&lt;/div&gt;&#x27;+
+   examPlanReport()+
+   &#x27;&lt;div class=&quot;rpt-note&quot;&gt;민준이가 &lt;b&gt;직접 세운 시험 계획표&lt;/b&gt;예요. 계획을 지키고 있는지 그대로 보여줘요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* 수행평가 준비 현황 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 수행평가 준비 — 어디까지 했나&lt;/div&gt;&#x27;+
+   perfReport()+
+   &#x27;&lt;div class=&quot;rpt-note&quot;&gt;수행평가는 민준이가 &lt;b&gt;주제·자료·단계를 직접&lt;/b&gt; 챙겨요. 과학 실험보고서는 아직 주제만 — 챙겨야 할 때예요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* 요일별 학습 리듬 (순공부시간) */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑤ 요일별 학습 리듬 — 순공부시간&lt;/div&gt;&#x27;+
    weekBars(g.studyMin)+
    &#x27;&lt;div class=&quot;rpt-note&quot;&gt;월~일 실제 공부한 시간이에요. 금요일은 비었고, 주말에 몰아서 보충했어요.&lt;/div&gt;&lt;/div&gt;&#x27;+
-   /* ②-B 과목별 학습 배분 */
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;③ 과목별 학습 배분 (이번 주)&lt;/div&gt;&#x27;+
+   /* 과목별 학습 배분 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑥ 과목별 학습 배분 (이번 주)&lt;/div&gt;&#x27;+
    subjBars(g.subjTime)+
    &#x27;&lt;div class=&quot;rpt-note&quot;&gt;수학에 가장 많이 썼어요 — 취약 단원 보강 중이라 자연스러운 배분이에요.&lt;/div&gt;&lt;/div&gt;&#x27;+
-   /* ③ 개념 이해도 */
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;④ 개념 이해도 — 단원별 (개념체크 집계)&lt;/div&gt;&#x27;+
+   /* 개념 이해도 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑦ 개념 이해도 — 단원별 (개념체크 집계)&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-mastery&quot;&gt;&#x27;+mastery+&#x27;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-note&quot;&gt;개념체크로 &quot;강의만 듣고 넘어간 게 아니라 이해했는지&quot;를 단원마다 점수로 쌓아요.&lt;/div&gt;&lt;/div&gt;&#x27;+
-   /* ④ 강의·오답·영단어 상세 */
-   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑤ 학습 활동 상세&lt;/div&gt;&#x27;+
+   /* 강의·오답·영단어 상세 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑧ 학습 활동 상세&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;rpt-grid2&quot;&gt;&#x27;+
      miniCard(&#x27;🎬 강의&#x27;,g.lectures.watched+&#x27;/&#x27;+g.lectures.assigned+&#x27; 수강&#x27;, &#x27;다시보기 &#x27;+g.lectures.rewatch+&#x27;회 — 놓친 특강 보완&#x27;)+
      miniCard(&#x27;✏️ 오답&#x27;, (w.wrong.solved)+&#x27;/&#x27;+w.wrong.total+&#x27; 소화&#x27;, &#x27;수학 오답이 &#x27;+g.wrongBySub[0][1]+&#x27;개로 가장 많아요&#x27;)+
@@ -3527,9 +3626,13 @@ function renderReport(kind){
      return &#x27;&lt;div class=&quot;rw-row&quot;&gt;&lt;span class=&quot;rw-s&quot;&gt;&#x27;+r[0]+&#x27;&lt;/span&gt;&lt;div class=&quot;rw-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;&#x27;+r[2]+&#x27;/&#x27;+r[1]+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
    /* 종이교재 자기보고 */
-   (g.selfReport.length?&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑥ 종이 교재 (자기보고)&lt;/div&gt;&#x27;+
+   (g.selfReport.length?&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑨ 종이 교재 (자기보고)&lt;/div&gt;&#x27;+
      g.selfReport.map(function(s){return &#x27;&lt;div class=&quot;rpt-self&quot;&gt;📕 &lt;b&gt;&#x27;+s.book+&#x27;&lt;/b&gt; — &quot;&#x27;+s.note+&#x27;&quot;&lt;span&gt;&#x27;+s.subj+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
      &#x27;&lt;div class=&quot;rpt-note&quot;&gt;쎈 같은 종이 문제집은 직접 &quot;다 풀었어요 + 메모&quot;로 기록돼요.&lt;/div&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+   /* ⑧ 상세 학습 로그 — 언제 뭘 했는지 타임라인 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑩ 상세 학습 로그 (이번 주)&lt;/div&gt;&#x27;+
+   logTimeline(g.log)+
+   &#x27;&lt;div class=&quot;rpt-note&quot;&gt;언제 무엇을 했는지 전부 기록돼요 — 리포트의 모든 숫자는 이 로그에서 나와요.&lt;/div&gt;&lt;/div&gt;&#x27;+
    interp+nextSec+&#x27;&lt;div class=&quot;rpt-foot&quot;&gt;&#x27;+foot+&#x27;&lt;/div&gt;&#x27;;
  } else {
   /* 시즌 리포트 — 이벤트성 (시험후·학기말·갱신) */
@@ -3571,6 +3674,52 @@ function subjBars(rows){
  }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
 }
 function miniCard(t,v,d){return &#x27;&lt;div class=&quot;rmc&quot;&gt;&lt;div class=&quot;rmc-t&quot;&gt;&#x27;+t+&#x27;&lt;/div&gt;&lt;div class=&quot;rmc-v&quot;&gt;&#x27;+v+&#x27;&lt;/div&gt;&lt;div class=&quot;rmc-d&quot;&gt;&#x27;+d+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;}
+/* 부분별 이행률 바 */
+function progressRows(rows){
+ return &#x27;&lt;div class=&quot;rpt-prog&quot;&gt;&#x27;+rows.map(function(r){
+   var pct=r.total?Math.round(r.done/r.total*100):0;
+   var sev=pct&gt;=80?&#x27;ok&#x27;:pct&gt;=50?&#x27;warn&#x27;:&#x27;low&#x27;;
+   return &#x27;&lt;div class=&quot;rp-row&quot;&gt;&lt;span class=&quot;rp-ic&quot;&gt;&#x27;+r.ic+&#x27;&lt;/span&gt;&lt;span class=&quot;rp-k&quot;&gt;&#x27;+r.k+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;div class=&quot;rp-bar&quot;&gt;&lt;i class=&quot;&#x27;+sev+&#x27;&quot; style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;b class=&quot;rp-v &#x27;+sev+&#x27;&quot;&gt;&#x27;+r.done+&#x27;/&#x27;+r.total+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+/* 상세 학습 로그 타임라인 */
+function logTimeline(rows){
+ return &#x27;&lt;div class=&quot;rpt-log&quot;&gt;&#x27;+rows.map(function(l){
+   return &#x27;&lt;div class=&quot;rl-row&#x27;+(l.ok?&#x27;&#x27;:&#x27; off&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;rl-day&quot;&gt;&#x27;+l.d+&#x27;&lt;span&gt;&#x27;+l.t+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;rl-ic&quot;&gt;&#x27;+l.ic+&#x27;&lt;/div&gt;&lt;div class=&quot;rl-mid&quot;&gt;&lt;b&gt;&#x27;+l.a+&#x27;&lt;/b&gt;&lt;/div&gt;&lt;span class=&quot;rl-r&quot;&gt;&#x27;+l.r+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+/* 학생이 세운 시험 계획표 + 이행 현황 */
+var REPORT_EXAMPLAN=[
+ {subj:&#x27;수학&#x27;,what:&#x27;일차함수 개념+오답 (취약 보강)&#x27;,day:&#x27;10/24~10/28&#x27;,done:1},
+ {subj:&#x27;국어&#x27;,what:&#x27;문법 + 지문 정리&#x27;,day:&#x27;10/27~10/30&#x27;,done:1},
+ {subj:&#x27;영어&#x27;,what:&#x27;본문 암기 + 어법&#x27;,day:&#x27;10/29~11/1&#x27;,done:0},
+ {subj:&#x27;전과목&#x27;,what:&#x27;최종 점검&#x27;,day:&#x27;11/2&#x27;,done:0}
+];
+/* 학생이 올린 수행평가 준비 현황 */
+var REPORT_PERF=[
+ {title:&#x27;국어 말하기 수행 (20점)&#x27;,date:&#x27;10/23 금&#x27;,steps:[[&#x27;설득 주제 정하기&#x27;,1],[&#x27;3분 원고 쓰기&#x27;,1],[&#x27;소리내어 연습·녹음&#x27;,1],[&#x27;원고 제출&#x27;,1]]},
+ {title:&#x27;과학 실험보고서 (15점)&#x27;,date:&#x27;10/28 수&#x27;,steps:[[&#x27;실험 주제·가설 정하기&#x27;,1],[&#x27;실험 과정 사진&#x27;,0],[&#x27;보고서 초안&#x27;,0],[&#x27;제출&#x27;,0]]}
+];
+function examPlanReport(){
+ var doneN=REPORT_EXAMPLAN.filter(function(e){return e.done;}).length;
+ return &#x27;&lt;div class=&quot;rpt-ep&quot;&gt;&lt;div class=&quot;rep-h&quot;&gt;📋 민준이가 세운 시험 계획 &lt;span&gt;&#x27;+doneN+&#x27;/&#x27;+REPORT_EXAMPLAN.length+&#x27; 완료&lt;/span&gt;&lt;/div&gt;&#x27;+
+   REPORT_EXAMPLAN.map(function(e){
+     return &#x27;&lt;div class=&quot;rep-row&#x27;+(e.done?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;span class=&quot;rep-chk&quot;&gt;&#x27;+(e.done?&#x27;✓&#x27;:&#x27;○&#x27;)+&#x27;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;rep-sub&quot;&gt;&#x27;+e.subj+&#x27;&lt;/span&gt;&lt;span class=&quot;rep-what&quot;&gt;&#x27;+e.what+&#x27;&lt;/span&gt;&lt;span class=&quot;rep-day&quot;&gt;&#x27;+e.day+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+   }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+function perfReport(){
+ return REPORT_PERF.map(function(p){
+   var d=p.steps.filter(function(s){return s[1];}).length;
+   var pct=Math.round(d/p.steps.length*100);
+   return &#x27;&lt;div class=&quot;rpt-perf&quot;&gt;&lt;div class=&quot;rpf-top&quot;&gt;&lt;b&gt;&#x27;+p.title+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+p.date+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;rpf-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;rpf-steps&quot;&gt;&#x27;+p.steps.map(function(s){return &#x27;&lt;span class=&quot;rpf-step&#x27;+(s[1]?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+(s[1]?&#x27;✓&#x27;:&#x27;○&#x27;)+&#x27; &#x27;+s[0]+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;);
+}
 /* NEIS 성적표 테이블 렌더 */
 function neisTable(){
  var n=NEIS;
@@ -3942,8 +4091,13 @@ function mRender(){
   /* 더보기 메뉴 */
   var mn=document.getElementById(&#x27;mMenu&#x27;);
   if(mn&amp;&amp;!mn.childElementCount){
-    var M=[[&#x27;👤&#x27;,&#x27;내 정보·학교·레벨&#x27;,&#x27;onboard&#x27;],[&#x27;📈&#x27;,&#x27;성적·성장&#x27;,&#x27;grades&#x27;],[&#x27;💛&#x27;,&#x27;학부모 보기&#x27;,&#x27;parent&#x27;],[&#x27;📣&#x27;,&#x27;개념특강&#x27;,&#x27;live&#x27;],[&#x27;🎬&#x27;,&#x27;다시보기&#x27;,&#x27;replay&#x27;],[&#x27;✏️&#x27;,&#x27;문제풀이&#x27;,&#x27;prob&#x27;],[&#x27;⭐&#x27;,&#x27;특강&#x27;,&#x27;special&#x27;],[&#x27;💳&#x27;,&#x27;상품 구조&#x27;,&#x27;plan&#x27;],[&#x27;🧩&#x27;,&#x27;시스템 구조&#x27;,&#x27;system&#x27;],[&#x27;🔔&#x27;,&#x27;알림 기준표&#x27;,&#x27;devspec&#x27;]];
-    mn.innerHTML=M.map(function(m){return &#x27;&lt;div class=&quot;m-mi&quot; onclick=&quot;openPage(\&#x27;&#x27;+m[2]+&#x27;\&#x27;)&quot;&gt;&lt;span class=&quot;mic&quot;&gt;&#x27;+m[0]+&#x27;&lt;/span&gt;&#x27;+m[1]+&#x27;&lt;span class=&quot;ar&quot;&gt;›&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;);
+    /* 학생이 실제로 쓰는 메뉴 */
+    var M=[[&#x27;👤&#x27;,&#x27;내 정보·학교·레벨&#x27;,&#x27;onboard&#x27;],[&#x27;📈&#x27;,&#x27;성적·성장&#x27;,&#x27;grades&#x27;],[&#x27;📣&#x27;,&#x27;개념특강&#x27;,&#x27;live&#x27;],[&#x27;🎬&#x27;,&#x27;다시보기&#x27;,&#x27;replay&#x27;],[&#x27;✏️&#x27;,&#x27;문제풀이&#x27;,&#x27;prob&#x27;],[&#x27;⭐&#x27;,&#x27;특강&#x27;,&#x27;special&#x27;]];
+    /* 시연 전용 — 실제 학생 앱엔 안 보임 (학부모용·기획용) */
+    var DEMO=[[&#x27;💛&#x27;,&#x27;학부모 보기&#x27;,&#x27;parent&#x27;],[&#x27;💳&#x27;,&#x27;상품 구조&#x27;,&#x27;plan&#x27;],[&#x27;🧩&#x27;,&#x27;시스템 구조&#x27;,&#x27;system&#x27;],[&#x27;🔔&#x27;,&#x27;알림 기준표&#x27;,&#x27;devspec&#x27;]];
+    mn.innerHTML=M.map(function(m){return &#x27;&lt;div class=&quot;m-mi&quot; onclick=&quot;openPage(\&#x27;&#x27;+m[2]+&#x27;\&#x27;)&quot;&gt;&lt;span class=&quot;mic&quot;&gt;&#x27;+m[0]+&#x27;&lt;/span&gt;&#x27;+m[1]+&#x27;&lt;span class=&quot;ar&quot;&gt;›&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+      &#x27;&lt;div class=&quot;m-demodiv&quot;&gt;🔒 시연 전용 — 실제 학생 앱엔 안 보여요&lt;/div&gt;&#x27;+
+      DEMO.map(function(m){return &#x27;&lt;div class=&quot;m-mi demo&quot; onclick=&quot;openPage(\&#x27;&#x27;+m[2]+&#x27;\&#x27;)&quot;&gt;&lt;span class=&quot;mic&quot;&gt;&#x27;+m[0]+&#x27;&lt;/span&gt;&#x27;+m[1]+&#x27;&lt;span class=&quot;ar&quot;&gt;›&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;);
   }
   /* 벨 카운트 동기화 */
   var bc=document.getElementById(&#x27;mBellCnt&#x27;);if(bc)bc.textContent=NOTIS.length;
@@ -4315,6 +4469,28 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .stusel b{font-size:13.5px;font-weight:800}.stusel .sg{font-size:11px;color:var(--ink3)}
 .homewrap{padding:22px 26px;overflow-y:auto}
 .aibox{background:linear-gradient(120deg,#2A2D6B,#3A3D8F);color:#fff;border-radius:16px;padding:18px 22px;margin-bottom:20px;display:flex;align-items:center;gap:15px}
+/* 내 담당 학생 현황 요약 대시보드 */
+.mc-dash{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:20px}
+.mc-h{font-size:15px;font-weight:900;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.mc-h span{font-size:11px;font-weight:800;color:var(--ink3);background:var(--bg);padding:3px 10px;border-radius:999px}
+.mc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.mc-st{background:var(--bg);border-radius:12px;padding:14px;text-align:center}
+.mc-sv{font-size:20px;font-weight:900;color:var(--ink)}
+.mc-st.up .mc-sv{color:#1F9D64}.mc-st.down .mc-sv{color:#D64545}.mc-st.risk .mc-sv{color:#E0901B}
+.mc-sl{font-size:11.5px;font-weight:800;color:var(--ink3);margin-top:3px}
+.mc-evh{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px}
+.mc-evs{display:flex;flex-direction:column;gap:8px}
+.mc-ev{display:flex;align-items:center;gap:11px;background:var(--bg);border-radius:12px;padding:11px 13px;border-left:3px solid var(--line)}
+.mc-ev.test{border-left-color:#E23B3B}.mc-ev.perf{border-left-color:#E0901B}
+.mc-dd{flex:none;font-size:13px;font-weight:900;color:var(--ink);width:38px}
+.mc-emid{flex:1;min-width:0}
+.mc-emid b{font-size:13px;font-weight:800;color:var(--ink);display:block}
+.mc-emid span{font-size:11.5px;color:var(--ink3)}
+.mc-tag{flex:none;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px}
+.mc-tag.ok{background:var(--ok-s);color:var(--ok)}
+.mc-tag.warn{background:#FBF0DC;color:#B57B18}
+.mc-note{font-size:11.5px;color:var(--ink3);line-height:1.6;margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}
+@media(max-width:640px){.mc-stats{grid-template-columns:1fr 1fr}}
 .aibox .aiic{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
 .aibox .aiic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2}
 .aibox b{font-size:15px;font-weight:900}.aibox p{font-size:12.5px;opacity:.9;margin-top:3px;line-height:1.45}
@@ -4546,6 +4722,23 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .ls-sig.up{background:var(--ok-s);color:#157A4C}.ls-sig.down{background:#FDECEC;color:#C13838}
 .ls-sig.risk{background:#FDE6E6;color:#B82E2E;font-weight:800}.ls-sig.warn{background:#FFF3E0;color:#9A6310}
 .ls-warn{font-size:12px;color:#9A6310;background:#FFF3E0;border-radius:10px;padding:11px 14px;margin-top:12px;line-height:1.55}
+/* ===== 담임 심화: 추이·문제점·개선점·리포트 ===== */
+.dd-sec{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
+.dd-h{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:11px}
+.dd-trend{display:flex;gap:10px}
+.dd-tcard{flex:1;background:var(--bg);border-radius:12px;padding:12px}
+.dd-tl{font-size:11.5px;font-weight:800;color:var(--ink2);margin-bottom:6px}
+.dd-tl em{font-style:normal;font-weight:900;margin-left:3px}
+.dd-tl em.u{color:#1F9D64}.dd-tl em.d{color:#D64545}
+.dd-tn{font-size:11px;font-weight:800;color:var(--ink3);text-align:right;margin-top:4px}
+.dd-prob{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--ink);line-height:1.5;padding:7px 0;border-top:1px solid var(--line2)}
+.dd-prob:first-of-type{border-top:0}
+.dd-tag{flex:none;font-size:10.5px;font-weight:900;color:#C23A3A;background:#FBE4E4;padding:3px 9px;border-radius:999px}
+.dd-act{font-size:12.5px;color:var(--ink);line-height:1.55;background:var(--brand-s);border-radius:10px;padding:10px 12px;margin-bottom:6px;font-weight:700}
+.dd-rptrow{display:flex;gap:9px}
+.dd-rbtn{flex:1;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:11px;font-size:12.5px;font-weight:800;color:var(--ink2);cursor:pointer;font-family:inherit}
+.dd-rbtn.pri{background:var(--brand);color:#fff;border-color:var(--brand)}
+.dd-rptnote{font-size:11.5px;font-weight:700;color:var(--ink3);margin-top:9px;text-align:center}
 .dtstat{display:flex;flex-direction:column}
 .dtstat .dv{font-size:22px;font-weight:900;color:var(--brand);letter-spacing:-.02em}
 .dtstat .dl{font-size:11px;color:var(--ink3);font-weight:700;margin-top:1px}
@@ -4610,6 +4803,54 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .aires .arpair .arlink{text-align:center;font-size:10.5px;color:var(--brand);padding:3px 0;font-weight:800;background:#FAFBFF}
 @media(max-width:860px){.aipanel,.aires{margin-left:16px;margin-right:16px}}
 /* 리드·온보딩 */
+/* ===== 유입 마케팅 대시보드 ===== */
+.mk-dash{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:8px}
+.mk-h{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.mk-h span{font-size:11px;font-weight:800;color:var(--ink3);background:var(--bg);padding:3px 10px;border-radius:999px}
+.mk-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.mk-k{background:var(--bg);border-radius:12px;padding:15px;text-align:center}
+.mk-k.hl{background:var(--brand-s)}
+.mk-kv{font-size:22px;font-weight:900;color:var(--ink)}
+.mk-k.hl .mk-kv{color:var(--brand)}
+.mk-kl{font-size:11.5px;font-weight:800;color:var(--ink3);margin-top:3px}
+.mk-sec{margin-bottom:18px}
+.mk-st{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:11px}
+.mk-wk{display:flex;gap:7px;align-items:flex-end;height:100px}
+.mk-wc{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%}
+.mk-wbt{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.mk-wb{width:66%;max-width:30px;background:linear-gradient(180deg,var(--brand-d),var(--brand));border-radius:5px 5px 2px 2px;min-height:4px}
+.mk-wv{font-size:10px;font-weight:800;color:var(--ink3)}
+.mk-wd{font-size:11px;font-weight:800;color:var(--ink2)}
+.mk-tbl{border:1px solid var(--line2);border-radius:12px;overflow:hidden}
+.mk-tr{display:grid;grid-template-columns:1.6fr .7fr .9fr .8fr .7fr;gap:6px;padding:10px 13px;font-size:12.5px;font-weight:700;color:var(--ink);align-items:center;border-top:1px solid var(--line2);text-align:right}
+.mk-tr.c{grid-template-columns:2.2fr .6fr .7fr .8fr .7fr}
+.mk-tr:first-child{border-top:0}
+.mk-tr span:first-child{text-align:left}
+.mk-th{background:var(--bg);font-weight:900;font-size:11px;color:var(--ink3)}
+.mk-ch,.mk-cn{font-weight:800;color:var(--ink)}
+.mk-roas{font-weight:900}
+.mk-roas.ok{color:#1F9D64}.mk-roas.warn{color:#C78A22}.mk-roas.low{color:#E23B3B}
+.mk-note{font-size:12px;color:#9A6310;background:#FFF6E6;border-radius:10px;padding:11px 13px;margin-top:11px;line-height:1.6}
+/* ===== 온보딩 진행 현황판 (칸반) ===== */
+.onb-h{font-size:15px;font-weight:900;color:var(--ink);margin:4px 0 12px}
+.onb-kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:16px}
+.onb-col{background:var(--bg);border-radius:14px;padding:12px;min-height:120px}
+.onb-colh{display:flex;align-items:center;gap:7px;padding-bottom:9px;border-bottom:2px solid var(--line);margin-bottom:4px}
+.onb-ci{font-size:15px}
+.onb-colh b{font-size:12.5px;font-weight:900;color:var(--ink);flex:1}
+.onb-cc{font-size:11px;font-weight:900;color:var(--ink2);background:var(--card);padding:2px 8px;border-radius:999px}
+.onb-cd{font-size:10.5px;color:var(--ink3);line-height:1.4;margin-bottom:10px}
+.onb-cards{display:flex;flex-direction:column;gap:7px}
+.onb-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer;transition:.12s}
+.onb-card:hover{border-color:var(--brand);box-shadow:0 2px 8px -2px rgba(0,0,0,.1)}
+.onb-nm{font-size:12.5px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.onb-av{width:20px;height:20px;border-radius:7px;background:var(--brand);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.onb-src{font-size:10.5px;color:var(--ink3);font-weight:700}
+.onb-stt{font-size:10px;color:var(--brand);font-weight:800;margin-top:3px}
+.onb-empty{font-size:12px;color:var(--faint);text-align:center;padding:14px 0}
+.onb-flow{font-size:12px;color:var(--ink2);background:var(--brand-s);border-radius:12px;padding:14px 16px;line-height:1.7}
+.onb-flow b{color:var(--ink)}
+@media(max-width:760px){.mk-kpi{grid-template-columns:1fr 1fr}.onb-kanban{grid-template-columns:1fr 1fr}}
 .funnel{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
 .fstep{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px 17px;position:relative}
 .fstep .fv{font-size:24px;font-weight:900;color:var(--brand)}
@@ -4669,6 +4910,7 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
       &lt;button class=&quot;mi on&quot; id=&quot;mHome&quot; onclick=&quot;go(&#x27;home&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;오늘 할 일&lt;/button&gt;
       &lt;button class=&quot;mi&quot; id=&quot;mStu&quot; onclick=&quot;go(&#x27;students&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2&quot;/&gt;&lt;circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/&gt;&lt;/svg&gt;학생 관리&lt;/button&gt;
       &lt;button class=&quot;mi&quot; id=&quot;mMastery&quot; onclick=&quot;go(&#x27;mastery&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M7 15l3-3 3 2 5-6&quot;/&gt;&lt;/svg&gt;학습 이해도 &lt;span style=&quot;margin-left:auto;background:#E23B3B;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;4&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;mi&quot; id=&quot;mMkt&quot; onclick=&quot;go(&#x27;mkt&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M19 9l-5 5-4-4-4 4&quot;/&gt;&lt;/svg&gt;유입·마케팅&lt;/button&gt;
       &lt;button class=&quot;mi&quot; id=&quot;mLead&quot; onclick=&quot;go(&#x27;leads&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M22 2 11 13&quot;/&gt;&lt;path d=&quot;M22 2 15 22l-4-9-9-4z&quot;/&gt;&lt;/svg&gt;리드·온보딩 &lt;span style=&quot;margin-left:auto;background:#2E7CF0;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;5&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; id=&quot;mNoti&quot; onclick=&quot;go(&#x27;noti&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9&quot;/&gt;&lt;path d=&quot;M13.7 21a2 2 0 0 1-3.4 0&quot;/&gt;&lt;/svg&gt;알림·결제 &lt;span style=&quot;margin-left:auto;background:#E23B3B;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;3&lt;/span&gt;&lt;/button&gt;
       &lt;div class=&quot;mdiv&quot;&gt;콘텐츠&lt;/div&gt;
@@ -4695,9 +4937,14 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
       &lt;div class=&quot;stusel&quot;&gt;&lt;div class=&quot;sa&quot; style=&quot;background:var(--ink)&quot;&gt;김&lt;/div&gt;&lt;div&gt;&lt;b&gt;담당 100명&lt;/b&gt; &lt;span class=&quot;sg&quot;&gt;이번 주 집계&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
     &lt;div class=&quot;stuwrap&quot; id=&quot;masteryWrap&quot;&gt;&lt;/div&gt;
    &lt;/div&gt;
+   &lt;div id=&quot;viewMkt&quot; style=&quot;display:none&quot;&gt;
+    &lt;div class=&quot;top&quot;&gt;&lt;div&gt;&lt;h1&gt;유입·마케팅&lt;/h1&gt;&lt;div class=&quot;sub&quot;&gt;광고 → 리드. ROAS·CPL·유입경로 — 돈 쓴 만큼 리드가 들어오나&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;sp&quot;&gt;&lt;/div&gt;
+      &lt;button class=&quot;backb&quot; onclick=&quot;toast(&#x27;광고 채널 설정 — Meta·네이버·카카오 연동&#x27;)&quot;&gt;채널 설정&lt;/button&gt;&lt;/div&gt;
+    &lt;div class=&quot;stuwrap&quot; id=&quot;mktWrap&quot;&gt;&lt;/div&gt;
+   &lt;/div&gt;
    &lt;div id=&quot;viewLeads&quot; style=&quot;display:none&quot;&gt;
-    &lt;div class=&quot;top&quot;&gt;&lt;div&gt;&lt;h1&gt;리드·온보딩&lt;/h1&gt;&lt;div class=&quot;sub&quot;&gt;초대링크 → 온라인 미팅 → 자유 가입 — 방문 없음, 수수료 최소&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;sp&quot;&gt;&lt;/div&gt;
-      &lt;button class=&quot;backb&quot; style=&quot;background:var(--brand);color:#fff;border:0&quot; onclick=&quot;toast(&#x27;초대링크 복사됨 — 카톡으로 보내세요&#x27;)&quot;&gt;＋ 초대링크 만들기&lt;/button&gt;&lt;/div&gt;
+    &lt;div class=&quot;top&quot;&gt;&lt;div&gt;&lt;h1&gt;리드·온보딩&lt;/h1&gt;&lt;div class=&quot;sub&quot;&gt;비회원 초대링크 → 우리 사이트에서 시스템 보며 상담 → 1달 등록. 줌·방문 없음&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;sp&quot;&gt;&lt;/div&gt;
+      &lt;button class=&quot;backb&quot; style=&quot;background:var(--brand);color:#fff;border:0&quot; onclick=&quot;toast(&#x27;비회원 초대링크 복사됨 — 카톡으로 보내세요&#x27;)&quot;&gt;＋ 초대링크 만들기&lt;/button&gt;&lt;/div&gt;
     &lt;div class=&quot;stuwrap&quot; id=&quot;leadWrap&quot;&gt;&lt;/div&gt;
    &lt;/div&gt;
    &lt;div id=&quot;viewAssign&quot; style=&quot;display:none;flex-direction:column;flex:1;min-height:0&quot;&gt;
@@ -5094,6 +5341,42 @@ function renderMastery(){
 }
 function toggleMast(i){var el=document.getElementById(&#x27;mtr&#x27;+i);if(el)el.classList.toggle(&#x27;show&#x27;);}
 
+/* 내가 맡은 애들 학습 상태 요약 — 추이·수행·시험을 담임 홈 상단에 */
+function myClassDash(){
+ /* 학습 추이 집계 (MAST 시그널 기준) */
+ var up=0,down=0,risk=0;
+ (typeof MAST!==&#x27;undefined&#x27;?MAST:[]).forEach(function(m){
+   if(m.sev&gt;=2)risk++;
+   if(m.signals&amp;&amp;m.signals.some(function(g){return g[0]===&#x27;up&#x27;;}))up++;
+   if(m.signals&amp;&amp;m.signals.some(function(g){return g[0]===&#x27;down&#x27;;}))down++;
+ });
+ /* 수행평가·시험 임박 일정 (내 담당 학생들 학교 일정) */
+ var events=[
+   {t:&#x27;중간고사&#x27;,who:&#x27;반포중 12명&#x27;,dday:&#x27;D-9&#x27;,sev:&#x27;test&#x27;,note:&#x27;범위 등록 10/12명&#x27;},
+   {t:&#x27;중간고사&#x27;,who:&#x27;서운중 8명&#x27;,dday:&#x27;D-7&#x27;,sev:&#x27;test&#x27;,note:&#x27;범위 등록 8/8 ✓&#x27;},
+   {t:&#x27;수행평가 · 국어 말하기&#x27;,who:&#x27;3명&#x27;,dday:&#x27;D-1&#x27;,sev:&#x27;perf&#x27;,note:&#x27;미시작 1명&#x27;},
+   {t:&#x27;수행평가 · 과학 보고서&#x27;,who:&#x27;5명&#x27;,dday:&#x27;D-3&#x27;,sev:&#x27;perf&#x27;,note:&#x27;미시작 2명&#x27;}
+ ];
+ var evHtml=events.map(function(e){
+   return &#x27;&lt;div class=&quot;mc-ev &#x27;+e.sev+&#x27;&quot;&gt;&lt;span class=&quot;mc-dd&quot;&gt;&#x27;+e.dday+&#x27;&lt;/span&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-emid&quot;&gt;&lt;b&gt;&#x27;+e.t+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+e.who+&#x27; · &#x27;+e.note+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;span class=&quot;mc-tag &#x27;+(/미시작|10\/12/.test(e.note)?&#x27;warn&#x27;:&#x27;ok&#x27;)+&#x27;&quot;&gt;&#x27;+(/미시작|10\/12/.test(e.note)?&#x27;챙김 필요&#x27;:&#x27;정상&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;);
+ return &#x27;&lt;div class=&quot;mc-dash&quot;&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mc-h&quot;&gt;📊 내 담당 학생 현황 &lt;span&gt;이번 주&lt;/span&gt;&lt;/div&gt;&#x27;+
+   /* 추이 요약 3칸 */
+   &#x27;&lt;div class=&quot;mc-stats&quot;&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st up&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;▲ &#x27;+up+&#x27;명&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;이해도 상승&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st down&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;▼ &#x27;+down+&#x27;명&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;이해도 하락&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st risk&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;⚠ &#x27;+risk+&#x27;명&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;관심 필요&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;87%&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;오늘 출석&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;/div&gt;&#x27;+
+   /* 수행·시험 임박 */
+   &#x27;&lt;div class=&quot;mc-evh&quot;&gt;🗓 수행평가 · 시험 임박 (내 담당)&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mc-evs&quot;&gt;&#x27;+evHtml+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mc-note&quot;&gt;잘 돌아가는 학생은 아래 &quot;처리할 일&quot;에 안 떠요 — 여기 요약으로 전체 상태만 먼저 보세요.&lt;/div&gt;&#x27;+
+ &#x27;&lt;/div&gt;&#x27;;
+}
 function renderHome(){var w=document.getElementById(&#x27;homeWrap&#x27;);if(!w)return;
  var urgent=TODO.chk.length+OPS.inq.filter(function(m){return m.cls===&#x27;r&#x27;;}).length;
  var todoTotal=TODO.chk.length+TODO.assign.length+TODO.behind.length+OPS.inq.length+OPS.expire.length+OPS.first.length+OPS.teukgang.length;
@@ -5172,13 +5455,78 @@ var LEADS=[
  {av:&#x27;조&#x27;,n:&#x27;조은우 어머님&#x27;,src:&#x27;카카오 채널&#x27;,st:1,stt:&#x27;초대링크 발송됨&#x27;,pain:&#x27;&#x27;,act:&#x27;리마인드 보내기&#x27;},
  {av:&#x27;신&#x27;,n:&#x27;신지안 어머님&#x27;,src:&#x27;마이튜터 블로그&#x27;,st:1,stt:&#x27;초대링크 발송됨&#x27;,pain:&#x27;&#x27;,act:&#x27;리마인드 보내기&#x27;}
 ];
+/* ===== ① 유입 마케팅 대시보드 (광고→리드) ===== */
+function marketingDash(){
+ var byChannel=[
+   {ch:&#x27;인스타그램&#x27;,lead:62,cvr:34,cpl:&#x27;1.6만&#x27;,roas:3.68,sev:&#x27;ok&#x27;},
+   {ch:&#x27;메타(페이스북)&#x27;,lead:41,cvr:30,cpl:&#x27;3.3만&#x27;,roas:2.4,sev:&#x27;warn&#x27;},
+   {ch:&#x27;네이버&#x27;,lead:18,cvr:24,cpl:&#x27;2.4만&#x27;,roas:1.42,sev:&#x27;low&#x27;},
+   {ch:&#x27;카카오 채널&#x27;,lead:12,cvr:30,cpl:&#x27;1.1만&#x27;,roas:4.82,sev:&#x27;ok&#x27;},
+   {ch:&#x27;지인·소개&#x27;,lead:9,cvr:56,cpl:&#x27;—&#x27;,roas:0,sev:&#x27;ok&#x27;}
+ ];
+ var camps=[
+   {n:&#x27;공부 성격 테스트 (퀴즈형)&#x27;,db:88,cvr:17,cpl:&#x27;1.5만&#x27;,roas:1.58},
+   {n:&#x27;코넬 필기법 강의&#x27;,db:67,cvr:7,cpl:&#x27;3.1만&#x27;,roas:6.98},
+   {n:&#x27;중간고사 D-14 공부법&#x27;,db:42,cvr:12,cpl:&#x27;2.2만&#x27;,roas:3.1},
+   {n:&#x27;수행평가 공략 가이드&#x27;,db:20,cvr:5,cpl:&#x27;2.5만&#x27;,roas:0.0}
+ ];
+ var weekLead=[[&#x27;월&#x27;,70],[&#x27;화&#x27;,33],[&#x27;수&#x27;,76],[&#x27;목&#x27;,89],[&#x27;금&#x27;,54],[&#x27;토&#x27;,65],[&#x27;일&#x27;,45]];
+ var maxW=Math.max.apply(null,weekLead.map(function(x){return x[1];}));
+ return &#x27;&lt;div class=&quot;mk-dash&quot;&gt;&#x27;+
+  &#x27;&lt;div class=&quot;mk-h&quot;&gt;📣 유입 마케팅 — 광고에서 리드까지 &lt;span&gt;이번 달&lt;/span&gt;&lt;/div&gt;&#x27;+
+  /* 핵심 지표 4칸 */
+  &#x27;&lt;div class=&quot;mk-kpi&quot;&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;1,620&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;총 유입 (이번 달)&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;오늘 유입&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-k&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;3.0만&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;통합 CPL&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mk-k hl&quot;&gt;&lt;div class=&quot;mk-kv&quot;&gt;2.89&lt;/div&gt;&lt;div class=&quot;mk-kl&quot;&gt;통합 ROAS&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;+
+  /* 요일별 유입 */
+  &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;요일별 유입 (이번 주)&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mk-wk&quot;&gt;&#x27;+weekLead.map(function(d){return &#x27;&lt;div class=&quot;mk-wc&quot;&gt;&lt;div class=&quot;mk-wbt&quot;&gt;&lt;div class=&quot;mk-wb&quot; style=&quot;height:&#x27;+Math.round(d[1]/maxW*100)+&#x27;%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;mk-wv&quot;&gt;&#x27;+d[1]+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-wd&quot;&gt;&#x27;+d[0]+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+  /* 유입경로별 성과 */
+  &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;유입경로별 성과 — ROAS 낮은 곳이 손볼 곳&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mk-tbl&quot;&gt;&lt;div class=&quot;mk-tr mk-th&quot;&gt;&lt;span&gt;경로&lt;/span&gt;&lt;span&gt;리드&lt;/span&gt;&lt;span&gt;가입전환&lt;/span&gt;&lt;span&gt;CPL&lt;/span&gt;&lt;span&gt;ROAS&lt;/span&gt;&lt;/div&gt;&#x27;+
+   byChannel.map(function(c){return &#x27;&lt;div class=&quot;mk-tr&quot;&gt;&lt;span class=&quot;mk-ch&quot;&gt;&#x27;+c.ch+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.lead+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.cvr+&#x27;%&lt;/span&gt;&lt;span&gt;&#x27;+c.cpl+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-roas &#x27;+c.sev+&#x27;&quot;&gt;&#x27;+(c.roas||&#x27;—&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+  /* 캠페인 성과 */
+  &#x27;&lt;div class=&quot;mk-sec&quot;&gt;&lt;div class=&quot;mk-st&quot;&gt;캠페인별 성과 (소재)&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mk-tbl&quot;&gt;&lt;div class=&quot;mk-tr mk-th c&quot;&gt;&lt;span&gt;캠페인&lt;/span&gt;&lt;span&gt;DB&lt;/span&gt;&lt;span&gt;전환&lt;/span&gt;&lt;span&gt;CPL&lt;/span&gt;&lt;span&gt;ROAS&lt;/span&gt;&lt;/div&gt;&#x27;+
+   camps.map(function(c){var sev=c.roas&gt;=3?&#x27;ok&#x27;:c.roas&gt;=1.5?&#x27;warn&#x27;:&#x27;low&#x27;;return &#x27;&lt;div class=&quot;mk-tr c&quot;&gt;&lt;span class=&quot;mk-cn&quot;&gt;&#x27;+c.n+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.db+&#x27;&lt;/span&gt;&lt;span&gt;&#x27;+c.cvr+&#x27;%&lt;/span&gt;&lt;span&gt;&#x27;+c.cpl+&#x27;&lt;/span&gt;&lt;span class=&quot;mk-roas &#x27;+sev+&#x27;&quot;&gt;&#x27;+c.roas.toFixed(1)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&lt;div class=&quot;mk-note&quot;&gt;💡 &quot;수행평가 공략&quot;은 ROAS 0 — 리드는 들어오는데 가입 전환이 안 돼요. 온보딩 상담에서 이 주제를 어떻게 푸는지 점검 필요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+ &#x27;&lt;/div&gt;&#x27;;
+}
+function renderMkt(){var w=document.getElementById(&#x27;mktWrap&#x27;);if(w)w.innerHTML=marketingDash();}
+/* ===== 온보딩 진행 현황판 — 비회원 초대링크 방식 ===== */
 function renderLeads(){
  var w=document.getElementById(&#x27;leadWrap&#x27;);
+ /* 단계별 칸반: 리드 유입 → 초대링크 발송 → 사이트 상담(미팅) → 1달 등록 */
+ var stages=[
+   {k:&#x27;리드 유입&#x27;,ic:&#x27;📥&#x27;,desc:&#x27;광고에서 막 들어옴&#x27;,color:&#x27;#8A8FA8&#x27;},
+   {k:&#x27;초대링크 발송&#x27;,ic:&#x27;🔗&#x27;,desc:&#x27;비회원 링크 카톡 발송&#x27;,color:&#x27;#2E7CF0&#x27;},
+   {k:&#x27;사이트 상담&#x27;,ic:&#x27;💻&#x27;,desc:&#x27;우리 사이트서 시스템 보며 상담&#x27;,color:&#x27;#E0901B&#x27;},
+   {k:&#x27;1달 등록&#x27;,ic:&#x27;✅&#x27;,desc:&#x27;월 구독 시작 → 담임 배정&#x27;,color:&#x27;#1F9D64&#x27;}
+ ];
+ var byStage=[[],[],[],[]];
+ LEADS.forEach(function(l){var si=l.st-1;if(si&lt;0)si=0;if(si&gt;3)si=3;byStage[si].push(l);});
+ var kanban=&#x27;&lt;div class=&quot;onb-kanban&quot;&gt;&#x27;+stages.map(function(st,i){
+   return &#x27;&lt;div class=&quot;onb-col&quot;&gt;&lt;div class=&quot;onb-colh&quot; style=&quot;border-color:&#x27;+st.color+&#x27;&quot;&gt;&lt;span class=&quot;onb-ci&quot;&gt;&#x27;+st.ic+&#x27;&lt;/span&gt;&lt;b&gt;&#x27;+st.k+&#x27;&lt;/b&gt;&lt;span class=&quot;onb-cc&quot;&gt;&#x27;+byStage[i].length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;onb-cd&quot;&gt;&#x27;+st.desc+&#x27;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;onb-cards&quot;&gt;&#x27;+(byStage[i].length?byStage[i].map(function(l){
+       return &#x27;&lt;div class=&quot;onb-card&quot; onclick=&quot;toast(\&#x27;&#x27;+l.n+&#x27; — &#x27;+(l.act||&#x27;상담 메모&#x27;)+&#x27;\&#x27;)&quot;&gt;&lt;div class=&quot;onb-nm&quot;&gt;&lt;span class=&quot;onb-av&quot;&gt;&#x27;+l.av+&#x27;&lt;/span&gt;&#x27;+l.n+&#x27;&lt;/div&gt;&#x27;+
+         &#x27;&lt;div class=&quot;onb-src&quot;&gt;&#x27;+l.src+&#x27;&lt;/div&gt;&#x27;+(l.stt?&#x27;&lt;div class=&quot;onb-stt&quot;&gt;&#x27;+l.stt+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+     }).join(&#x27;&#x27;):&#x27;&lt;div class=&quot;onb-empty&quot;&gt;—&lt;/div&gt;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
  var h=&#x27;&lt;div class=&quot;funnel&quot;&gt;&#x27;+
-   &#x27;&lt;div class=&quot;fstep&quot;&gt;&lt;div class=&quot;fv&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;초대링크 발송 (이번 주)&lt;/div&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;fstep&quot;&gt;&lt;div class=&quot;fv&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;온라인 미팅&lt;/div&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;fstep gain&quot;&gt;&lt;div class=&quot;fv&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;가입 전환 (33%)&lt;/div&gt;&lt;/div&gt;&#x27;+
- &#x27;&lt;/div&gt;&lt;div class=&quot;leadlist&quot;&gt;&#x27;;
+   &#x27;&lt;div class=&quot;fstep&quot;&gt;&lt;div class=&quot;fv&quot;&gt;142&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;이번 달 리드&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;fstep&quot;&gt;&lt;div class=&quot;fv&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;사이트 상담(미팅)&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;fstep gain&quot;&gt;&lt;div class=&quot;fv&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;fl&quot;&gt;1달 등록 전환 (71%)&lt;/div&gt;&lt;/div&gt;&#x27;+
+ &#x27;&lt;/div&gt;&#x27;+
+ &#x27;&lt;div class=&quot;onb-h&quot;&gt;📋 온보딩 진행 현황 — 각 리드가 지금 어느 단계인지&lt;/div&gt;&#x27;+
+ kanban+
+ &#x27;&lt;div class=&quot;onb-flow&quot;&gt;&lt;b&gt;온보딩 플로우 (비회원 초대링크)&lt;/b&gt; — ① 광고 리드 유입 ② &lt;b&gt;비회원 초대링크&lt;/b&gt; 카톡 발송 ③ 어머님이 &lt;b&gt;우리 사이트에서&lt;/b&gt; 플래너·특강 화면을 그대로 보며 상담(줌·외부앱·방문 없음) ④ 1달 구독 등록 → 담임 자동 배정. 상담·리드는 전부 여기 DB에 쌓여요 — &lt;b&gt;시트·노션 따로 안 씀.&lt;/b&gt;&lt;/div&gt;&#x27;+
+ &#x27;&lt;div class=&quot;onb-h&quot; style=&quot;margin-top:22px&quot;&gt;👥 리드 상세&lt;/div&gt;&#x27;+
+ &#x27;&lt;div class=&quot;leadlist&quot;&gt;&#x27;;
  LEADS.forEach(function(l){
   var btn=l.g?&#x27;&lt;button class=&quot;lb2 g&quot; onclick=&quot;event.stopPropagation();toast(\&#x27;온보딩 완료 — 담임 배정됨\&#x27;)&quot;&gt;온보딩 보기&lt;/button&gt;&#x27;
    :&#x27;&lt;button class=&quot;lb2&quot; onclick=&quot;event.stopPropagation();toast(\&#x27;&#x27;+l.n+&#x27; — &#x27;+l.act+&#x27;\&#x27;)&quot;&gt;&#x27;+l.act+&#x27;&lt;/button&gt;&#x27;;
@@ -5187,7 +5535,7 @@ function renderLeads(){
     (l.pain?&#x27;&lt;div class=&quot;lp&quot;&gt;&#x27;+l.pain+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;lbtns&quot;&gt;&#x27;+btn+&#x27;&lt;button class=&quot;lb2 s&quot; onclick=&quot;event.stopPropagation();toast(\&#x27;상담 메모 열기\&#x27;)&quot;&gt;메모&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
  });
- h+=&#x27;&lt;/div&gt;&lt;div class=&quot;leadnote&quot;&gt;&lt;b&gt;온라인 온보딩 플로우&lt;/b&gt; — ① 초대링크 발송(카톡) ② 온라인 미팅: 어머님 페인포인트 듣고, 플래너·특강 화면을 &lt;b&gt;그대로 보여드림&lt;/b&gt; ③ 자유 가입 (월 구독 · 락인 없음). 방문 없음 → 수수료 최소. 상담·리드는 전부 DB에 쌓여요.&lt;/div&gt;&#x27;;
+ h+=&#x27;&lt;/div&gt;&#x27;;
  w.innerHTML=h;
 }
 
@@ -5330,14 +5678,72 @@ function renderDtDash(){var el=document.getElementById(&#x27;dtDash&#x27;);if(!e
    &#x27;&lt;div class=&quot;ls-concept&quot;&gt;&lt;div class=&quot;ls-ct&quot;&gt;단원별 개념 이해도 (개념체크 집계)&lt;/div&gt;&#x27;+conceptBars+&#x27;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;ls-sigs&quot;&gt;&#x27;+sigs+&#x27;&lt;/div&gt;&#x27;+
    (s.prob.guessFlag?&#x27;&lt;div class=&quot;ls-warn&quot;&gt;🚩 문제풀이에서 &quot;해설 보고 3초 재풀이&quot;가 &#x27;+s.prob.guessFlag+&#x27;건 — 답 외워 찍은 복습이라 성적엔 반영 안 됐어요. 학습 태도 확인 필요.&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+   /* ===== 담임 전용 심화: 추이 · 문제점 · 개선점 · 리포트 ===== */
+   dtDeepDive(s)+
    &#x27;&lt;/div&gt;&#x27;;
 }
+/* 담임이 더 깊이 볼 때 — 추이/문제점/개선점/리포트 */
+function dtTrend(s){ /* 참여·개념 4주 추이 (데이터 없으면 현재값 기준 추정 곡선) */
+ var eng=s.engage, cAvg=s.concept.length?Math.round(s.concept.reduce(function(a,c){return a+c[1];},0)/s.concept.length):50;
+ /* 하락 시그널 있으면 내리막, 상승이면 오르막 */
+ var dir = s.signals.some(function(g){return g[0]===&#x27;down&#x27;||g[0]===&#x27;risk&#x27;;}) ? -1 : 1;
+ function series(now){return [Math.max(5,now-dir*18),Math.max(5,now-dir*12),Math.max(5,now-dir*6),now];}
+ return {eng:series(eng),con:series(cAvg)};
+}
+function miniTrend(vals,color){
+ var max=Math.max.apply(null,vals),min=Math.min.apply(null,vals),rng=(max-min)||1;
+ var pts=vals.map(function(v,i){return [i/(vals.length-1)*100, 34-((v-min)/rng)*28-3];});
+ var line=pts.map(function(p,i){return (i?&#x27;L&#x27;:&#x27;M&#x27;)+p[0].toFixed(1)+&#x27; &#x27;+p[1].toFixed(1);}).join(&#x27; &#x27;);
+ return &#x27;&lt;svg viewBox=&quot;0 0 100 34&quot; preserveAspectRatio=&quot;none&quot; style=&quot;width:100%;height:34px&quot;&gt;&lt;path d=&quot;&#x27;+line+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;&#x27;+color+&#x27;&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&#x27;+
+   pts.map(function(p,i){return &#x27;&lt;circle cx=&quot;&#x27;+p[0].toFixed(1)+&#x27;&quot; cy=&quot;&#x27;+p[1].toFixed(1)+&#x27;&quot; r=&quot;&#x27;+(i===pts.length-1?2.6:1.5)+&#x27;&quot; fill=&quot;&#x27;+color+&#x27;&quot;/&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/svg&gt;&#x27;;
+}
+/* 문제점 자동 진단 */
+function dtProblems(s){
+ var P=[];
+ if(s.lecture.attended/s.lecture.total&lt;0.6) P.push([&#x27;출석&#x27;,&#x27;특강 출석이 &#x27;+s.lecture.attended+&#x27;/&#x27;+s.lecture.total+&#x27; — 수업 자체를 놓치고 있어요&#x27;]);
+ var cAvg=s.concept.length?s.concept.reduce(function(a,c){return a+c[1];},0)/s.concept.length:60;
+ if(cAvg&lt;55) P.push([&#x27;개념&#x27;,&#x27;개념 이해도 평균 &#x27;+Math.round(cAvg)+&#x27;% — 강의만 듣고 이해는 안 된 상태&#x27;]);
+ if(s.prob.rate&lt;50) P.push([&#x27;문제&#x27;,&#x27;1차 정답률 &#x27;+s.prob.rate+&#x27;% — 개념 대비 문제 적용이 약해요&#x27;]);
+ if(s.wrong.solved/s.wrong.total&lt;0.5) P.push([&#x27;오답&#x27;,&#x27;오답 &#x27;+(s.wrong.total-s.wrong.solved)+&#x27;개 방치 — 틀린 걸 다시 안 봄&#x27;]);
+ if(s.vocab.learned/s.vocab.total&lt;0.4) P.push([&#x27;영단어&#x27;,&#x27;영단어 진도 &#x27;+s.vocab.learned+&#x27;/&#x27;+s.vocab.total+&#x27; — 거의 안 함&#x27;]);
+ if(s.prob.guessFlag) P.push([&#x27;태도&#x27;,&#x27;찍기/답 외우기 의심 &#x27;+s.prob.guessFlag+&#x27;건&#x27;]);
+ if(!P.length) P.push([&#x27;양호&#x27;,&#x27;특별한 문제 신호 없음 — 잘 유지 중&#x27;]);
+ return P;
+}
+/* 개선점(담임 액션) */
+function dtActions(s){
+ var A=[];
+ if(s.signals.some(function(g){return /미접속/.test(g[1]);})) A.push(&#x27;📞 미접속 원인 통화 — 컨디션·외부일정 확인 후 계획 재조정&#x27;);
+ var cAvg=s.concept.length?s.concept.reduce(function(a,c){return a+c[1];},0)/s.concept.length:60;
+ if(cAvg&lt;55) A.push(&#x27;🎬 약한 단원 개념강의 다시보기 + 개념체크 재시도 배치&#x27;);
+ if(s.prob.rate&lt;50) A.push(&#x27;✏️ 쉬운 난이도 문제부터 다시 — 정답률 회복 후 올리기&#x27;);
+ if(s.wrong.solved/s.wrong.total&lt;0.5) A.push(&#x27;🔁 밀린 오답을 주 초에 나눠 담기 (한 번에 X)&#x27;);
+ if(s.prob.guessFlag) A.push(&#x27;👀 재풀이 시간 모니터 — &quot;왜 틀렸나&quot; 작성 의무화&#x27;);
+ if(!A.length) A.push(&#x27;✓ 현 페이스 유지 — 선행/심화 문제로 동기 유지&#x27;);
+ return A;
+}
+function dtDeepDive(s){
+ var t=dtTrend(s), probs=dtProblems(s), acts=dtActions(s);
+ var engDir=t.eng[3]-t.eng[0], conDir=t.con[3]-t.con[0];
+ return &#x27;&lt;div class=&quot;dd-sec&quot;&gt;&lt;div class=&quot;dd-h&quot;&gt;📈 4주 추이&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;dd-trend&quot;&gt;&lt;div class=&quot;dd-tcard&quot;&gt;&lt;div class=&quot;dd-tl&quot;&gt;참여 점수 &lt;em class=&quot;&#x27;+(engDir&gt;=0?&#x27;u&#x27;:&#x27;d&#x27;)+&#x27;&quot;&gt;&#x27;+(engDir&gt;=0?&#x27;▲&#x27;:&#x27;▼&#x27;)+Math.abs(engDir)+&#x27;&lt;/em&gt;&lt;/div&gt;&#x27;+miniTrend(t.eng,&#x27;#3A3D8F&#x27;)+&#x27;&lt;div class=&quot;dd-tn&quot;&gt;&#x27;+t.eng[0]+&#x27; → &#x27;+t.eng[3]+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;dd-tcard&quot;&gt;&lt;div class=&quot;dd-tl&quot;&gt;개념 이해도 &lt;em class=&quot;&#x27;+(conDir&gt;=0?&#x27;u&#x27;:&#x27;d&#x27;)+&#x27;&quot;&gt;&#x27;+(conDir&gt;=0?&#x27;▲&#x27;:&#x27;▼&#x27;)+Math.abs(conDir)+&#x27;&lt;/em&gt;&lt;/div&gt;&#x27;+miniTrend(t.con,&#x27;#1F9D64&#x27;)+&#x27;&lt;div class=&quot;dd-tn&quot;&gt;&#x27;+t.con[0]+&#x27;% → &#x27;+t.con[3]+&#x27;%&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;dd-sec&quot;&gt;&lt;div class=&quot;dd-h&quot;&gt;⚠️ 문제점 진단 (자동)&lt;/div&gt;&#x27;+
+     probs.map(function(p){return &#x27;&lt;div class=&quot;dd-prob&quot;&gt;&lt;span class=&quot;dd-tag&quot;&gt;&#x27;+p[0]+&#x27;&lt;/span&gt;&#x27;+p[1]+&#x27;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;dd-sec&quot;&gt;&lt;div class=&quot;dd-h&quot;&gt;✅ 개선점 — 담임이 할 것&lt;/div&gt;&#x27;+
+     acts.map(function(a){return &#x27;&lt;div class=&quot;dd-act&quot;&gt;&#x27;+a+&#x27;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;dd-sec&quot;&gt;&lt;div class=&quot;dd-h&quot;&gt;📄 이 학생 리포트&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;dd-rptrow&quot;&gt;&lt;button class=&quot;dd-rbtn&quot; onclick=&quot;toast(\&#x27;&#x27;+s.name+&#x27; 주간 리포트 미리보기 — 학부모 발송본\&#x27;)&quot;&gt;주간 리포트 보기&lt;/button&gt;&#x27;+
+     &#x27;&lt;button class=&quot;dd-rbtn pri&quot; onclick=&quot;toast(\&#x27;&#x27;+s.name+&#x27; 리포트 발송 예약 — 일요일 자동, 참여 낮으면 검수 후\&#x27;)&quot;&gt;리포트 발송&lt;/button&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;dd-rptnote&quot;&gt;참여 점수 &#x27;+s.engage+&#x27; — &#x27;+(s.engage&gt;=70?&#x27;🟢 자동 발송 대상&#x27;:s.engage&gt;=40?&#x27;🟡 덜 된 것 포함 자동 발송&#x27;:&#x27;🔴 담임 검수 후 발송 (날것 발송 안 됨)&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
 function go(v){
- [&#x27;Home&#x27;,&#x27;Students&#x27;,&#x27;Mastery&#x27;,&#x27;Leads&#x27;,&#x27;Assign&#x27;].forEach(function(n){var el=document.getElementById(&#x27;view&#x27;+n);if(el)el.style.display=&#x27;none&#x27;;});
- [&#x27;mHome&#x27;,&#x27;mStu&#x27;,&#x27;mMastery&#x27;,&#x27;mLead&#x27;].forEach(function(m){var e=document.getElementById(m);if(e)e.classList.remove(&#x27;on&#x27;);});
+ [&#x27;Home&#x27;,&#x27;Students&#x27;,&#x27;Mastery&#x27;,&#x27;Mkt&#x27;,&#x27;Leads&#x27;,&#x27;Assign&#x27;].forEach(function(n){var el=document.getElementById(&#x27;view&#x27;+n);if(el)el.style.display=&#x27;none&#x27;;});
+ [&#x27;mHome&#x27;,&#x27;mStu&#x27;,&#x27;mMastery&#x27;,&#x27;mMkt&#x27;,&#x27;mLead&#x27;].forEach(function(m){var e=document.getElementById(m);if(e)e.classList.remove(&#x27;on&#x27;);});
  if(v===&#x27;home&#x27;){document.getElementById(&#x27;viewHome&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mHome&#x27;).classList.add(&#x27;on&#x27;);renderHome();}
  if(v===&#x27;students&#x27;){document.getElementById(&#x27;viewStudents&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mStu&#x27;).classList.add(&#x27;on&#x27;);renderStudents();}
  if(v===&#x27;mastery&#x27;){document.getElementById(&#x27;viewMastery&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mMastery&#x27;).classList.add(&#x27;on&#x27;);renderMastery();}
+ if(v===&#x27;mkt&#x27;){document.getElementById(&#x27;viewMkt&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mMkt&#x27;).classList.add(&#x27;on&#x27;);renderMkt();}
  if(v===&#x27;leads&#x27;){document.getElementById(&#x27;viewLeads&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mLead&#x27;).classList.add(&#x27;on&#x27;);renderLeads();}
  if(v===&#x27;assign&#x27;){document.getElementById(&#x27;viewAssign&#x27;).style.display=&#x27;flex&#x27;;document.getElementById(&#x27;mStu&#x27;).classList.add(&#x27;on&#x27;);renderDtDash();buildPlan();}
  window.scrollTo(0,0);}
@@ -5451,6 +5857,23 @@ go=function(v){
 &lt;/script&gt;
 &lt;script&gt;
 /* ===== 매니저 홈 재편: 행동 기준 분류 (📞통화 / 💬응답 / ✅처리 / 👀확인) ===== */
+/* 내 담당 학생 학습 추이 요약 (상승/하락/관심/출석) */
+function myClassStats(){
+ var up=0,down=0,risk=0;
+ (typeof MAST!==&#x27;undefined&#x27;?MAST:[]).forEach(function(m){
+   if(m.sev&gt;=2)risk++;
+   if(m.signals&amp;&amp;m.signals.some(function(g){return g[0]===&#x27;up&#x27;;}))up++;
+   if(m.signals&amp;&amp;m.signals.some(function(g){return g[0]===&#x27;down&#x27;;}))down++;
+ });
+ return &#x27;&lt;div class=&quot;mc-dash&quot;&gt;&lt;div class=&quot;mc-h&quot;&gt;📊 내 담당 학생 학습 추이 &lt;span&gt;이번 주&lt;/span&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mc-stats&quot;&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st up&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;▲ &#x27;+up+&#x27;명&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;이해도 상승&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st down&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;▼ &#x27;+down+&#x27;명&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;이해도 하락&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st risk&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;⚠ &#x27;+risk+&#x27;명&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;관심 필요&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;mc-st&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;87%&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;오늘 출석&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;mc-note&quot;&gt;이름을 누르면 그 학생의 추이·문제점·개선점이 열려요. 아래는 지금 &lt;b&gt;손이 필요한 일&lt;/b&gt;만 — 잘 돌아가는 학생은 안 떠요.&lt;/div&gt;&lt;/div&gt;&#x27;;
+}
 function renderHome(){var w=document.getElementById(&#x27;homeWrap&#x27;);if(!w)return;
  var CALL=[TODO.chk[2],OPS.expire[0],OPS.expire[1]];                  // 미접속 확인 + 갱신 안내
  var REPLY=[OPS.inq[0],OPS.inq[1],TODO.chk[0],TODO.chk[1]];          // 문의 + coach 검수
@@ -5473,7 +5896,9 @@ function renderHome(){var w=document.getElementById(&#x27;homeWrap&#x27;);if(!w)
      &#x27;&lt;div class=&quot;dhp&quot;&gt;&lt;span class=&quot;dv&quot;&gt;87%&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;출석&lt;/span&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;aibox&quot;&gt;&lt;div class=&quot;aiic&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;4&quot; y=&quot;8&quot; width=&quot;16&quot; height=&quot;12&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M12 4v4M8 14h.01M16 14h.01&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;&#x27;+
-     &#x27;&lt;div&gt;&lt;b&gt;시스템이 행동 기준으로 추렸어요 — 전부 &#x27;+total+&#x27;건, 급한 건 &#x27;+urgent+&#x27;건&lt;/b&gt;&lt;p&gt;💬 응답(문의·검수)부터 → 📞 통화 → ✅ 처리 순서 추천. 자동으로 나간 좋은 소식·결제 완료는 👀 확인만 하면 돼요. 분류 기준은 룰 태그(action_type)라 베타 후 바꿀 수 있어요.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+     &#x27;&lt;div&gt;&lt;b&gt;시스템이 행동 기준으로 추렸어요 — 전부 &#x27;+total+&#x27;건, 급한 건 &#x27;+urgent+&#x27;건&lt;/b&gt;&lt;p&gt;💬 응답(문의·검수)부터 → 📞 통화 → ✅ 처리 순서 추천. 자동으로 나간 좋은 소식·결제 완료는 👀 확인만 하면 돼요. 분류 기준은 룰 태그(action_type)라 베타 후 바꿀 수 있어요.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* 내 담당 학생 학습 추이 요약 — 처리할 일 위에 상태를 먼저 */
+   myClassStats();
  function sec(title,sev,arr){if(!arr||!arr.length)return;h+=&#x27;&lt;div class=&quot;tdsec&quot;&gt;&lt;div class=&quot;tdh&quot;&gt;&lt;span class=&quot;sev &#x27;+sev+&#x27;&quot;&gt;&lt;/span&gt;&#x27;+title+&#x27;&lt;span class=&quot;cnt&quot;&gt;&#x27;+arr.length+&#x27;건&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tdlist&quot;&gt;&#x27;;
    arr.forEach(function(t){if(!t)return;var onc=t.goAssign?&#x27;go(\&#x27;assign\&#x27;)&#x27;:(t.kt?&#x27;openKt(\&#x27;&#x27;+t.kt+&#x27;\&#x27;)&#x27;:&#x27;toast(\&#x27;&#x27;+t.n+&#x27; — &#x27;+t.act+&#x27;\&#x27;)&#x27;);
      /* 학생 이름이면(문의·특강 등 비학생 제외) 클릭 시 학습 현황 */
