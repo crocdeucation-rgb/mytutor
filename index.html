@@ -22,12 +22,14 @@ body.mob{background:radial-gradient(900px 500px at 50% -10%,#2C3060 0%,#20233F 6
 .fr.on{display:block}
 /* PC 시연용 모바일 프리뷰: 좁은 프레임 (실기기에선 미사용) */
 .fr.on.mobf{inset:auto;left:50%;top:70px;transform:translateX(-50%);min-width:0;width:402px;height:min(844px,calc(100vh - 86px));border:10px solid #111826;border-radius:40px;box-shadow:0 34px 80px -22px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06);background:#fff}
-/* 실제 모바일 기기: 토글만 남기고 전부 풀블리드 (내부 페이지가 반응형으로 전환) */
+/* 실제 모바일 기기: 플렉스 컬럼 — 토글바 아래로 iframe이 꽉 참 */
 @media (max-width:760px), (pointer:coarse) and (max-width:1024px){
+  body{display:flex;flex-direction:column}
   .dev{display:none}
-  .bar{top:6px}
+  .bar{position:static;order:0;padding:8px 8px 6px;flex:none}
   .tgl button{font-size:11.5px;padding:7px 11px}
-  .fr.on,.fr.on.mobf{position:fixed;inset:auto;left:0;right:0;top:50px;transform:none;width:1px;min-width:100%;height:calc(100% - 50px);border:0;border-radius:0;box-shadow:none}
+  .fr{position:static;inset:auto;transform:none;min-width:0}
+  .fr.on,.fr.on.mobf{position:static;display:block;flex:1;width:100%;min-width:0;height:auto;min-height:0;border:0;border-radius:0;box-shadow:none;left:auto;top:auto}
 }
 </style></head><body>
 <div class="bar">
@@ -1161,5 +1163,4 @@ button{font:inherit;cursor:pointer}
 .m-hero{background:linear-gradient(140deg,var(--brand),var(--brand-d));border-radius:20px;padding:16px;color:#fff;margin-bottom:11px;position:relative;overflow:hidden}
 .m-hero::after{content:&quot;&quot;;position:absolute;right:-22px;top:-26px;width:96px;height:96px;border-radius:50%;background:rgba(182,227,74,.16)}
 .m-hero .hk{font-size:11px;font-weight:800;opacity:.85}
-.m-hero h2{font-size:18px;font-weight:900;margin-top:3px;letter-spacing:-.02em}
-.m-hero .row{display:flex;gap:7px;margin-top:10px;position:relat
+.m-hero h2{
