@@ -392,10 +392,85 @@ button{font:inherit;cursor:pointer}
 .etr-row .rv{font-size:11px;font-weight:900;color:var(--faint);flex:none}
 .etr-row.now .rv{color:var(--sun-ink)}
 .etr-note{margin-top:12px;background:var(--brand-s);border:1.5px solid #BFE6CE;border-radius:16px;padding:11px 13px;font-size:12.5px;font-weight:800;color:var(--brand-ink);line-height:1.6}
+
+/* ===== PC 좌측 네비 (넓은 화면에서만) ===== */
+.enav{display:none;position:fixed;left:0;top:0;bottom:0;width:220px;z-index:60;
+ background:linear-gradient(175deg,#2E9E5B,#1C7A42);color:#fff;flex-direction:column;padding:20px 12px 16px}
+.enav .elogo{display:flex;align-items:center;gap:9px;padding:0 8px;font-weight:900;font-size:18px;letter-spacing:-.02em}
+.enav .elogo .mk2{width:31px;height:31px;border-radius:10px;background:#B6E34A;display:grid;place-items:center;flex:none}
+.enav .elogo .mk2 svg{width:21px;height:21px}
+.enav .eroom{font-size:10.5px;color:rgba(255,255,255,.55);font-weight:700;padding:3px 8px 0 48px}
+.enav .emenu{margin-top:22px;display:flex;flex-direction:column;gap:3px}
+.enav .emi{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:12px;border:0;background:none;color:rgba(255,255,255,.74);font-weight:800;font-size:13px;text-align:left;font-family:inherit;transition:.12s}
+.enav .emi .ei{font-size:15px;width:19px;text-align:center;flex:none}
+.enav .emi:hover{background:rgba(255,255,255,.09);color:#fff}
+.enav .emi.on{background:rgba(255,255,255,.15);color:#fff}
+.enav .emi .lvb2{margin-left:auto;font-size:8.5px;font-weight:900;background:#F0663B;color:#fff;border-radius:999px;padding:1px 6px}
+.enav .emi .stb2{margin-left:auto;font-size:9px;font-weight:900;background:rgba(255,255,255,.2);border-radius:999px;padding:1px 6px}
+.enav .ediv{font-size:9.5px;font-weight:800;color:rgba(255,255,255,.4);padding:14px 10px 5px;letter-spacing:.02em}
+.enav .esp{flex:1}
+.enav .eprof{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border-radius:14px;padding:10px 11px}
+.enav .eprof .av2{width:32px;height:32px;border-radius:11px;background:#B6E34A;color:#14532D;display:grid;place-items:center;font-weight:900;font-size:17px;flex:none}
+.enav .eprof b{font-size:12.5px;display:block}
+.enav .eprof .g2{font-size:10px;color:rgba(255,255,255,.58);font-weight:700}
+
+/* ===== 주간 루틴표 (PC에서 가로폭을 쓰는 카드) ===== */
+.ewk-wrap{overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+.ewk-wrap::-webkit-scrollbar{display:none}
+.ewk{width:100%;min-width:470px;border-collapse:separate;border-spacing:0 5px}
+.ewk th{font-size:11px;font-weight:900;color:var(--ink3);padding:0 0 4px;text-align:center}
+.ewk th.rh{text-align:left;padding-left:4px;width:132px}
+.ewk th.td2{color:var(--sun-ink)}
+.ewk td{text-align:center;padding:0 2px}
+.ewk td.rl{text-align:left;font-size:12.5px;font-weight:800;color:var(--ink2);padding-left:4px;white-space:nowrap}
+.ewk td.rl span{margin-right:5px}
+.ewk .cel{width:34px;height:34px;margin:0 auto;border-radius:11px;display:grid;place-items:center;font-size:14px;background:#F4F6F9;border:1.5px solid transparent;color:var(--faint);font-weight:900;cursor:pointer}
+.ewk .cel.ok{background:var(--brand-s);border-color:#BFE6CE}
+.ewk .cel.todo{background:#fff;border:1.5px dashed #D8DEE7;font-size:11px}
+.ewk .cel.none{background:transparent;color:#DCE1E8;font-size:11px;cursor:default}
+.ewk tr.tdcol td:nth-child(5) .cel{box-shadow:0 0 0 3px rgba(255,182,60,.2)}
+.ewk tfoot td{padding-top:7px}
+.ewk tfoot .st2{font-size:10.5px;font-weight:900;color:var(--sun-ink);background:var(--sun-s);border-radius:999px;padding:2px 0;display:block}
+.ewk tfoot td.rl{font-size:11px;color:var(--ink3);font-weight:900}
+.ewk-lg{display:flex;gap:13px;flex-wrap:wrap;margin-top:9px;font-size:10.5px;font-weight:800;color:var(--ink3)}
+.ewk-lg i{display:inline-block;width:12px;height:12px;border-radius:5px;vertical-align:-2px;margin-right:4px}
+
+@media(min-width:1100px){
+ .enav{display:flex}
+ body{padding-left:220px}
+ .hd{max-width:1300px;margin:0 auto}
+ .cols{max-width:1300px;grid-template-columns:1.32fr .68fr;gap:0 20px;padding:6px 30px 60px}
+ .hero{padding:22px 24px}
+ .hero h2{font-size:24px}
+ .eg-char{width:88px;height:88px;font-size:48px}
+ .eg-bd{max-width:540px}
+ .eradar{flex-wrap:wrap;overflow:visible}
+ .eri{flex:1 1 calc(50% - 4px);width:auto;min-width:0}
+}
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class=&quot;pushwrap&quot; id=&quot;pushwrap&quot;&gt;&lt;/div&gt;
+
+&lt;!-- PC 좌측 네비 (1100px 이상에서만 노출 · 모바일은 하단 탭바 유지) --&gt;
+&lt;nav class=&quot;enav&quot;&gt;
+  &lt;div class=&quot;elogo&quot;&gt;&lt;span class=&quot;mk2&quot;&gt;&lt;svg viewBox=&quot;0 0 52 52&quot;&gt;&lt;path d=&quot;M14 15h24a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H24l-7 6v-6h-3a3 3 0 0 1-3-3V18a3 3 0 0 1 3-3z&quot; fill=&quot;#14532D&quot;/&gt;&lt;path d=&quot;M20 25l4 4 9-9&quot; stroke=&quot;#B6E34A&quot; stroke-width=&quot;3.4&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;마이튜터&lt;/div&gt;
+  &lt;div class=&quot;eroom&quot;&gt;초등 스터디룸&lt;/div&gt;
+  &lt;div class=&quot;emenu&quot;&gt;
+    &lt;button class=&quot;emi on&quot; onclick=&quot;eNav(this);window.scrollTo({top:0,behavior:&#x27;smooth&#x27;})&quot;&gt;&lt;span class=&quot;ei&quot;&gt;🏠&lt;/span&gt;홈&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);egOpenTier()&quot;&gt;&lt;span class=&quot;ei&quot; id=&quot;eNavChar&quot;&gt;🐤&lt;/span&gt;내 버디&lt;span class=&quot;stb2&quot; id=&quot;eNavLv&quot;&gt;Lv.4&lt;/span&gt;&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);pushLocal(&#x27;stu&#x27;,&#x27;개념특강 알림&#x27;,&#x27;15:30 수학 연산 특강, 20분 전이야!&#x27;,&#x27;RMD-01 · 자동&#x27;)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📣&lt;/span&gt;개념특강&lt;span class=&quot;lvb2&quot;&gt;LIVE&lt;/span&gt;&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eWord(2)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;🔤&lt;/span&gt;영단어&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eDict(3)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;✍️&lt;/span&gt;받아쓰기&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eUpload(4)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📷&lt;/span&gt;필기 올리기&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);alimGo();document.querySelector(&#x27;.alim&#x27;).scrollIntoView({behavior:&#x27;smooth&#x27;,block:&#x27;center&#x27;})&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📒&lt;/span&gt;알림장 올리기&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eReport()&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📊&lt;/span&gt;기록·성장&lt;/button&gt;
+    &lt;div class=&quot;ediv&quot;&gt;🔒 시연 전용&lt;/div&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);document.querySelector(&#x27;.mom&#x27;).scrollIntoView({behavior:&#x27;smooth&#x27;,block:&#x27;center&#x27;})&quot;&gt;&lt;span class=&quot;ei&quot;&gt;💛&lt;/span&gt;엄마 화면&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;esp&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;eprof&quot;&gt;&lt;span class=&quot;av2&quot;&gt;🐤&lt;/span&gt;&lt;div&gt;&lt;b&gt;서연이&lt;/b&gt;&lt;div class=&quot;g2&quot;&gt;초4 · 작전초&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/nav&gt;
 
 &lt;header class=&quot;hd&quot;&gt;
   &lt;span class=&quot;mk&quot;&gt;&lt;svg viewBox=&quot;0 0 52 52&quot;&gt;&lt;path d=&quot;M14 15h24a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H24l-7 6v-6h-3a3 3 0 0 1-3-3V18a3 3 0 0 1 3-3z&quot; fill=&quot;#fff&quot;/&gt;&lt;path d=&quot;M20 25l4 4 9-9&quot; stroke=&quot;#2E9E5B&quot; stroke-width=&quot;3.2&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
@@ -449,6 +524,12 @@ button{font:inherit;cursor:pointer}
       &lt;div class=&quot;ch&quot;&gt;&lt;b&gt;🌱 이번 주 습관&lt;/b&gt;&lt;span class=&quot;sub&quot;&gt;연속 5일&lt;/span&gt;&lt;/div&gt;
       &lt;div class=&quot;wk&quot; id=&quot;wk&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
+
+    &lt;div class=&quot;c&quot;&gt;
+      &lt;div class=&quot;ch&quot;&gt;&lt;b&gt;📋 주간 루틴표&lt;/b&gt;&lt;span class=&quot;sub&quot;&gt;무엇을 며칠 했는지 한눈에&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;ewk-wrap&quot;&gt;&lt;table class=&quot;ewk&quot; id=&quot;ewkTbl&quot;&gt;&lt;/table&gt;&lt;/div&gt;
+      &lt;div class=&quot;ewk-lg&quot;&gt;&lt;span&gt;&lt;i style=&quot;background:var(--brand-s);box-shadow:inset 0 0 0 1.5px #BFE6CE&quot;&gt;&lt;/i&gt;완료&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:#fff;box-shadow:inset 0 0 0 1.5px #D8DEE7&quot;&gt;&lt;/i&gt;해야 할 일&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:#F4F6F9&quot;&gt;&lt;/i&gt;쉬는 날&lt;/span&gt;&lt;span&gt;⭐ 그날 모은 별&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class=&quot;colB&quot;&gt;
@@ -501,12 +582,13 @@ button{font:inherit;cursor:pointer}
 &lt;div class=&quot;toast2&quot; id=&quot;toast2&quot;&gt;&lt;/div&gt;
 
 &lt;script&gt;
+/* hist = 월~일 기록 (2 완료 / 1 해야 할 일 / 0 쉬는 날 / null = 오늘은 실시간 반영) */
 var RT=[
- {ic:&#x27;📣&#x27;,bg:&#x27;var(--brand-s)&#x27;,t:&#x27;개념특강 · 수학 연산&#x27;,s:&#x27;15:30 라이브 · 초등 타임 자동편성&#x27;,live:1,done:1},
- {ic:&#x27;✏️&#x27;,bg:&#x27;var(--pink-s)&#x27;,t:&#x27;학교 숙제 30분&#x27;,s:&#x27;수학익힘 p.32~33&#x27;,done:1},
- {ic:&#x27;🔤&#x27;,bg:&#x27;var(--sky-s)&#x27;,t:&#x27;영단어 10개&#x27;,s:&#x27;듣고 따라 말하기&#x27;,done:0,go:&#x27;eWord&#x27;},
- {ic:&#x27;✍️&#x27;,bg:&#x27;var(--sun-s)&#x27;,t:&#x27;받아쓰기 연습&#x27;,s:&#x27;선생님이 불러줘요&#x27;,done:0,go:&#x27;eDict&#x27;},
- {ic:&#x27;📷&#x27;,bg:&#x27;var(--vio-s)&#x27;,t:&#x27;오늘 필기 올리기&#x27;,s:&#x27;공책 사진 1장&#x27;,done:0,go:&#x27;eUpload&#x27;}
+ {ic:&#x27;📣&#x27;,bg:&#x27;var(--brand-s)&#x27;,t:&#x27;개념특강 · 수학 연산&#x27;,s:&#x27;15:30 라이브 · 초등 타임 자동편성&#x27;,live:1,done:1,hist:[2,2,2,null,1,0,0]},
+ {ic:&#x27;✏️&#x27;,bg:&#x27;var(--pink-s)&#x27;,t:&#x27;학교 숙제 30분&#x27;,s:&#x27;수학익힘 p.32~33&#x27;,done:1,hist:[2,2,2,null,1,0,0]},
+ {ic:&#x27;🔤&#x27;,bg:&#x27;var(--sky-s)&#x27;,t:&#x27;영단어 10개&#x27;,s:&#x27;듣고 따라 말하기&#x27;,done:0,go:&#x27;eWord&#x27;,hist:[2,2,2,null,1,1,1]},
+ {ic:&#x27;✍️&#x27;,bg:&#x27;var(--sun-s)&#x27;,t:&#x27;받아쓰기 연습&#x27;,s:&#x27;선생님이 불러줘요&#x27;,done:0,go:&#x27;eDict&#x27;,hist:[2,0,2,null,1,0,0]},
+ {ic:&#x27;📷&#x27;,bg:&#x27;var(--vio-s)&#x27;,t:&#x27;오늘 필기 올리기&#x27;,s:&#x27;공책 사진 1장&#x27;,done:0,go:&#x27;eUpload&#x27;,hist:[2,2,1,null,1,0,0]}
 ];
 function buildRT(){
  var done=0;
@@ -648,6 +730,41 @@ function renderEGame(){
   &#x27;&lt;/div&gt;&#x27;;
  el.innerHTML = wide ? htmlA : (htmlA+htmlB);
  if(el2)el2.innerHTML = wide ? htmlB : &#x27;&#x27;;
+ /* 네비 캐릭터·레벨 동기화 */
+ var nc=document.getElementById(&#x27;eNavChar&#x27;); if(nc)nc.textContent=t.ic;
+ var nl=document.getElementById(&#x27;eNavLv&#x27;); if(nl)nl.textContent=&#x27;Lv.&#x27;+EG.lv;
+ var av=document.querySelector(&#x27;.eprof .av2&#x27;); if(av)av.textContent=t.ic;
+ renderEWeek();
+}
+/* 주간 루틴표 — 무엇을 며칠 했는지 (오늘 칸은 실시간) */
+function renderEWeek(){
+ var tb=document.getElementById(&#x27;ewkTbl&#x27;); if(!tb)return;
+ var DN=[&#x27;월&#x27;,&#x27;화&#x27;,&#x27;수&#x27;,&#x27;목&#x27;,&#x27;금&#x27;,&#x27;토&#x27;,&#x27;일&#x27;];
+ var cellOf=function(r,d){
+   var v=(d===EG.today)?(r.done?2:1):(r.hist?r.hist[d]:0);
+   if(v===2)return {c:&#x27;ok&#x27;,x:&#x27;✓&#x27;};
+   if(v===1)return {c:&#x27;todo&#x27;,x:&#x27;○&#x27;};
+   return {c:&#x27;none&#x27;,x:&#x27;–&#x27;};
+ };
+ var head=&#x27;&lt;thead&gt;&lt;tr&gt;&lt;th class=&quot;rh&quot;&gt;루틴&lt;/th&gt;&#x27;+DN.map(function(d,i){
+   return &#x27;&lt;th&#x27;+(i===EG.today?&#x27; class=&quot;td2&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+d+(i===EG.today?&#x27;&lt;div style=&quot;font-size:9px&quot;&gt;오늘&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/th&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/tr&gt;&lt;/thead&gt;&#x27;;
+ var body=&#x27;&lt;tbody&gt;&#x27;+RT.map(function(r,ri){
+   return &#x27;&lt;tr class=&quot;tdcol&quot;&gt;&lt;td class=&quot;rl&quot;&gt;&lt;span&gt;&#x27;+r.ic+&#x27;&lt;/span&gt;&#x27;+r.t.replace(/·.*/,&#x27;&#x27;).trim()+&#x27;&lt;/td&gt;&#x27;+
+     DN.map(function(d,i){
+       var c=cellOf(r,i);
+       var msg=r.t.replace(/&#x27;/g,&#x27;&#x27;)+&#x27; — &#x27;+DN[i]+&#x27;요일 &#x27;+(c.c===&#x27;ok&#x27;?&#x27;완료 ⭐&#x27;+EG.per:(c.c===&#x27;todo&#x27;?&#x27;아직 안 했어요&#x27;:&#x27;쉬는 날&#x27;));
+       return &#x27;&lt;td&gt;&lt;div class=&quot;cel &#x27;+c.c+&#x27;&quot;&#x27;+(c.c!==&#x27;none&#x27;?&#x27; onclick=&quot;toast2(\&#x27;&#x27;+msg+&#x27;\&#x27;)&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+c.x+&#x27;&lt;/div&gt;&lt;/td&gt;&#x27;;
+     }).join(&#x27;&#x27;)+&#x27;&lt;/tr&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/tbody&gt;&#x27;;
+ var foot=&#x27;&lt;tfoot&gt;&lt;tr&gt;&lt;td class=&quot;rl&quot;&gt;그날 모은 별&lt;/td&gt;&#x27;+DN.map(function(d,i){
+   var n=RT.reduce(function(a,r){return a+(cellOf(r,i).c===&#x27;ok&#x27;?EG.per:0);},0);
+   return &#x27;&lt;td&gt;&#x27;+(n?&#x27;&lt;span class=&quot;st2&quot;&gt;⭐&#x27;+n+&#x27;&lt;/span&gt;&#x27;:&#x27;&lt;span class=&quot;st2&quot; style=&quot;background:#F4F6F9;color:var(--faint)&quot;&gt;–&lt;/span&gt;&#x27;)+&#x27;&lt;/td&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/tr&gt;&lt;/tfoot&gt;&#x27;;
+ tb.innerHTML=head+body+foot;
+}
+function eNav(el){
+ var all=document.querySelectorAll(&#x27;.enav .emi&#x27;);
+ for(var i=0;i&lt;all.length;i++)all[i].classList.remove(&#x27;on&#x27;);
+ el.classList.add(&#x27;on&#x27;);
 }
 window.addEventListener(&#x27;resize&#x27;,function(){renderEGame();});
 function egChest(){
@@ -1874,6 +1991,215 @@ button{font:inherit;cursor:pointer}
 .psh-dig b{color:var(--ink)}
 .psh-demo{margin-top:9px;width:100%;border:1px dashed var(--line);background:none;border-radius:11px;padding:10px;font-size:12px;font-weight:800;color:var(--ink2);cursor:pointer;font-family:inherit}
 .psh-demo:hover{border-color:var(--brand);color:var(--brand)}
+
+/* ===== 콤보 — 푸는 순간의 재미 ===== */
+/* 게임바 1.5행 — 리그 / 상점 */
+.gb-row15{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 0 0}
+.gb-row15.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1280px){.gb-row15.three{grid-template-columns:1fr 1fr}}
+.gb-wide.ch{background:rgba(139,92,246,.16);border-color:rgba(167,139,250,.42)}
+.gb-wide.ch .gw-b b{color:#C4B1FB}
+@media(max-width:900px){.gb-row15{grid-template-columns:1fr}}
+.gb-wide{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:15px;padding:12px 14px;color:#fff;font-family:inherit;text-align:left;cursor:pointer;transition:.14s}
+.gb-wide:hover{background:rgba(255,255,255,.12);border-color:rgba(182,227,74,.45)}
+.gb-wide .gw-ic{font-size:25px;line-height:1;flex:none}
+.gb-wide .gw-b{flex:1;min-width:0}
+.gb-wide .gw-b b{display:block;font-size:13.5px;font-weight:900;letter-spacing:-.02em}
+.gb-wide .gw-b span{font-size:11px;font-weight:800;color:rgba(255,255,255,.6);display:block;margin-top:1px}
+.gb-wide .gw-b em{font-style:normal;color:#B6E34A}
+.gb-wide .gw-ar{flex:none;font-size:17px;color:rgba(255,255,255,.4);font-weight:900}
+.gb-wide.sh{background:rgba(182,227,74,.13);border-color:rgba(182,227,74,.35)}
+.gb-wide.sh .gw-b b{color:#B6E34A;font-size:16px}
+
+.cmb-hud{display:flex;align-items:center;gap:9px;background:linear-gradient(135deg,#232651,#343873);border-radius:14px;padding:9px 13px;margin-bottom:12px;color:#fff}
+.cmb-ic{font-size:21px;line-height:1;flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.cmb-b{flex:1;min-width:0}
+.cmb-n{font-size:13px;font-weight:900;letter-spacing:-.02em}
+.cmb-n em{font-style:normal;color:#B6E34A}
+.cmb-d{font-size:10.5px;font-weight:800;color:rgba(255,255,255,.58);margin-top:1px}
+.cmb-pips{display:flex;gap:3px;flex:none}
+.cmb-pips i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18)}
+.cmb-pips i.on{background:#B6E34A;box-shadow:0 0 7px rgba(182,227,74,.7)}
+.cmb-best{flex:none;font-size:10px;font-weight:900;background:rgba(255,255,255,.1);border-radius:999px;padding:4px 9px;color:rgba(255,255,255,.8)}
+/* 문제 화면을 가리지 않게 화면 상단에 띄움 */
+.cmbpop{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:520;pointer-events:none;text-align:center;
+ display:flex;align-items:center;gap:13px;
+ background:linear-gradient(135deg,#232651,#3C4086);border:2px solid rgba(182,227,74,.5);border-radius:18px;padding:11px 20px;color:#fff;
+ box-shadow:0 20px 44px -14px rgba(0,0,0,.6);animation:cmbp .26s cubic-bezier(.2,.9,.3,1.35)}
+@keyframes cmbp{from{transform:translateX(-50%) translateY(-18px) scale(.8);opacity:0}}
+.cmbpop .cb2{text-align:left}
+.cmbpop.brk{border-color:rgba(240,102,59,.6)}
+.cmbpop .ci{font-size:34px;line-height:1.05;flex:none;animation:cmbi .55s cubic-bezier(.2,.9,.3,1.5)}
+@keyframes cmbi{0%{transform:scale(.35) rotate(-14deg)}60%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1)}}
+.cmbpop .cv{font-size:17px;font-weight:900;letter-spacing:-.02em}
+.cmbpop .cx{font-size:11.5px;font-weight:900;color:#B6E34A;margin-top:1px}
+.cmbpop .cm{font-size:11px;font-weight:800;color:rgba(255,255,255,.62);margin-top:1px}
+
+/* ===== 주간 리그 (노력량 기준 — 성적 아님) ===== */
+.lg-hero{background:linear-gradient(135deg,#2B2E63,#474CA0);border-radius:18px;padding:16px 18px;color:#fff;text-align:center;margin-bottom:13px}
+.lg-hero .li{font-size:40px;line-height:1.1}
+.lg-hero .ln{font-size:18px;font-weight:900;margin-top:3px;letter-spacing:-.02em}
+.lg-hero .ld{font-size:11.5px;font-weight:800;color:rgba(255,255,255,.62);margin-top:2px}
+.lg-hero .lt{font-size:11.5px;font-weight:900;background:rgba(182,227,74,.2);color:#B6E34A;border-radius:999px;padding:5px 13px;display:inline-block;margin-top:9px}
+.lg-zone{display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:900;color:var(--ink3);margin:11px 0 5px}
+.lg-zone i{flex:1;height:1px;background:var(--line)}
+.lg-zone.up{color:#2FA84F}.lg-zone.dn{color:#E23B3B}
+.lg-row{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:13px;border:1px solid var(--line);margin-bottom:5px;background:var(--card)}
+.lg-row.up{border-color:#BFE6CE;background:#F3FBF6}
+.lg-row.dn{border-color:#F5CECE;background:#FEF6F6}
+.lg-row.me{border-color:var(--lime-d);background:var(--lime-s);box-shadow:0 0 0 3px rgba(182,227,74,.18)}
+.lg-rk{width:24px;text-align:center;font-size:13px;font-weight:900;color:var(--ink3);flex:none;font-variant-numeric:tabular-nums}
+.lg-row.me .lg-rk{color:var(--lime-ink)}
+.lg-av{width:28px;height:28px;border-radius:10px;background:var(--line2);display:grid;place-items:center;font-size:15px;flex:none}
+.lg-nm{flex:1;min-width:0;font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg-nm span{font-size:10.5px;font-weight:700;color:var(--ink3);margin-left:5px}
+.lg-xp{flex:none;font-size:12.5px;font-weight:900;font-variant-numeric:tabular-nums}
+.lg-xp em{font-style:normal;font-size:10px;color:var(--ink3);margin-left:2px}
+.lg-note{margin-top:12px;background:var(--lime-s);border:1px solid #DCEFA8;border-radius:14px;padding:11px 13px;font-size:12px;font-weight:800;color:var(--lime-ink);line-height:1.6}
+
+/* ===== 오답 유형 선택 칩 ===== */
+.wy-chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px;margin-top:9px}
+.wy-chip{border:1.5px solid var(--line);background:var(--card);border-radius:13px;padding:9px 11px;text-align:left;font-family:inherit;cursor:pointer;transition:.12s}
+.wy-chip:hover{border-color:var(--brand);background:var(--brand-s,#EAF7F0)}
+.wy-chip.on{border-color:var(--brand);background:var(--brand-s,#EAF7F0);box-shadow:0 0 0 3px rgba(46,158,91,.14)}
+.wy-ic{font-size:15px;margin-right:5px}
+.wy-t{font-size:12.5px;font-weight:900;color:var(--ink)}
+.wy-d{display:block;font-size:10.5px;font-weight:700;color:var(--ink3);margin-top:2px;line-height:1.35}
+.sw-fix{margin-top:10px;background:var(--brand-s,#EAF7F0);border:1px solid #BFE6CE;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:800;color:var(--brand-ink,#14532D)}
+.sw-hint{margin-top:9px;font-size:11.5px;font-weight:800;color:var(--ink3);text-align:center}
+/* 복습센터 — 유형 표시 */
+.rv-wk{font-size:11px;font-weight:900;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 9px;margin-right:6px}
+.rv-fix{display:block;font-size:11px;font-weight:800;color:var(--brand);margin-top:5px}
+.rv-chg{margin-top:7px;border:1px dashed var(--line);background:none;border-radius:9px;padding:5px 10px;font-size:10.5px;font-weight:800;color:var(--ink3);font-family:inherit;cursor:pointer}
+.rv-needwhy{background:#FFF7F7;border:1px solid #F3D6D6;border-radius:13px;padding:11px 12px;margin-top:8px}
+.rv-needwhy b{font-size:12px;font-weight:900;color:#C23B3B;display:block}
+.rv-needwhy&gt;span{font-size:11px;font-weight:700;color:var(--ink3);line-height:1.5;display:block;margin-top:3px}
+.rv-go.off{background:var(--line2);color:var(--faint)}
+/* 복습센터 — 유형 분포 */
+.wy-stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.wy-sh{font-size:12.5px;font-weight:900;margin-bottom:9px}
+.wy-bars{display:flex;flex-wrap:wrap;gap:6px}
+.wy-bar{display:flex;align-items:center;gap:5px;background:var(--line2);border-radius:999px;padding:5px 11px;font-size:11.5px;font-weight:800;color:var(--ink2)}
+.wy-bar.top{background:#FDEBEB;color:#C23B3B}
+.wy-bv{font-weight:900}
+.wy-none{font-size:11.5px;font-weight:800;color:var(--faint)}
+.wy-rx{margin-top:10px;background:#F7F9FC;border:1px dashed var(--line);border-radius:12px;padding:10px 12px;font-size:12px;font-weight:800;color:var(--ink2);line-height:1.6}
+.wy-rx span{color:var(--brand)}
+.wy-rx em{font-style:normal;color:#C23B3B;margin-left:4px}
+/* ===== 오답 유형 분석 패널 (리포트·어드민 공용) ===== */
+.wk-box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:14px}
+.wk-h{font-size:14px;font-weight:900;letter-spacing:-.02em;margin-bottom:11px}
+.wk-h span{display:block;font-size:11px;font-weight:700;color:var(--ink3);margin-top:2px}
+.wk-list{display:flex;flex-direction:column;gap:6px}
+.wk-row{display:flex;align-items:center;gap:8px}
+.wk-ic{font-size:14px;flex:none;width:19px;text-align:center}
+.wk-t{flex:none;width:112px;font-size:12px;font-weight:800;color:var(--ink2)}
+.wk-track{flex:1;min-width:40px;height:9px;background:var(--line2);border-radius:999px;overflow:hidden}
+.wk-track i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#7B61F2,#A78BFA)}
+.wk-row:first-child .wk-track i{background:linear-gradient(90deg,#D64545,#F0663B)}
+.wk-n{flex:none;width:44px;text-align:right;font-size:12.5px;font-weight:900;font-variant-numeric:tabular-nums}
+.wk-n em{font-style:normal;font-size:9.5px;font-weight:700;color:var(--ink3);margin-left:1px}
+.wk-d{flex:none;width:36px;text-align:right;font-size:11px;font-weight:900;color:var(--faint)}
+.wk-d.good{color:#2FA84F}.wk-d.bad{color:#D64545}
+.wk-read{margin-top:12px;background:#F7F9FC;border:1px dashed var(--line);border-radius:12px;padding:11px 13px;font-size:12px;font-weight:700;color:var(--ink2);line-height:1.7}
+.wk-read b{font-weight:900;color:var(--ink)}
+.wk-note{margin-top:9px;font-size:11px;font-weight:700;color:var(--ink3);line-height:1.6}
+@media(max-width:560px){.wk-t{width:82px;font-size:11px}}
+
+/* ===== 도전 문제 (킬러문항 · 풀이 서술) ===== */
+.ch-hero{background:linear-gradient(135deg,#3A2B5E,#6B4FA0);border-radius:18px;padding:17px;color:#fff;text-align:center;margin-bottom:12px}
+.ch-hi{font-size:38px;line-height:1.1}
+.ch-hn{font-size:18px;font-weight:900;margin-top:3px;letter-spacing:-.02em}
+.ch-hd{font-size:11.5px;font-weight:800;color:rgba(255,255,255,.68);margin-top:3px}
+.ch-ht{font-size:11.5px;font-weight:900;background:rgba(255,255,255,.16);border-radius:999px;padding:5px 13px;display:inline-block;margin-top:9px}
+.ch-warn{background:#FFF8E8;border:1px solid #F0DFB4;border-radius:14px;padding:11px 13px;font-size:12px;font-weight:800;color:#8A6209;line-height:1.6;margin-bottom:12px}
+.ch-card{border:1px solid var(--line);border-radius:16px;padding:13px 15px;margin-bottom:9px;background:var(--card);cursor:pointer;transition:.14s}
+.ch-card:hover{border-color:#8B5CF6;box-shadow:0 8px 20px -12px rgba(107,79,160,.5)}
+.ch-card.done{border-color:#BFE6CE;background:#F6FCF8}
+.ch-ct{display:flex;align-items:center;gap:7px;margin-bottom:5px;flex-wrap:wrap}
+.ch-sub{font-size:10.5px;font-weight:900;background:#EFE9FB;color:#6B4FA0;border-radius:999px;padding:3px 9px}
+.ch-star{font-size:12px;font-weight:900;color:#E8A33C;letter-spacing:1px}
+.ch-star.big{font-size:15px}
+.ch-pass{margin-left:auto;font-size:10.5px;font-weight:900;background:var(--brand);color:#fff;border-radius:999px;padding:3px 9px}
+.ch-again{margin-left:auto;font-size:10.5px;font-weight:900;background:var(--sun-s,#FFF4DF);color:#8A5A00;border-radius:999px;padding:3px 9px}
+.ch-new{margin-left:auto;font-size:10.5px;font-weight:900;background:var(--line2);color:var(--ink3);border-radius:999px;padding:3px 9px}
+.ch-cu{font-size:14.5px;font-weight:900;letter-spacing:-.02em}
+.ch-cm{display:flex;gap:12px;margin-top:6px;font-size:11px;font-weight:800;color:var(--ink3);flex-wrap:wrap}
+.ch-qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
+.ch-pt{margin-left:auto;font-size:11.5px;font-weight:900;color:var(--lime-ink);background:var(--lime-s);border-radius:999px;padding:4px 11px}
+.ch-q{font-size:16px;font-weight:800;line-height:1.75;background:#FAFBFD;border:1px solid var(--line);border-radius:16px;padding:16px;letter-spacing:-.01em}
+.ch-q b{color:#6B4FA0}
+.ch-poem{margin-top:10px;padding:12px 14px;background:#fff;border-left:3px solid #8B5CF6;border-radius:0 10px 10px 0;font-size:14px;font-weight:700;color:var(--ink2);line-height:2}
+.ch-guide{margin-top:11px;background:#F4F1FC;border:1px solid #DED5F5;border-radius:15px;padding:13px 15px}
+.ch-guide b{font-size:12.5px;font-weight:900;color:#5B3F94;display:block;margin-bottom:7px}
+.ch-guide ol{margin:0;padding-left:19px}
+.ch-guide li{font-size:12.5px;font-weight:800;color:var(--ink2);line-height:1.9}
+.ch-guide li em{font-style:normal;font-size:10.5px;font-weight:900;color:#6B4FA0;background:#fff;border-radius:999px;padding:1px 7px;margin-left:4px}
+.ch-guide&gt;span{display:block;font-size:11px;font-weight:800;color:#7E6AA8;margin-top:8px;line-height:1.55}
+.ch-ta{width:100%;min-height:200px;margin-top:12px;border:2px solid var(--line);border-radius:16px;padding:14px;font-size:14px;font-weight:600;line-height:1.85;font-family:inherit;resize:vertical;outline:none;letter-spacing:-.01em}
+.ch-ta:focus{border-color:#8B5CF6}
+.ch-res{border-radius:18px;padding:18px;text-align:center;margin-bottom:13px}
+.ch-res.ok{background:linear-gradient(135deg,#1E7A45,#2FA84F);color:#fff}
+.ch-res.ng{background:linear-gradient(135deg,#8A6209,#C08A1E);color:#fff}
+.ch-rs{font-size:46px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.ch-rs span{font-size:17px;margin-left:3px}
+.ch-rl{font-size:13px;font-weight:900;margin-top:6px}
+.ch-rub,.ch-mine,.ch-model{border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:11px;background:var(--card)}
+.ch-rh{font-size:12.5px;font-weight:900;color:var(--ink);margin-bottom:9px}
+.ch-step{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:12px;background:#FBFBFD;border:1px solid var(--line);margin-bottom:5px}
+.ch-step.hit{background:#F3FBF6;border-color:#C6E8D4}
+.ch-sc{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;background:#F0D9D9;color:#C23B3B;flex:none}
+.ch-step.hit .ch-sc{background:var(--brand);color:#fff}
+.ch-st{flex:1;min-width:0;font-size:12.5px;font-weight:800;color:var(--ink2)}
+.ch-sp{flex:none;font-size:11.5px;font-weight:900;color:var(--ink3)}
+.ch-step.hit .ch-sp{color:var(--brand)}
+.ch-minet{font-size:13px;font-weight:600;line-height:1.8;color:var(--ink2);background:#FAFBFD;border-radius:12px;padding:12px;white-space:pre-wrap}
+.ch-review{background:#EFF4FE;border:1px solid #D3E0F8;border-radius:14px;padding:11px 13px;font-size:12px;font-weight:800;color:#2B4A82;line-height:1.65;margin-bottom:11px}
+.ch-model{font-size:13.5px;font-weight:700;line-height:1.9;color:var(--ink2)}
+.ch-model b{color:#6B4FA0}
+.ch-hall{margin-top:14px;border:1px solid var(--line);border-radius:16px;padding:14px;background:#FCFBFF}
+.ch-hrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.ch-hrow:last-child{border:0}
+.ch-hrow .hi2{font-size:19px;flex:none}
+.ch-hrow b{display:block;font-size:13px;font-weight:900}
+.ch-hrow span{font-size:11px;font-weight:700;color:var(--ink3)}
+.ch-hrow .hw{margin-left:auto;flex:none;font-size:10.5px;font-weight:900;color:var(--ink3)}
+.ch-note{margin-top:13px;background:var(--line2);border-radius:14px;padding:12px 14px;font-size:11.5px;font-weight:800;color:var(--ink2);line-height:1.7}
+.ch-note b{color:var(--ink)}
+
+/* ===== 보상 상점 ===== */
+.sh-top{display:flex;align-items:center;gap:11px;background:linear-gradient(135deg,#232651,#343873);border-radius:17px;padding:14px 16px;color:#fff;margin-bottom:13px}
+.sh-coin{font-size:30px;flex:none}
+.sh-tb{flex:1;min-width:0}
+.sh-tb b{display:block;font-size:19px;font-weight:900;letter-spacing:-.02em}
+.sh-tb span{font-size:11px;font-weight:800;color:rgba(255,255,255,.6)}
+.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(max-width:560px){.sh-grid{grid-template-columns:1fr}}
+.sh-it{border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--card);display:flex;flex-direction:column;gap:7px}
+.sh-it.owned{border-color:#BFE6CE;background:#F5FBF7}
+.sh-ih{display:flex;align-items:center;gap:9px}
+.sh-ii{width:38px;height:38px;border-radius:12px;background:var(--line2);display:grid;place-items:center;font-size:19px;flex:none}
+.sh-in{flex:1;min-width:0}
+.sh-in b{display:block;font-size:13px;font-weight:900;letter-spacing:-.02em}
+.sh-in span{font-size:10.5px;font-weight:700;color:var(--ink3);line-height:1.4;display:block}
+.sh-buy{width:100%;border:0;border-radius:11px;padding:9px;font-size:12px;font-weight:900;font-family:inherit;background:var(--lime);color:var(--lime-ink);cursor:pointer}
+.sh-buy.off{background:var(--line2);color:var(--faint);cursor:not-allowed}
+.sh-buy.own{background:var(--brand-s);color:var(--brand)}
+.sh-have{font-size:10px;font-weight:900;background:var(--brand);color:#fff;border-radius:999px;padding:2px 7px;flex:none}
+.sh-note{margin-top:12px;border:1px dashed var(--line);border-radius:14px;padding:11px 13px;font-size:11.5px;font-weight:800;color:var(--ink2);line-height:1.6}
+.sh-tabs{display:flex;gap:6px;margin-bottom:11px}
+.sh-tab{flex:1;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px;font-size:12.5px;font-weight:900;color:var(--ink3);font-family:inherit;cursor:pointer}
+.sh-tab.on{background:#232651;border-color:#232651;color:#fff}
+.sh-ship{font-size:10px;font-weight:900;color:var(--sky);background:var(--s-liveb,#E8F1FD);border-radius:999px;padding:2px 7px;display:inline-block;margin-top:2px}
+.sh-stock{font-size:10px;font-weight:800;color:var(--ink3)}
+.sh-stock b{color:#E23B3B}
+.sh-ord{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:13px;padding:9px 11px;margin-bottom:5px;background:var(--card)}
+.sh-ord .oi{width:30px;height:30px;border-radius:10px;background:var(--line2);display:grid;place-items:center;font-size:15px;flex:none}
+.sh-ord .ob{flex:1;min-width:0}
+.sh-ord .ob b{display:block;font-size:12.5px;font-weight:900}
+.sh-ord .ob span{font-size:10.5px;font-weight:700;color:var(--ink3)}
+.sh-ord .os{flex:none;font-size:10px;font-weight:900;border-radius:999px;padding:3px 9px;background:var(--sun-s);color:var(--sun-ink)}
+.sh-ord .os.done{background:var(--brand-s);color:var(--brand)}
 /* 피드백 과정 스테퍼 */
 .fbp{display:flex;align-items:flex-start;margin-bottom:12px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
 .fbp::-webkit-scrollbar{display:none}
@@ -2979,8 +3305,9 @@ function renderPush(){
 /* ===== 학습 게임화 — 레벨·XP·미션·정복도 (성적과 별개로 &quot;하면 오르는&quot; 축) ===== */
 var GAME={
  level:7, xp:1240, need:1600,         /* 플레이어 레벨 — 성적 아니라 누적 학습량 */
- streak:5, best:9,
+ streak:5, best:9, freeze:1,          /* 스트릭 프리즈 보유 */
  weekXp:380, weekGoal:600,
+ point:2860, monthPoint:2860,         /* 상점에서 쓰는 포인트 (XP와 같이 쌓임) */
  /* 활동별 XP */
  xpTable:{live:30,lec:25,check:25,prob:20,word:20,exam:25,teuk:35},
  badges:[
@@ -3045,6 +3372,12 @@ function todayMissions(){
   .filter(function(x){var st=x.b[6]||{};return x.b[0]===TODAY &amp;&amp; !st.ext;})
   .sort(function(a,z){return a.b[1]-z.b[1];});
 }
+function myLeagueRank(){var r=leagueRows(),k=0;r.forEach(function(x,i){if(x.me)k=i+1;});return k;}
+function myChalRank(){var r=CHAL.ranks.slice().sort(function(a,z){return z.pt-a.pt;}),k=0;r.forEach(function(x,i){if(x.me)k=i+1;});return k;}
+function nextGoalLabel(){
+ var near=SHOP.items.filter(function(x){return x.cost&gt;GAME.point;}).sort(function(a,z){return a.cost-z.cost;})[0];
+ return near? near.ic+&#x27; &#x27;+near.n+&#x27;까지 &#x27;+(near.cost-GAME.point).toLocaleString()+&#x27;P&#x27; : &#x27;전부 교환 가능 🎉&#x27;;
+}
 function renderGameBar(){
  var el=document.getElementById(&#x27;gameBar&#x27;); if(!el)return;
  var ms=todayMissions();
@@ -3090,7 +3423,20 @@ function renderGameBar(){
        &#x27;&lt;div class=&quot;gb-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&#x27;+
        &#x27;&lt;div class=&quot;gb-sub&quot;&gt;오늘 획득 &lt;b&gt;+&#x27;+todayXp+&#x27;&lt;/b&gt; · 남은 미션 다 하면 &lt;b class=&quot;lime&quot;&gt;+&#x27;+restXp+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;+
      &#x27;&lt;/div&gt;&#x27;+
-     &#x27;&lt;div class=&quot;gb-streak&quot;&gt;&lt;div class=&quot;gb-fire&quot;&gt;🔥&lt;/div&gt;&lt;div class=&quot;gb-sv&quot;&gt;&#x27;+GAME.streak+&#x27;일&lt;/div&gt;&lt;div class=&quot;gb-sl&quot;&gt;연속 학습 · 최고 &#x27;+GAME.best+&#x27;일&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;gb-streak&quot;&gt;&lt;div class=&quot;gb-fire&quot;&gt;🔥&lt;/div&gt;&lt;div class=&quot;gb-sv&quot;&gt;&#x27;+GAME.streak+&#x27;일&lt;/div&gt;&lt;div class=&quot;gb-sl&quot;&gt;연속 학습 · 최고 &#x27;+GAME.best+&#x27;일&#x27;+(GAME.freeze?&#x27;&lt;br&gt;🧊 프리즈 &#x27;+GAME.freeze+&#x27;개&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;/div&gt;&#x27;+
+   /* 1.5행: 도전 · 리그 · 포인트 상점 */
+   &#x27;&lt;div class=&quot;gb-row15 three&quot;&gt;&#x27;+
+     &#x27;&lt;button class=&quot;gb-wide ch&quot; onclick=&quot;openChal()&quot;&gt;&lt;span class=&quot;gw-ic&quot;&gt;🏔&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;gw-b&quot;&gt;&lt;b&gt;도전 문제 ★5&lt;/b&gt;&lt;span&gt;풀이 과정까지 서술 — &lt;em&gt;&#x27;+
+         CHAL.probs.filter(function(p){return chalPassed(p.id);}).length+&#x27;/&#x27;+CHAL.probs.length+&#x27; 통과&lt;/em&gt; · 도전 리그 &#x27;+myChalRank()+&#x27;위&lt;/span&gt;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;gw-ar&quot;&gt;›&lt;/span&gt;&lt;/button&gt;&#x27;+
+     &#x27;&lt;button class=&quot;gb-wide lg&quot; onclick=&quot;openLeague()&quot;&gt;&lt;span class=&quot;gw-ic&quot;&gt;&#x27;+LEAGUE.tier.ic+&#x27;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;gw-b&quot;&gt;&lt;b&gt;주간 리그 — &#x27;+LEAGUE.tier.n+&#x27;&lt;/b&gt;&lt;span&gt;같은 학년 20명 중 &lt;em&gt;&#x27;+myLeagueRank()+&#x27;위&lt;/em&gt; · 성적 아닌 공부한 양으로&lt;/span&gt;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;gw-ar&quot;&gt;›&lt;/span&gt;&lt;/button&gt;&#x27;+
+     &#x27;&lt;button class=&quot;gb-wide sh&quot; onclick=&quot;openShop()&quot;&gt;&lt;span class=&quot;gw-ic&quot;&gt;🪙&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;gw-b&quot;&gt;&lt;b&gt;&#x27;+GAME.point.toLocaleString()+&#x27; P&lt;/b&gt;&lt;span&gt;모아서 &lt;em&gt;학용품·도서&lt;/em&gt;로 교환 — &#x27;+nextGoalLabel()+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;gw-ar&quot;&gt;›&lt;/span&gt;&lt;/button&gt;&#x27;+
    &#x27;&lt;/div&gt;&#x27;+
    /* 2행: 오늘의 미션 */
    &#x27;&lt;div class=&quot;gb-mis&quot;&gt;&#x27;+
@@ -3113,6 +3459,349 @@ function renderGameBar(){
      &#x27;&lt;div class=&quot;cq-path&quot;&gt;&#x27;+nodes+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
   &#x27;&lt;/div&gt;&#x27;;
 }
+/* ===== 콤보 — &quot;푸는 순간&quot;의 재미 (연속 정답) ===== */
+var COMBO={n:0,best:0,day:0,hits:0,bonus:0,
+ tiers:[{n:3,ic:&#x27;🔥&#x27;,t:&#x27;3연속&#x27;,xp:5,m:&#x27;불붙었다!&#x27;},
+        {n:5,ic:&#x27;⚡&#x27;,t:&#x27;5연속&#x27;,xp:12,m:&#x27;연속 5개 — 감 잡았어&#x27;},
+        {n:8,ic:&#x27;💎&#x27;,t:&#x27;8연속&#x27;,xp:25,m:&#x27;8연속! 이 단원 네 거다&#x27;},
+        {n:12,ic:&#x27;🌟&#x27;,t:&#x27;12연속&#x27;,xp:50,m:&#x27;12연속 — 오늘 미쳤다&#x27;}]};
+function comboTier(){var t=null;COMBO.tiers.forEach(function(x){if(COMBO.n&gt;=x.n)t=x;});return t;}
+function comboHit(ok){
+ if(ok){
+  COMBO.n++; COMBO.hits++; COMBO.day++;
+  if(COMBO.n&gt;COMBO.best)COMBO.best=COMBO.n;
+  var hit=null;
+  COMBO.tiers.forEach(function(x){if(x.n===COMBO.n)hit=x;});
+  if(hit){COMBO.bonus+=hit.xp;addPoint(hit.xp);comboPop(hit,null);}
+ }else{
+  var lost=COMBO.n; COMBO.n=0;
+  if(lost&gt;=3)comboPop(null,lost);
+ }
+ renderComboHUD();
+ renderGameBar(); if(typeof renderGameBarM===&#x27;function&#x27;)renderGameBarM();
+}
+function comboReset(){COMBO.n=0;renderComboHUD();}
+/* 문제 화면 상단에 끼우는 콤보 미터 */
+function comboHUD(){
+ var t=comboTier(), nx=null;
+ COMBO.tiers.forEach(function(x){if(!nx&amp;&amp;COMBO.n&lt;x.n)nx=x;});
+ var pips=&#x27;&#x27;;
+ var target=nx?nx.n:COMBO.tiers[COMBO.tiers.length-1].n;
+ for(var i=0;i&lt;Math.min(target,12);i++)pips+=&#x27;&lt;i class=&quot;&#x27;+(i&lt;COMBO.n?&#x27;on&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;/i&gt;&#x27;;
+ return &#x27;&lt;div class=&quot;cmb-hud&quot; id=&quot;comboHUD&quot;&gt;&#x27;+
+  &#x27;&lt;span class=&quot;cmb-ic&quot;&gt;&#x27;+(t?t.ic:(COMBO.n?&#x27;✓&#x27;:&#x27;🎯&#x27;))+&#x27;&lt;/span&gt;&#x27;+
+  &#x27;&lt;div class=&quot;cmb-b&quot;&gt;&lt;div class=&quot;cmb-n&quot;&gt;&#x27;+(COMBO.n?&#x27;&lt;em&gt;&#x27;+COMBO.n+&#x27;연속&lt;/em&gt; 정답&#x27;:&#x27;연속 정답 노려보자&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;cmb-d&quot;&gt;&#x27;+(nx?nx.n-COMBO.n+&#x27;개 더 맞히면 &#x27;+nx.ic+&#x27; &#x27;+nx.t+&#x27; 보너스 +&#x27;+nx.xp+&#x27;P&#x27;:&#x27;최고 등급 유지 중 🌟&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;cmb-pips&quot;&gt;&#x27;+pips+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;span class=&quot;cmb-best&quot;&gt;오늘 최고 &#x27;+COMBO.best+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+}
+function renderComboHUD(){
+ var el=document.getElementById(&#x27;comboHUD&#x27;); if(!el)return;
+ var tmp=document.createElement(&#x27;div&#x27;); tmp.innerHTML=comboHUD();
+ el.replaceWith(tmp.firstChild);
+}
+var cmbT;
+function comboPop(hit,lost){
+ var old=document.getElementById(&#x27;cmbPop&#x27;); if(old)old.remove();
+ var d=document.createElement(&#x27;div&#x27;); d.id=&#x27;cmbPop&#x27;; d.className=&#x27;cmbpop&#x27;+(lost?&#x27; brk&#x27;:&#x27;&#x27;);
+ d.innerHTML = lost
+  ? &#x27;&lt;div class=&quot;ci&quot;&gt;💥&lt;/div&gt;&lt;div class=&quot;cb2&quot;&gt;&lt;div class=&quot;cv&quot;&gt;&#x27;+lost+&#x27;연속 끊김&lt;/div&gt;&lt;div class=&quot;cm&quot;&gt;괜찮아 — 다시 쌓으면 돼&lt;/div&gt;&lt;/div&gt;&#x27;
+  : &#x27;&lt;div class=&quot;ci&quot;&gt;&#x27;+hit.ic+&#x27;&lt;/div&gt;&lt;div class=&quot;cb2&quot;&gt;&lt;div class=&quot;cv&quot;&gt;&#x27;+hit.t+&#x27;!&lt;/div&gt;&lt;div class=&quot;cx&quot;&gt;보너스 +&#x27;+hit.xp+&#x27;P&lt;/div&gt;&lt;div class=&quot;cm&quot;&gt;&#x27;+hit.m+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ document.body.appendChild(d);
+ clearTimeout(cmbT); cmbT=setTimeout(function(){var e=document.getElementById(&#x27;cmbPop&#x27;);if(e)e.remove();},lost?1500:2000);
+}
+
+/* ===== 포인트 (XP와 함께 쌓이고, 상점에서 씀) ===== */
+function addPoint(n){GAME.xp+=n;GAME.weekXp+=n;GAME.point+=n;GAME.monthPoint+=n;
+ while(GAME.xp&gt;=GAME.need){GAME.xp-=GAME.need;GAME.level++;GAME.need=Math.round(GAME.need*1.15);}}
+
+/* ===== 주간 리그 — 노력량(P) 기준. 성적 비교 아님 ===== */
+var LEAGUE={
+ tier:{ic:&#x27;🥈&#x27;,n:&#x27;실버 리그&#x27;,d:&#x27;같은 학년 20명 · 매주 월요일 리셋&#x27;},
+ period:&#x27;10/20(월) ~ 10/26(일)&#x27;,
+ upN:5, dnN:5,
+ rows:[
+  {n:&#x27;유서진&#x27;,g:&#x27;중2&#x27;,xp:742,av:&#x27;🦅&#x27;},
+  {n:&#x27;한도윤&#x27;,g:&#x27;중2&#x27;,xp:688,av:&#x27;🐉&#x27;},
+  {n:&#x27;오지후&#x27;,g:&#x27;중2&#x27;,xp:611,av:&#x27;🦉&#x27;},
+  {n:&#x27;김민준&#x27;,g:&#x27;중2&#x27;,xp:380,av:&#x27;🦉&#x27;,me:1},
+  {n:&#x27;배하린&#x27;,g:&#x27;중2&#x27;,xp:372,av:&#x27;🐤&#x27;},
+  {n:&#x27;정시우&#x27;,g:&#x27;중2&#x27;,xp:354,av:&#x27;🦉&#x27;},
+  {n:&#x27;문채원&#x27;,g:&#x27;중2&#x27;,xp:341,av:&#x27;🐤&#x27;},
+  {n:&#x27;신예준&#x27;,g:&#x27;중2&#x27;,xp:318,av:&#x27;🐣&#x27;},
+  {n:&#x27;조아인&#x27;,g:&#x27;중2&#x27;,xp:295,av:&#x27;🐤&#x27;},
+  {n:&#x27;백건우&#x27;,g:&#x27;중2&#x27;,xp:271,av:&#x27;🐣&#x27;},
+  {n:&#x27;서윤아&#x27;,g:&#x27;중2&#x27;,xp:240,av:&#x27;🐣&#x27;},
+  {n:&#x27;남지호&#x27;,g:&#x27;중2&#x27;,xp:216,av:&#x27;🌱&#x27;},
+  {n:&#x27;황다은&#x27;,g:&#x27;중2&#x27;,xp:188,av:&#x27;🐣&#x27;},
+  {n:&#x27;권태현&#x27;,g:&#x27;중2&#x27;,xp:152,av:&#x27;🌱&#x27;},
+  {n:&#x27;노하늘&#x27;,g:&#x27;중2&#x27;,xp:131,av:&#x27;🌱&#x27;},
+  {n:&#x27;임서후&#x27;,g:&#x27;중2&#x27;,xp:96,av:&#x27;🌱&#x27;},
+  {n:&#x27;고윤서&#x27;,g:&#x27;중2&#x27;,xp:74,av:&#x27;🌱&#x27;},
+  {n:&#x27;류지안&#x27;,g:&#x27;중2&#x27;,xp:52,av:&#x27;🌱&#x27;},
+  {n:&#x27;전예성&#x27;,g:&#x27;중2&#x27;,xp:31,av:&#x27;🌱&#x27;},
+  {n:&#x27;하민재&#x27;,g:&#x27;중2&#x27;,xp:12,av:&#x27;🌱&#x27;}
+ ]};
+function leagueRows(){
+ var r=LEAGUE.rows.slice();
+ /* 내 XP는 실시간 반영 */
+ r.forEach(function(x){if(x.me)x.xp=GAME.weekXp;});
+ r.sort(function(a,z){return z.xp-a.xp;});
+ return r;
+}
+function openLeague(){
+ var d=document.getElementById(&#x27;lgOvl&#x27;);
+ if(!d){d=document.createElement(&#x27;div&#x27;);d.id=&#x27;lgOvl&#x27;;d.className=&#x27;wordovl&#x27;;
+  d.innerHTML=&#x27;&lt;div class=&quot;wordsheet tr&quot;&gt;&lt;div class=&quot;wtop&quot;&gt;&lt;button class=&quot;wx&quot; onclick=&quot;closeLeague()&quot;&gt;✕&lt;/button&gt;&lt;span class=&quot;sp-title&quot;&gt;주간 리그&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wbody trbody&quot; id=&quot;lgBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  document.body.appendChild(d);}
+ renderLeague(); d.classList.add(&#x27;show&#x27;);
+}
+function closeLeague(){var o=document.getElementById(&#x27;lgOvl&#x27;);if(o)o.classList.remove(&#x27;show&#x27;);}
+function renderLeague(){
+ var rows=leagueRows(), myRank=0;
+ rows.forEach(function(x,i){if(x.me)myRank=i+1;});
+ var n=rows.length;
+ var html=&#x27;&lt;div class=&quot;lg-hero&quot;&gt;&lt;div class=&quot;li&quot;&gt;&#x27;+LEAGUE.tier.ic+&#x27;&lt;/div&gt;&lt;div class=&quot;ln&quot;&gt;&#x27;+LEAGUE.tier.n+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ld&quot;&gt;&#x27;+LEAGUE.tier.d+&#x27; · &#x27;+LEAGUE.period+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;lt&quot;&gt;현재 &#x27;+myRank+&#x27;위 · &#x27;+(myRank&lt;=LEAGUE.upN?&#x27;승급권 안 🎉&#x27;:(myRank&lt;=LEAGUE.upN+1?&#x27;한 계단만 더 올라가면 승급권&#x27;:&#x27;승급까지 &#x27;+(rows[LEAGUE.upN-1].xp-GAME.weekXp+1)+&#x27;P&#x27;))+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ html+=&#x27;&lt;div class=&quot;lg-zone up&quot;&gt;▲ 승급권 (1~&#x27;+LEAGUE.upN+&#x27;위) — 골드 리그로&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&#x27;;
+ rows.forEach(function(x,i){
+  var rk=i+1;
+  if(rk===LEAGUE.upN+1)html+=&#x27;&lt;div class=&quot;lg-zone&quot;&gt;유지권&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&#x27;;
+  if(rk===n-LEAGUE.dnN+1)html+=&#x27;&lt;div class=&quot;lg-zone dn&quot;&gt;▼ 강등권 (&#x27;+(n-LEAGUE.dnN+1)+&#x27;~&#x27;+n+&#x27;위)&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&#x27;;
+  var cls=x.me?&#x27;me&#x27;:(rk&lt;=LEAGUE.upN?&#x27;up&#x27;:(rk&gt;n-LEAGUE.dnN?&#x27;dn&#x27;:&#x27;&#x27;));
+  html+=&#x27;&lt;div class=&quot;lg-row &#x27;+cls+&#x27;&quot;&gt;&lt;span class=&quot;lg-rk&quot;&gt;&#x27;+(rk&lt;=3?[&#x27;🥇&#x27;,&#x27;🥈&#x27;,&#x27;🥉&#x27;][rk-1]:rk)+&#x27;&lt;/span&gt;&#x27;+
+   &#x27;&lt;span class=&quot;lg-av&quot;&gt;&#x27;+x.av+&#x27;&lt;/span&gt;&#x27;+
+   &#x27;&lt;span class=&quot;lg-nm&quot;&gt;&#x27;+(x.me?&#x27;&lt;b&gt;나 (&#x27;+x.n+&#x27;)&lt;/b&gt;&#x27;:x.n)+&#x27;&lt;span&gt;&#x27;+x.g+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;+
+   &#x27;&lt;span class=&quot;lg-xp&quot;&gt;&#x27;+x.xp.toLocaleString()+&#x27;&lt;em&gt;P&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;&#x27;;
+ });
+ html+=&#x27;&lt;div class=&quot;lg-note&quot;&gt;🔒 &lt;b&gt;성적이 아니라 &quot;공부한 양&quot;으로만 겨뤄요.&lt;/b&gt; 점수가 낮아도 꾸준히 하면 1위가 될 수 있고, 잘하는 애가 안 하면 내려가요 — 그래서 아무나 올라갈 수 있어요.&lt;br&gt;&lt;br&gt;리그 점수(P)는 &lt;b&gt;레벨 XP와 같이&lt;/b&gt; 쌓여요. 콤보 보너스도 들어가요.&lt;/div&gt;&#x27;;
+ document.getElementById(&#x27;lgBody&#x27;).innerHTML=html;
+}
+
+/* ===== 도전 문제 (킬러문항) — 풀이 과정을 직접 서술해서 제출 ===== */
+/* 주간 리그가 &quot;노력량&quot;이라면, 도전 리그는 &quot;실력&quot; — 두 판을 분리해서 상·하위권 모두 겨룰 판이 있게 */
+var CHAL={
+ week:&#x27;10/20(월) ~ 10/26(일)&#x27;,
+ cur:0, mode:&#x27;list&#x27;,
+ probs:[
+  {id:&#x27;CH-41&#x27;,sub:&#x27;수학&#x27;,unit:&#x27;일차함수 × 도형 융합&#x27;,star:5,pt:500,
+   q:&#x27;직선 &lt;b&gt;y = 2x + 4&lt;/b&gt; 와 &lt;b&gt;y = −x + 10&lt;/b&gt;, 그리고 &lt;b&gt;x축&lt;/b&gt;으로 둘러싸인 삼각형의 넓이를 구하고, &lt;b&gt;풀이 과정을 단계별로&lt;/b&gt; 쓰시오.&#x27;,
+   solvers:14,tries:187,
+   steps:[
+    {t:&#x27;두 직선의 교점을 구함 (2, 8)&#x27;,re:/교점|연립|2x\+4\s*=|\(2[,\s]+8\)/,p:30},
+    {t:&#x27;각 직선의 x절편을 구함 (−2, 0), (10, 0)&#x27;,re:/x\s*절편|y\s*=\s*0|-2|10/,p:25},
+    {t:&#x27;밑변 길이 12를 구함&#x27;,re:/12|밑변/,p:20},
+    {t:&#x27;넓이 = ½ × 12 × 8 = 48&#x27;,re:/48/,p:25}
+   ],
+   model:&#x27;① y=2x+4 와 y=−x+10 을 연립 → 2x+4=−x+10 → 3x=6 → x=2, y=8. 교점 (2, 8)&lt;br&gt;② x축과의 교점: y=0 대입 → 2x+4=0 → x=−2 / −x+10=0 → x=10&lt;br&gt;③ 밑변 = 10 − (−2) = 12, 높이 = 교점의 y좌표 = 8&lt;br&gt;④ 넓이 = ½ × 12 × 8 = &lt;b&gt;48&lt;/b&gt;&#x27;},
+  {id:&#x27;CH-42&#x27;,sub:&#x27;수학&#x27;,unit:&#x27;연립방정식 활용 (농도)&#x27;,star:5,pt:500,
+   q:&#x27;8% 소금물과 15% 소금물을 섞어 &lt;b&gt;12% 소금물 350g&lt;/b&gt;을 만들었다. 각각 몇 g씩 섞었는지 구하고, &lt;b&gt;식을 세운 이유까지&lt;/b&gt; 쓰시오.&#x27;,
+   solvers:9,tries:143,
+   steps:[
+    {t:&#x27;미지수를 설정함 (x + y = 350)&#x27;,re:/x\s*\+\s*y\s*=\s*350|350/,p:25},
+    {t:&#x27;소금의 양으로 두 번째 식을 세움&#x27;,re:/0\.08|8%|소금의\s*양|0\.15|15%/,p:30},
+    {t:&#x27;연립해서 풀이 과정을 보임&#x27;,re:/연립|대입|소거/,p:20},
+    {t:&#x27;답 x=150, y=200&#x27;,re:/150/,p:25}
+   ],
+   model:&#x27;① 8% 소금물 x g, 15% 소금물 y g → x + y = 350&lt;br&gt;② 섞기 전후 &lt;b&gt;소금의 양은 변하지 않으므로&lt;/b&gt; 0.08x + 0.15y = 0.12 × 350 = 42&lt;br&gt;③ x = 350 − y 를 대입 → 0.08(350−y) + 0.15y = 42 → 28 + 0.07y = 42 → y = 200&lt;br&gt;④ x = &lt;b&gt;150g&lt;/b&gt;, y = &lt;b&gt;200g&lt;/b&gt;&#x27;},
+  {id:&#x27;CH-43&#x27;,sub:&#x27;국어&#x27;,unit:&#x27;시의 심상 — 서술형&#x27;,star:5,pt:450,
+   q:&#x27;다음 시구에서 화자의 정서가 &lt;b&gt;어떻게 변화&lt;/b&gt;하는지, &lt;b&gt;근거가 되는 시어를 두 개 이상 들어&lt;/b&gt; 서술하시오.&lt;div class=&quot;ch-poem&quot;&gt;… 푸른 하늘을 보다가 / 문득 어머니가 떠올라 / 눈이 시려 고개를 숙였다 …&lt;/div&gt;&#x27;,
+   solvers:21,tries:168,
+   steps:[
+    {t:&#x27;처음 정서를 밝힘 (평온·동경)&#x27;,re:/평온|동경|밝|희망|푸른/,p:25},
+    {t:&#x27;변화의 계기를 지적함 (어머니)&#x27;,re:/어머니|계기|떠올/,p:25},
+    {t:&#x27;바뀐 정서를 밝힘 (그리움·슬픔)&#x27;,re:/그리움|슬픔|서글|애상|시려/,p:25},
+    {t:&#x27;근거 시어를 2개 이상 인용함&#x27;,re:/(푸른\s*하늘|눈이\s*시려|고개를\s*숙)/,p:25}
+   ],
+   model:&#x27;처음엔 &quot;푸른 하늘&quot;을 바라보는 &lt;b&gt;평온하고 밝은 정서&lt;/b&gt;로 시작한다. 그러나 &quot;문득 어머니가 떠올라&quot;에서 정서가 전환되고, &quot;눈이 시려&quot;, &quot;고개를 숙였다&quot;는 시어를 통해 &lt;b&gt;그리움과 서글픔&lt;/b&gt;으로 바뀐다. 즉 시선이 하늘(위) → 땅(아래)으로 내려가는 움직임이 정서 변화를 함께 드러낸다.&#x27;}
+ ],
+ /* 도전 리그 — 난이도 점수 누적 */
+ ranks:[
+  {n:&#x27;유서진&#x27;,g:&#x27;중2&#x27;,pt:2400,solved:6,av:&#x27;🦅&#x27;},
+  {n:&#x27;한도윤&#x27;,g:&#x27;중2&#x27;,pt:1950,solved:5,av:&#x27;🐉&#x27;},
+  {n:&#x27;오지후&#x27;,g:&#x27;중2&#x27;,pt:1500,solved:4,av:&#x27;🦉&#x27;},
+  {n:&#x27;문채원&#x27;,g:&#x27;중2&#x27;,pt:950,solved:2,av:&#x27;🐤&#x27;},
+  {n:&#x27;김민준&#x27;,g:&#x27;중2&#x27;,pt:500,solved:1,av:&#x27;🦉&#x27;,me:1},
+  {n:&#x27;정시우&#x27;,g:&#x27;중2&#x27;,pt:450,solved:1,av:&#x27;🦉&#x27;},
+  {n:&#x27;배하린&#x27;,g:&#x27;중2&#x27;,pt:0,solved:0,av:&#x27;🐤&#x27;}
+ ],
+ hall:[
+  {n:&#x27;유서진&#x27;,w:&#x27;10/13 주&#x27;,d:&#x27;CH-38 · 5★ 만점 통과 (첫 시도)&#x27;},
+  {n:&#x27;한도윤&#x27;,w:&#x27;10/06 주&#x27;,d:&#x27;CH-35 · 5★ 만점 통과&#x27;},
+  {n:&#x27;오지후&#x27;,w:&#x27;09/29 주&#x27;,d:&#x27;CH-31 · 5★ 통과 (92점)&#x27;}
+ ],
+ results:{}   /* id → {score, hit:[], at} */
+};
+function chalPassed(id){var r=CHAL.results[id];return r&amp;&amp;r.score&gt;=70;}
+function openChal(idx){
+ var d=document.getElementById(&#x27;chOvl&#x27;);
+ if(!d){d=document.createElement(&#x27;div&#x27;);d.id=&#x27;chOvl&#x27;;d.className=&#x27;wordovl&#x27;;
+  d.innerHTML=&#x27;&lt;div class=&quot;wordsheet tr&quot;&gt;&lt;div class=&quot;wtop&quot;&gt;&lt;button class=&quot;wx&quot; onclick=&quot;closeChal()&quot;&gt;✕&lt;/button&gt;&lt;span class=&quot;sp-title&quot;&gt;도전 문제 · 킬러문항&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wbody trbody&quot; id=&quot;chBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  document.body.appendChild(d);}
+ if(idx===undefined){CHAL.mode=&#x27;list&#x27;;}else{CHAL.mode=&#x27;solve&#x27;;CHAL.cur=idx;}
+ renderChal(); d.classList.add(&#x27;show&#x27;);
+}
+function closeChal(){var o=document.getElementById(&#x27;chOvl&#x27;);if(o)o.classList.remove(&#x27;show&#x27;);}
+function stars(n){var s=&#x27;&#x27;;for(var i=0;i&lt;5;i++)s+=(i&lt;n?&#x27;★&#x27;:&#x27;☆&#x27;);return s;}
+function renderChal(){
+ var b=document.getElementById(&#x27;chBody&#x27;); if(!b)return;
+ if(CHAL.mode===&#x27;list&#x27;){
+  var done=CHAL.probs.filter(function(p){return chalPassed(p.id);}).length;
+  b.innerHTML=&#x27;&lt;div class=&quot;ch-hero&quot;&gt;&lt;div class=&quot;ch-hi&quot;&gt;🏔&lt;/div&gt;&lt;div class=&quot;ch-hn&quot;&gt;이번 주 도전 문제&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;ch-hd&quot;&gt;&#x27;+CHAL.week+&#x27; · 최고 난이도 ★5 · &lt;b&gt;풀이 과정을 직접 써서&lt;/b&gt; 제출해요&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;ch-ht&quot;&gt;&#x27;+done+&#x27; / &#x27;+CHAL.probs.length+&#x27; 통과 · 통과하면 &lt;b&gt;도전 리그&lt;/b&gt; 점수로 쌓여요&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ch-warn&quot;&gt;⚠️ 객관식이 아니에요. &lt;b&gt;답만 쓰면 0점&lt;/b&gt; — 단계별로 어떻게 생각했는지 써야 점수가 나와요. 틀려도 과정이 맞으면 부분 점수를 받아요.&lt;/div&gt;&#x27;+
+   CHAL.probs.map(function(p,i){
+     var r=CHAL.results[p.id], pass=chalPassed(p.id);
+     return &#x27;&lt;div class=&quot;ch-card&#x27;+(pass?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;openChal(&#x27;+i+&#x27;)&quot;&gt;&#x27;+
+      &#x27;&lt;div class=&quot;ch-ct&quot;&gt;&lt;span class=&quot;ch-sub&quot;&gt;&#x27;+p.sub+&#x27;&lt;/span&gt;&lt;span class=&quot;ch-star&quot;&gt;&#x27;+stars(p.star)+&#x27;&lt;/span&gt;&#x27;+
+        (pass?&#x27;&lt;span class=&quot;ch-pass&quot;&gt;통과 &#x27;+r.score+&#x27;점&lt;/span&gt;&#x27;:(r?&#x27;&lt;span class=&quot;ch-again&quot;&gt;&#x27;+r.score+&#x27;점 · 재도전&lt;/span&gt;&#x27;:&#x27;&lt;span class=&quot;ch-new&quot;&gt;도전 전&lt;/span&gt;&#x27;))+&#x27;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;ch-cu&quot;&gt;&#x27;+p.unit+&#x27;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;ch-cm&quot;&gt;&lt;span&gt;🪙 +&#x27;+p.pt+&#x27;P&lt;/span&gt;&lt;span&gt;👥 &#x27;+p.solvers+&#x27;명 통과 / &#x27;+p.tries+&#x27;명 시도 (&#x27;+Math.round(p.solvers/p.tries*100)+&#x27;%)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+   }).join(&#x27;&#x27;)+
+   &#x27;&lt;button class=&quot;wbtn&quot; style=&quot;margin-top:14px&quot; onclick=&quot;openChalLeague()&quot;&gt;🏆 도전 리그 순위 보기&lt;/button&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ch-note&quot;&gt;&lt;b&gt;왜 따로 있나요?&lt;/b&gt;&lt;br&gt;주간 리그는 &lt;b&gt;공부한 양&lt;/b&gt;으로 겨루고, 도전 리그는 &lt;b&gt;풀이 실력&lt;/b&gt;으로 겨뤄요. 판이 둘이라 — 아직 실력이 부족해도 꾸준히 하면 주간 리그 1등을 할 수 있고, 반대로 최상위권은 도전 리그에서 제대로 겨룰 수 있어요.&lt;/div&gt;&#x27;;
+  return;
+ }
+ var p=CHAL.probs[CHAL.cur], r=CHAL.results[p.id];
+ if(CHAL.mode===&#x27;result&#x27;&amp;&amp;r){
+  b.innerHTML=&#x27;&lt;div class=&quot;ch-res &#x27;+(r.score&gt;=70?&#x27;ok&#x27;:&#x27;ng&#x27;)+&#x27;&quot;&gt;&#x27;+
+    &#x27;&lt;div class=&quot;ch-rs&quot;&gt;&#x27;+r.score+&#x27;&lt;span&gt;점&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;ch-rl&quot;&gt;&#x27;+(r.score&gt;=70?&#x27;통과! 🎉 도전 리그에 &#x27;+p.pt+&#x27;P 반영&#x27;:&#x27;부분 점수 — 70점부터 통과예요&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ch-rub&quot;&gt;&lt;div class=&quot;ch-rh&quot;&gt;단계별 채점 — 과정에 점수가 붙어요&lt;/div&gt;&#x27;+
+    p.steps.map(function(s,i){
+      var hit=r.hit.indexOf(i)&gt;=0;
+      return &#x27;&lt;div class=&quot;ch-step&#x27;+(hit?&#x27; hit&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;span class=&quot;ch-sc&quot;&gt;&#x27;+(hit?&#x27;✓&#x27;:&#x27;✗&#x27;)+&#x27;&lt;/span&gt;&#x27;+
+        &#x27;&lt;span class=&quot;ch-st&quot;&gt;&#x27;+s.t+&#x27;&lt;/span&gt;&lt;span class=&quot;ch-sp&quot;&gt;&#x27;+(hit?&#x27;+&#x27;+s.p:&#x27;0&#x27;)+&#x27;점&lt;/span&gt;&lt;/div&gt;&#x27;;
+    }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ch-mine&quot;&gt;&lt;div class=&quot;ch-rh&quot;&gt;내가 쓴 풀이&lt;/div&gt;&lt;div class=&quot;ch-minet&quot;&gt;&#x27;+r.txt.replace(/&lt;/g,&#x27;&amp;lt;&#x27;).replace(/\n/g,&#x27;&lt;br&gt;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ch-review&quot;&gt;👩‍🏫 &lt;b&gt;AI가 1차 채점 → 담당 선생님이 최종 확인&lt;/b&gt;해요. 과정이 맞는데 표현이 달라서 ✗가 떴다면 선생님이 되살려줘요. (보통 하루 안)&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ch-model&quot;&gt;&lt;div class=&quot;ch-rh&quot;&gt;모범 풀이&lt;/div&gt;&#x27;+p.model+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;wresbtns&quot;&gt;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;CHAL.mode=\&#x27;solve\&#x27;;renderChal()&quot;&gt;✏️ 다시 쓰기&lt;/button&gt;&#x27;+
+   &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;CHAL.mode=\&#x27;list\&#x27;;renderChal()&quot;&gt;목록으로&lt;/button&gt;&lt;/div&gt;&#x27;;
+  return;
+ }
+ b.innerHTML=&#x27;&lt;div class=&quot;ch-qhead&quot;&gt;&lt;span class=&quot;ch-sub&quot;&gt;&#x27;+p.sub+&#x27; · &#x27;+p.unit+&#x27;&lt;/span&gt;&lt;span class=&quot;ch-star big&quot;&gt;&#x27;+stars(p.star)+&#x27;&lt;/span&gt;&#x27;+
+   &#x27;&lt;span class=&quot;ch-pt&quot;&gt;🪙 +&#x27;+p.pt+&#x27;P&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ch-q&quot;&gt;&#x27;+p.q+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ch-guide&quot;&gt;&lt;b&gt;이렇게 써야 점수가 나와요&lt;/b&gt;&lt;ol&gt;&#x27;+
+    p.steps.map(function(s){return &#x27;&lt;li&gt;&#x27;+s.t.replace(/\s*\(.*?\)\s*$/,&#x27;&#x27;)+&#x27; &lt;em&gt;&#x27;+s.p+&#x27;점&lt;/em&gt;&lt;/li&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/ol&gt;&lt;span&gt;답만 쓰면 0점이에요. 번호를 붙여 단계별로 쓰면 채점이 정확해져요.&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;textarea class=&quot;ch-ta&quot; id=&quot;chTA&quot; placeholder=&quot;① 두 직선을 연립하면…&amp;#10;② …&amp;#10;③ 따라서 답은 …&quot;&gt;&#x27;+((r&amp;&amp;r.txt)||&#x27;&#x27;)+&#x27;&lt;/textarea&gt;&#x27;+
+  &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;submitChal()&quot;&gt;제출하고 채점받기&lt;/button&gt;&#x27;+
+  &#x27;&lt;button class=&quot;wbtn sub&quot; style=&quot;margin-top:8px&quot; onclick=&quot;CHAL.mode=\&#x27;list\&#x27;;renderChal()&quot;&gt;← 목록&lt;/button&gt;&#x27;;
+}
+function submitChal(){
+ var p=CHAL.probs[CHAL.cur], el=document.getElementById(&#x27;chTA&#x27;);
+ var txt=(el.value||&#x27;&#x27;).trim();
+ if(txt.length&lt;15){el.style.borderColor=&#x27;#D64545&#x27;;el.placeholder=&#x27;풀이 과정을 단계별로 써주세요 — 답만으로는 채점이 안 돼요&#x27;;return;}
+ var hit=[],score=0;
+ p.steps.forEach(function(s,i){if(s.re.test(txt)){hit.push(i);score+=s.p;}});
+ var first=!CHAL.results[p.id];
+ var wasPass=chalPassed(p.id);
+ CHAL.results[p.id]={score:score,hit:hit,txt:txt,at:Date.now()};
+ if(score&gt;=70&amp;&amp;!wasPass){
+   addPoint(p.pt);
+   var me=CHAL.ranks.filter(function(x){return x.me;})[0];
+   if(me){me.pt+=p.pt;me.solved++;}
+   if(first)p.solvers++;
+   comboPop({ic:&#x27;🏔&#x27;,t:&#x27;도전 통과&#x27;,xp:p.pt,m:p.unit+&#x27; ★5 클리어!&#x27;},null);
+   notify(&#x27;chalPass&#x27;);
+ }
+ CHAL.mode=&#x27;result&#x27;; renderChal();
+ renderGameBar(); if(typeof renderGameBarM===&#x27;function&#x27;)renderGameBarM();
+}
+function openChalLeague(){
+ var b=document.getElementById(&#x27;chBody&#x27;); if(!b)return;
+ var rows=CHAL.ranks.slice().sort(function(a,z){return z.pt-a.pt;});
+ b.innerHTML=&#x27;&lt;div class=&quot;lg-hero&quot; style=&quot;background:linear-gradient(135deg,#3A2B5E,#6B4FA0)&quot;&gt;&lt;div class=&quot;li&quot;&gt;🏆&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ln&quot;&gt;도전 리그&lt;/div&gt;&lt;div class=&quot;ld&quot;&gt;★5 킬러문항 — 풀이 과정까지 통과한 점수만&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;lt&quot;&gt;&#x27;+CHAL.week+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+  rows.map(function(x,i){
+   var rk=i+1;
+   return &#x27;&lt;div class=&quot;lg-row &#x27;+(x.me?&#x27;me&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;span class=&quot;lg-rk&quot;&gt;&#x27;+(rk&lt;=3?[&#x27;🥇&#x27;,&#x27;🥈&#x27;,&#x27;🥉&#x27;][rk-1]:rk)+&#x27;&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;lg-av&quot;&gt;&#x27;+x.av+&#x27;&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;lg-nm&quot;&gt;&#x27;+(x.me?&#x27;&lt;b&gt;나 (&#x27;+x.n+&#x27;)&lt;/b&gt;&#x27;:x.n)+&#x27;&lt;span&gt;&#x27;+x.g+&#x27; · &#x27;+x.solved+&#x27;문제 통과&lt;/span&gt;&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;lg-xp&quot;&gt;&#x27;+x.pt.toLocaleString()+&#x27;&lt;em&gt;P&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+
+  &#x27;&lt;div class=&quot;ch-hall&quot;&gt;&lt;div class=&quot;ch-rh&quot;&gt;🏛 명예의 전당 — 만점 통과&lt;/div&gt;&#x27;+
+   CHAL.hall.map(function(h){
+    return &#x27;&lt;div class=&quot;ch-hrow&quot;&gt;&lt;span class=&quot;hi2&quot;&gt;🏅&lt;/span&gt;&lt;div&gt;&lt;b&gt;&#x27;+h.n+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+h.d+&#x27;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;hw&quot;&gt;&#x27;+h.w+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+   }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ch-note&quot;&gt;도전 리그는 &lt;b&gt;통과한 문제의 난이도 점수&lt;/b&gt;로만 매겨져요. 시도 횟수는 안 깎여요 — 여러 번 틀려도 결국 통과하면 같은 점수예요.&lt;/div&gt;&#x27;+
+  &#x27;&lt;button class=&quot;wbtn&quot; style=&quot;margin-top:12px&quot; onclick=&quot;CHAL.mode=\&#x27;list\&#x27;;renderChal()&quot;&gt;← 도전 문제로&lt;/button&gt;&#x27;;
+}
+
+/* ===== 보상 상점 — 모은 P로 진짜 학용품·도서 교환 ===== */
+var SHOP={
+ tab:&#x27;real&#x27;,
+ items:[
+  /* 실물 — 모으는 맛이 나게 단가를 높게 (하루 ~120P, 한 달 ~3,000P 기준) */
+  {k:&#x27;real&#x27;,ic:&#x27;✏️&#x27;,n:&#x27;샤프 + 샤프심 세트&#x27;,d:&#x27;0.5mm 제도샤프 · 다음 특강 때 전달&#x27;,cost:3000,have:0},
+  {k:&#x27;real&#x27;,ic:&#x27;📓&#x27;,n:&#x27;마이튜터 노트 3권&#x27;,d:&#x27;오답노트 전용 양식 · 택배 발송&#x27;,cost:4000,have:0},
+  {k:&#x27;real&#x27;,ic:&#x27;🖍&#x27;,n:&#x27;형광펜 5색 세트&#x27;,d:&#x27;단원 정리용 · 택배 발송&#x27;,cost:5000,have:0},
+  {k:&#x27;real&#x27;,ic:&#x27;📘&#x27;,n:&#x27;도서 1권 (택1)&#x27;,d:&#x27;문제집 또는 추천 도서 중 골라요 · 택배&#x27;,cost:8000,have:0},
+  {k:&#x27;real&#x27;,ic:&#x27;🎒&#x27;,n:&#x27;마이튜터 에코백&#x27;,d:&#x27;한정 수량 · 택배 발송&#x27;,cost:12000,have:0,stock:14},
+  {k:&#x27;real&#x27;,ic:&#x27;🧸&#x27;,n:&#x27;내 버디 인형&#x27;,d:&#x27;지금 단계 캐릭터로 제작 · 분기 1회&#x27;,cost:20000,have:0,stock:6},
+  /* 디지털 */
+  {k:&#x27;dig&#x27;,ic:&#x27;🧊&#x27;,n:&#x27;스트릭 프리즈&#x27;,d:&#x27;하루 못 해도 연속이 안 끊겨요&#x27;,cost:500,have:1},
+  {k:&#x27;dig&#x27;,ic:&#x27;🎟&#x27;,n:&#x27;특강 1회 수강권&#x27;,d:&#x27;원하는 특강 하나 무료&#x27;,cost:6000,have:0},
+  {k:&#x27;dig&#x27;,ic:&#x27;🏷&#x27;,n:&#x27;칭호 — 오답 사냥꾼&#x27;,d:&#x27;리그·리포트에 표시돼요&#x27;,cost:1500,have:0},
+  {k:&#x27;dig&#x27;,ic:&#x27;🧢&#x27;,n:&#x27;버디 모자 스킨&#x27;,d:&#x27;내 버디가 쓰고 다녀요&#x27;,cost:1200,have:0}
+ ],
+ orders:[{ic:&#x27;🧊&#x27;,n:&#x27;스트릭 프리즈&#x27;,d:&#x27;10/18 교환 · 보유 1개&#x27;,st:&#x27;보유 중&#x27;,done:1}]
+};
+function openShop(){
+ var d=document.getElementById(&#x27;shOvl&#x27;);
+ if(!d){d=document.createElement(&#x27;div&#x27;);d.id=&#x27;shOvl&#x27;;d.className=&#x27;wordovl&#x27;;
+  d.innerHTML=&#x27;&lt;div class=&quot;wordsheet tr&quot;&gt;&lt;div class=&quot;wtop&quot;&gt;&lt;button class=&quot;wx&quot; onclick=&quot;closeShop()&quot;&gt;✕&lt;/button&gt;&lt;span class=&quot;sp-title&quot;&gt;보상 상점&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wbody trbody&quot; id=&quot;shBody&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  document.body.appendChild(d);}
+ renderShop(); d.classList.add(&#x27;show&#x27;);
+}
+function closeShop(){var o=document.getElementById(&#x27;shOvl&#x27;);if(o)o.classList.remove(&#x27;show&#x27;);}
+function renderShop(){
+ var per=120; /* 하루 평균 획득 P */
+ var list=SHOP.items.filter(function(x){return x.k===SHOP.tab;});
+ /* 가장 가까운 목표 */
+ var near=SHOP.items.filter(function(x){return x.cost&gt;GAME.point;}).sort(function(a,z){return a.cost-z.cost;})[0];
+ var html=&#x27;&lt;div class=&quot;sh-top&quot;&gt;&lt;span class=&quot;sh-coin&quot;&gt;🪙&lt;/span&gt;&lt;div class=&quot;sh-tb&quot;&gt;&lt;b&gt;&#x27;+GAME.point.toLocaleString()+&#x27; P&lt;/b&gt;&#x27;+
+   &#x27;&lt;span&gt;이번 달 &#x27;+GAME.monthPoint.toLocaleString()+&#x27;P 모음 · 콤보 보너스 &#x27;+COMBO.bonus+&#x27;P 포함&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ if(near)html+=&#x27;&lt;div class=&quot;lg-note&quot; style=&quot;margin:0 0 12px&quot;&gt;🎯 다음 목표 &lt;b&gt;&#x27;+near.ic+&#x27; &#x27;+near.n+&#x27;&lt;/b&gt; — &#x27;+
+   (near.cost-GAME.point).toLocaleString()+&#x27;P 남음 (지금 속도면 &lt;b&gt;약 &#x27;+Math.ceil((near.cost-GAME.point)/per)+&#x27;일&lt;/b&gt;)&lt;/div&gt;&#x27;;
+ html+=&#x27;&lt;div class=&quot;sh-tabs&quot;&gt;&#x27;+
+   &#x27;&lt;button class=&quot;sh-tab&#x27;+(SHOP.tab===&#x27;real&#x27;?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;SHOP.tab=\&#x27;real\&#x27;;renderShop()&quot;&gt;🎁 실물 (학용품·도서)&lt;/button&gt;&#x27;+
+   &#x27;&lt;button class=&quot;sh-tab&#x27;+(SHOP.tab===&#x27;dig&#x27;?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;SHOP.tab=\&#x27;dig\&#x27;;renderShop()&quot;&gt;✨ 디지털&lt;/button&gt;&lt;/div&gt;&#x27;;
+ html+=&#x27;&lt;div class=&quot;sh-grid&quot;&gt;&#x27;+list.map(function(it){
+  var i=SHOP.items.indexOf(it);
+  var can=GAME.point&gt;=it.cost;
+  return &#x27;&lt;div class=&quot;sh-it&#x27;+(it.have?&#x27; owned&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;sh-ih&quot;&gt;&lt;span class=&quot;sh-ii&quot;&gt;&#x27;+it.ic+&#x27;&lt;/span&gt;&#x27;+
+   &#x27;&lt;span class=&quot;sh-in&quot;&gt;&lt;b&gt;&#x27;+it.n+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+it.d+&#x27;&lt;/span&gt;&#x27;+
+     (it.stock!==undefined?&#x27;&lt;span class=&quot;sh-stock&quot;&gt;남은 수량 &lt;b&gt;&#x27;+it.stock+&#x27;&lt;/b&gt;개&lt;/span&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&#x27;+
+   (it.have?&#x27;&lt;span class=&quot;sh-have&quot;&gt;×&#x27;+it.have+&#x27;&lt;/span&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;button class=&quot;sh-buy&#x27;+(can?&#x27;&#x27;:&#x27; off&#x27;)+&#x27;&quot; onclick=&quot;buyItem(&#x27;+i+&#x27;)&quot;&gt;&#x27;+
+     (can?&#x27;🪙 &#x27;+it.cost.toLocaleString()+&#x27;P 로 교환&#x27;:&#x27;🔒 &#x27;+it.cost.toLocaleString()+&#x27;P (&#x27;+(it.cost-GAME.point).toLocaleString()+&#x27;P 부족)&#x27;)+&#x27;&lt;/button&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+ if(SHOP.orders.length)html+=&#x27;&lt;div class=&quot;sh-note&quot; style=&quot;margin-top:14px;border-style:solid&quot;&gt;&lt;b&gt;📦 내 교환 내역&lt;/b&gt;&lt;/div&gt;&#x27;+
+   SHOP.orders.map(function(o){
+    return &#x27;&lt;div class=&quot;sh-ord&quot;&gt;&lt;span class=&quot;oi&quot;&gt;&#x27;+o.ic+&#x27;&lt;/span&gt;&lt;div class=&quot;ob&quot;&gt;&lt;b&gt;&#x27;+o.n+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+o.d+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;span class=&quot;os&#x27;+(o.done?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+o.st+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;);
+ html+=&#x27;&lt;div class=&quot;sh-note&quot;&gt;P는 &lt;b&gt;XP와 같이&lt;/b&gt; 쌓여요 — 강의·문제·단어·콤보 보너스 전부. 하루 다 하면 평균 &#x27;+per+&#x27;P라, 샤프 세트는 약 한 달, 도서 1권은 두 달쯤 걸려요. &lt;b&gt;쉽게 안 주는 대신 진짜로 줘요.&lt;/b&gt;&lt;br&gt;실물은 &lt;b&gt;다음 특강 때 선생님이 전달&lt;/b&gt;하거나 &lt;b&gt;택배로 발송&lt;/b&gt;돼요.&lt;/div&gt;&#x27;;
+ document.getElementById(&#x27;shBody&#x27;).innerHTML=html;
+}
+function buyItem(i){
+ var it=SHOP.items[i];
+ if(GAME.point&lt;it.cost){toast(&#x27;아직 &#x27;+(it.cost-GAME.point).toLocaleString()+&#x27;P 모자라요 — 오늘 할 일 다 하면 +&#x27;+&#x27;120P&#x27;);return;}
+ GAME.point-=it.cost; it.have=(it.have||0)+1;
+ if(it.stock!==undefined)it.stock--;
+ SHOP.orders.unshift({ic:it.ic,n:it.n,d:&#x27;10/22 교환 · &#x27;+(it.k===&#x27;real&#x27;?&#x27;배송 준비 중&#x27;:&#x27;바로 적용&#x27;),st:it.k===&#x27;real&#x27;?&#x27;배송 준비&#x27;:&#x27;보유 중&#x27;,done:it.k!==&#x27;real&#x27;});
+ renderShop(); renderGameBar(); if(typeof renderGameBarM===&#x27;function&#x27;)renderGameBarM();
+ if(it.k===&#x27;real&#x27;){
+  notify(&#x27;shop&#x27;);
+  toast(it.ic+&#x27; &#x27;+it.n+&#x27; 교환 완료 — 선생님이 확인하고 보내줘요&#x27;);
+ }else toast(it.ic+&#x27; &#x27;+it.n+&#x27; 교환 완료 — 바로 적용됐어요&#x27;);
+}
+
 function buildTodo(){
   var items=BLK.map(function(b,i){return {b:b,i:i};}).filter(function(x){return x.b[0]===TODAY;})
     .sort(function(a,z){return a.b[1]-z.b[1];});
@@ -3224,7 +3913,18 @@ var NRULE={
  probFb:{stu:{t:&#x27;✏️ 서술형 첨삭 도착&#x27;,m:&#x27;어제 쓴 서술형 답안에 첨삭이 왔어요. 감점 포인트 2개 확인!&#x27;},
        par:null,grade:&#x27;hide&#x27;,why:&#x27;문제 단위 첨삭은 학생 학습용 — 주간 리포트에 묶여서만 전달.&#x27;},
  wordFb:{stu:{t:&#x27;🔤 발음 교정 피드백&#x27;,m:&#x27;thorough 발음에서 /θ/ 소리가 약해요. 교정 가이드를 확인해보세요.&#x27;},
-       par:null,grade:&#x27;hide&#x27;,why:&#x27;발음 교정은 학습 과정 — 주간 리포트에 집계.&#x27;}
+       par:null,grade:&#x27;hide&#x27;,why:&#x27;발음 교정은 학습 과정 — 주간 리포트에 집계.&#x27;},
+ /* ===== 보상·리그 ===== */
+ shop:{stu:{t:&#x27;🪙 교환 접수됐어요&#x27;,m:&#x27;모은 포인트로 상품을 교환했어요. 담당 선생님 확인 후 전달/발송돼요.&#x27;},
+       par:{t:&#x27;학습 보상 교환 안내&#x27;,m:&#x27;민준이가 꾸준히 모은 학습 포인트로 보상을 교환했어요. 수령 방법을 안내드릴게요.&#x27;},
+       grade:&#x27;auto&#x27;,why:&#x27;실물 보상은 수령까지 확인이 필요해서 학부모에게도 안내. 교환 내역은 매니저 화면에 남음.&#x27;},
+ chalPass:{stu:{t:&#x27;🏔 도전 문제 통과!&#x27;,m:&#x27;★5 킬러문항을 풀이 과정까지 통과했어요. 도전 리그 점수가 올라갔어요!&#x27;},
+       par:{t:&#x27;도전 문제 통과 안내&#x27;,m:&#x27;민준이가 최고난이도 문제를 풀이 과정까지 써서 통과했어요. 칭찬해주세요!&#x27;},
+       grade:&#x27;auto&#x27;,why:&#x27;최고난이도 통과(CH-01)는 드문 성취 — 학부모에게도 자동 발송.&#x27;},
+ lgRisk:{stu:{t:&#x27;🥈 리그 순위가 밀렸어요&#x27;,m:&#x27;한 명이 너를 제쳤어 — 오늘 할 일 2개만 더 하면 다시 올라가.&#x27;},
+       par:null,grade:&#x27;hide&#x27;,why:&#x27;또래 비교는 학생에게만. 하루 1회 이하로 제한(과열 방지).&#x27;},
+ stkRisk:{stu:{t:&#x27;🔥 연속 기록이 끊기기 2시간 전&#x27;,m:&#x27;오늘 아직 아무것도 안 했어요. 5분짜리 하나만 해도 &#x27;+&#x27;연속이 이어져요 (🧊 프리즈 1개 보유)&#x27;},
+       par:null,grade:&#x27;hide&#x27;,why:&#x27;스트릭 보호 알림(RMD-S). 하루 1회, 22:00에만 — 과다 알림 방지.&#x27;}
 };
 function notify(k){
   var r=NRULE[k]; if(!r)return;
@@ -3733,6 +4433,7 @@ function pgGrades(){
      growthMetric(&#x27;🔤&#x27;,&#x27;영단어 누적&#x27;,t.vocabCumul,&#x27;개&#x27;,&#x27;#4A90D9&#x27;)+
     &#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;gm-note&quot;&gt;시험 점수가 나오기 전에도, &lt;b&gt;개념 이해도·정답률·공부량이 오르는 게 진짜 성장&lt;/b&gt;이에요. 이 추이가 다음 시험 점수로 이어져요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+    wrongKindPanel({note:&#x27;유형은 네가 직접 고른 거예요 — 그래서 &quot;왜 틀리는지&quot;가 데이터로 남아요. 담당 선생님도 같은 화면을 봐요.&#x27;})+
    /* ★ 시험 평균 추이 (학기별) — 막대 */
    &#x27;&lt;div class=&quot;gcard&quot;&gt;&lt;h4&gt;📈 시험 평균 추이 (학기별 누적)&lt;/h4&gt;&lt;div class=&quot;gchart&quot;&gt;&#x27;+
       &#x27;&lt;div class=&quot;gbar2&quot;&gt;&lt;div class=&quot;gnum&quot;&gt;P&lt;/div&gt;&lt;i style=&quot;height:30%;background:var(--line2)&quot;&gt;&lt;/i&gt;&lt;em&gt;1-1&lt;br&gt;자유&lt;/em&gt;&lt;/div&gt;&#x27;+
@@ -4083,7 +4784,7 @@ function renderWord(){
    var score=Math.round(okCnt/v.phon.length*100);
    var chips=v.phon.map(function(p,i){var ng=v.bad.indexOf(i)&gt;=0;return &#x27;&lt;span class=&quot;phon &#x27;+(ng?&#x27;ng&#x27;:&#x27;ok&#x27;)+&#x27;&quot;&gt;&#x27;+p+(ng?&#x27; ✗&#x27;:&#x27; ✓&#x27;)+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;);
    var tip=v.bad.length? &#x27;교정: &lt;b&gt;&#x27;+v.phon[v.bad[0]]+&#x27;&lt;/b&gt; 소리가 약해요. &#x27;+(/TH/.test(v.phon[v.bad[0]])?&#x27;혀를 이 사이에 살짝 — /θ/, /ð/&#x27;:&#x27;입을 더 크게 벌려서 또렷하게&#x27;)+&#x27; 발음해보세요.&#x27; : &#x27;완벽해요! 원어민에 가까운 발음이에요 👏&#x27;;
-   b.innerHTML=&#x27;&lt;div class=&quot;wscore &#x27;+(score&gt;=80?&#x27;good&#x27;:&#x27;mid&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;wsc-n&quot;&gt;&#x27;+score+&#x27;&lt;span&gt;점&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wsc-l&quot;&gt;&#x27;+(score&gt;=80?&#x27;좋아요&#x27;:&#x27;조금 더!&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   b.innerHTML=comboHUD()+&#x27;&lt;div class=&quot;wscore &#x27;+(score&gt;=80?&#x27;good&#x27;:&#x27;mid&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;wsc-n&quot;&gt;&#x27;+score+&#x27;&lt;span&gt;점&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;wsc-l&quot;&gt;&#x27;+(score&gt;=80?&#x27;좋아요&#x27;:&#x27;조금 더!&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;wcompare&quot;&gt;&lt;button class=&quot;wcmp&quot; onclick=&quot;speakWord(\&#x27;&#x27;+v.w+&#x27;\&#x27;)&quot;&gt;🔊 원어민&lt;/button&gt;&lt;button class=&quot;wcmp mine&quot; onclick=&quot;playMyRec()&quot;&gt;🎧 내 발음&lt;/button&gt;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;wphonrow&quot;&gt;&#x27;+chips+&#x27;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;wtip&quot;&gt;&#x27;+tip+&#x27;&lt;/div&gt;&#x27;+
@@ -4094,6 +4795,7 @@ function renderWord(){
  }
 }
 function nextWord(score){
+ comboHit(score&gt;=80);   /* 발음 80점 이상 = 성공 → 콤보 */
  if(vIdx&lt;VOCAB.length-1){vIdx++;vStep=0;renderWord();}
  else{ /* 완료 — 누적 결과 */
    document.getElementById(&#x27;wpbar&#x27;).style.width=&#x27;100%&#x27;;
@@ -4285,14 +4987,16 @@ function renderCheck(){
  var q=CHECKQ[cqIdx];var b=document.getElementById(&#x27;cqbody&#x27;);
  document.getElementById(&#x27;cqbar&#x27;).style.width=(cqIdx/CHECKQ.length*100)+&#x27;%&#x27;;
  document.getElementById(&#x27;cqcount&#x27;).textContent=(cqIdx+1)+&#x27; / &#x27;+CHECKQ.length;
- b.innerHTML=&#x27;&lt;div class=&quot;wsrs&quot; style=&quot;color:var(--s-check);background:var(--s-checkt)&quot;&gt;🧩 개념체크 · &#x27;+checkUnit+&#x27;&lt;/div&gt;&#x27;+
+ b.innerHTML=comboHUD()+
+   &#x27;&lt;div class=&quot;wsrs&quot; style=&quot;color:var(--s-check);background:var(--s-checkt)&quot;&gt;🧩 개념체크 · &#x27;+checkUnit+&#x27;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;cqintro&quot;&gt;방금 들은 강의, 핵심만 짚어볼게요&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;cqq&quot;&gt;&#x27;+q.q+&#x27;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;cqopts&quot;&gt;&#x27;+q.opts.map(function(o,i){return &#x27;&lt;button class=&quot;cqopt&quot; onclick=&quot;answerCheck(&#x27;+i+&#x27;)&quot;&gt;&#x27;+o+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
 }
 function answerCheck(i){
  var q=CHECKQ[cqIdx];var correct=i===q.a;
- if(!correct)cqWrong.push(q.concept);
+ if(!correct){cqWrong.push(q.concept);pushWrong(&#x27;개념&#x27;,checkUnit+&#x27; · &#x27;+q.concept,q.q,&#x27;&#x27;);}
+ comboHit(correct);
  var opts=document.querySelectorAll(&#x27;.cqopt&#x27;);
  opts.forEach(function(o,idx){o.disabled=true;if(idx===q.a)o.classList.add(&#x27;ok&#x27;);else if(idx===i)o.classList.add(&#x27;ng&#x27;);});
  var b=document.getElementById(&#x27;cqbody&#x27;);
@@ -4374,29 +5078,29 @@ function renderReport(kind){
   if(T.tier===&#x27;good&#x27;){
    head=&#x27;&lt;div class=&quot;rpt-hd&quot;&gt;&lt;div class=&quot;rpt-kick&quot;&gt;10월 4주차 · 일요일 자동 발송&lt;/div&gt;&lt;h2&gt;민준이 이번 주 학습 리포트&lt;/h2&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-sub&quot;&gt;월~일 &lt;b&gt;매일의 기록(저녁 요약)&lt;/b&gt;이 모여 만든 주간 리포트예요.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑪ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
-     &#x27;&lt;p class=&quot;rpt-p&quot;&gt;중간고사 준비가 궤도에 올랐어요. 약했던 &lt;b&gt;일차함수 개념 이해도가 &#x27;+g.unitMastery[0].now+&#x27;%까지&lt;/b&gt; 올라왔고, 영단어 &#x27;+w.vocab.learned+&#x27;개를 외우며 발음 교정 &#x27;+w.vocab.corrected+&#x27;건을 받았어요. 영어 특강을 한 번 놓쳤지만 주말 다시보기로 보완했습니다.&lt;/p&gt;&lt;/div&gt;&#x27;;
-   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 다음에 할 것 (이미 플래너에 담겨 있어요)&lt;/div&gt;&#x27;+
+   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
+     &#x27;&lt;p class=&quot;rpt-p&quot;&gt;중간고사 준비가 궤도에 올랐어요. 약했던 &lt;b&gt;일차함수 개념 이해도가 &#x27;+g.unitMastery[0].now+&#x27;%까지&lt;/b&gt; 올라왔고, 영단어 &#x27;+w.vocab.learned+&#x27;개를 외우며 발음 교정 &#x27;+w.vocab.corrected+&#x27;건을 받았어요. 오답은 &lt;b&gt;계산 실수&lt;/b&gt;형이 가장 많아 검산 습관을 잡는 중이고, 개념을 몰라 틀리는 건 지난달보다 줄었어요.&lt;/p&gt;&lt;/div&gt;&#x27;;
+   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑬ 다음에 할 것 (이미 플래너에 담겨 있어요)&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;다음 주는 &lt;b&gt;도형의 성질 개념&lt;/b&gt;부터 — D-9~7에 개념강의+개념체크+문제 세트가 배치됐어요. 시험 3일 전엔 오답 총정리로 마무리합니다.&lt;/p&gt;&lt;/div&gt;&#x27;;
    foot=&#x27;🔒 숫자는 학습 기록에서만, AI는 문장만 써요 (없는 성과는 지어내지 않음).&#x27;;
   } else if(T.tier===&#x27;mid&#x27;){
    head=&#x27;&lt;div class=&quot;rpt-hd&quot;&gt;&lt;div class=&quot;rpt-kick&quot;&gt;10월 4주차 · 일요일 자동 발송&lt;/div&gt;&lt;h2&gt;민준이 이번 주 학습 리포트&lt;/h2&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-sub&quot;&gt;잘한 것과 &lt;b&gt;덜 된 것&lt;/b&gt;을 함께 정리했어요.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑪ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
+   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 어떻게 되고 있나 (AI 해석)&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;이번 주는 리듬이 조금 느렸어요. 출석 &#x27;+attendN+&#x27;/5, 할 일 &#x27;+w.todo.done+&#x27;/&#x27;+w.todo.total+&#x27;로 평소보다 덜 됐지만, 한 날은 몰아서 따라잡았어요.&lt;/p&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-less&quot;&gt;&lt;b&gt;덜 된 것&lt;/b&gt; — 영단어·오답이 밀렸어요. 책망보다 다음 주 분량을 조금 가볍게 조정했습니다.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 다음 주 계획 (조정됨)&lt;/div&gt;&#x27;+
+   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑬ 다음 주 계획 (조정됨)&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;밀린 오답은 주 초에 나눠 담았고, 하루 분량을 줄여 다시 리듬을 잡아요. 시험범위는 아직 여유 있어요.&lt;/p&gt;&lt;/div&gt;&#x27;;
    foot=&#x27;🔒 &quot;덜 된 것&quot;도 숨기지 않되, 아이 탓이 아니라 다음 주 조치로 바꿔서 전해요.&#x27;;
   } else { /* low — 매니저 검수 */
    head=&#x27;&lt;div class=&quot;rpt-hd low&quot;&gt;&lt;div class=&quot;rpt-kick&quot;&gt;⚠️ 자동 발송 보류 · 담임 검수 대기&lt;/div&gt;&lt;h2&gt;민준이 이번 주 — 담임 확인이 필요해요&lt;/h2&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-sub&quot;&gt;참여가 많이 낮은 주는 &lt;b&gt;자동으로 안 나가요.&lt;/b&gt; 담임이 원인을 확인하고 톤을 다듬어 보냅니다.&lt;/div&gt;&lt;/div&gt;&#x27;;
-   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑪ 담임이 보기 전 (초안 — 학부모 미발송)&lt;/div&gt;&#x27;+
+   interp=&#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 담임이 보기 전 (초안 — 학부모 미발송)&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-held&quot;&gt;이번 주 민준이 학습이 많이 느렸어요 (출석 &#x27;+attendN+&#x27;/5, 완료 &#x27;+w.todo.done+&#x27;/&#x27;+w.todo.total+&#x27;). &#x27;+
      &#x27;&lt;b&gt;이 내용은 아직 어머니께 가지 않았어요.&lt;/b&gt; 숫자만 보내면 책망이 되기 쉬워, 담임 김튜터 선생님이 먼저 원인(컨디션·외부일정 등)을 확인합니다.&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;rpt-willsend&quot;&gt;&lt;div class=&quot;rw-h&quot;&gt;담임이 다듬어 나갈 문구 (예시)&lt;/div&gt;&#x27;+
      &#x27;&quot;이번 주 민준이 리듬이 조금 흐트러졌어요. 제가 원인을 확인하고 다음 주 계획을 함께 다시 잡았습니다. 집에서도 가볍게 챙겨주시면 좋아요 🙂&quot;&lt;/div&gt;&lt;/div&gt;&#x27;;
-   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑫ 담임 조치&lt;/div&gt;&#x27;+
+   nextSec=&#x27;&lt;div class=&quot;rpt-sec next&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑬ 담임 조치&lt;/div&gt;&#x27;+
      &#x27;&lt;p class=&quot;rpt-p&quot;&gt;3일 미접속으로 이미 매니저 홈 📞통화할 것에 올라갔어요. 통화로 상태 확인 → 다음 주 계획 재설정 후, 어머니께는 &lt;b&gt;대책과 함께&lt;/b&gt; 안내가 나갑니다.&lt;/p&gt;&lt;/div&gt;&#x27;;
    foot=&#x27;🔒 &quot;안 된 주&quot;가 자동 리포트의 맹점 — 그래서 참여 점수가 낮으면 사람(담임)이 먼저 봅니다. 나쁜 소식을 날것으로 보내지 않는 CHK 원칙과 동일.&#x27;;
   }
@@ -4446,6 +5150,10 @@ function renderReport(kind){
    &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑩ 상세 학습 로그 (이번 주)&lt;/div&gt;&#x27;+
    logTimeline(g.log)+
    &#x27;&lt;div class=&quot;rpt-note&quot;&gt;언제 무엇을 했는지 전부 기록돼요 — 리포트의 모든 숫자는 이 로그에서 나와요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   /* ⑪ 오답 유형 분석 — 같은 &quot;틀림&quot;이라도 원인이 다름 */
+   &#x27;&lt;div class=&quot;rpt-sec&quot;&gt;&lt;div class=&quot;rpt-st&quot;&gt;⑪ 오답 유형 분석&lt;/div&gt;&#x27;+
+   wrongKindPanel({note:&#x27;유형은 아이가 문제를 틀릴 때마다 &lt;b&gt;직접 고른 것&lt;/b&gt;이라 &quot;왜 틀리는지&quot;가 데이터로 남아요. 개념을 몰라서 틀린 것과 계산 실수로 틀린 것은 처방이 전혀 달라서, 이 비율이 바뀌는 게 실력이 오르는 신호예요.&#x27;})+
+   &#x27;&lt;/div&gt;&#x27;+
    interp+nextSec+&#x27;&lt;div class=&quot;rpt-foot&quot;&gt;&#x27;+foot+&#x27;&lt;/div&gt;&#x27;;
  } else {
   /* 시즌 리포트 — 이벤트성 (시험후·학기말·갱신) */
@@ -4824,12 +5532,12 @@ function renderSolve(){
 
  if(p.type===&#x27;mc&#x27;){
    b.innerHTML=hist+&#x27;&lt;div class=&quot;sp-qbox&quot;&gt;&lt;span class=&quot;sp-badge&quot;&gt;&#x27;+p.unit+&#x27; · 객관식&lt;/span&gt;&lt;div class=&quot;sp-q&quot;&gt;&#x27;+p.q+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-     (firstDone?&#x27;&lt;div class=&quot;sp-reviewnote&quot;&gt;1차 제출 완료 — 지금부터는 &lt;b&gt;복습(성적 제외)&lt;/b&gt;이에요. 답만 다시 찍는 건 학습에 도움이 안 돼서, 틀렸던 이유를 떠올리며 풀어요.&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+     (firstDone?&#x27;&lt;div class=&quot;sp-reviewnote&quot;&gt;1차 제출 완료 — 지금부터는 &lt;b&gt;복습(성적 제외)&lt;/b&gt;이에요. 답만 다시 찍는 건 학습에 도움이 안 돼서, 틀렸던 이유를 떠올리며 풀어요.&lt;/div&gt;&#x27;:comboHUD())+
      &#x27;&lt;div class=&quot;sp-opts&quot;&gt;&#x27;+p.opts.map(function(o,i){return &#x27;&lt;button class=&quot;sp-opt&quot; onclick=&quot;pickMC(&#x27;+i+&#x27;)&quot;&gt;&#x27;+String.fromCharCode(9312+i)+&#x27; &#x27;+o+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
  }else{
    var lastText = tries.length? tries[tries.length-1].ans : &#x27;&#x27;;
    b.innerHTML=hist+&#x27;&lt;div class=&quot;sp-qbox&quot;&gt;&lt;span class=&quot;sp-badge sa&quot;&gt;&#x27;+p.unit+&#x27; · 서술형&lt;/span&gt;&lt;div class=&quot;sp-q&quot;&gt;&#x27;+p.q+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-     (firstDone?&#x27;&lt;div class=&quot;sp-reviewnote&quot;&gt;복습 모드 — 아래에 &lt;b&gt;풀이 과정&lt;/b&gt;을 다시 써보세요. 이전에 쓴 답도 위에 그대로 남아 있어요.&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+     (firstDone?&#x27;&lt;div class=&quot;sp-reviewnote&quot;&gt;복습 모드 — 아래에 &lt;b&gt;풀이 과정&lt;/b&gt;을 다시 써보세요. 이전에 쓴 답도 위에 그대로 남아 있어요.&lt;/div&gt;&#x27;:comboHUD())+
      &#x27;&lt;textarea class=&quot;sp-ta&quot; id=&quot;spTA&quot; placeholder=&quot;풀이 과정을 적어주세요 — 예: x=2 대입하면 y=3×2+1=7&quot;&gt;&#x27;+lastText.replace(/&quot;/g,&#x27;&amp;quot;&#x27;)+&#x27;&lt;/textarea&gt;&#x27;+
      &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;submitSA()&quot;&gt;제출하기&lt;/button&gt;&#x27;;
  }
@@ -4842,6 +5550,9 @@ function pickMC(i){
  /* 찍기 감지: 복습인데 3초컷 + 정답 = 의심 */
  var flag = firstDone &amp;&amp; t&lt;3;
  recordAttempt(p.id,{phase:firstDone?&#x27;review&#x27;:&#x27;first&#x27;, ans:String.fromCharCode(9312+i)+&#x27; &#x27;+p.opts[i], correct:correct, after_reveal:spRevealed[p.id]||firstDone, time:Math.round(t), flag:flag});
+ spLastPick=i;
+ if(!firstDone)comboHit(correct);   /* 1차 풀이만 콤보 집계 (복습 재찍기는 제외) */
+ if(!firstDone&amp;&amp;!correct)pushWrong(p.sub||subjOf(p),p.unit,p.q,&#x27;&#x27;);  /* 틀리면 즉시 복습 센터로 (이유는 아래에서) */
  showMCResult(i,correct,firstDone,flag);
 }
 function showMCResult(i,correct,wasReview,flag){
@@ -4854,18 +5565,74 @@ function showMCResult(i,correct,wasReview,flag){
    &#x27;&lt;div class=&quot;sp-exp&quot;&gt;&lt;div class=&quot;se-h&quot;&gt;해설&lt;/div&gt;&#x27;+p.exp+&#x27;&lt;/div&gt;&#x27;;
  /* 1차에 틀렸으면: 재찍기 막고 &quot;왜 틀렸나&quot; 쓰게 → 복습 인정 */
  if(!correct){
-   html+=&#x27;&lt;div class=&quot;sp-why&quot;&gt;&lt;div class=&quot;sw-h&quot;&gt;다시 풀기 전에 — 왜 틀렸는지 한 줄 (이걸 써야 복습으로 인정)&lt;/div&gt;&#x27;+
-     &#x27;&lt;input id=&quot;spWhy&quot; placeholder=&quot;예: x축이면 y=0인데 y절편이랑 헷갈렸다&quot;&gt;&lt;button onclick=&quot;retryMC()&quot;&gt;이해했어요, 다시 풀기&lt;/button&gt;&lt;/div&gt;&#x27;;
+   html+=&#x27;&lt;div class=&quot;sp-why&quot;&gt;&lt;div class=&quot;sw-h&quot;&gt;다시 풀기 전에 — &lt;b&gt;왜 틀렸는지 하나만 골라줘&lt;/b&gt; (골라야 복습으로 인정)&lt;/div&gt;&#x27;+
+     whyChips(&#x27;pickWhyHere(\&#x27;__K__\&#x27;)&#x27;,spWhyKind)+
+     (spWhyKind?&#x27;&lt;div class=&quot;sw-fix&quot;&gt;&#x27;+whyMeta(spWhyKind).ic+&#x27; &lt;b&gt;&#x27;+whyMeta(spWhyKind).t+&#x27;&lt;/b&gt; → 처방: &#x27;+whyMeta(spWhyKind).fix+&#x27;&lt;/div&gt;&#x27;+
+       &#x27;&lt;input id=&quot;spWhy&quot; placeholder=&quot;(선택) 더 적고 싶으면 — 예: x축이면 y=0인데 헷갈렸다&quot;&gt;&#x27;+
+       &#x27;&lt;button onclick=&quot;retryMC()&quot;&gt;이해했어요, 다시 풀기&lt;/button&gt;&#x27;
+      :&#x27;&lt;div class=&quot;sw-hint&quot;&gt;↑ 유형을 고르면 다시 풀기가 열려요&lt;/div&gt;&#x27;)+
+    &#x27;&lt;/div&gt;&#x27;;
  }
  html+=&#x27;&lt;div class=&quot;wresbtns&quot;&gt;&lt;button class=&quot;wbtn sub&quot; onclick=&quot;renderSolve()&quot;&gt;🔁 복습 풀기&lt;/button&gt;&#x27;+
    &#x27;&lt;button class=&quot;wbtn&quot; onclick=&quot;nextSolve()&quot;&gt;&#x27;+(spIdx&lt;PROBS.length-1?&#x27;다음 문제 →&#x27;:&#x27;끝내기 ✓&#x27;)+&#x27;&lt;/button&gt;&lt;/div&gt;&#x27;;
  b.innerHTML=html;b.scrollTop=0;
 }
+function subjOf(p){
+ var u=(p&amp;&amp;p.unit)||&#x27;&#x27;;
+ if(/함수|방정식|도형|확률|연립/.test(u))return &#x27;수학&#x27;;
+ if(/완료|관계대명사|분사|시제/.test(u))return &#x27;영어&#x27;;
+ if(/심상|품사|문학|시의/.test(u))return &#x27;국어&#x27;;
+ if(/빛|파동|원소|세포/.test(u))return &#x27;과학&#x27;;
+ return &#x27;수학&#x27;;
+}
+var spWhyKind=&#x27;&#x27;, spLastPick=0;
+function pickWhyHere(k){
+ spWhyKind=k;
+ var p=PROBS[spIdx];
+ /* 결과 화면만 다시 그려서 처방·다시풀기 버튼 노출 */
+ showMCResult(spLastPick,false,false,false);
+}
 function retryMC(){
  var p=PROBS[spIdx];var el=document.getElementById(&#x27;spWhy&#x27;);
- if(el&amp;&amp;!el.value.trim()){el.style.borderColor=&#x27;#D64545&#x27;;el.placeholder=&#x27;한 줄이라도 써야 복습이 인정돼요&#x27;;return;}
- if(el){ /* why_wrong 기록 */ var tr=ATTEMPTS[p.id];if(tr&amp;&amp;tr.length)tr[tr.length-1].why=el.value.trim(); }
+ if(!spWhyKind){toast(&#x27;왜 틀렸는지 먼저 골라줘&#x27;);return;}
+ var memo=el?el.value.trim():&#x27;&#x27;;
+ var tr=ATTEMPTS[p.id];if(tr&amp;&amp;tr.length){tr[tr.length-1].whyKind=spWhyKind;tr[tr.length-1].why=memo;}
+ pushWrong(p.sub||subjOf(p),p.unit,p.q,spWhyKind);
+ var gi=REVIEW.wrong.map(function(w){return w.q;}).indexOf(p.q);
+ if(gi&gt;=0&amp;&amp;memo)REVIEW.wrong[gi].why=memo;
+ logWrongKind(spWhyKind);
+ toast(whyMeta(spWhyKind).ic+&#x27; 기록 — 복습 센터에 쌓였어요&#x27;);
+ spWhyKind=&#x27;&#x27;;
  spRevealed[p.id]=true;renderSolve();
+}
+/* 성장 리포트용 오답 유형 누적 */
+var WRONGKIND={concept:5,confuse:9,calc:12,read:6,time:3,guess:2,write:4};
+var WRONGKIND_PREV={concept:8,confuse:11,calc:14,read:5,time:4,guess:6,write:3}; /* 지난달 — 추이 비교용 */
+function logWrongKind(k){WRONGKIND[k]=(WRONGKIND[k]||0)+1;}
+/* 유형 분석 블록 — 성장 리포트·주간 리포트·어드민에서 공용 */
+function wrongKindPanel(opts){
+ opts=opts||{};
+ var tot=0;WHYTYPE.forEach(function(x){tot+=(WRONGKIND[x.k]||0);});
+ var sorted=WHYTYPE.slice().sort(function(a,z){return (WRONGKIND[z.k]||0)-(WRONGKIND[a.k]||0);});
+ var top=sorted[0];
+ var rows=sorted.filter(function(x){return WRONGKIND[x.k];}).map(function(x){
+  var n=WRONGKIND[x.k]||0, pv=WRONGKIND_PREV[x.k]||0;
+  var pct=tot?Math.round(n/tot*100):0;
+  var dlt=n-pv;
+  return &#x27;&lt;div class=&quot;wk-row&quot;&gt;&lt;span class=&quot;wk-ic&quot;&gt;&#x27;+x.ic+&#x27;&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;wk-t&quot;&gt;&#x27;+x.t+&#x27;&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;wk-track&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;wk-n&quot;&gt;&#x27;+n+&#x27;&lt;em&gt;건&lt;/em&gt;&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;wk-d &#x27;+(dlt&lt;0?&#x27;good&#x27;:(dlt&gt;0?&#x27;bad&#x27;:&#x27;&#x27;))+&#x27;&quot;&gt;&#x27;+(dlt&lt;0?&#x27;▼&#x27;+Math.abs(dlt):(dlt&gt;0?&#x27;▲&#x27;+dlt:&#x27;–&#x27;))+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+ }).join(&#x27;&#x27;);
+ /* 해석 문장 — 팩트 → 해석 → 액션 */
+ var improved=WHYTYPE.filter(function(x){return (WRONGKIND[x.k]||0)&lt;(WRONGKIND_PREV[x.k]||0);});
+ return &#x27;&lt;div class=&quot;wk-box&quot;&gt;&lt;div class=&quot;wk-h&quot;&gt;🧩 오답 유형 분석 &lt;span&gt;&#x27;+(opts.sub||&#x27;전과목&#x27;)+&#x27; · 최근 &#x27;+tot+&#x27;건 (지난달 대비)&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;wk-list&quot;&gt;&#x27;+rows+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;wk-read&quot;&gt;&lt;b&gt;읽는 법&lt;/b&gt; — 같은 &quot;틀림&quot;이라도 처방이 달라요. &#x27;+
+   &#x27;가장 많은 유형은 &lt;b&gt;&#x27;+top.ic+&#x27; &#x27;+top.t+&#x27;&lt;/b&gt; — 1순위 처방은 &lt;b&gt;&#x27;+top.fix+&#x27;&lt;/b&gt;.&#x27;+
+   (improved.length?&#x27; 지난달 대비 줄어든 유형 — &#x27;+improved.slice(0,2).map(function(x){return x.ic+&#x27; &#x27;+x.t;}).join(&#x27;, &#x27;)+&#x27; 👏&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  (opts.note?&#x27;&lt;div class=&quot;wk-note&quot;&gt;&#x27;+opts.note+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
 }
 function submitSA(){
  var p=PROBS[spIdx], el=document.getElementById(&#x27;spTA&#x27;); if(!el)return;
@@ -4874,6 +5641,7 @@ function submitSA(){
  var t=(Date.now()-spStart)/1000;
  var correct=p.saOk?p.saOk(txt):(txt.length&gt;=3); /* 문제별 서술형 판정 */
  recordAttempt(p.id,{phase:firstDone?&#x27;review&#x27;:&#x27;first&#x27;, ans:txt.length&gt;22?txt.slice(0,22)+&#x27;…&#x27;:txt, fulltext:txt, correct:correct, after_reveal:firstDone, time:Math.round(t), flag:false});
+ if(!firstDone)comboHit(correct);
  var b=document.getElementById(&#x27;spBody&#x27;);
  b.innerHTML=&#x27;&lt;div class=&quot;sp-res &#x27;+(correct?&#x27;ok&#x27;:&#x27;ng&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;sr-ic&quot;&gt;&#x27;+(correct?&#x27;AI&#x27;:&#x27;AI&#x27;)+&#x27;&lt;/div&gt;&lt;div class=&quot;sr-t&quot;&gt;AI 1차 채점: &#x27;+(correct?&#x27;정답 가능성 높음&#x27;:&#x27;보완 필요&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;sp-review1&quot;&gt;👩‍🏫 서술형은 &lt;b&gt;AI가 1차 채점 → 담임 선생님이 최종 확인&lt;/b&gt;해요. 네가 쓴 풀이 과정은 그대로 저장돼요 (이전 답도 다 보존).&lt;/div&gt;&#x27;+
@@ -4901,13 +5669,13 @@ function nextSolve(){
 /* ===== 복습 센터 — 틀린 문제·틀린 단어 몰아보기 + 주간/월간 재확인 ===== */
 var REVIEW={
  wrong:[ /* 틀린 문제 로그 */
-  {sub:&#x27;수학&#x27;,unit:&#x27;일차함수&#x27;,q:&#x27;기울기 -2, x절편 ½ 인 일차함수의 y절편은?&#x27;,why:&#x27;y절편 공식 헷갈림&#x27;,date:&#x27;10/24&#x27;,per:&#x27;week&#x27;,cnt:2,again:false},
-  {sub:&#x27;수학&#x27;,unit:&#x27;일차함수&#x27;,q:&#x27;두 점 (0,3),(2,7)을 지나는 직선의 식은?&#x27;,why:&#x27;기울기 계산 실수&#x27;,date:&#x27;10/23&#x27;,per:&#x27;week&#x27;,cnt:1,again:false},
-  {sub:&#x27;수학&#x27;,unit:&#x27;도형의 성질&#x27;,q:&#x27;닮음비 2:3인 두 삼각형의 넓이비는?&#x27;,why:&#x27;넓이비=제곱 몰랐음&#x27;,date:&#x27;10/22&#x27;,per:&#x27;week&#x27;,cnt:3,again:false},
-  {sub:&#x27;영어&#x27;,unit:&#x27;현재완료&#x27;,q:&#x27;He ___ lived here since 2020.&#x27;,why:&#x27;has/have 구분&#x27;,date:&#x27;10/21&#x27;,per:&#x27;week&#x27;,cnt:1,again:true},
-  {sub:&#x27;국어&#x27;,unit:&#x27;품사&#x27;,q:&#x27;&quot;빠르게 달린다&quot;에서 &quot;빠르게&quot;의 품사는?&#x27;,why:&#x27;부사/형용사 혼동&#x27;,date:&#x27;10/20&#x27;,per:&#x27;month&#x27;,cnt:2,again:false},
-  {sub:&#x27;과학&#x27;,unit:&#x27;빛과 파동&#x27;,q:&#x27;빛이 매질을 지날 때 꺾이는 현상은?&#x27;,why:&#x27;굴절/반사 혼동&#x27;,date:&#x27;10/18&#x27;,per:&#x27;month&#x27;,cnt:1,again:true},
-  {sub:&#x27;수학&#x27;,unit:&#x27;연립방정식&#x27;,q:&#x27;2x+y=8, x-y=1 을 풀면?&#x27;,why:&#x27;대입 과정 실수&#x27;,date:&#x27;10/15&#x27;,per:&#x27;month&#x27;,cnt:1,again:true}
+  {sub:&#x27;수학&#x27;,unit:&#x27;일차함수&#x27;,q:&#x27;기울기 -2, x절편 ½ 인 일차함수의 y절편은?&#x27;,kind:&#x27;confuse&#x27;,why:&#x27;y절편이랑 x절편을 섞었다&#x27;,date:&#x27;10/24&#x27;,per:&#x27;week&#x27;,cnt:2,again:false},
+  {sub:&#x27;수학&#x27;,unit:&#x27;일차함수&#x27;,q:&#x27;두 점 (0,3),(2,7)을 지나는 직선의 식은?&#x27;,kind:&#x27;calc&#x27;,why:&#x27;&#x27;,date:&#x27;10/23&#x27;,per:&#x27;week&#x27;,cnt:1,again:false},
+  {sub:&#x27;수학&#x27;,unit:&#x27;도형의 성질&#x27;,q:&#x27;닮음비 2:3인 두 삼각형의 넓이비는?&#x27;,kind:&#x27;concept&#x27;,why:&#x27;넓이비가 제곱인 줄 몰랐다&#x27;,date:&#x27;10/22&#x27;,per:&#x27;week&#x27;,cnt:3,again:false},
+  {sub:&#x27;영어&#x27;,unit:&#x27;현재완료&#x27;,q:&#x27;He ___ lived here since 2020.&#x27;,kind:&#x27;confuse&#x27;,why:&#x27;&#x27;,date:&#x27;10/21&#x27;,per:&#x27;week&#x27;,cnt:1,again:true},
+  {sub:&#x27;국어&#x27;,unit:&#x27;품사&#x27;,q:&#x27;&quot;빠르게 달린다&quot;에서 &quot;빠르게&quot;의 품사는?&#x27;,kind:&#x27;confuse&#x27;,why:&#x27;&#x27;,date:&#x27;10/20&#x27;,per:&#x27;month&#x27;,cnt:2,again:false},
+  {sub:&#x27;과학&#x27;,unit:&#x27;빛과 파동&#x27;,q:&#x27;빛이 매질을 지날 때 꺾이는 현상은?&#x27;,kind:&#x27;read&#x27;,why:&#x27;조건을 못 봤다&#x27;,date:&#x27;10/18&#x27;,per:&#x27;month&#x27;,cnt:1,again:true},
+  {sub:&#x27;수학&#x27;,unit:&#x27;연립방정식&#x27;,q:&#x27;2x+y=8, x-y=1 을 풀면?&#x27;,kind:&#x27;calc&#x27;,why:&#x27;&#x27;,date:&#x27;10/15&#x27;,per:&#x27;month&#x27;,cnt:1,again:true}
  ],
  words:[ /* 틀린 단어 로그 (뜻·발음) */
   {w:&#x27;achieve&#x27;,ko:&#x27;달성하다&#x27;,miss:&#x27;뜻&#x27;,pron:62,date:&#x27;10/24&#x27;,per:&#x27;week&#x27;,cnt:3},
@@ -4929,7 +5697,50 @@ function ensureReviewOvl(){
 function openReview(tab,per){rvTab=tab||&#x27;wrong&#x27;;rvPer=per||&#x27;week&#x27;;ensureReviewOvl();renderReview();document.getElementById(&#x27;rvOvl&#x27;).classList.add(&#x27;show&#x27;);}
 function closeReview(){var o=document.getElementById(&#x27;rvOvl&#x27;);if(o)o.classList.remove(&#x27;show&#x27;);}
 function rvFilter(list){return rvPer===&#x27;all&#x27;?list:list.filter(function(x){return rvPer===&#x27;week&#x27;?x.per===&#x27;week&#x27;:(x.per===&#x27;week&#x27;||x.per===&#x27;month&#x27;);});}
+/* ===== 오답 유형 — 글로 쓰는 대신 고르게. 유형이 쌓이면 처방이 달라짐 ===== */
+var WHYTYPE=[
+ {k:&#x27;concept&#x27;,ic:&#x27;🧠&#x27;,t:&#x27;개념을 몰랐다&#x27;,  d:&#x27;아예 모르는 내용이었어&#x27;,      fix:&#x27;개념 강의부터 다시 보기&#x27;},
+ {k:&#x27;confuse&#x27;,ic:&#x27;🌀&#x27;,t:&#x27;헷갈렸다&#x27;,      d:&#x27;비슷한 개념이랑 섞였어&#x27;,       fix:&#x27;헷갈리는 두 개념 비교 정리&#x27;},
+ {k:&#x27;calc&#x27;,   ic:&#x27;✖️&#x27;,t:&#x27;계산 실수&#x27;,     d:&#x27;방법은 맞았는데 숫자·부호가&#x27;,   fix:&#x27;연산 훈련 3분 + 검산 습관&#x27;},
+ {k:&#x27;read&#x27;,   ic:&#x27;📖&#x27;,t:&#x27;문제를 잘못 읽음&#x27;,d:&#x27;조건을 하나 놓쳤어&#x27;,          fix:&#x27;조건에 밑줄 긋고 시작하기&#x27;},
+ {k:&#x27;time&#x27;,   ic:&#x27;⏱&#x27;,t:&#x27;급하게 풀었다&#x27;,  d:&#x27;시간에 쫓겼어&#x27;,               fix:&#x27;시간 재고 푸는 연습&#x27;},
+ {k:&#x27;guess&#x27;,  ic:&#x27;🎲&#x27;,t:&#x27;그냥 찍었다&#x27;,   d:&#x27;모르겠어서 찍었어&#x27;,            fix:&#x27;난이도 한 단계 내려서 다시&#x27;},
+ {k:&#x27;write&#x27;,  ic:&#x27;✍️&#x27;,t:&#x27;답을 잘못 썼다&#x27;, d:&#x27;단위·형식을 틀렸어&#x27;,          fix:&#x27;답 쓰고 한 번 더 확인하기&#x27;}
+];
+function whyMeta(k){return WHYTYPE.filter(function(x){return x.k===k;})[0]||null;}
+/* 선택 칩 HTML — 어디서든 재사용 */
+function whyChips(onPick,cur){
+ return &#x27;&lt;div class=&quot;wy-chips&quot;&gt;&#x27;+WHYTYPE.map(function(x){
+   return &#x27;&lt;button class=&quot;wy-chip&#x27;+(cur===x.k?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;&#x27;+onPick.replace(&#x27;__K__&#x27;,x.k)+&#x27;&quot;&gt;&#x27;+
+     &#x27;&lt;span class=&quot;wy-ic&quot;&gt;&#x27;+x.ic+&#x27;&lt;/span&gt;&lt;span class=&quot;wy-t&quot;&gt;&#x27;+x.t+&#x27;&lt;/span&gt;&lt;span class=&quot;wy-d&quot;&gt;&#x27;+x.d+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;;
+ }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+/* 틀린 문제는 전부 복습 센터로 자동 적재 — 유형을 안 고르면 몰아풀기에서 제외 */
+function pushWrong(sub,unit,q,kind){
+ var dup=REVIEW.wrong.filter(function(w){return w.q===q;})[0];
+ if(dup){dup.cnt++;dup.again=true;if(kind){dup.kind=kind;dup.need=false;}renderReview();return;}
+ REVIEW.wrong.unshift({sub:sub||&#x27;수학&#x27;,unit:unit||&#x27;&#x27;,q:q,kind:kind||&#x27;&#x27;,why:&#x27;&#x27;,need:!kind,date:&#x27;오늘&#x27;,per:&#x27;week&#x27;,cnt:1,again:false});
+ renderReview(); renderGameBar(); if(typeof renderGameBarM===&#x27;function&#x27;)renderGameBarM();
+}
+function setWhyKind(i,k){
+ REVIEW.wrong[i].kind=k; REVIEW.wrong[i].need=false;
+ var m=whyMeta(k);
+ toast(m.ic+&#x27; &#x27;+m.t+&#x27; — 처방: &#x27;+m.fix);
+ renderReview();
+}
+function saveWhyMemo(i){
+ var el=document.getElementById(&#x27;rvMemo&#x27;+i); if(!el)return;
+ REVIEW.wrong[i].why=(el.value||&#x27;&#x27;).trim(); renderReview();
+}
+function needWhyCount(){return REVIEW.wrong.filter(function(w){return w.need;}).length;}
+/* 유형 분포 → 가장 많은 유형의 처방 */
+function whyStats(list){
+ var c={}; list.forEach(function(w){if(w.kind)c[w.kind]=(c[w.kind]||0)+1;});
+ var keys=Object.keys(c).sort(function(a,z){return c[z]-c[a];});
+ return {counts:c, top:keys[0]||null, keys:keys};
+}
 function renderReview(){
+ if(!document.getElementById(&#x27;rvBody&#x27;))return;
  var wrong=rvFilter(REVIEW.wrong), words=rvFilter(REVIEW.words);
  var list=rvTab===&#x27;wrong&#x27;?wrong:words;
  document.getElementById(&#x27;rvCnt&#x27;).textContent=list.length+&#x27;개&#x27;;
@@ -4940,17 +5751,39 @@ function renderReview(){
    return &#x27;&lt;button class=&quot;rv-per&#x27;+(rvPer===p[0]?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;rvPer=\&#x27;&#x27;+p[0]+&#x27;\&#x27;;renderReview()&quot;&gt;&#x27;+p[1]+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
  var body;
  if(rvTab===&#x27;wrong&#x27;){
+  /* 오답 유형 분포 — 네 약점이 뭔지 */
+  var ws=whyStats(wrong);
+  var topM=ws.top?whyMeta(ws.top):null;
+  body=&#x27;&lt;div class=&quot;wy-stat&quot;&gt;&lt;div class=&quot;wy-sh&quot;&gt;📊 오답 유형 — 뭘 자주 틀리나&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;wy-bars&quot;&gt;&#x27;+ws.keys.map(function(k){
+      var m=whyMeta(k), n=ws.counts[k];
+      return &#x27;&lt;div class=&quot;wy-bar&#x27;+(k===ws.top?&#x27; top&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;span class=&quot;wy-bi&quot;&gt;&#x27;+m.ic+&#x27;&lt;/span&gt;&#x27;+
+        &#x27;&lt;span class=&quot;wy-bn&quot;&gt;&#x27;+m.t+&#x27;&lt;/span&gt;&lt;span class=&quot;wy-bv&quot;&gt;&#x27;+n+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+    }).join(&#x27;&#x27;)+(ws.keys.length?&#x27;&#x27;:&#x27;&lt;span class=&quot;wy-none&quot;&gt;아직 유형을 고른 오답이 없어요&lt;/span&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+    (topM?&#x27;&lt;div class=&quot;wy-rx&quot;&gt;제일 많은 유형 &lt;b&gt;&#x27;+topM.ic+&#x27; &#x27;+topM.t+&#x27;&lt;/b&gt; → 처방 &lt;span&gt;&#x27;+topM.fix+&#x27;&lt;/span&gt;&#x27;+
+      (needWhyCount()?&#x27;&lt;em&gt;· 유형 미선택 &#x27;+needWhyCount()+&#x27;개&lt;/em&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&#x27;;
   /* 과목별로 묶어서 몰아보기 */
   var bySub={};
   wrong.forEach(function(w){(bySub[w.sub]=bySub[w.sub]||[]).push(w);});
-  body=Object.keys(bySub).map(function(s){
+  body+=Object.keys(bySub).map(function(s){
     var arr=bySub[s];
-    return &#x27;&lt;div class=&quot;rv-group&quot;&gt;&lt;div class=&quot;rv-gh&quot;&gt;&lt;b&gt;&#x27;+s+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+arr.length+&#x27;문제&lt;/span&gt;&#x27;+
-      &#x27;&lt;button class=&quot;rv-go&quot; onclick=&quot;closeReview();openSolve(\&#x27;&#x27;+s+&#x27;\&#x27;,\&#x27;&#x27;+s+&#x27; 오답 몰아풀기\&#x27;)&quot;&gt;몰아서 풀기 →&lt;/button&gt;&lt;/div&gt;&#x27;+
+    var ready=arr.filter(function(w){return !w.need;}).length;
+    return &#x27;&lt;div class=&quot;rv-group&quot;&gt;&lt;div class=&quot;rv-gh&quot;&gt;&lt;b&gt;&#x27;+s+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+arr.length+&#x27;문제&#x27;+(ready&lt;arr.length?&#x27; · &lt;em style=&quot;color:#D64545;font-style:normal&quot;&gt;이유 미작성 &#x27;+(arr.length-ready)+&#x27;&lt;/em&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&#x27;+
+      &#x27;&lt;button class=&quot;rv-go&#x27;+(ready?&#x27;&#x27;:&#x27; off&#x27;)+&#x27;&quot; onclick=&quot;&#x27;+(ready?&#x27;closeReview();openSolve(\&#x27;&#x27;+s+&#x27;\&#x27;,\&#x27;&#x27;+s+&#x27; 오답 몰아풀기\&#x27;)&#x27;:&#x27;toast(\&#x27;틀린 이유를 먼저 써야 몰아풀기가 열려요\&#x27;)&#x27;)+&#x27;&quot;&gt;&#x27;+(ready?&#x27;몰아서 풀기 &#x27;+ready+&#x27;문제 →&#x27;:&#x27;🔒 이유 먼저&#x27;)+&#x27;&lt;/button&gt;&lt;/div&gt;&#x27;+
       arr.map(function(w){
         return &#x27;&lt;div class=&quot;rv-item&quot;&gt;&lt;div class=&quot;rv-top&quot;&gt;&lt;span class=&quot;rv-u&quot;&gt;&#x27;+w.unit+&#x27;&lt;/span&gt;&lt;span class=&quot;rv-cnt&quot;&gt;&#x27;+w.cnt+&#x27;번 틀림&lt;/span&gt;&lt;span class=&quot;rv-dt&quot;&gt;&#x27;+w.date+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
           &#x27;&lt;div class=&quot;rv-q&quot;&gt;&#x27;+w.q+&#x27;&lt;/div&gt;&#x27;+
-          &#x27;&lt;div class=&quot;rv-why&quot;&gt;왜 틀렸나 — &#x27;+w.why+&#x27;&lt;/div&gt;&#x27;+
+          (function(){
+            var gi=REVIEW.wrong.indexOf(w), m=whyMeta(w.kind);
+            if(w.need||!m)return &#x27;&lt;div class=&quot;rv-needwhy&quot;&gt;&lt;b&gt;⚠️ 왜 틀렸는지 골라줘&lt;/b&gt;&#x27;+
+              &#x27;&lt;span&gt;골라야 복습으로 인정되고 몰아풀기에 들어가요. 유형이 쌓이면 네 약점 처방이 나와요.&lt;/span&gt;&#x27;+
+              whyChips(&#x27;setWhyKind(&#x27;+gi+&#x27;,\&#x27;__K__\&#x27;)&#x27;,&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+            return &#x27;&lt;div class=&quot;rv-why&quot;&gt;&lt;span class=&quot;rv-wk&quot;&gt;&#x27;+m.ic+&#x27; &#x27;+m.t+&#x27;&lt;/span&gt;&#x27;+
+              (w.why?&#x27;&lt;em&gt;“&#x27;+w.why+&#x27;”&lt;/em&gt;&#x27;:&#x27;&#x27;)+
+              &#x27;&lt;span class=&quot;rv-fix&quot;&gt;처방 — &#x27;+m.fix+&#x27;&lt;/span&gt;&#x27;+
+              &#x27;&lt;button class=&quot;rv-chg&quot; onclick=&quot;REVIEW.wrong[&#x27;+gi+&#x27;].need=true;renderReview()&quot;&gt;유형 바꾸기&lt;/button&gt;&lt;/div&gt;&#x27;;
+          })()+
           (w.again?&#x27;&lt;div class=&quot;rv-again&quot;&gt;🔁 재확인에서 또 틀림 — 개념부터 다시 보는 게 좋아요&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
       }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
   }).join(&#x27;&#x27;);
@@ -4974,7 +5807,7 @@ function renderReview(){
 }
 buildGrid(); buildTodo(); renderTkb();
 /* 모달 배경(빈 부분) 클릭 → 닫기. 오버레이별 전용 close 호출 */
-var OVL_CLOSE={wordOvl:&#x27;closeWord&#x27;,checkOvl:&#x27;closeCheck&#x27;,diagOvl:&#x27;closeDiag&#x27;,rptOvl:&#x27;closeReport&#x27;,teukOvl:&#x27;closeTeuk&#x27;,paperOvl:&#x27;closePaper&#x27;,lecOvl:&#x27;closeLec&#x27;,examOvl:&#x27;closeExam&#x27;};
+var OVL_CLOSE={wordOvl:&#x27;closeWord&#x27;,checkOvl:&#x27;closeCheck&#x27;,diagOvl:&#x27;closeDiag&#x27;,rptOvl:&#x27;closeReport&#x27;,teukOvl:&#x27;closeTeuk&#x27;,paperOvl:&#x27;closePaper&#x27;,lecOvl:&#x27;closeLec&#x27;,examOvl:&#x27;closeExam&#x27;,tierOvl:&#x27;closeTier&#x27;,lgOvl:&#x27;closeLeague&#x27;,shOvl:&#x27;closeShop&#x27;,chOvl:&#x27;closeChal&#x27;};
 document.addEventListener(&#x27;click&#x27;,function(e){
  var ov=e.target;
  if(ov&amp;&amp;ov.classList&amp;&amp;ov.classList.contains(&#x27;wordovl&#x27;)&amp;&amp;ov.classList.contains(&#x27;show&#x27;)){
@@ -5106,6 +5939,10 @@ function renderGameBarM(){
     &#x27;&lt;div class=&quot;mg-btns&quot;&gt;&#x27;+
       &#x27;&lt;button class=&quot;hi&quot; onclick=&quot;openReview(\&#x27;wrong\&#x27;,\&#x27;week\&#x27;)&quot;&gt;🔁 복습 센터&lt;b&gt;문제 &#x27;+rvW+&#x27; · 단어 &#x27;+rvD+&#x27;&lt;/b&gt;&lt;/button&gt;&#x27;+
       &#x27;&lt;button onclick=&quot;openTierMap()&quot;&gt;🏅 업적·진화&lt;b&gt;배지 &#x27;+GAME.badges.filter(function(b){return b.got;}).length+&#x27;/&#x27;+GAME.badges.length+&#x27;&lt;/b&gt;&lt;/button&gt;&#x27;+
+    &#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;mg-btns&quot;&gt;&#x27;+
+      &#x27;&lt;button onclick=&quot;openLeague()&quot;&gt;&#x27;+LEAGUE.tier.ic+&#x27; 주간 리그&lt;b&gt;20명 중 &#x27;+myLeagueRank()+&#x27;위&lt;/b&gt;&lt;/button&gt;&#x27;+
+      &#x27;&lt;button onclick=&quot;openShop()&quot;&gt;🪙 &#x27;+GAME.point.toLocaleString()+&#x27;P&lt;b&gt;학용품·도서 교환&lt;/b&gt;&lt;/button&gt;&#x27;+
     &#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;mg-cq&quot;&gt;&lt;div class=&quot;mg-mh&quot; style=&quot;margin:0 0 7px&quot;&gt;🏔 단원 정복도&#x27;+
       &#x27;&lt;span class=&quot;r&quot;&gt;&#x27;+Object.keys(GAME.conquest).map(function(s){
@@ -5509,6 +6346,143 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .mc-tag.ok{background:var(--ok-s);color:var(--ok)}
 .mc-tag.warn{background:#FBF0DC;color:#B57B18}
 .mc-note{font-size:11.5px;color:var(--ink3);line-height:1.6;margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}
+
+/* ===== 콘텐츠 업로드 ===== */
+.up-tabs{display:flex;gap:9px;margin-bottom:16px}
+.up-tab{flex:1;border:1.5px solid var(--line);background:var(--card);border-radius:16px;padding:15px 16px;text-align:left;font-family:inherit;cursor:pointer;font-size:15px;font-weight:900;color:var(--ink2);transition:.14s;display:flex;align-items:center;gap:11px}
+.up-tab span{font-size:24px;flex:none}
+.up-tab em{display:block;font-style:normal;font-size:11px;font-weight:700;color:var(--ink3);margin-top:2px}
+.up-tab.on{border-color:var(--brand);background:#F4FBF7;color:var(--brand)}
+.up-tab.on em{color:var(--brand)}
+.up-drop{border:2.5px dashed #CBD5E1;border-radius:22px;padding:44px 28px;text-align:center;background:#FBFCFE;cursor:pointer;transition:.16s;margin-bottom:16px}
+.up-drop:hover{border-color:var(--brand);background:#F4FBF7}
+.up-drop.lec:hover{border-color:#7B61F2;background:#F6F3FE}
+.up-dic{font-size:52px;line-height:1}
+.up-dt{font-size:19px;font-weight:900;letter-spacing:-.02em;margin-top:11px}
+.up-dd{font-size:12.5px;font-weight:700;color:var(--ink3);margin-top:5px}
+.up-dbtn{margin-top:16px;border:0;border-radius:13px;padding:12px 26px;font-size:13.5px;font-weight:900;font-family:inherit;background:var(--ink);color:#fff;cursor:pointer}
+.up-dhint{margin-top:16px;font-size:12px;font-weight:800;color:var(--ink2);background:#FFF8E8;border:1px solid #F0DFB4;border-radius:12px;padding:10px 14px;display:inline-block}
+.up-how{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:16px}
+.up-hh{font-size:13px;font-weight:900;margin-bottom:11px}
+.up-steps{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.up-st{display:flex;align-items:center;gap:7px;background:var(--line2);border-radius:999px;padding:8px 14px;font-size:12px;font-weight:800;color:var(--ink2)}
+.up-sn{width:19px;height:19px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:10.5px;font-weight:900;flex:none}
+.up-sar{color:var(--faint);font-weight:900}
+.up-hnote{margin-top:11px;font-size:11.5px;font-weight:700;color:var(--ink3);line-height:1.6}
+.up-gain{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.up-gi{border:1px solid var(--line);border-radius:13px;padding:12px;background:#FBFCFE}
+.up-gi span{font-size:21px;display:block}
+.up-gi b{display:block;font-size:12.5px;font-weight:900;margin-top:5px}
+.up-gi em{font-style:normal;font-size:11px;font-weight:700;color:var(--ink3);line-height:1.45;display:block;margin-top:2px}
+.up-parse{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:16px}
+.up-pf{font-size:14px;font-weight:900;margin-bottom:16px}
+.up-pr{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--faint);padding:7px 0}
+.up-pi{width:17px;height:17px;border-radius:50%;border:2px solid var(--line);flex:none}
+.up-pr.load{color:var(--ink)}
+.up-pr.load .up-pi{border-color:var(--brand);border-top-color:transparent;animation:upspin .7s linear infinite}
+@keyframes upspin{to{transform:rotate(360deg)}}
+.up-pr.done{color:var(--ink3)}
+.up-pr.done .up-pi{background:var(--brand);border-color:var(--brand);position:relative}
+.up-pr.done .up-pi::after{content:&quot;✓&quot;;position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:10px;font-weight:900}
+.up-pbar{height:7px;background:var(--line2);border-radius:999px;margin-top:16px;overflow:hidden}
+.up-pbar i{display:block;height:100%;background:var(--brand);border-radius:999px;transition:width .5s}
+.up-meta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:12px}
+.up-mh{font-size:13.5px;font-weight:900;margin-bottom:11px}
+.up-mrow{display:flex;flex-wrap:wrap;gap:8px}
+.up-mi{background:var(--line2);border-radius:11px;padding:8px 13px}
+.up-mi span{font-size:10.5px;font-weight:800;color:var(--ink3);display:block}
+.up-mi b{font-size:13px;font-weight:900}
+.up-pass{margin-top:11px;background:#FBFCFE;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:12.5px;font-weight:700;color:var(--ink2);line-height:1.6}
+.up-pass b{display:block;font-size:11px;font-weight:900;color:var(--ink3);margin-bottom:3px}
+.up-fix{margin-top:11px;border:1px dashed var(--line);background:none;border-radius:11px;padding:8px 14px;font-size:12px;font-weight:800;color:var(--ink2);font-family:inherit;cursor:pointer}
+.up-fix:hover{border-color:var(--brand);color:var(--brand)}
+.up-warn{background:#FEF5F5;border:1px solid #F3D6D6;border-radius:14px;padding:12px 15px;font-size:12.5px;font-weight:800;color:#C23B3B;margin-bottom:12px;line-height:1.6}
+.up-okbar{background:#F3FBF6;border:1px solid #C6E8D4;border-radius:14px;padding:12px 15px;font-size:12.5px;font-weight:800;color:#1E7A45;margin-bottom:12px}
+.up-items{display:flex;flex-direction:column;gap:10px}
+.up-it{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--card)}
+.up-it.warn{border-color:#E8A0A0;border-width:2px;background:#FFFBFB}
+.up-ith{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.up-no{width:23px;height:23px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:900;flex:none}
+.up-ty{font-size:10.5px;font-weight:900;background:#E8F1FD;color:#2E7CF0;border-radius:999px;padding:3px 9px}
+.up-ty.sa{background:#F0EBFC;color:#7B61F2}
+.up-un{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--line2);border-radius:999px;padding:3px 9px}
+.up-df{font-size:10.5px;font-weight:800;color:#E8A33C}
+.up-ck{margin-left:auto;font-size:10.5px;font-weight:900;color:var(--brand);background:#F0F9F4;border-radius:999px;padding:3px 9px}
+.up-ng{margin-left:auto;font-size:10.5px;font-weight:900;color:#fff;background:#D64545;border-radius:999px;padding:3px 9px}
+.up-q{font-size:14px;font-weight:800;line-height:1.6;margin-bottom:9px}
+.up-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+@media(max-width:640px){.up-opts{grid-template-columns:1fr}}
+.up-op{border:1px solid var(--line);background:var(--card);border-radius:11px;padding:10px 12px;font-size:12.5px;font-weight:700;color:var(--ink2);text-align:left;font-family:inherit;cursor:pointer}
+.up-op:hover{border-color:var(--brand)}
+.up-op.ans{border-color:var(--brand);background:#F0F9F4;color:var(--brand);font-weight:900}
+.up-op em{font-style:normal;font-size:10px;font-weight:900;background:var(--brand);color:#fff;border-radius:999px;padding:1px 6px;margin-left:4px}
+.up-sa{background:#F6F3FE;border:1px solid #DED5F5;border-radius:11px;padding:11px 13px;font-size:12.5px;font-weight:700;color:#5B3F94;line-height:1.6}
+.up-wmsg{margin-top:9px;background:#FDEBEB;border-radius:11px;padding:10px 12px;font-size:12px;font-weight:800;color:#C23B3B;line-height:1.55}
+.up-foot{display:flex;gap:9px;margin-top:16px;position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 30%);padding:14px 0 4px}
+.up-cancel{border:1px solid var(--line);background:var(--card);border-radius:13px;padding:13px 22px;font-size:13px;font-weight:800;color:var(--ink3);font-family:inherit;cursor:pointer}
+.up-submit{flex:1;border:0;border-radius:13px;padding:13px;font-size:14px;font-weight:900;font-family:inherit;background:var(--brand);color:#fff;cursor:pointer}
+.up-done{background:var(--card);border:1px solid #C6E8D4;border-radius:20px;padding:36px 24px;text-align:center;margin-bottom:16px}
+.up-dnic{font-size:50px;line-height:1}
+.up-done h3{font-size:21px;font-weight:900;margin-top:9px;letter-spacing:-.02em}
+.up-done p{font-size:13px;font-weight:700;color:var(--ink2);margin-top:7px;line-height:1.65;max-width:520px;margin-left:auto;margin-right:auto}
+.up-dnrow{display:flex;gap:9px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.up-dbtn2{border:0;border-radius:12px;padding:11px 20px;font-size:13px;font-weight:900;font-family:inherit;background:var(--brand);color:#fff;cursor:pointer}
+.up-dbtn2.sub{background:var(--line2);color:var(--ink2)}
+.up-chaps{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:12px}
+.up-ch{font-size:13px;font-weight:900;margin-bottom:11px}
+.up-chrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.up-cht{flex:none;font-size:12px;font-weight:900;color:#7B61F2;background:#F0EBFC;border-radius:8px;padding:6px 10px;font-variant-numeric:tabular-nums}
+.up-chn{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12.5px;font-weight:700;font-family:inherit;outline:none}
+.up-chn:focus{border-color:#7B61F2}
+.up-chx{flex:none;border:0;background:var(--line2);border-radius:9px;width:30px;height:30px;color:var(--ink3);font-weight:900;cursor:pointer}
+.up-chadd{margin-top:7px;width:100%;border:1px dashed var(--line);background:none;border-radius:11px;padding:10px;font-size:12px;font-weight:800;color:var(--ink3);font-family:inherit;cursor:pointer}
+.up-cq{border:1px solid var(--line);border-radius:13px;padding:12px;margin-bottom:8px;background:#FBFCFE}
+.up-cqq{font-size:13px;font-weight:800;margin-bottom:8px}
+.up-recent{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:18px}
+.up-rh{font-size:13px;font-weight:900;margin-bottom:10px}
+.up-rrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.up-rrow:last-child{border:0}
+.up-ri{font-size:19px;flex:none}
+.up-rb{flex:1;min-width:0}
+.up-rb b{display:block;font-size:12.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.up-rb span{font-size:11px;font-weight:700;color:var(--ink3)}
+.up-rst{flex:none;font-size:10.5px;font-weight:900;border-radius:999px;padding:3px 9px;background:#FDF3DC;color:#9A6A10}
+.up-rst.ok{background:#F0F9F4;color:var(--brand)}
+.up-rat{flex:none;font-size:10.5px;font-weight:700;color:var(--faint);width:62px;text-align:right}
+
+/* ===== 몰입 이탈 위험 패널 ===== */
+.er-box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:20px}
+.er-h{font-size:15px;font-weight:900;letter-spacing:-.02em;margin-bottom:13px}
+.er-h span{display:block;font-size:11.5px;font-weight:700;color:var(--ink3);margin-top:3px}
+.er-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:14px}
+.er-s{border:1px solid var(--line);border-radius:13px;padding:11px 13px;background:#FBFCFE}
+.er-s b{display:block;font-size:19px;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.er-s span{font-size:11px;font-weight:800;color:var(--ink3)}
+.er-s.dg{background:#FEF5F5;border-color:#F6D4D4}.er-s.dg b{color:#D64545}
+.er-s.wn{background:#FFF9EC;border-color:#F3E2B9}.er-s.wn b{color:#B7791F}
+.er-s.rc{background:#F3FBF6;border-color:#C6E8D4}.er-s.rc b{color:#2E9E5B}
+.er-s.ok b{color:var(--ink2)}
+.er-list{display:flex;flex-direction:column;gap:9px}
+.er-row{border:1px solid var(--line);border-left-width:4px;border-radius:13px;padding:12px 14px;background:#fff}
+.er-row.dg{border-left-color:#D64545;background:#FFFBFB}
+.er-row.wn{border-left-color:#E8B33C;background:#FFFDF8}
+.er-row.rc{border-left-color:#2E9E5B;background:#FAFEFB}
+.er-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.er-top b{font-size:14px;font-weight:900;cursor:pointer}
+.er-lv{font-size:10px;font-weight:900;border-radius:999px;padding:3px 9px;flex:none}
+.er-lv.dg{background:#FDE8E8;color:#C23B3B}
+.er-lv.wn{background:#FDF3DC;color:#9A6A10}
+.er-lv.rc{background:#DFF3E7;color:#1E7A45}
+.er-sigs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.er-sig{font-size:11px;font-weight:800;color:var(--ink2);background:var(--line2);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.er-sig em{font-style:normal;margin-right:4px}
+.er-why{font-size:12px;font-weight:700;color:var(--ink2);line-height:1.55;margin-bottom:9px}
+.er-act{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--ink);background:#F7F9FC;border:1px dashed var(--line);border-radius:11px;padding:9px 12px;flex-wrap:wrap}
+.er-act span{font-size:10.5px;font-weight:900;color:var(--ink3);flex:none}
+.er-act button{margin-left:auto;flex:none;border:0;border-radius:9px;padding:7px 14px;font-size:11.5px;font-weight:900;font-family:inherit;background:var(--brand);color:#fff;cursor:pointer}
+.er-note{font-size:11.5px;color:var(--ink3);line-height:1.65;margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}
+.er-note b{color:var(--ink2)}
+@media(max-width:860px){.er-sum{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.mc-stats{grid-template-columns:1fr 1fr}}
 .aibox .aiic{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
 .aibox .aiic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2}
@@ -5995,8 +6969,9 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
       &lt;button class=&quot;mi&quot; data-role=&quot;mkt&quot; id=&quot;mMkt&quot; onclick=&quot;go(&#x27;mkt&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M19 9l-5 5-4-4-4 4&quot;/&gt;&lt;/svg&gt;유입·마케팅&lt;/button&gt;
       &lt;button class=&quot;mi&quot; data-role=&quot;mkt&quot; id=&quot;mLead&quot; onclick=&quot;go(&#x27;leads&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M22 2 11 13&quot;/&gt;&lt;path d=&quot;M22 2 15 22l-4-9-9-4z&quot;/&gt;&lt;/svg&gt;리드·온보딩 &lt;span style=&quot;margin-left:auto;background:#2E7CF0;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;5&lt;/span&gt;&lt;/button&gt;
       &lt;div class=&quot;mdiv grp&quot; data-grp=&quot;edu&quot;&gt;📦 콘텐츠&lt;/div&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mUp&quot; onclick=&quot;go(&#x27;upload&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4&quot;/&gt;&lt;path d=&quot;M7 10l5-5 5 5&quot;/&gt;&lt;path d=&quot;M12 5v12&quot;/&gt;&lt;/svg&gt;콘텐츠 업로드 &lt;span style=&quot;margin-left:auto;background:#B6E34A;color:#3E560A;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;NEW&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; onclick=&quot;toast(&#x27;개념특강·특강 편성 — 준비 중&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;4&quot; width=&quot;20&quot; height=&quot;15&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M10 9l5 3-5 3z&quot;/&gt;&lt;/svg&gt;특강 편성&lt;/button&gt;
-      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; onclick=&quot;toast(&#x27;문제은행 — 준비 중&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M4 19.5A2.5 2.5 0 0 1 6.5 17H20&quot;/&gt;&lt;path d=&quot;M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z&quot;/&gt;&lt;/svg&gt;문제은행 (19.9만)&lt;/button&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; onclick=&quot;go(&#x27;upload&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M4 19.5A2.5 2.5 0 0 1 6.5 17H20&quot;/&gt;&lt;path d=&quot;M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z&quot;/&gt;&lt;/svg&gt;문제은행 (19.9만)&lt;/button&gt;
     &lt;/nav&gt;
     &lt;div class=&quot;ipbox&quot;&gt;&lt;b&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;18&quot; height=&quot;11&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M7 11V7a5 5 0 0 1 10 0v4&quot;/&gt;&lt;/svg&gt;보안 접속&lt;/b&gt;허용 IP에서만 접속 가능&lt;br&gt;현재 IP: 211.xx.xx.14 ✓&lt;/div&gt;
     &lt;div class=&quot;me&quot;&gt;&lt;div class=&quot;av&quot;&gt;김&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mn&quot;&gt;김튜터 매니저&lt;/div&gt;&lt;div class=&quot;mr&quot;&gt;담임 · 담당 100명&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
@@ -6017,6 +6992,11 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
     &lt;div class=&quot;top&quot;&gt;&lt;div&gt;&lt;h1&gt;학습 이해도&lt;/h1&gt;&lt;div class=&quot;sub&quot;&gt;점수가 아니라 — 누가 어디서 막혔나. 손이 필요한 학생이 맨 위로, 잘한 학생도 함께&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;sp&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;stusel&quot;&gt;&lt;div class=&quot;sa&quot; style=&quot;background:var(--ink)&quot;&gt;김&lt;/div&gt;&lt;div&gt;&lt;b&gt;담당 100명&lt;/b&gt; &lt;span class=&quot;sg&quot;&gt;이번 주 집계&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
     &lt;div class=&quot;stuwrap&quot; id=&quot;masteryWrap&quot;&gt;&lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div id=&quot;viewUpload&quot; style=&quot;display:none&quot;&gt;
+    &lt;div class=&quot;top&quot;&gt;&lt;div&gt;&lt;h1&gt;콘텐츠 업로드&lt;/h1&gt;&lt;div class=&quot;sub&quot;&gt;한글·PDF 던져넣으면 AI가 지문·문제·정답을 뽑아줘요 — 선생님은 확인만&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;sp&quot;&gt;&lt;/div&gt;
+      &lt;button class=&quot;backb&quot; onclick=&quot;toast(&#x27;업로드 내역 — 최근 30건&#x27;)&quot;&gt;업로드 내역&lt;/button&gt;&lt;/div&gt;
+    &lt;div class=&quot;stuwrap&quot; id=&quot;upWrap&quot;&gt;&lt;/div&gt;
    &lt;/div&gt;
    &lt;div id=&quot;viewMkt&quot; style=&quot;display:none&quot;&gt;
     &lt;div class=&quot;top&quot;&gt;&lt;div&gt;&lt;h1&gt;유입·마케팅&lt;/h1&gt;&lt;div class=&quot;sub&quot;&gt;광고 → 리드. ROAS·CPL·유입경로 — 돈 쓴 만큼 리드가 들어오나&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;sp&quot;&gt;&lt;/div&gt;
@@ -6906,8 +7886,9 @@ function dtDeepDive(s){
      &#x27;&lt;div class=&quot;dd-rptnote&quot;&gt;참여 점수 &#x27;+s.engage+&#x27; — &#x27;+(s.engage&gt;=70?&#x27;🟢 자동 발송 대상&#x27;:s.engage&gt;=40?&#x27;🟡 덜 된 것 포함 자동 발송&#x27;:&#x27;🔴 담임 검수 후 발송 (날것 발송 안 됨)&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
 }
 function go(v){
- [&#x27;Home&#x27;,&#x27;Students&#x27;,&#x27;Mastery&#x27;,&#x27;Mkt&#x27;,&#x27;Leads&#x27;,&#x27;Assign&#x27;].forEach(function(n){var el=document.getElementById(&#x27;view&#x27;+n);if(el)el.style.display=&#x27;none&#x27;;});
- [&#x27;mHome&#x27;,&#x27;mStu&#x27;,&#x27;mMastery&#x27;,&#x27;mMkt&#x27;,&#x27;mLead&#x27;].forEach(function(m){var e=document.getElementById(m);if(e)e.classList.remove(&#x27;on&#x27;);});
+ [&#x27;Home&#x27;,&#x27;Students&#x27;,&#x27;Mastery&#x27;,&#x27;Mkt&#x27;,&#x27;Leads&#x27;,&#x27;Assign&#x27;,&#x27;Upload&#x27;].forEach(function(n){var el=document.getElementById(&#x27;view&#x27;+n);if(el)el.style.display=&#x27;none&#x27;;});
+ [&#x27;mHome&#x27;,&#x27;mStu&#x27;,&#x27;mMastery&#x27;,&#x27;mMkt&#x27;,&#x27;mLead&#x27;,&#x27;mUp&#x27;].forEach(function(m){var e=document.getElementById(m);if(e)e.classList.remove(&#x27;on&#x27;);});
+ if(v===&#x27;upload&#x27;){document.getElementById(&#x27;viewUpload&#x27;).style.display=&#x27;block&#x27;;var mu=document.getElementById(&#x27;mUp&#x27;);if(mu)mu.classList.add(&#x27;on&#x27;);renderUpload();}
  if(v===&#x27;home&#x27;){document.getElementById(&#x27;viewHome&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mHome&#x27;).classList.add(&#x27;on&#x27;);renderHome();}
  if(v===&#x27;students&#x27;){document.getElementById(&#x27;viewStudents&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mStu&#x27;).classList.add(&#x27;on&#x27;);renderStudents();}
  if(v===&#x27;mastery&#x27;){document.getElementById(&#x27;viewMastery&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mMastery&#x27;).classList.add(&#x27;on&#x27;);renderMastery();}
@@ -6918,9 +7899,9 @@ function go(v){
 
 /* ===== 역할 기반 접근 제어 (교사·관리자 / 마케터 / 전체관리자) ===== */
 var ROLE_VIEWS={
- teacher:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;],      /* 교육만 */
- mkt:[&#x27;mkt&#x27;,&#x27;leads&#x27;],                                         /* 마케팅만 */
- admin:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;mkt&#x27;,&#x27;leads&#x27;] /* 전부 */
+ teacher:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;upload&#x27;],      /* 교육만 */
+ mkt:[&#x27;mkt&#x27;,&#x27;leads&#x27;],                                                  /* 마케팅만 */
+ admin:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;upload&#x27;,&#x27;mkt&#x27;,&#x27;leads&#x27;] /* 전부 */
 };
 var ROLE_INFO={
  teacher:{av:&#x27;김&#x27;,nm:&#x27;김튜터 선생님&#x27;,role:&#x27;담임 · 담당 100명&#x27;,home:&#x27;home&#x27;},
@@ -6960,6 +7941,211 @@ function setRole(r){
  if(!ok)go(info.home);
  toast(info.nm+&#x27;로 전환 — &#x27;+(r===&#x27;mkt&#x27;?&#x27;마케팅&#x27;:r===&#x27;teacher&#x27;?&#x27;교육&#x27;:&#x27;전체&#x27;)+&#x27; 권한&#x27;);
 }
+/* ===== 콘텐츠 업로드 — 한글·PDF 던지면 AI가 지문·문제·정답 추출, 선생님은 확인만 ===== */
+var UP={
+ tab:&#x27;prob&#x27;,
+ stage:&#x27;drop&#x27;,      /* drop → parsing → review → done */
+ step:0,
+ file:&#x27;&#x27;,
+ /* AI가 뽑아낸 결과 (시안 데모) */
+ parsed:{
+  meta:{subj:&#x27;수학&#x27;,grade:&#x27;중2&#x27;,unit:&#x27;일차함수&#x27;,src:&#x27;2학기 중간 대비 프린트&#x27;,cnt:5},
+  passage:&#x27;아래 그래프는 두 일차함수 y=2x+4 와 y=−x+10 을 나타낸 것이다. (그림 1개 인식됨)&#x27;,
+  items:[
+   {no:1,type:&#x27;객관식&#x27;,q:&#x27;일차함수 y=2x+4 의 y절편은?&#x27;,opts:[&#x27;2&#x27;,&#x27;4&#x27;,&#x27;−2&#x27;,&#x27;−4&#x27;],a:1,unit:&#x27;일차함수&#x27;,diff:2,ok:true},
+   {no:2,type:&#x27;객관식&#x27;,q:&#x27;두 직선 y=2x+4, y=−x+10 의 교점의 좌표는?&#x27;,opts:[&#x27;(2, 8)&#x27;,&#x27;(1, 6)&#x27;,&#x27;(3, 7)&#x27;,&#x27;(2, 6)&#x27;],a:0,unit:&#x27;일차함수&#x27;,diff:3,ok:true},
+   {no:3,type:&#x27;객관식&#x27;,q:&#x27;기울기가 −2이고 점 (1, 3)을 지나는 직선의 식은?&#x27;,opts:[&#x27;y=−2x+5&#x27;,&#x27;y=−2x+1&#x27;,&#x27;y=2x+1&#x27;,&#x27;y=−2x−5&#x27;],a:0,unit:&#x27;일차함수&#x27;,diff:3,ok:true},
+   {no:4,type:&#x27;서술형&#x27;,q:&#x27;두 직선과 x축으로 둘러싸인 도형의 넓이를 풀이 과정과 함께 구하시오.&#x27;,opts:[],a:-1,unit:&#x27;일차함수 × 도형&#x27;,diff:5,ok:true,sa:&#x27;48&#x27;},
+   {no:5,type:&#x27;객관식&#x27;,q:&#x27;다음 중 일차함수가 &lt;b&gt;아닌&lt;/b&gt; 것은?&#x27;,opts:[&#x27;y=3x&#x27;,&#x27;y=x²+1&#x27;,&#x27;y=−x+2&#x27;,&#x27;y=½x−4&#x27;],a:1,unit:&#x27;일차함수&#x27;,diff:2,ok:false,warn:&#x27;정답 표기가 흐릿해서 AI 신뢰도 62% — 확인 필요&#x27;}
+  ]
+ },
+ /* 강의 업로드 */
+ lec:{file:&#x27;&#x27;,stage:&#x27;drop&#x27;,step:0,
+  meta:{title:&#x27;일차함수 — 기울기와 절편&#x27;,subj:&#x27;수학&#x27;,grade:&#x27;중2&#x27;,unit:&#x27;일차함수&#x27;,len:&#x27;24분 18초&#x27;},
+  chapters:[
+   {t:&#x27;00:00&#x27;,n:&#x27;오늘 배울 것 — 일차함수란?&#x27;},
+   {t:&#x27;03:42&#x27;,n:&#x27;기울기의 의미 (x가 1 늘면 y는?)&#x27;},
+   {t:&#x27;09:15&#x27;,n:&#x27;y절편 구하기&#x27;},
+   {t:&#x27;14:30&#x27;,n:&#x27;그래프 그리는 순서&#x27;},
+   {t:&#x27;19:05&#x27;,n:&#x27;예제 3문제 풀이&#x27;}
+  ],
+  checks:[
+   {q:&#x27;y=3x+2 에서 기울기는?&#x27;,opts:[&#x27;3&#x27;,&#x27;2&#x27;,&#x27;−3&#x27;,&#x27;½&#x27;],a:0},
+   {q:&#x27;y절편은 그래프가 어느 축과 만나는 점인가?&#x27;,opts:[&#x27;x축&#x27;,&#x27;y축&#x27;,&#x27;원점&#x27;,&#x27;기울기&#x27;],a:1},
+   {q:&#x27;x가 1 커질 때 y가 2 커지면 기울기는?&#x27;,opts:[&#x27;1&#x27;,&#x27;2&#x27;,&#x27;½&#x27;,&#x27;−2&#x27;],a:1}
+  ]},
+ recent:[
+  {ic:&#x27;📄&#x27;,n:&#x27;2학기_중간대비_수학_프린트.hwp&#x27;,d:&#x27;문제 12개 · 중2 일차함수&#x27;,st:&#x27;등록 완료&#x27;,ok:1,at:&#x27;10/22 18:40&#x27;},
+  {ic:&#x27;🎬&#x27;,n:&#x27;영어_현재완료_개념강의.mp4&#x27;,d:&#x27;18분 · 챕터 4 · 개념체크 3&#x27;,st:&#x27;등록 완료&#x27;,ok:1,at:&#x27;10/21 15:02&#x27;},
+  {ic:&#x27;📄&#x27;,n:&#x27;국어_품사_단원평가.pdf&#x27;,d:&#x27;문제 8개 · 중1 품사&#x27;,st:&#x27;검수 대기 2건&#x27;,ok:0,at:&#x27;10/21 11:20&#x27;}
+ ]
+};
+function renderUpload(){
+ var w=document.getElementById(&#x27;upWrap&#x27;); if(!w)return;
+ var h=&#x27;&lt;div class=&quot;guide&quot; onclick=&quot;this.classList.toggle(\&#x27;open\&#x27;)&quot;&gt;&#x27;+
+   &#x27;&lt;div class=&quot;gh&quot;&gt;&lt;span class=&quot;gi&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;gt&quot;&gt;&lt;b&gt;콘텐츠 업로드&lt;/b&gt; — 쓰던 한글 파일·강의 영상을 그대로 올리면 자동으로 들어가는 화면이에요&lt;/span&gt;&lt;span class=&quot;gx&quot;&gt;자세히 ▾&lt;/span&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;gbody&quot;&gt;문제를 하나하나 타이핑할 필요 없어요. &lt;b&gt;파일을 끌어다 놓기만&lt;/b&gt; 하면 AI가 지문·문항·보기·정답을 분리해서 뽑고, 선생님은 &lt;b&gt;맞는지 확인(✓)만&lt;/b&gt; 하면 등록돼요. 애매한 건 빨간 표시로 올라와요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-tabs&quot;&gt;&#x27;+
+    &#x27;&lt;button class=&quot;up-tab&#x27;+(UP.tab===&#x27;prob&#x27;?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;UP.tab=\&#x27;prob\&#x27;;renderUpload()&quot;&gt;&lt;span&gt;📄&lt;/span&gt;문제 등록&lt;em&gt;한글·PDF·사진&lt;/em&gt;&lt;/button&gt;&#x27;+
+    &#x27;&lt;button class=&quot;up-tab&#x27;+(UP.tab===&#x27;lec&#x27;?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;UP.tab=\&#x27;lec\&#x27;;renderUpload()&quot;&gt;&lt;span&gt;🎬&lt;/span&gt;강의 업로드&lt;em&gt;영상·녹화본&lt;/em&gt;&lt;/button&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;;
+ h += (UP.tab===&#x27;prob&#x27;) ? upProb() : upLec();
+ /* 최근 업로드 */
+ h += &#x27;&lt;div class=&quot;up-recent&quot;&gt;&lt;div class=&quot;up-rh&quot;&gt;📦 최근 업로드&lt;/div&gt;&#x27;+
+   UP.recent.map(function(r){
+     return &#x27;&lt;div class=&quot;up-rrow&quot;&gt;&lt;span class=&quot;up-ri&quot;&gt;&#x27;+r.ic+&#x27;&lt;/span&gt;&lt;div class=&quot;up-rb&quot;&gt;&lt;b&gt;&#x27;+r.n+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+r.d+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+       &#x27;&lt;span class=&quot;up-rst&#x27;+(r.ok?&#x27; ok&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+r.st+&#x27;&lt;/span&gt;&lt;span class=&quot;up-rat&quot;&gt;&#x27;+r.at+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+   }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+ w.innerHTML=h;
+}
+/* ---------- 문제 등록 ---------- */
+function upProb(){
+ if(UP.stage===&#x27;drop&#x27;){
+  return &#x27;&lt;div class=&quot;up-drop&quot; onclick=&quot;upGo()&quot;&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dic&quot;&gt;📄&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dt&quot;&gt;여기로 파일을 끌어다 놓으세요&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dd&quot;&gt;한글(.hwp·.hwpx) · 워드 · PDF · 사진(.jpg) — 여러 개 한 번에 OK&lt;/div&gt;&#x27;+
+    &#x27;&lt;button class=&quot;up-dbtn&quot;&gt;파일 고르기&lt;/button&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dhint&quot;&gt;💡 평소 쓰시던 &lt;b&gt;프린트 파일 그대로&lt;/b&gt; 올리시면 돼요. 양식을 맞출 필요 없어요.&lt;/div&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-how&quot;&gt;&lt;div class=&quot;up-hh&quot;&gt;이렇게 들어가요&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;up-steps&quot;&gt;&#x27;+
+    [&#x27;파일 올리기&#x27;,&#x27;AI가 지문·문제·정답 분리&#x27;,&#x27;선생님 확인(✓)&#x27;,&#x27;문제은행 등록&#x27;].map(function(s,i){
+      return &#x27;&lt;div class=&quot;up-st&quot;&gt;&lt;span class=&quot;up-sn&quot;&gt;&#x27;+(i+1)+&#x27;&lt;/span&gt;&#x27;+s+&#x27;&lt;/div&gt;&#x27;;}).join(&#x27;&lt;span class=&quot;up-sar&quot;&gt;→&lt;/span&gt;&#x27;)+
+   &#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;up-hnote&quot;&gt;보통 &lt;b&gt;20문제 기준 40초&lt;/b&gt; 정도 걸려요. 올려두고 다른 일 하셔도 돼요 — 끝나면 알림이 가요.&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }
+ if(UP.stage===&#x27;parsing&#x27;){
+  var steps=[&#x27;파일 읽는 중 (한글 → 텍스트·수식·그림)&#x27;,&#x27;지문과 문제 나누는 중&#x27;,&#x27;보기·정답 찾는 중&#x27;,&#x27;단원·난이도 자동 분류 중&#x27;];
+  return &#x27;&lt;div class=&quot;up-parse&quot;&gt;&lt;div class=&quot;up-pf&quot;&gt;📄 &#x27;+UP.file+&#x27;&lt;/div&gt;&#x27;+
+   steps.map(function(s,i){
+     var cls=i&lt;UP.step?&#x27;done&#x27;:(i===UP.step?&#x27;load&#x27;:&#x27;&#x27;);
+     return &#x27;&lt;div class=&quot;up-pr &#x27;+cls+&#x27;&quot;&gt;&lt;span class=&quot;up-pi&quot;&gt;&lt;/span&gt;&#x27;+s+&#x27;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;div class=&quot;up-pbar&quot;&gt;&lt;i style=&quot;width:&#x27;+Math.round((UP.step)/steps.length*100)+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }
+ var P=UP.parsed, need=P.items.filter(function(x){return !x.ok;}).length;
+ if(UP.stage===&#x27;done&#x27;){
+  return &#x27;&lt;div class=&quot;up-done&quot;&gt;&lt;div class=&quot;up-dnic&quot;&gt;✅&lt;/div&gt;&lt;h3&gt;&#x27;+P.items.length+&#x27;문제 등록 완료!&lt;/h3&gt;&#x27;+
+    &#x27;&lt;p&gt;&#x27;+P.meta.grade+&#x27; · &#x27;+P.meta.unit+&#x27; — 바로 학생 문제풀이에 나가요. 서술형 1개는 &lt;b&gt;도전 문제&lt;/b&gt; 후보로도 올라갔어요.&lt;/p&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dnrow&quot;&gt;&lt;button class=&quot;up-dbtn2&quot; onclick=&quot;UP.stage=\&#x27;drop\&#x27;;UP.step=0;renderUpload()&quot;&gt;＋ 또 올리기&lt;/button&gt;&#x27;+
+    &#x27;&lt;button class=&quot;up-dbtn2 sub&quot; onclick=&quot;toast(\&#x27;문제은행 — 방금 등록한 &#x27;+P.items.length+&#x27;문제 보기\&#x27;)&quot;&gt;문제은행에서 보기&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }
+ /* review */
+ return &#x27;&lt;div class=&quot;up-meta&quot;&gt;&lt;div class=&quot;up-mh&quot;&gt;🤖 AI가 이렇게 읽었어요 — 맞나요?&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;up-mrow&quot;&gt;&#x27;+
+    [[&#x27;과목&#x27;,P.meta.subj],[&#x27;학년&#x27;,P.meta.grade],[&#x27;단원&#x27;,P.meta.unit],[&#x27;출처&#x27;,P.meta.src],[&#x27;문항 수&#x27;,P.items.length+&#x27;개&#x27;]]
+     .map(function(m){return &#x27;&lt;div class=&quot;up-mi&quot;&gt;&lt;span&gt;&#x27;+m[0]+&#x27;&lt;/span&gt;&lt;b&gt;&#x27;+m[1]+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;up-pass&quot;&gt;&lt;b&gt;지문·그림&lt;/b&gt;&#x27;+P.passage+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;button class=&quot;up-fix&quot; onclick=&quot;toast(\&#x27;단원·학년 직접 바꾸기 — 드롭다운\&#x27;)&quot;&gt;✏️ 다르면 고치기&lt;/button&gt;&lt;/div&gt;&#x27;+
+  (need?&#x27;&lt;div class=&quot;up-warn&quot;&gt;⚠️ &lt;b&gt;&#x27;+need+&#x27;문항은 확인이 필요해요&lt;/b&gt; — 아래 빨간 테두리만 봐주시면 돼요. 나머지는 그대로 등록돼요.&lt;/div&gt;&#x27;
+       :&#x27;&lt;div class=&quot;up-okbar&quot;&gt;✅ 전부 깔끔하게 읽혔어요 — 훑어보고 등록만 누르시면 돼요.&lt;/div&gt;&#x27;)+
+  &#x27;&lt;div class=&quot;up-items&quot;&gt;&#x27;+P.items.map(function(it,i){
+    return &#x27;&lt;div class=&quot;up-it&#x27;+(it.ok?&#x27;&#x27;:&#x27; warn&#x27;)+&#x27;&quot;&gt;&#x27;+
+     &#x27;&lt;div class=&quot;up-ith&quot;&gt;&lt;span class=&quot;up-no&quot;&gt;&#x27;+it.no+&#x27;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;up-ty &#x27;+(it.type===&#x27;서술형&#x27;?&#x27;sa&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+it.type+&#x27;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;up-un&quot;&gt;&#x27;+it.unit+&#x27;&lt;/span&gt;&#x27;+
+       &#x27;&lt;span class=&quot;up-df&quot;&gt;난이도 &#x27;+&#x27;★&#x27;.repeat(it.diff)+&#x27;&lt;/span&gt;&#x27;+
+       (it.ok?&#x27;&lt;span class=&quot;up-ck&quot;&gt;AI 확신 ✓&lt;/span&gt;&#x27;:&#x27;&lt;span class=&quot;up-ng&quot;&gt;확인 필요&lt;/span&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;up-q&quot;&gt;&#x27;+it.q+&#x27;&lt;/div&gt;&#x27;+
+     (it.opts.length?&#x27;&lt;div class=&quot;up-opts&quot;&gt;&#x27;+it.opts.map(function(o,j){
+        return &#x27;&lt;button class=&quot;up-op&#x27;+(j===it.a?&#x27; ans&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;upSetAns(&#x27;+i+&#x27;,&#x27;+j+&#x27;)&quot;&gt;&#x27;+String.fromCharCode(9312+j)+&#x27; &#x27;+o+(j===it.a?&#x27; &lt;em&gt;정답&lt;/em&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;
+      :&#x27;&lt;div class=&quot;up-sa&quot;&gt;서술형 — 모범답안 &lt;b&gt;&#x27;+(it.sa||&#x27;-&#x27;)+&#x27;&lt;/b&gt; · 단계별 채점 기준은 자동 생성 후 수정 가능&lt;/div&gt;&#x27;)+
+     (it.warn?&#x27;&lt;div class=&quot;up-wmsg&quot;&gt;⚠️ &#x27;+it.warn+&#x27; — &lt;b&gt;정답이라고 생각하는 보기를 눌러주세요&lt;/b&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+    &#x27;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-foot&quot;&gt;&lt;button class=&quot;up-cancel&quot; onclick=&quot;UP.stage=\&#x27;drop\&#x27;;UP.step=0;renderUpload()&quot;&gt;취소&lt;/button&gt;&#x27;+
+   &#x27;&lt;button class=&quot;up-submit&quot; onclick=&quot;upRegister()&quot;&gt;✓ &#x27;+P.items.length+&#x27;문제 등록하기&lt;/button&gt;&lt;/div&gt;&#x27;;
+}
+function upGo(){
+ UP.file=&#x27;2학기_중간대비_수학_프린트.hwp&#x27;; UP.stage=&#x27;parsing&#x27;; UP.step=0; renderUpload();
+ var t=setInterval(function(){
+   UP.step++;
+   if(UP.step&gt;=4){clearInterval(t);UP.stage=&#x27;review&#x27;;}
+   renderUpload();
+ },620);
+}
+function upSetAns(i,j){
+ var it=UP.parsed.items[i];
+ it.a=j; it.ok=true; it.warn=&#x27;&#x27;;
+ toast(it.no+&#x27;번 정답을 &#x27;+String.fromCharCode(9312+j)+&#x27;로 확정했어요&#x27;);
+ renderUpload();
+}
+function upRegister(){
+ var need=UP.parsed.items.filter(function(x){return !x.ok;}).length;
+ if(need){toast(&#x27;확인 필요한 &#x27;+need+&#x27;문항의 정답을 먼저 눌러주세요&#x27;);return;}
+ UP.recent.unshift({ic:&#x27;📄&#x27;,n:UP.file,d:&#x27;문제 &#x27;+UP.parsed.items.length+&#x27;개 · &#x27;+UP.parsed.meta.grade+&#x27; &#x27;+UP.parsed.meta.unit,st:&#x27;등록 완료&#x27;,ok:1,at:&#x27;방금&#x27;});
+ UP.stage=&#x27;done&#x27;; renderUpload();
+}
+/* ---------- 강의 업로드 ---------- */
+function upLec(){
+ var L=UP.lec;
+ if(L.stage===&#x27;drop&#x27;){
+  return &#x27;&lt;div class=&quot;up-drop lec&quot; onclick=&quot;upLecGo()&quot;&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dic&quot;&gt;🎬&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dt&quot;&gt;강의 영상을 끌어다 놓으세요&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dd&quot;&gt;mp4 · mov · 줌 녹화본 — 길이 제한 없음&lt;/div&gt;&#x27;+
+    &#x27;&lt;button class=&quot;up-dbtn&quot;&gt;영상 고르기&lt;/button&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dhint&quot;&gt;💡 올리면 &lt;b&gt;자막·챕터·개념체크 문제까지&lt;/b&gt; 자동으로 만들어져요. 선생님은 확인만.&lt;/div&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-how&quot;&gt;&lt;div class=&quot;up-hh&quot;&gt;영상 하나 올리면 이만큼 생겨요&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;up-gain&quot;&gt;&#x27;+
+    [[&#x27;📝&#x27;,&#x27;자동 자막&#x27;,&#x27;들으면서 글로도 볼 수 있게&#x27;],
+     [&#x27;🔖&#x27;,&#x27;챕터 분리&#x27;,&#x27;&quot;기울기 부분만 다시보기&quot;가 가능해져요&#x27;],
+     [&#x27;🧩&#x27;,&#x27;개념체크 문제&#x27;,&#x27;강의 끝나면 바로 확인 문제 3개&#x27;],
+     [&#x27;🔍&#x27;,&#x27;구간 검색&#x27;,&#x27;학생이 &quot;y절편&quot; 치면 그 구간으로 점프&#x27;]]
+     .map(function(g){return &#x27;&lt;div class=&quot;up-gi&quot;&gt;&lt;span&gt;&#x27;+g[0]+&#x27;&lt;/span&gt;&lt;b&gt;&#x27;+g[1]+&#x27;&lt;/b&gt;&lt;em&gt;&#x27;+g[2]+&#x27;&lt;/em&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }
+ if(L.stage===&#x27;parsing&#x27;){
+  var steps=[&#x27;영상 올리는 중&#x27;,&#x27;음성 → 자막 변환 중&#x27;,&#x27;내용 보고 챕터 나누는 중&#x27;,&#x27;개념체크 문제 만드는 중&#x27;];
+  return &#x27;&lt;div class=&quot;up-parse&quot;&gt;&lt;div class=&quot;up-pf&quot;&gt;🎬 &#x27;+L.file+&#x27;&lt;/div&gt;&#x27;+
+   steps.map(function(s,i){
+     var cls=i&lt;L.step?&#x27;done&#x27;:(i===L.step?&#x27;load&#x27;:&#x27;&#x27;);
+     return &#x27;&lt;div class=&quot;up-pr &#x27;+cls+&#x27;&quot;&gt;&lt;span class=&quot;up-pi&quot;&gt;&lt;/span&gt;&#x27;+s+&#x27;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;div class=&quot;up-pbar&quot;&gt;&lt;i style=&quot;width:&#x27;+Math.round(L.step/steps.length*100)+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }
+ if(L.stage===&#x27;done&#x27;){
+  return &#x27;&lt;div class=&quot;up-done&quot;&gt;&lt;div class=&quot;up-dnic&quot;&gt;✅&lt;/div&gt;&lt;h3&gt;강의 등록 완료!&lt;/h3&gt;&#x27;+
+    &#x27;&lt;p&gt;&lt;b&gt;&#x27;+L.meta.title+&#x27;&lt;/b&gt; — 챕터 &#x27;+L.chapters.length+&#x27;개, 개념체크 &#x27;+L.checks.length+&#x27;문제까지 같이 올라갔어요. 해당 단원 학생 플래너에 &lt;b&gt;다시보기&lt;/b&gt;로 바로 떠요.&lt;/p&gt;&#x27;+
+    &#x27;&lt;div class=&quot;up-dnrow&quot;&gt;&lt;button class=&quot;up-dbtn2&quot; onclick=&quot;UP.lec.stage=\&#x27;drop\&#x27;;UP.lec.step=0;renderUpload()&quot;&gt;＋ 또 올리기&lt;/button&gt;&#x27;+
+    &#x27;&lt;button class=&quot;up-dbtn2 sub&quot; onclick=&quot;toast(\&#x27;특강 편성 — 이 강의를 시간표에 넣기\&#x27;)&quot;&gt;시간표에 편성하기&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ }
+ /* review */
+ return &#x27;&lt;div class=&quot;up-meta&quot;&gt;&lt;div class=&quot;up-mh&quot;&gt;🤖 영상을 이렇게 읽었어요 — 맞나요?&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;up-mrow&quot;&gt;&#x27;+
+    [[&#x27;제목&#x27;,L.meta.title],[&#x27;과목&#x27;,L.meta.subj],[&#x27;학년&#x27;,L.meta.grade],[&#x27;단원&#x27;,L.meta.unit],[&#x27;길이&#x27;,L.meta.len]]
+     .map(function(m){return &#x27;&lt;div class=&quot;up-mi&quot;&gt;&lt;span&gt;&#x27;+m[0]+&#x27;&lt;/span&gt;&lt;b&gt;&#x27;+m[1]+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;)+
+   &#x27;&lt;/div&gt;&lt;button class=&quot;up-fix&quot; onclick=&quot;toast(\&#x27;제목·단원 직접 수정\&#x27;)&quot;&gt;✏️ 다르면 고치기&lt;/button&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-okbar&quot;&gt;✅ 자막 추출 완료 (정확도 96%) — 챕터와 개념체크 문제도 만들었어요.&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-chaps&quot;&gt;&lt;div class=&quot;up-ch&quot;&gt;🔖 자동 챕터 — 학생이 &quot;이 부분만 다시보기&quot; 할 수 있어요&lt;/div&gt;&#x27;+
+   L.chapters.map(function(c,i){
+     return &#x27;&lt;div class=&quot;up-chrow&quot;&gt;&lt;span class=&quot;up-cht&quot;&gt;&#x27;+c.t+&#x27;&lt;/span&gt;&lt;input class=&quot;up-chn&quot; value=&quot;&#x27;+c.n+&#x27;&quot; onchange=&quot;UP.lec.chapters[&#x27;+i+&#x27;].n=this.value&quot;&gt;&#x27;+
+       &#x27;&lt;button class=&quot;up-chx&quot; onclick=&quot;UP.lec.chapters.splice(&#x27;+i+&#x27;,1);renderUpload()&quot;&gt;✕&lt;/button&gt;&lt;/div&gt;&#x27;;
+   }).join(&#x27;&#x27;)+
+   &#x27;&lt;button class=&quot;up-chadd&quot; onclick=&quot;UP.lec.chapters.push({t:\&#x27;00:00\&#x27;,n:\&#x27;새 챕터\&#x27;});renderUpload()&quot;&gt;＋ 챕터 추가&lt;/button&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-chaps&quot;&gt;&lt;div class=&quot;up-ch&quot;&gt;🧩 자동 생성된 개념체크 — 강의 끝나고 바로 나가요&lt;/div&gt;&#x27;+
+   L.checks.map(function(c,i){
+     return &#x27;&lt;div class=&quot;up-cq&quot;&gt;&lt;div class=&quot;up-cqq&quot;&gt;&lt;b&gt;Q&#x27;+(i+1)+&#x27;.&lt;/b&gt; &#x27;+c.q+&#x27;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;up-opts&quot;&gt;&#x27;+c.opts.map(function(o,j){
+        return &#x27;&lt;button class=&quot;up-op&#x27;+(j===c.a?&#x27; ans&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;UP.lec.checks[&#x27;+i+&#x27;].a=&#x27;+j+&#x27;;renderUpload();toast(\&#x27;정답 변경됨\&#x27;)&quot;&gt;&#x27;+String.fromCharCode(9312+j)+&#x27; &#x27;+o+(j===c.a?&#x27; &lt;em&gt;정답&lt;/em&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+   }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;up-foot&quot;&gt;&lt;button class=&quot;up-cancel&quot; onclick=&quot;UP.lec.stage=\&#x27;drop\&#x27;;UP.lec.step=0;renderUpload()&quot;&gt;취소&lt;/button&gt;&#x27;+
+   &#x27;&lt;button class=&quot;up-submit&quot; onclick=&quot;upLecRegister()&quot;&gt;✓ 강의 등록하기&lt;/button&gt;&lt;/div&gt;&#x27;;
+}
+function upLecGo(){
+ UP.lec.file=&#x27;일차함수_기울기와절편_개념강의.mp4&#x27;; UP.lec.stage=&#x27;parsing&#x27;; UP.lec.step=0; renderUpload();
+ var t=setInterval(function(){
+   UP.lec.step++;
+   if(UP.lec.step&gt;=4){clearInterval(t);UP.lec.stage=&#x27;review&#x27;;}
+   renderUpload();
+ },650);
+}
+function upLecRegister(){
+ UP.recent.unshift({ic:&#x27;🎬&#x27;,n:UP.lec.file,d:UP.lec.meta.len+&#x27; · 챕터 &#x27;+UP.lec.chapters.length+&#x27; · 개념체크 &#x27;+UP.lec.checks.length,st:&#x27;등록 완료&#x27;,ok:1,at:&#x27;방금&#x27;});
+ UP.lec.stage=&#x27;done&#x27;; renderUpload();
+}
+
 renderHome();buildPlan();setRole(&#x27;teacher&#x27;);
 &lt;/script&gt;
 &lt;style&gt;
@@ -7084,7 +8270,54 @@ function myClassStats(){
      &#x27;&lt;div class=&quot;mc-st risk&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;⚠ &#x27;+risk+&#x27;명&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;관심 필요&lt;/div&gt;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;mc-st&quot;&gt;&lt;div class=&quot;mc-sv&quot;&gt;87%&lt;/div&gt;&lt;div class=&quot;mc-sl&quot;&gt;오늘 출석&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;mc-note&quot;&gt;이름을 누르면 그 학생의 추이·문제점·개선점이 열려요. 아래는 지금 &lt;b&gt;손이 필요한 일&lt;/b&gt;만 — 잘 돌아가는 학생은 안 떠요.&lt;/div&gt;&lt;/div&gt;&#x27;;
+   &#x27;&lt;div class=&quot;mc-note&quot;&gt;이름을 누르면 그 학생의 추이·문제점·개선점이 열려요. 아래는 지금 &lt;b&gt;손이 필요한 일&lt;/b&gt;만 — 잘 돌아가는 학생은 안 떠요.&lt;/div&gt;&lt;/div&gt;&#x27;+
+   engageRisk();
+}
+
+/* ===== 몰입 이탈 위험 — 성적이 아니라 &quot;흥미를 잃는 중&quot;인 학생 ===== */
+/* 신호: 연속 학습 끊김 · 주간 포인트 급감 · 미션 연속 미완 · 앱 접속 공백 · 리그 강등권 */
+var ENGAGE=[
+ {n:&#x27;박서윤&#x27;,g:&#x27;초6&#x27;,lv:&#x27;위험&#x27;,sig:[[&#x27;🔥&#x27;,&#x27;연속 5일 → 끊김 (3일째)&#x27;],[&#x27;📉&#x27;,&#x27;주간 P 92 (반 평균 380)&#x27;],[&#x27;🎯&#x27;,&#x27;미션 7일 연속 미완&#x27;]],
+  why:&#x27;보상 목표가 없어진 뒤로 접속만 하고 아무것도 안 해요.&#x27;,
+  act:&#x27;버디 진화 1단계 앞 — 전화로 &quot;3개만 하면 진화&quot;라고 짚어주기&#x27;},
+ {n:&#x27;이도윤&#x27;,g:&#x27;초4&#x27;,lv:&#x27;위험&#x27;,sig:[[&#x27;📵&#x27;,&#x27;앱 접속 4일 없음&#x27;],[&#x27;🥈&#x27;,&#x27;리그 19위 (강등권)&#x27;],[&#x27;⭐&#x27;,&#x27;이번 주 별 0&#x27;]],
+  why:&#x27;개념특강 2회 연속 결석 이후 완전히 멈췄어요.&#x27;,
+  act:&#x27;학부모 통화 — 시간표가 안 맞는지 먼저 확인&#x27;},
+ {n:&#x27;신예준&#x27;,g:&#x27;중1&#x27;,lv:&#x27;주의&#x27;,sig:[[&#x27;📉&#x27;,&#x27;주간 P 318 → 120 (-62%)&#x27;],[&#x27;⚡&#x27;,&#x27;콤보 최고 2 (대충 찍는 중)&#x27;],[&#x27;🚩&#x27;,&#x27;3초컷 정답 5회&#x27;]],
+  why:&#x27;들어는 오는데 답만 빨리 찍고 나가요 — 난이도가 안 맞을 가능성.&#x27;,
+  act:&#x27;레벨 재진단 권유 + 문제 난이도 한 단계 내리기&#x27;},
+ {n:&#x27;노하늘&#x27;,g:&#x27;중2&#x27;,lv:&#x27;주의&#x27;,sig:[[&#x27;🥈&#x27;,&#x27;리그 15위 (강등권 진입)&#x27;],[&#x27;🪙&#x27;,&#x27;상점 한 번도 안 들어옴&#x27;],[&#x27;🎯&#x27;,&#x27;미션 3일 연속 미완&#x27;]],
+  why:&#x27;보상 구조를 아직 모르는 상태 — 동기 연결이 안 됐어요.&#x27;,
+  act:&#x27;수업 때 상점 한 번 같이 열어보기 (목표 1개 정해주기)&#x27;},
+ {n:&#x27;임서후&#x27;,g:&#x27;중1&#x27;,lv:&#x27;회복&#x27;,sig:[[&#x27;📈&#x27;,&#x27;주간 P 96 → 240 (+150%)&#x27;],[&#x27;🔥&#x27;,&#x27;연속 4일 재시작&#x27;],[&#x27;💎&#x27;,&#x27;콤보 8 달성&#x27;]],
+  why:&#x27;지난주 위험 → 전화 후 복귀. 지금 흐름 좋아요.&#x27;,
+  act:&#x27;칭찬 메시지 한 줄 — 복귀 직후가 제일 중요&#x27;}
+];
+function engageRisk(){
+ var danger=ENGAGE.filter(function(e){return e.lv===&#x27;위험&#x27;;}).length;
+ var warn=ENGAGE.filter(function(e){return e.lv===&#x27;주의&#x27;;}).length;
+ var back=ENGAGE.filter(function(e){return e.lv===&#x27;회복&#x27;;}).length;
+ var cls={&#x27;위험&#x27;:&#x27;dg&#x27;,&#x27;주의&#x27;:&#x27;wn&#x27;,&#x27;회복&#x27;:&#x27;rc&#x27;};
+ return &#x27;&lt;div class=&quot;er-box&quot;&gt;&lt;div class=&quot;er-h&quot;&gt;🎮 몰입 이탈 위험 &lt;span&gt;성적 말고 &quot;재미를 잃는 중&quot;인 학생 — 시스템이 자동 감지&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;er-sum&quot;&gt;&#x27;+
+    &#x27;&lt;div class=&quot;er-s dg&quot;&gt;&lt;b&gt;&#x27;+danger+&#x27;명&lt;/b&gt;&lt;span&gt;이탈 위험&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;er-s wn&quot;&gt;&lt;b&gt;&#x27;+warn+&#x27;명&lt;/b&gt;&lt;span&gt;주의&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;er-s rc&quot;&gt;&lt;b&gt;&#x27;+back+&#x27;명&lt;/b&gt;&lt;span&gt;회복 중&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;er-s ok&quot;&gt;&lt;b&gt;&#x27;+(100-danger-warn-back)+&#x27;명&lt;/b&gt;&lt;span&gt;몰입 양호&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;er-list&quot;&gt;&#x27;+ENGAGE.map(function(e,i){
+   return &#x27;&lt;div class=&quot;er-row &#x27;+cls[e.lv]+&#x27;&quot;&gt;&#x27;+
+     &#x27;&lt;div class=&quot;er-top&quot;&gt;&lt;span class=&quot;er-lv &#x27;+cls[e.lv]+&#x27;&quot;&gt;&#x27;+e.lv+&#x27;&lt;/span&gt;&#x27;+
+       &#x27;&lt;b class=&quot;tname-link&quot; onclick=&quot;openStudent(\&#x27;&#x27;+e.n+&#x27;\&#x27;)&quot;&gt;&#x27;+e.n+&#x27;&lt;/b&gt;&#x27;+
+       (typeof gradeBadge===&#x27;function&#x27;?gradeBadge(e.g):&#x27;&lt;span&gt;&#x27;+e.g+&#x27;&lt;/span&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;er-sigs&quot;&gt;&#x27;+e.sig.map(function(s){
+        return &#x27;&lt;span class=&quot;er-sig&quot;&gt;&lt;em&gt;&#x27;+s[0]+&#x27;&lt;/em&gt;&#x27;+s[1]+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;er-why&quot;&gt;&#x27;+e.why+&#x27;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;er-act&quot;&gt;&lt;span&gt;👉 권장 조치&lt;/span&gt;&#x27;+e.act+
+       &#x27;&lt;button onclick=&quot;toast(\&#x27;&#x27;+e.n+&#x27; — 조치 기록됨. 3일 뒤 자동 재점검돼요\&#x27;)&quot;&gt;조치함&lt;/button&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;er-note&quot;&gt;성적표엔 안 나오는 신호예요 — &lt;b&gt;성적이 떨어지기 2~4주 전&lt;/b&gt;에 먼저 흥미가 꺼져요. 여기서 먼저 잡으면 성적 하락 자체가 안 일어나요. 조치하면 3일 뒤 자동으로 재점검해서 회복/미회복이 떠요.&lt;/div&gt;&lt;/div&gt;&#x27;;
 }
 function renderHome(){var w=document.getElementById(&#x27;homeWrap&#x27;);if(!w)return;
  var CALL=[TODO.chk[2],OPS.expire[0],OPS.expire[1]];                  // 미접속 확인 + 갱신 안내
