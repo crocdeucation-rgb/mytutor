@@ -2336,6 +2336,13 @@ button{font:inherit;cursor:pointer}
 .dl-now span{font-size:10px;font-weight:900;color:#FF5A4E;flex:none}
 .dl-chk{width:22px;height:22px;border-radius:8px;border:2px solid var(--line);background:#fff;flex:none;display:grid;place-items:center;font-size:12px;color:#fff;cursor:pointer}
 .dl-item.done .dl-chk{background:var(--ok);border-color:var(--ok)}
+/* 코치 팁 카드 */
+.tipc{margin-top:8px;background:#FFFBEB;border:1.5px solid #F3DFA0;border-radius:13px;padding:11px 13px}
+.tiph{font-size:11px;font-weight:900;color:#8A6400;display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.tipt{font-size:9.5px;font-weight:800;background:#F6E8BD;color:#8A6400;border-radius:999px;padding:2px 8px}
+.tipb{font-size:12.5px;line-height:1.6;color:var(--ink)}
+.tipf{display:flex;align-items:center;gap:7px;margin-top:9px;flex-wrap:wrap}
+.tipby{font-size:9.5px;font-weight:800;color:#A58A2D;margin-right:auto}
 .plwk{font-size:11px;font-weight:800;color:var(--ink3);margin-left:10px}
 .gbar.slim{display:flex;align-items:center;gap:14px;padding:12px 18px}
 .gbar.slim .gs-lv{font-size:13px;font-weight:900;color:var(--lime);white-space:nowrap}
@@ -5270,7 +5277,31 @@ document.addEventListener(&#x27;click&#x27;,function(e){
 });
 
 /* ===================== AI 어시스턴트 (학생) ===================== */
-function openAI(){document.getElementById(&#x27;aiwin&#x27;).classList.add(&#x27;show&#x27;);document.getElementById(&#x27;fab&#x27;).style.display=&#x27;none&#x27;;}
+
+/* ===== 코치 팁북 — AI가 지어내는 말이 아니라, 사람이 쓰고 검수한 팁을 &quot;상황 트리거&quot;로 꺼냄 =====
+   실서비스: 어드민에서 선생님이 팁 등록·검수 → 트리거 룰(D-day·오답패턴·시각·스트릭)에 매칭 */
+var TIPBOOK=[
+ {trig:&#x27;시험 D-12 · 일차함수 정답률 40%&#x27;,by:&#x27;김튜터 검수&#x27;,
+  tip:&#x27;시험 2주 전엔 새 문제보다 &lt;b&gt;틀린 문제 재풀이&lt;/b&gt;가 점수 효율이 좋아. 오답 1개를 소화하는 게 새 문제 3개보다 낫다.&#x27;,cta:[&#x27;exam&#x27;,&#x27;시험대비 세트 받기&#x27;]},
+ {trig:&#x27;같은 유형 오답 3회 — 일차함수&#x27;,by:&#x27;김튜터 검수&#x27;,
+  tip:&#x27;같은 유형을 3번 틀리면 문제가 아니라 &lt;b&gt;개념에 구멍&lt;/b&gt;이 난 거야. 풀지 말고 &lt;b&gt;2분 해설강의부터&lt;/b&gt; 봐.&#x27;,cta:[&#x27;hard&#x27;,&#x27;막힌 단원 보강 받기&#x27;]},
+ {trig:&#x27;22시 이후 학습 시작&#x27;,by:&#x27;이수진 선생님 검수&#x27;,
+  tip:&#x27;밤 10시 넘으면 새 개념은 잘 안 남아. &lt;b&gt;영단어·오답 정리 같은 가벼운 것&lt;/b&gt;부터 하고, 개념은 내일로.&#x27;,cta:null},
+ {trig:&#x27;연속 학습 5일째&#x27;,by:&#x27;김튜터 검수&#x27;,
+  tip:&#x27;5일 연속이면 이미 잘하고 있는 거야. 오늘은 양 늘리지 말고 &lt;b&gt;한 바퀴 완주만&lt;/b&gt; 지키자 — 습관이 실력보다 먼저다.&#x27;,cta:null},
+ {trig:&#x27;내일 특강 = 문해력 한 방&#x27;,by:&#x27;박준영 선생님 검수&#x27;,
+  tip:&#x27;특강은 &lt;b&gt;본방에서 손 움직이며&lt;/b&gt; 듣는 게 다시보기 2번보다 낫다. 내일 21:00 전에 오늘 분량 끝내두자.&#x27;,cta:null}
+];
+var tipIdx=0, aiTipShown=false;
+function tipCard(i){var t=TIPBOOK[i%TIPBOOK.length];
+ return &#x27;&lt;div class=&quot;tipc&quot;&gt;&lt;div class=&quot;tiph&quot;&gt;📌 코치 팁&lt;span class=&quot;tipt&quot;&gt;&#x27;+t.trig+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;tipb&quot;&gt;&#x27;+t.tip+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;tipf&quot;&gt;&lt;span class=&quot;tipby&quot;&gt;✓ &#x27;+t.by+&#x27; · AI가 지어낸 말 아님&lt;/span&gt;&#x27;+
+  (t.cta?&#x27;&lt;span class=&quot;chip2 sm&quot; onclick=&quot;addA(renderARec(\&#x27;&#x27;+t.cta[0]+&#x27;\&#x27;))&quot;&gt;&#x27;+t.cta[1]+&#x27;&lt;/span&gt;&#x27;:&#x27;&#x27;)+
+  &#x27;&lt;span class=&quot;chip2 sm&quot; onclick=&quot;tipIdx++;addA(tipCard(tipIdx))&quot;&gt;다른 팁 보기&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;}
+function openAI(){document.getElementById(&#x27;aiwin&#x27;).classList.add(&#x27;show&#x27;);document.getElementById(&#x27;fab&#x27;).style.display=&#x27;none&#x27;;
+ if(!aiTipShown){aiTipShown=true;setTimeout(function(){addA(&#x27;오늘 네 상황 보고 팁 하나 가져왔어 👇&#x27;+tipCard(0));},350);}
+}
 function closeAI(){document.getElementById(&#x27;aiwin&#x27;).classList.remove(&#x27;show&#x27;);document.getElementById(&#x27;fab&#x27;).style.display=&#x27;flex&#x27;;}
 function esc(s){return s.replace(/&lt;/g,&#x27;&amp;lt;&#x27;);}
 function addU(t){var c=document.getElementById(&#x27;chatw&#x27;);c.innerHTML+=&#x27;&lt;div class=&quot;msg u&quot;&gt;&#x27;+esc(t)+&#x27;&lt;/div&gt;&#x27;;c.scrollTop=c.scrollHeight;}
