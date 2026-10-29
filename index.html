@@ -2277,19 +2277,30 @@ button{font:inherit;cursor:pointer}
 .an-dot{width:7px;height:7px;border-radius:50%;background:var(--s-live);flex:none}
 .lg{font-size:11px;font-weight:700;color:var(--ink2);display:flex;align-items:center;gap:5px}
 .lg i{width:9px;height:9px;border-radius:3px}
+/* 오늘 스트립 — &quot;오늘 뭘 해야 하는지&quot;를 플래너 맨 위에 */
+.tdstrip{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:#fff;border:2px solid var(--brand);border-radius:14px;padding:10px 13px;margin:10px 0 2px}
+.tdstrip .tdk{font-size:12.5px;font-weight:900;color:var(--brand);flex:none}
+.tdstrip .tdk em{font-style:normal;background:var(--brand);color:#fff;border-radius:7px;padding:2px 7px;margin-right:6px}
+.tds-chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit}
+.tds-chip:hover{border-color:var(--brand);color:var(--brand)}
+.tds-chip .tm{font-size:10.5px;font-weight:900;color:var(--ink3)}
+.tds-chip.done{opacity:.45;text-decoration:line-through}
+.tds-chip.live{border-color:var(--s-live);color:var(--s-live)}
+.tdstrip .tdall{margin-left:auto;font-size:11.5px;font-weight:900;color:var(--ok)}
 .grid{overflow-x:auto}
 .gtbl{border-collapse:collapse;width:100%;min-width:760px;table-layout:fixed}
 .gtbl th{font-size:12px;font-weight:800;color:var(--ink2);padding:0 0 9px;background:var(--card)}
-.gtbl th.today{color:var(--brand)}
+.gtbl th.today{color:#fff;background:var(--brand);border-radius:11px 11px 0 0;padding:7px 0 8px}
 .gtbl th .tdd{font-size:10.5px;color:var(--faint);font-weight:700;margin-top:1px}
-.gtbl th.today .tdd{color:var(--brand-d)}
+.gtbl th.today .tdd{color:rgba(255,255,255,.85)}
 .gtbl th.wkd,.gtbl td.wkd{opacity:.82}
-.gtbl td{border-top:1px solid var(--line2);border-left:1px solid var(--line2);height:42px;vertical-align:top;padding:0;position:relative}
+.gtbl td{border-top:1px solid var(--line2);border-left:1px solid var(--line);height:42px;vertical-align:top;padding:0;position:relative}
 .gtbl td.timecol,.gtbl th.timecol{width:58px}
 .gtbl td.timecol{border-left:0;text-align:right;padding:4px 10px 0 0;font-size:10.5px;color:var(--ink3);font-weight:800;position:sticky;left:0;background:var(--card);z-index:2;white-space:nowrap}
 .gtbl th.timecol{position:sticky;left:0;background:var(--card);z-index:3}
-.gtbl td.todaycol{background:var(--brand-s2)}
-.blk{position:absolute;left:3px;right:3px;top:2px;bottom:2px;border-radius:8px;padding:6px 8px 6px 11px;overflow:hidden;line-height:1.25;cursor:pointer;transition:.1s}
+.gtbl td.todaycol{background:#EBF8F0;border-left:2px solid var(--brand);box-shadow:inset -2px 0 0 var(--brand)}
+.gtbl tbody tr:last-child td.todaycol{border-bottom:2px solid var(--brand)}
+.blk{position:absolute;left:3px;right:3px;top:2px;bottom:2px;border-radius:8px;padding:6px 8px 6px 11px;overflow:hidden;line-height:1.25;cursor:pointer;transition:.1s;box-shadow:inset 0 0 0 1px rgba(20,40,30,.08)}
 /* 과목 컬러바 — 색으로 한눈에 구분 */
 .blk::before{content:&#x27;&#x27;;position:absolute;left:0;top:0;bottom:0;width:4px;background:currentColor;opacity:.75;border-radius:8px 0 0 8px}
 /* 외부 일정(학원·하교) — 내 공부 아님을 시각 구분 */
@@ -2297,7 +2308,7 @@ button{font:inherit;cursor:pointer}
 .blk.ext::before{opacity:.35}
 .blk.ext .bt{font-weight:700;color:var(--ink2)}
 .blk:hover{filter:brightness(.97);box-shadow:0 2px 8px -2px rgba(25,30,46,.18)}
-.blk .bt{font-size:11.5px;font-weight:700;letter-spacing:-.02em}
+.blk .bt{font-size:11.5px;font-weight:800;letter-spacing:-.02em}
 .blk .bs{font-size:9.5px;opacity:.8;margin-top:1px;font-weight:600}
 .blk.islive{box-shadow:inset 0 0 0 1.5px var(--s-live)}
 .blk.auto{border-left:3px solid var(--s-live)}
@@ -3743,6 +3754,7 @@ button{font:inherit;cursor:pointer}
         &lt;div class=&quot;radar&quot; id=&quot;radar&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;legend&quot; id=&quot;legend&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;autonote&quot;&gt;&lt;span class=&quot;an-dot&quot;&gt;&lt;/span&gt;개념특강은 중등 타임(매일 21:00) 하나로 자동 편성 — 본방 사수하면 출석, 못 보면 다시보기&lt;/div&gt;
+        &lt;div id=&quot;todayStrip&quot;&gt;&lt;/div&gt;
         &lt;div id=&quot;odBanner&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;grid&quot; id=&quot;grid&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;tkwrap&quot;&gt;&lt;div class=&quot;tkhd&quot;&gt;&lt;b&gt;이번 주 열린 특강&lt;/b&gt;&lt;span class=&quot;tkmore&quot; onclick=&quot;openPage(&#x27;special&#x27;)&quot;&gt;전체 보기 ›&lt;/span&gt;&lt;/div&gt;
@@ -4385,7 +4397,21 @@ function renderRadar(){
  var wb=document.getElementById(&#x27;wkBar&#x27;),wt=document.getElementById(&#x27;wkTxt&#x27;);
  if(wb){wb.style.width=wr+&#x27;%&#x27;;wt.textContent=&#x27;이번 주 계획 이행 &#x27;+wr+&#x27;%&#x27;;}
 }
+function renderTodayStrip(){
+ var el=document.getElementById(&#x27;todayStrip&#x27;); if(!el)return;
+ var items=BLK.map(function(b,i){return{b:b,i:i};})
+   .filter(function(x){return x.b[0]===TODAY &amp;&amp; !(x.b[6]&amp;&amp;x.b[6].ext);})
+   .sort(function(a,c){return a.b[1]-c.b[1];});
+ var left=items.filter(function(x){return !(x.b[6]&amp;&amp;x.b[6].done);});
+ el.innerHTML=&#x27;&lt;div class=&quot;tdstrip&quot;&gt;&lt;span class=&quot;tdk&quot;&gt;&lt;em&gt;오늘 · &#x27;+WDAY[TODAY]+&#x27;&lt;/em&gt;&#x27;+
+   (left.length?(&#x27;남은 &#x27;+left.length+&#x27;개&#x27;):&#x27;다 끝냄&#x27;)+&#x27;&lt;/span&gt;&#x27;+
+  items.map(function(x){var st=x.b[6]||{};
+    return &#x27;&lt;button class=&quot;tds-chip&#x27;+(st.done?&#x27; done&#x27;:&#x27;&#x27;)+(st.live?&#x27; live&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;openDlg(&#x27;+x.i+&#x27;)&quot;&gt;&#x27;+
+      &#x27;&lt;span class=&quot;tm&quot;&gt;&#x27;+(x.b[4]||&#x27;&#x27;)+&#x27;&lt;/span&gt;&#x27;+x.b[3]+(st.done?&#x27; ✓&#x27;:&#x27;&#x27;)+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;)+
+  (left.length?&#x27;&#x27;:&#x27;&lt;span class=&quot;tdall&quot;&gt;올클리어 🎉&lt;/span&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
 function buildGrid(){
+  renderTodayStrip();
   renderOverdueBanner();
   var map={},spanned={};
   BLK.forEach(function(b,i){map[b[0]+&#x27;-&#x27;+b[1]]={b:b,i:i};for(var s=1;s&lt;b[2];s++)spanned[b[0]+&#x27;-&#x27;+(b[1]+s)]=1;});
