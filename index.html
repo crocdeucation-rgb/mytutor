@@ -57,21 +57,19 @@ body.mob{background:radial-gradient(900px 500px at 50% -10%,#2C3060 0%,#20233F 6
 &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
 &lt;style&gt;
 :root{color-scheme:light;
- --brand:#2E9E5B; --brand-d:#4CC27E; --brand-s:#E7F7EE; --brand-ink:#14532D;
+ --brand:#1FAB5E; --brand-d:#3DC878; --brand-s:#E7F7EE; --brand-ink:#14532D;
  --sun:#FFB63C; --sun-s:#FFF4DF; --sun-ink:#8A5A00;
  --sky:#3B82E6; --sky-s:#E8F1FD;
  --pink:#F06292; --pink-s:#FDEAF1;
  --vio:#8B5CF6; --vio-s:#F0EBFC;
- --ink:#1F2733; --ink2:#4A5565; --ink3:#8B94A5; --faint:#B7BFCC;
- --line:#E8ECF2; --line2:#F2F4F8; --bg:#EEF2F6; --card:#fff;
+ --ink:#3C3C3C; --ink2:#5F6B5F; --ink3:#95A095; --faint:#BFC8BF;
+ --line:#E5E8E0; --line2:#F3F5EF; --bg:#FBFBF8; --card:#fff;
  --red:#E85050; --red-s:#FDEBEB;
  --ok:#2E9E5B;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
-body{font-family:Pretendard,&quot;Noto Sans KR&quot;,&quot;Apple SD Gothic Neo&quot;,system-ui,sans-serif;background:
- radial-gradient(1200px 600px at 20% -10%,#E7F7EE 0%,transparent 60%),
- radial-gradient(1000px 600px at 90% 110%,#FFF4DF 0%,transparent 55%),var(--bg);
+body{font-family:Pretendard,&quot;Noto Sans KR&quot;,&quot;Apple SD Gothic Neo&quot;,system-ui,sans-serif;background:var(--bg);
  color:var(--ink);letter-spacing:-.01em;line-height:1.5}
 button{font:inherit;cursor:pointer}
 
@@ -88,7 +86,7 @@ button{font:inherit;cursor:pointer}
 .push .pw2{font-size:9px;font-weight:800;color:var(--faint)}
 
 /* 헤더 */
-.hd{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:10px;padding:14px 16px 12px;background:rgba(238,242,246,.88);backdrop-filter:blur(10px)}
+.hd{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:10px;padding:14px 16px 12px;background:rgba(251,251,248,.9);backdrop-filter:blur(10px)}
 .hd .mk{width:38px;height:38px;border-radius:12px;background:var(--brand);display:grid;place-items:center;flex:none}
 .hd .mk svg{width:24px;height:24px}
 .hd .t b{font-size:18px;font-weight:900;letter-spacing:-.02em}
@@ -105,7 +103,7 @@ button{font:inherit;cursor:pointer}
 .colA,.colB{min-width:0}
 
 /* 히어로 */
-.hero{background:linear-gradient(140deg,var(--brand),var(--brand-d));border-radius:22px;padding:18px;color:#fff;position:relative;overflow:hidden;margin-bottom:12px}
+.hero{background:var(--brand);border-radius:22px;padding:18px;color:#fff;position:relative;overflow:hidden;margin-bottom:12px}
 .hero::after{content:&quot;&quot;;position:absolute;right:-22px;top:-26px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.14)}
 .hero .hk{font-size:11.5px;font-weight:800;opacity:.9}
 .hero h2{font-size:19px;font-weight:900;margin-top:4px;letter-spacing:-.02em}
@@ -114,7 +112,7 @@ button{font:inherit;cursor:pointer}
 .hero .bar i{display:block;height:100%;border-radius:999px;background:#FFE24A;transition:.4s}
 .hero .bt{font-size:10.5px;font-weight:800;opacity:.9;margin-top:6px}
 
-.c{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px}
+.c{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
 .c .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .c .ch b{font-size:14.5px;font-weight:900}
 .c .ch .sub{font-size:10.5px;color:var(--ink3);font-weight:700}
@@ -610,24 +608,24 @@ button{font:inherit;cursor:pointer}
 
 /* ===== PC 좌측 네비 (넓은 화면에서만) ===== */
 .enav{display:none;position:fixed;left:0;top:0;bottom:0;width:220px;z-index:60;
- background:linear-gradient(175deg,#2E9E5B,#1C7A42);color:#fff;flex-direction:column;padding:20px 12px 16px}
-.enav .elogo{display:flex;align-items:center;gap:9px;padding:0 8px;font-weight:900;font-size:18px;letter-spacing:-.02em}
+ background:#fff;border-right:2px solid var(--line);color:var(--ink);flex-direction:column;padding:20px 12px 16px}
+.enav .elogo{display:flex;align-items:center;gap:9px;padding:0 8px;font-weight:900;font-size:18px;letter-spacing:-.02em;color:var(--brand)}
 .enav .elogo .mk2{width:31px;height:31px;border-radius:10px;background:#B6E34A;display:grid;place-items:center;flex:none}
 .enav .elogo .mk2 svg{width:21px;height:21px}
-.enav .eroom{font-size:10.5px;color:rgba(255,255,255,.55);font-weight:700;padding:3px 8px 0 48px}
+.enav .eroom{font-size:10.5px;color:var(--ink3);font-weight:700;padding:3px 8px 0 48px}
 .enav .emenu{margin-top:22px;display:flex;flex-direction:column;gap:3px}
-.enav .emi{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:12px;border:0;background:none;color:rgba(255,255,255,.74);font-weight:800;font-size:13px;text-align:left;font-family:inherit;transition:.12s}
+.enav .emi{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:12px;border:2px solid transparent;background:none;color:var(--ink2);font-weight:800;font-size:13px;text-align:left;font-family:inherit;transition:.12s}
 .enav .emi .ei{font-size:15px;width:19px;text-align:center;flex:none}
-.enav .emi:hover{background:rgba(255,255,255,.09);color:#fff}
-.enav .emi.on{background:rgba(255,255,255,.15);color:#fff}
+.enav .emi:hover{background:var(--line2);color:var(--ink)}
+.enav .emi.on{background:var(--brand-s);color:var(--brand);border-color:#BFE6CE}
 .enav .emi .lvb2{margin-left:auto;font-size:8.5px;font-weight:900;background:#F0663B;color:#fff;border-radius:999px;padding:1px 6px}
-.enav .emi .stb2{margin-left:auto;font-size:9px;font-weight:900;background:rgba(255,255,255,.2);border-radius:999px;padding:1px 6px}
-.enav .ediv{font-size:9.5px;font-weight:800;color:rgba(255,255,255,.4);padding:14px 10px 5px;letter-spacing:.02em}
+.enav .emi .stb2{margin-left:auto;font-size:9px;font-weight:900;background:var(--line2);color:var(--ink2);border-radius:999px;padding:1px 6px}
+.enav .ediv{font-size:9.5px;font-weight:800;color:var(--faint);padding:14px 10px 5px;letter-spacing:.02em}
 .enav .esp{flex:1}
-.enav .eprof{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border-radius:14px;padding:10px 11px}
+.enav .eprof{display:flex;align-items:center;gap:9px;background:var(--line2);border-radius:14px;padding:10px 11px}
 .enav .eprof .av2{width:32px;height:32px;border-radius:11px;background:#B6E34A;color:#14532D;display:grid;place-items:center;font-weight:900;font-size:17px;flex:none}
 .enav .eprof b{font-size:12.5px;display:block}
-.enav .eprof .g2{font-size:10px;color:rgba(255,255,255,.58);font-weight:700}
+.enav .eprof .g2{font-size:10px;color:var(--ink3);font-weight:700}
 
 /* ===== 주간 루틴표 (PC에서 가로폭을 쓰는 카드) ===== */
 .ewk-wrap{overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
@@ -662,6 +660,65 @@ button{font:inherit;cursor:pointer}
  .eradar{flex-wrap:wrap;overflow:visible}
  .eri{flex:1 1 calc(50% - 4px);width:auto;min-width:0}
 }
+
+/* ===== 국영수 공부방 사이클 (.ecy-*) ===== */
+.ecyh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ecyh b{font-size:15px}
+.ecyh span{font-size:11px;color:var(--mut);font-weight:700}
+.ecy-row{display:flex;align-items:center;gap:11px;padding:10px 8px;border-radius:14px;cursor:pointer;transition:background .15s}
+.ecy-row:hover{background:var(--bg2)}
+.ecy-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex:none}
+.ecy-tb{flex:1;min-width:0}
+.ecy-tb b{font-size:13.5px;display:block}
+.ecy-steps{display:flex;gap:5px;margin-top:4px;font-size:11px;color:var(--mut)}
+.ecy-steps span{opacity:.32}
+.ecy-steps span.on{opacity:1}
+.ecy-go{border:none;border-radius:999px;padding:7px 14px;font-weight:800;font-size:12px;cursor:pointer;background:var(--brand);color:#fff;flex:none}
+.ecy-go.mid{background:var(--sun,#f59e0b)}
+.ecy-go.done{background:var(--bg2);color:var(--ok,#16a34a);cursor:default}
+/* 플레이어 */
+.ecy-step{display:flex;justify-content:center;gap:6px;margin:2px 0 14px}
+.ecy-step span{font-size:12px;font-weight:800;color:var(--mut);background:var(--bg2);border-radius:999px;padding:5px 11px;opacity:.45}
+.ecy-step span.cur{opacity:1;background:var(--brand-s);color:var(--brand)}
+.ecy-step span.ok{opacity:1}
+.ecy-text{background:var(--bg2);border-radius:14px;padding:14px 15px;font-size:14.5px;line-height:1.85;text-align:left;margin:10px 0}
+.ecy-text.en{font-size:16px}
+.ecy-bl{display:inline-block;min-width:52px;border-bottom:2.5px dashed var(--brand);text-align:center;color:var(--brand);font-weight:800}
+.ecy-line{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:var(--bg2);border-radius:13px;padding:11px 13px;margin:8px 0;font-size:14.5px;font-weight:600;text-align:left;transition:opacity .25s}
+.ecy-line.lock{opacity:.35;pointer-events:none;filter:grayscale(.4)}
+.ecy-line.hit{background:var(--mint-s,#dcfce7)}
+.ecy-in{width:86px;border:2px solid var(--line);border-radius:10px;padding:7px 9px;font-size:15px;font-weight:800;text-align:center;outline:none;font-family:inherit}
+.ecy-in:focus{border-color:var(--brand)}
+.ecy-in.ok{border-color:var(--ok,#16a34a);background:var(--mint-s,#dcfce7);color:var(--ok,#16a34a)}
+.ecy-in.ng{animation:ecyshake .3s}
+@keyframes ecyshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ecy-hint{font-size:12px;color:var(--mut);margin-top:2px}
+.ecy-say{font-size:12.5px;color:var(--brand);font-weight:700;margin-top:6px}
+
+
+/* ===== 디자인 패스 — 메이저 학습앱 문법 =====
+   ① 촉감 버튼: 하단 두께 + 눌림 (듀오링고식 — &quot;누르는 맛&quot;이 즉시 피드백의 일부)
+   ② 히어로 스포트라이트 CTA: 화면의 핵심 행동 하나만 크게
+   ③ 완료 바운스: 체크되는 순간의 작은 축하 */
+.estart,.ebig,.ebtn:not(.sub):not(.sub2),.ecy-go:not(.done),.hgo{
+ box-shadow:0 4px 0 rgba(0,0,0,.18);
+ transition:transform .06s,box-shadow .06s,filter .15s}
+.estart:hover,.ebig:hover,.ebtn:not(.sub):not(.sub2):hover,.ecy-go:not(.done):hover,.hgo:hover{filter:brightness(1.05)}
+.estart:active,.ebig:active,.ebtn:not(.sub):not(.sub2):active,.ecy-go:not(.done):active,.hgo:active{
+ transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.hgo{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;
+ background:#fff;color:var(--brand-ink);border:0;border-radius:16px;padding:14px;
+ font-size:15.5px;font-weight:900;cursor:pointer;font-family:inherit;
+ box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.hgo:active{box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.hgo .hgs{font-size:11.5px;font-weight:800;color:var(--ink3)}
+.rt li.done .cb{animation:cbpop .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes cbpop{0%{transform:scale(.55)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){
+ .rt li.done .cb{animation:none}
+ .estart,.ebig,.ebtn,.ecy-go,.hgo{transition:none}
+}
+
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -675,9 +732,10 @@ button{font:inherit;cursor:pointer}
     &lt;button class=&quot;emi on&quot; onclick=&quot;eNav(this);window.scrollTo({top:0,behavior:&#x27;smooth&#x27;})&quot;&gt;&lt;span class=&quot;ei&quot;&gt;🏠&lt;/span&gt;홈&lt;/button&gt;
     &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);egOpenTier()&quot;&gt;&lt;span class=&quot;ei&quot; id=&quot;eNavChar&quot;&gt;🐤&lt;/span&gt;내 버디&lt;span class=&quot;stb2&quot; id=&quot;eNavLv&quot;&gt;Lv.4&lt;/span&gt;&lt;/button&gt;
     &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);pushLocal(&#x27;stu&#x27;,&#x27;개념특강 알림&#x27;,&#x27;15:30 수학 연산 특강, 20분 전이야!&#x27;,&#x27;RMD-01 · 자동&#x27;)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📣&lt;/span&gt;개념특강&lt;span class=&quot;lvb2&quot;&gt;LIVE&lt;/span&gt;&lt;/button&gt;
-    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eWord(2)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;🔤&lt;/span&gt;영단어&lt;/button&gt;
-    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eDict(3)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;🔤&lt;/span&gt;영어 받아쓰기&lt;/button&gt;
-    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eUpload(4)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📷&lt;/span&gt;필기 올리기&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eCycleKo(2)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📕&lt;/span&gt;국어 공부방&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eCycleEn(3)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;🔤&lt;/span&gt;영어 공부방&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eCycleMa(4)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📐&lt;/span&gt;수학 공부방&lt;/button&gt;
+    &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eUpload(5)&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📷&lt;/span&gt;필기 올리기&lt;/button&gt;
     &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);alimGo();document.querySelector(&#x27;.alim&#x27;).scrollIntoView({behavior:&#x27;smooth&#x27;,block:&#x27;center&#x27;})&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📒&lt;/span&gt;알림장 올리기&lt;/button&gt;
     &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);document.getElementById(&#x27;etkCard&#x27;).scrollIntoView({behavior:&#x27;smooth&#x27;,block:&#x27;center&#x27;})&quot;&gt;&lt;span class=&quot;ei&quot;&gt;⭐&lt;/span&gt;재미있는 특강&lt;/button&gt;
     &lt;button class=&quot;emi&quot; onclick=&quot;eNav(this);eReport()&quot;&gt;&lt;span class=&quot;ei&quot;&gt;📊&lt;/span&gt;기록·성장&lt;/button&gt;
@@ -717,9 +775,12 @@ button{font:inherit;cursor:pointer}
       &lt;span class=&quot;streak&quot;&gt;🔥 5일 연속 완료 중&lt;/span&gt;
       &lt;div class=&quot;bar&quot;&gt;&lt;i id=&quot;heroBar&quot; style=&quot;width:40%&quot;&gt;&lt;/i&gt;&lt;/div&gt;
       &lt;div class=&quot;bt&quot; id=&quot;heroTxt&quot;&gt;5개 중 2개 완료&lt;/div&gt;
+      &lt;button class=&quot;hgo&quot; id=&quot;heroGo&quot;&gt;&lt;/button&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;egame&quot; id=&quot;egame&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;c&quot; id=&quot;ecyCard&quot;&gt;&lt;/div&gt;
 
     &lt;div class=&quot;c&quot; style=&quot;padding:13px 14px&quot;&gt;
       &lt;div class=&quot;ch&quot;&gt;&lt;b&gt;📅 이번 달 학교 일정&lt;/b&gt;&lt;span class=&quot;sub&quot;&gt;통신문에서 자동 정리&lt;/span&gt;&lt;/div&gt;
@@ -804,8 +865,9 @@ button{font:inherit;cursor:pointer}
 var RT=[
  {ic:&#x27;📣&#x27;,bg:&#x27;var(--brand-s)&#x27;,t:&#x27;개념특강 · 수학 연산&#x27;,s:&#x27;15:30 라이브 · 초등 타임 자동편성&#x27;,live:1,done:1,hist:[2,2,2,null,1,0,0]},
  {ic:&#x27;✏️&#x27;,bg:&#x27;var(--pink-s)&#x27;,t:&#x27;학교 숙제 30분&#x27;,s:&#x27;수학익힘 p.32~33&#x27;,done:1,hist:[2,2,2,null,1,0,0]},
- {ic:&#x27;🔤&#x27;,bg:&#x27;var(--sky-s)&#x27;,t:&#x27;영단어 10개&#x27;,s:&#x27;듣고 따라 말하기&#x27;,done:0,go:&#x27;eWord&#x27;,hist:[2,2,2,null,1,1,1]},
- {ic:&#x27;🔤&#x27;,bg:&#x27;var(--sun-s)&#x27;,t:&#x27;영어 받아쓰기&#x27;,s:&#x27;듣고 영어 문장 쓰기 (초4~6)&#x27;,done:0,go:&#x27;eDict&#x27;,hist:[2,0,2,null,1,0,0]},
+ {ic:&#x27;📕&#x27;,bg:&#x27;var(--pink-s)&#x27;,t:&#x27;국어 — 오늘의 글&#x27;,s:&#x27;👂듣고 → ✍️받아쓰고 → 🗣️말하기&#x27;,done:0,go:&#x27;eCycleKo&#x27;,hist:[2,0,2,null,1,0,0]},
+ {ic:&#x27;🔤&#x27;,bg:&#x27;var(--sky-s)&#x27;,t:&#x27;영어 — 오늘의 문장&#x27;,s:&#x27;👂듣고 → ✍️채우고 → 🗣️따라 말하기&#x27;,done:0,go:&#x27;eCycleEn&#x27;,hist:[2,2,2,null,1,1,1]},
+ {ic:&#x27;📐&#x27;,bg:&#x27;var(--brand-s)&#x27;,t:&#x27;수학 — 오늘의 개념&#x27;,s:&#x27;👂듣고 → ✍️과정 풀고 → 🗣️설명하기&#x27;,done:0,go:&#x27;eCycleMa&#x27;,hist:[2,2,1,null,1,0,0]},
  {ic:&#x27;📷&#x27;,bg:&#x27;var(--vio-s)&#x27;,t:&#x27;오늘 필기 올리기&#x27;,s:&#x27;공책 사진 1장&#x27;,done:0,go:&#x27;eUpload&#x27;,hist:[2,2,1,null,1,0,0]}
 ];
 function buildRT(){
@@ -825,6 +887,17 @@ function buildRT(){
  document.getElementById(&#x27;rtCnt&#x27;).textContent=done+&#x27;/&#x27;+RT.length+&#x27; 완료&#x27;;
  document.getElementById(&#x27;heroBar&#x27;).style.width=Math.round(done/RT.length*100)+&#x27;%&#x27;;
  document.getElementById(&#x27;heroTxt&#x27;).textContent=RT.length+&#x27;개 중 &#x27;+done+&#x27;개 완료&#x27;;
+ /* 스포트라이트 CTA — 다음 할 일 하나만 크게 */
+ var hg=document.getElementById(&#x27;heroGo&#x27;);
+ if(hg){
+  var nx=null,ni=-1;
+  RT.forEach(function(r,i){if(!nx&amp;&amp;!r.done&amp;&amp;r.go){nx=r;ni=i;}});
+  if(nx){hg.innerHTML=&#x27;▶ 이어서 하기 &lt;span class=&quot;hgs&quot;&gt;다음 · &#x27;+nx.t+&#x27;&lt;/span&gt;&#x27;;
+   hg.onclick=function(){window[nx.go](ni);};hg.style.display=&#x27;flex&#x27;;}
+  else if(done&gt;=RT.length){hg.innerHTML=&#x27;🎉 오늘 루틴 끝! 내 버디 보러 가기&#x27;;
+   hg.onclick=function(){var el=document.getElementById(&#x27;egame&#x27;);if(el)el.scrollIntoView({behavior:&#x27;smooth&#x27;});};}
+  else hg.style.display=&#x27;none&#x27;;
+ }
  egSync();
  return done;
 }
@@ -1827,7 +1900,237 @@ function eUpFake(el){el.style.display=&quot;none&quot;;document.getElementById(&
  &#x27;&lt;div class=&quot;edictshow&quot;&gt;선생님이 오늘 필기를 확인하고, 기록에 쌓여요.&lt;/div&gt;&#x27;+
  &#x27;&lt;button class=&quot;ebtn&quot; onclick=&quot;eClose();if(RT[&#x27;+ewRtIdx+&#x27;]){RT[&#x27;+ewRtIdx+&#x27;].done=1;buildRT();}pushLocal(\&#x27;par\&#x27;,\&#x27;카톡 · 필기 도착\&#x27;,\&#x27;서연이가 오늘 필기를 올렸어요 📷\&#x27;,\&#x27;자동\&#x27;)&quot;&gt;완료&lt;/button&gt;&#x27;;}
 
+
+/* ===== 국영수 공부방 — 과목마다 같은 3박자: 👂듣고 → ✍️쓰고/풀고 → 🗣말하고 =====
+   핵심: 빈칸은 &quot;맞는 순간&quot; 바로 읽어줘요(말해보카식 0초 피드백). 버튼 없이 자동 진행. */
+var ECYCLE={
+ ko:{nm:&#x27;국어 — 오늘의 글&#x27;,ic:&#x27;📕&#x27;,bg:&#x27;var(--pink-s)&#x27;,prog:0,
+  listen:{h:&#x27;👂 글을 잘 들어봐요&#x27;,t:&#x27;지렁이는 \&#x27;땅속의 농부\&#x27;라고 불려요. 지렁이는 피부로 숨을 쉬어요. 그래서 비가 오면 땅 위로 나와요. 지렁이가 지나간 길로 공기가 들어가서, 흙이 폭신폭신 건강해져요. 그래서 농부처럼 땅을 가꾼다고 하는 거예요.&#x27;,
+   show:&#x27;지렁이는 \&#x27;땅속의 농부\&#x27;라고 불려요. 지렁이는 &lt;span class=&quot;ecy-bl&quot;&gt;?&lt;/span&gt;(으)로 숨을 쉬어요. 그래서 비가 오면 땅 위로 나와요. 지렁이가 지나간 길로 &lt;span class=&quot;ecy-bl&quot;&gt;?&lt;/span&gt;가 들어가서, 흙이 폭신폭신 건강해져요. 그래서 &lt;span class=&quot;ecy-bl&quot;&gt;?&lt;/span&gt;처럼 땅을 가꾼다고 하는 거예요.&#x27;},
+  fill:[
+   {pre:&#x27;지렁이는&#x27;,post:&#x27;(으)로 숨을 쉬어요&#x27;,ans:&#x27;피부&#x27;,hint:&#x27;몸 겉을 감싸는 것&#x27;,say:&#x27;지렁이는 피부로 숨을 쉬어요&#x27;},
+   {pre:&#x27;지나간 길로&#x27;,post:&#x27;가 들어가요&#x27;,ans:&#x27;공기&#x27;,hint:&#x27;숨 쉴 때 마시는 것&#x27;,say:&#x27;지나간 길로 공기가 들어가요&#x27;},
+   {pre:&#x27;땅속의&#x27;,post:&#x27;라고 불려요&#x27;,ans:&#x27;농부&#x27;,hint:&#x27;밭을 가꾸는 사람&#x27;,say:&#x27;그래서 땅속의 농부라고 불려요&#x27;}
+  ],
+  speak:{q:&#x27;지렁이를 왜 \&#x27;땅속의 농부\&#x27;라고 부를까요? 내 말로 설명해봐요!&#x27;,tip:&#x27;힌트: 흙을 어떻게 만들어 주나요?&#x27;,lang:&#x27;ko-KR&#x27;,keys:[[&#x27;흙&#x27;,&#x27;땅&#x27;],[&#x27;공기&#x27;,&#x27;숨&#x27;],[&#x27;건강&#x27;,&#x27;폭신&#x27;,&#x27;가꾸&#x27;,&#x27;농부&#x27;]],decoys:[&#x27;비누&#x27;,&#x27;구름&#x27;,&#x27;연필&#x27;]}},
+ en:{nm:&#x27;영어 — 오늘의 문장&#x27;,ic:&#x27;🔤&#x27;,bg:&#x27;var(--sky-s)&#x27;,prog:0,en:1,
+  listen:{h:&#x27;👂 Listen carefully!&#x27;,t:&quot;Let&#x27;s buy some chocolate. I want to buy a gift for my mom.&quot;,
+   show:&quot;Let&#x27;s &lt;span class=\&quot;ecy-bl\&quot;&gt;?&lt;/span&gt; some chocolate.&lt;br&gt;I want to &lt;span class=\&quot;ecy-bl\&quot;&gt;?&lt;/span&gt; a gift for my mom.&quot;},
+  fill:[
+   {pre:&quot;Let&#x27;s&quot;,post:&#x27;some chocolate.&#x27;,ans:&#x27;buy&#x27;,hint:&#x27;사다 (b로 시작)&#x27;,say:&quot;Let&#x27;s buy some chocolate.&quot;},
+   {pre:&#x27;I want to&#x27;,post:&#x27;a gift for my mom.&#x27;,ans:&#x27;buy&#x27;,hint:&#x27;같은 단어!&#x27;,say:&#x27;I want to buy a gift for my mom.&#x27;}
+  ],
+  speak:{q:&#x27;문장을 큰 소리로 따라 말해봐요!&#x27;,tip:&quot;Let&#x27;s buy some chocolate. 🍫&quot;,lang:&#x27;en-US&#x27;,keys:[[&#x27;let&#x27;],[&#x27;buy&#x27;,&#x27;by&#x27;],[&#x27;chocolate&#x27;]],decoys:[&#x27;run&#x27;,&#x27;cat&#x27;,&#x27;book&#x27;]}},
+ ma:{nm:&#x27;수학 — 오늘의 개념&#x27;,ic:&#x27;📐&#x27;,bg:&#x27;var(--brand-s)&#x27;,prog:0,num:1,
+  listen:{h:&#x27;👂 개념을 들어봐요 — 삼각형 세 각의 합&#x27;,t:&#x27;삼각형의 세 각을 모두 더하면 언제나 180도가 돼요. 그래서 두 각을 알면, 나머지 한 각은 180에서 빼서 구할 수 있어요. 60도와 70도를 아는 삼각형이면, 60 더하기 70은 130, 180 빼기 130은 50. 나머지 각은 50도예요.&#x27;,
+   show:&#x27;삼각형 세 각의 합은 언제나 &lt;b&gt;180도&lt;/b&gt;!&lt;br&gt;두 각이 60도, 70도라면 — 나머지 각은?&#x27;},
+  fill:[
+   {pre:&#x27;삼각형 세 각의 합은&#x27;,post:&#x27;도&#x27;,ans:&#x27;180&#x27;,hint:&#x27;언제나 똑같아요&#x27;,say:&#x27;삼각형 세 각의 합은 180도&#x27;},
+   {pre:&#x27;60 + 70 =&#x27;,post:&#x27;&#x27;,ans:&#x27;130&#x27;,hint:&#x27;두 각을 먼저 더해요&#x27;,say:&#x27;60 더하기 70은 130&#x27;},
+   {pre:&#x27;180 − 130 =&#x27;,post:&#x27;도&#x27;,ans:&#x27;50&#x27;,hint:&#x27;합에서 빼면 끝!&#x27;,say:&#x27;180 빼기 130, 나머지 각은 50도! 정답이에요&#x27;}
+  ],
+  speak:{q:&#x27;동생에게 설명하듯 말해봐요 — 나머지 각을 어떻게 구했어?&#x27;,tip:&#x27;힌트: &quot;세 각을 다 더하면…&quot;으로 시작!&#x27;,lang:&#x27;ko-KR&#x27;,keys:[[&#x27;180&#x27;,&#x27;백팔십&#x27;],[&#x27;더하&#x27;,&#x27;합&#x27;,&#x27;합치&#x27;],[&#x27;빼&#x27;,&#x27;50&#x27;,&#x27;오십&#x27;]],decoys:[&#x27;100&#x27;,&#x27;곱하&#x27;,&#x27;원&#x27;]}}
+};
+var ESND={mode:null};   /* null=아직 안 물어봄 · &#x27;on&#x27;=소리 OK · &#x27;quiet&#x27;=조용 모드 */
+function esndSet(m){ESND.mode=m;ecyRender();}
+function esndToggle(){ESND.mode=(ESND.mode===&#x27;quiet&#x27;?&#x27;on&#x27;:&#x27;quiet&#x27;);toast2(ESND.mode===&#x27;quiet&#x27;?&#x27;🤫 조용 모드 — 소리 없이 공부해요&#x27;:&#x27;🔊 소리 모드 — 맞으면 바로 읽어줘요&#x27;);ecyRender();}
+function esndBar(){return &#x27;&lt;div style=&quot;display:flex;justify-content:flex-end;margin:-4px 0 6px&quot;&gt;&#x27;+
+ &#x27;&lt;button class=&quot;edsw&quot; onclick=&quot;esndToggle()&quot;&gt;&#x27;+(ESND.mode===&#x27;quiet&#x27;?&#x27;🤫 조용 모드 · 소리 켜기&#x27;:&#x27;🔊 소리 모드 · 조용히 하기&#x27;)+&#x27;&lt;/button&gt;&lt;/div&gt;&#x27;;}
+function esndAsk(){
+ document.getElementById(&#x27;eBody&#x27;).innerHTML=&#x27;&lt;div class=&quot;ekind&quot;&gt;📚 공부 시작 전에 하나만!&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;eemo&quot;&gt;🏠&lt;/div&gt;&lt;div class=&quot;epraise&quot; style=&quot;margin-top:6px&quot;&gt;지금 소리 내도 괜찮아요?&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;edictshow&quot;&gt;집 상황에 맞게 골라요 — 공부 중에 언제든 바꿀 수 있어요&lt;/div&gt;&#x27;+
+  &#x27;&lt;button class=&quot;ebig&quot; onclick=&quot;esndSet(\&#x27;on\&#x27;)&quot;&gt;🔊 소리 내도 돼요 — 들려주고 말해요&lt;/button&gt;&#x27;+
+  &#x27;&lt;button class=&quot;ebig&quot; style=&quot;background:var(--vio-s);color:var(--vio)&quot; onclick=&quot;esndSet(\&#x27;quiet\&#x27;)&quot;&gt;🤫 조용히 할래요 — 읽고 골라요&lt;/button&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;조용 모드도 공부는 똑같아요 — 듣기는 읽기로, 말하기는 낱말 고르기로 바뀌어요&lt;/div&gt;&#x27;;}
+var ECY={sub:&#x27;ko&#x27;,rt:2,step:0,fi:0};
+function eCycleKo(i){ecyOpen(&#x27;ko&#x27;,i);}
+function eCycleEn(i){ecyOpen(&#x27;en&#x27;,i);}
+function eCycleMa(i){ecyOpen(&#x27;ma&#x27;,i);}
+function ecyOpen(sub,rt){ECY={sub:sub,rt:rt,step:Math.min(ECYCLE[sub].prog,2),fi:0};eOpen();ecyRender();if(&#x27;speechSynthesis&#x27;in window)speechSynthesis.getVoices();}
+function ecySay(sub,txt){var C=ECYCLE[sub];if(C.en)eSpeak(txt,0.86);else eSpeakKo(txt);}
+function ecyStepper(){
+ var names=[&#x27;👂 듣기&#x27;,&#x27;✍️ &#x27;+(ECY.sub===&#x27;ma&#x27;?&#x27;풀기&#x27;:&#x27;쓰기&#x27;),&#x27;🗣️ 말하기&#x27;];
+ return &#x27;&lt;div class=&quot;ecy-step&quot;&gt;&#x27;+names.map(function(n,i){
+  return &#x27;&lt;span class=&quot;&#x27;+(i===ECY.step?&#x27;cur&#x27;:i&lt;ECY.step?&#x27;ok&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+(i&lt;ECY.step?&#x27;✓ &#x27;:&#x27;&#x27;)+n+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+}
+function ecyRender(){
+ var C=ECYCLE[ECY.sub], b=document.getElementById(&#x27;eBody&#x27;);
+ if(ESND.mode===null){esndAsk();return;}
+ var Q=(ESND.mode===&#x27;quiet&#x27;);
+ if(ECY.step===0){
+  if(Q){ /* 조용 모드: 듣기 → 읽기 */
+   b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;&#x27;+C.ic+&#x27; &#x27;+C.nm+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;edicthint&quot;&gt;&lt;b&gt;👀 소리 없이 천천히 읽어봐요&lt;/b&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;ecy-text&#x27;+(C.en?&#x27; en&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+C.listen.show+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;잘 읽어두면 다음 단계 빈칸이 쉬워져요&lt;/div&gt;&#x27;+
+    &#x27;&lt;button class=&quot;ebtn&quot; onclick=&quot;ecyGoto(1)&quot;&gt;✍️ 이제 &#x27;+(ECY.sub===&#x27;ma&#x27;?&#x27;풀어볼래요&#x27;:&#x27;써볼래요&#x27;)+&#x27; →&lt;/button&gt;&#x27;;
+   return;
+  }
+  b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;&#x27;+C.ic+&#x27; &#x27;+C.nm+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;edicthint&quot;&gt;&lt;b&gt;&#x27;+C.listen.h+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ecy-text&#x27;+(C.en?&#x27; en&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+C.listen.show+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;button class=&quot;ebig&quot; onclick=&quot;ecySay(ECY.sub,ECYCLE[ECY.sub].listen.t)&quot;&gt;🔊 들려주세요&lt;/button&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;잘 들어두면 다음 단계 빈칸이 쉬워져요&lt;/div&gt;&#x27;+
+   &#x27;&lt;button class=&quot;ebtn&quot; onclick=&quot;ecyGoto(1)&quot;&gt;✍️ 이제 &#x27;+(ECY.sub===&#x27;ma&#x27;?&#x27;풀어볼래요&#x27;:&#x27;써볼래요&#x27;)+&#x27; →&lt;/button&gt;&#x27;;
+  setTimeout(function(){ecySay(ECY.sub,C.listen.t);},300);
+ }else if(ECY.step===1){
+  var rows=C.fill.map(function(f,i){
+   if(i&gt;ECY.fi)return &#x27;&lt;div class=&quot;ecy-line lock&quot;&gt;&#x27;+f.pre+&#x27; &lt;span class=&quot;ecy-bl&quot; style=&quot;min-width:60px&quot;&gt;&amp;nbsp;&lt;/span&gt; &#x27;+f.post+&#x27;&lt;/div&gt;&#x27;;
+   if(i&lt;ECY.fi)return &#x27;&lt;div class=&quot;ecy-line hit&quot;&gt;&#x27;+f.pre+&#x27; &lt;b style=&quot;color:var(--ok,#16a34a)&quot;&gt;&#x27;+f.ans+&#x27;&lt;/b&gt; &#x27;+f.post+&#x27; ✓&lt;/div&gt;&#x27;;
+   return &#x27;&lt;div class=&quot;ecy-line&quot; id=&quot;ecyCur&quot;&gt;&#x27;+f.pre+&#x27; &lt;input class=&quot;ecy-in&#x27;+(C.en?&#x27;&#x27;:&#x27;&#x27;)+&#x27;&quot; id=&quot;ecyIn&quot; autocomplete=&quot;off&quot; autocapitalize=&quot;off&quot; spellcheck=&quot;false&quot; &#x27;+
+    (C.num?&#x27;inputmode=&quot;numeric&quot; &#x27;:&#x27;&#x27;)+&#x27;oninput=&quot;ecyIn()&quot; onkeydown=&quot;if(event.key===\&#x27;Enter\&#x27;)ecyMiss()&quot;&gt; &#x27;+f.post+
+    &#x27;&lt;div class=&quot;ecy-hint&quot; style=&quot;width:100%&quot;&gt;💡 &#x27;+f.hint+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;);
+  b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;&#x27;+C.ic+&#x27; 빈칸을 채워봐요 (&#x27;+Math.min(ECY.fi+1,C.fill.length)+&#x27;/&#x27;+C.fill.length+&#x27;)&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;edicthint&quot;&gt;&#x27;+(Q?&#x27;맞으면 &lt;b&gt;바로 초록불&lt;/b&gt; — 버튼 없이 자동으로 넘어가요!&#x27;:&#x27;맞으면 &lt;b&gt;바로 읽어줘요&lt;/b&gt; — 버튼 없이 자동으로 넘어가요!&#x27;)+&#x27;&lt;/div&gt;&#x27;+rows+
+   (Q?&#x27;&lt;button class=&quot;ebtn sub&quot; onclick=&quot;ecyGoto(0)&quot;&gt;👀 글 다시 보기&lt;/button&gt;&#x27;:&#x27;&lt;button class=&quot;ebtn sub&quot; onclick=&quot;ecySay(ECY.sub,ECYCLE[ECY.sub].listen.t)&quot;&gt;🔊 다시 듣기&lt;/button&gt;&#x27;);
+  setTimeout(function(){var el=document.getElementById(&#x27;ecyIn&#x27;);if(el)el.focus();},100);
+ }else{
+  if(Q){ecyPickRender();return;}
+  b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;🗣️ 말해봐요&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ecy-text&quot; style=&quot;text-align:center;font-weight:700&quot;&gt;&#x27;+C.speak.q+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;&#x27;+C.speak.tip+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;emicwrap&quot;&gt;&lt;button class=&quot;emic&quot; id=&quot;ecyMic&quot; onclick=&quot;ecyMic()&quot;&gt;🎤&lt;/button&gt;&lt;div class=&quot;emichint&quot; id=&quot;ecyMicHint&quot;&gt;빨간 버튼을 누르고 내 말로!&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;button class=&quot;ebtn sub&quot; onclick=&quot;ecyDone()&quot;&gt;말하기 없이 끝내기&lt;/button&gt;&#x27;;
+ }
+}
+function ecyNorm(t,C){t=(t||&#x27;&#x27;).trim();return C.en?t.toLowerCase().replace(/[.,!?]/g,&#x27;&#x27;):t;}
+/* 말해보카식: 입력하는 &quot;순간&quot; 맞으면 — 잠그고, 읽어주고, 자동으로 다음 */
+function ecyIn(){
+ var C=ECYCLE[ECY.sub], f=C.fill[ECY.fi], el=document.getElementById(&#x27;ecyIn&#x27;);
+ if(!el||ecyNorm(el.value,C)!==ecyNorm(f.ans,C))return;
+ el.disabled=true;el.classList.add(&#x27;ok&#x27;);
+ var cur=document.getElementById(&#x27;ecyCur&#x27;);if(cur){cur.classList.add(&#x27;hit&#x27;);
+  cur.insertAdjacentHTML(&#x27;beforeend&#x27;,&#x27;&lt;div class=&quot;ecy-say&quot; style=&quot;width:100%&quot;&gt;🔊 &#x27;+f.say+&#x27;&lt;/div&gt;&#x27;);}
+ if(ESND.mode!==&#x27;quiet&#x27;){eDing();setTimeout(function(){ecySay(ECY.sub,f.say);},120);} /* 소리 모드: 띵↗ + 바로 읽기 · 조용 모드: 초록불만 */
+ setTimeout(function(){
+  ECY.fi++;
+  if(ECY.fi&gt;=C.fill.length){ecyGoto(2);}
+  else ecyRender();
+ }, C.en?1400:900);
+}
+function ecyMiss(){
+ var el=document.getElementById(&#x27;ecyIn&#x27;);if(!el)return;
+ var C=ECYCLE[ECY.sub], f=C.fill[ECY.fi];
+ if(ecyNorm(el.value,C)===ecyNorm(f.ans,C))return;
+ if(ESND.mode!==&#x27;quiet&#x27;)eBuzz(); el.classList.remove(&#x27;ng&#x27;);void el.offsetWidth;el.classList.add(&#x27;ng&#x27;);
+ toast2(&#x27;💡 &#x27;+f.hint);
+}
+function ecyGoto(st){var C=ECYCLE[ECY.sub];if(st&gt;C.prog)C.prog=st;ECY.step=st;ECY.fi=0;renderECY();ecyRender();}
+
+/* 정답 차임 — 말해보카처럼 맞는 &quot;순간&quot; 띵↗ (TTS보다 먼저, 0초 보상) */
+var eAC=null;
+function eTone(f1,f2,dur){try{
+ eAC=eAC||new (window.AudioContext||window.webkitAudioContext)();
+ var t=eAC.currentTime,o=eAC.createOscillator(),g=eAC.createGain();
+ o.type=&#x27;sine&#x27;;o.frequency.setValueAtTime(f1,t);
+ if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+dur*.7);
+ g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);
+ o.connect(g);g.connect(eAC.destination);o.start(t);o.stop(t+dur);
+}catch(e){}}
+function eDing(){eTone(880,1320,.28);}      /* 정답: 띵↗ */
+function eBuzz(){eTone(220,180,.18);}       /* 오답: 낮게 톡 */
+var ecySRec=null,ecySRon=false;
+/* 진짜 음성 인식 — 브라우저 내장(Web Speech API). 핵심 낱말이 들어갔는지로 채점.
+   인식이 안 되는 브라우저/오프라인이면 데모 점수로 폴백(표시해줌). */
+function ecyMic(){
+ var C=ECYCLE[ECY.sub], SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ var m=document.getElementById(&#x27;ecyMic&#x27;),h=document.getElementById(&#x27;ecyMicHint&#x27;);
+ if(ecySRon){try{ecySRec.stop();}catch(e){} return;}
+ if(!SR){ /* 폴백: 녹음만 하는 데모 */
+  if(m)m.classList.add(&#x27;rec&#x27;); if(h)h.textContent=&#x27;🔴 듣고 있어요… (이 브라우저는 음성 인식이 안 돼서 데모 점수예요)&#x27;;
+  setTimeout(function(){ecySpeakResult(null);},2600); return;
+ }
+ var r=new SR(); ecySRec=r;
+ r.lang=C.speak.lang||&#x27;ko-KR&#x27;; r.interimResults=false; r.maxAlternatives=3; r.continuous=false;
+ var got=false;
+ r.onresult=function(ev){got=true;
+  var t=&#x27;&#x27;;for(var i=0;i&lt;ev.results.length;i++)t+=ev.results[i][0].transcript+&#x27; &#x27;;
+  ecySpeakResult(t.trim());};
+ r.onerror=function(ev){got=true;ecySRon=false;
+  if(m)m.classList.remove(&#x27;rec&#x27;);
+  if(ev.error===&#x27;not-allowed&#x27;){if(h)h.textContent=&#x27;마이크를 허용하면 진짜로 들어줘요 — 데모 점수로 보여줄게요&#x27;;setTimeout(function(){ecySpeakResult(null);},900);}
+  else if(ev.error===&#x27;no-speech&#x27;){if(h)h.textContent=&#x27;소리가 안 들렸어요 — 다시 눌러서 또박또박!&#x27;;}
+  else{if(h)h.textContent=&#x27;인식이 안 됐어요(인터넷 필요) — 데모 점수로 보여줄게요&#x27;;setTimeout(function(){ecySpeakResult(null);},900);}};
+ r.onend=function(){ecySRon=false;if(m)m.classList.remove(&#x27;rec&#x27;);
+  if(!got&amp;&amp;h)h.textContent=&#x27;다시 눌러서 말해봐요!&#x27;;};
+ try{r.start();ecySRon=true;if(m)m.classList.add(&#x27;rec&#x27;);if(h)h.textContent=&#x27;🔴 진짜로 듣고 있어요… 다 말하면 잠깐 기다려요&#x27;;
+  setTimeout(function(){if(!got&amp;&amp;ecySRon){try{r.abort();}catch(e){}ecySRon=false;ecySpeakResult(null);}},7000);}
+ catch(e){ecySpeakResult(null);}
+}
+/* 조용 모드: 말하기 대신 &quot;설명에 꼭 들어갈 낱말 고르기&quot; */
+var ecyPicked=[];
+function ecyPickRender(){
+ var C=ECYCLE[ECY.sub], b=document.getElementById(&#x27;eBody&#x27;);
+ ecyPicked=[];
+ var keys=(C.speak.keys||[]).map(function(a){return a[0];});
+ var pool=keys.concat(C.speak.decoys||[]).sort(function(){return Math.random()-.5;});
+ b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;🤫 낱말로 설명해요&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ecy-text&quot; style=&quot;text-align:center;font-weight:700&quot;&gt;&#x27;+C.speak.q+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;설명에 &lt;b&gt;꼭 들어가야 할 낱말 &#x27;+keys.length+&#x27;개&lt;/b&gt;를 골라요&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;edwords&quot; id=&quot;ecyPool&quot;&gt;&#x27;+pool.map(function(w){return &#x27;&lt;span class=&quot;edw&quot; style=&quot;cursor:pointer;font-size:15px;padding:8px 14px&quot; onclick=&quot;ecyPick(this,\&#x27;&#x27;+w+&#x27;\&#x27;)&quot;&gt;&#x27;+w+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div id=&quot;ecyPickRes&quot;&gt;&lt;/div&gt;&#x27;;
+}
+function ecyPick(el,w){
+ var C=ECYCLE[ECY.sub], keys=(C.speak.keys||[]).map(function(a){return a[0];});
+ var i=ecyPicked.indexOf(w);
+ if(i&gt;=0){ecyPicked.splice(i,1);el.classList.remove(&#x27;ok&#x27;);}
+ else{ecyPicked.push(w);el.classList.add(&#x27;ok&#x27;);}
+ if(ecyPicked.length===keys.length){
+  var n=ecyPicked.filter(function(x){return keys.indexOf(x)&gt;=0;}).length;
+  var stars=n===keys.length?3:n&gt;=Math.ceil(keys.length/2)?2:1;
+  document.getElementById(&#x27;ecyPickRes&#x27;).innerHTML=
+   &#x27;&lt;div class=&quot;estars&quot;&gt;&#x27;+&#x27;\u2b50&#x27;.repeat(stars)+&#x27;&lt;span class=&quot;estd&quot;&gt;&#x27;+&#x27;\u2606&#x27;.repeat(3-stars)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;epraise&quot;&gt;&#x27;+(stars===3?&#x27;핵심을 다 골랐어요! 🎉&#x27;:&#x27;좋아요! 핵심 낱말은 &lt;b&gt;&#x27;+keys.join(&#x27; · &#x27;)+&#x27;&lt;/b&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;edemo&quot;&gt;※ 소리 내도 될 때는 🎤 말하기로 하면 별을 더 받아요.&lt;/div&gt;&#x27;+
+   &#x27;&lt;button class=&quot;ebtn&quot; onclick=&quot;ecyDone()&quot;&gt;완료 🎉&lt;/button&gt;&#x27;+
+   &#x27;&lt;button class=&quot;ebtn sub&quot; onclick=&quot;ecyPickRender()&quot;&gt;다시 고르기&lt;/button&gt;&#x27;;
+ }
+}
+/* transcript(실제 인식 결과) 기준 채점: 핵심 낱말 몇 개가 들어갔나 */
+function ecySpeakResult(transcript){
+ var C=ECYCLE[ECY.sub], b=document.getElementById(&#x27;eBody&#x27;);
+ var real=transcript!==null;
+ var norm=real?transcript.toLowerCase().replace(/[\s.,!?&#x27;]/g,&#x27;&#x27;):&#x27;&#x27;;
+ var keys=C.speak.keys||[];
+ var hits=keys.map(function(alts){return alts.some(function(k){return norm.indexOf(k.toLowerCase().replace(/\s/g,&#x27;&#x27;))&gt;=0;});});
+ var n=hits.filter(Boolean).length, total=keys.length;
+ var stars=real?(n&gt;=total?3:n&gt;=Math.ceil(total/2)?2:1):3;
+ var chips=keys.map(function(alts,i){return &#x27;&lt;span class=&quot;edw &#x27;+(!real||hits[i]?&#x27;ok&#x27;:&#x27;ng&#x27;)+&#x27;&quot;&gt;&#x27;+alts[0]+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;);
+ b.innerHTML=ecyStepper()+&#x27;&lt;div class=&quot;estars&quot;&gt;&#x27;+&#x27;⭐&#x27;.repeat(stars)+&#x27;&lt;span class=&quot;estd&quot;&gt;&#x27;+&#x27;☆&#x27;.repeat(3-stars)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;epraise&quot;&gt;&#x27;+(stars===3?&#x27;멋지게 설명했어요! 🎉&#x27;:stars===2?&#x27;좋아요! 핵심이 거의 다 들어갔어요&#x27;:&#x27;말했다는 게 벌써 멋져요 — 한 번 더?&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  (real?&#x27;&lt;div class=&quot;edictshow&quot;&gt;내가 한 말: &lt;b&gt;“&#x27;+transcript+&#x27;”&lt;/b&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+  &#x27;&lt;div class=&quot;edictshow&quot;&gt;핵심 낱말 &lt;b&gt;&#x27;+(real?n+&#x27;/&#x27;+total:total+&#x27;/&#x27;+total)+&#x27;&lt;/b&gt; &#x27;+chips+&#x27;&lt;/div&gt;&#x27;+
+  (real?&#x27;&lt;div class=&quot;edemo&quot;&gt;※ 브라우저 음성 인식으로 진짜 들은 거예요. 실제 앱에선 아이 목소리 전용 AI가 더 정확하게 봐줘요.&lt;/div&gt;&#x27;
+       :&#x27;&lt;div class=&quot;edemo&quot;&gt;※ 지금은 데모 점수 — 크롬에서 마이크를 허용하면 진짜로 들어줘요.&lt;/div&gt;&#x27;)+
+  &#x27;&lt;button class=&quot;ebtn&quot; onclick=&quot;ecyDone()&quot;&gt;완료 🎉&lt;/button&gt;&#x27;+
+  &#x27;&lt;button class=&quot;ebtn sub&quot; onclick=&quot;ecyRender()&quot;&gt;🎤 다시 말하기&lt;/button&gt;&#x27;;
+}
+function ecyDone(){
+ var C=ECYCLE[ECY.sub];C.prog=3;renderECY();
+ eClose();
+ if(RT[ECY.rt]){RT[ECY.rt].done=1;buildRT();}
+ pushLocal(&#x27;stu&#x27;,C.ic+&#x27; &#x27;+C.nm.split(&#x27; — &#x27;)[0]+&#x27; 공부방 끝!&#x27;,&#x27;듣고 → 쓰고 → 말하기 한 바퀴 완료!&#x27;,&#x27;GOOD · 자동&#x27;);
+}
+/* 홈 카드: 오늘의 공부 — 국·영·수 한 바퀴 */
+function renderECY(){
+ var el=document.getElementById(&#x27;ecyCard&#x27;);if(!el)return;
+ var order=[&#x27;ko&#x27;,&#x27;en&#x27;,&#x27;ma&#x27;], rtMap={ko:2,en:3,ma:4};
+ el.innerHTML=&#x27;&lt;div class=&quot;ecyh&quot;&gt;&lt;b&gt;📚 오늘의 공부 — 한 바퀴&lt;/b&gt;&lt;span&gt;과목마다 👂듣고 → ✍️쓰고 → 🗣️말하고&lt;/span&gt;&lt;/div&gt;&#x27;+
+  order.map(function(k){
+   var C=ECYCLE[k], st=[&#x27;👂&#x27;,&#x27;✍️&#x27;,&#x27;🗣️&#x27;];
+   var dots=&#x27;&lt;div class=&quot;ecy-steps&quot;&gt;&#x27;+st.map(function(x,i){return &#x27;&lt;span class=&quot;&#x27;+(i&lt;C.prog?&#x27;on&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+x+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&lt;span style=&quot;opacity:.25&quot;&gt;→&lt;/span&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+   var btn=C.prog&gt;=3?&#x27;&lt;button class=&quot;ecy-go done&quot;&gt;완료 ✓&lt;/button&gt;&#x27;
+     :C.prog&gt;0?&#x27;&lt;button class=&quot;ecy-go mid&quot; onclick=&quot;event.stopPropagation();ecyOpen(\&#x27;&#x27;+k+&#x27;\&#x27;,&#x27;+rtMap[k]+&#x27;)&quot;&gt;이어서&lt;/button&gt;&#x27;
+     :&#x27;&lt;button class=&quot;ecy-go&quot; onclick=&quot;event.stopPropagation();ecyOpen(\&#x27;&#x27;+k+&#x27;\&#x27;,&#x27;+rtMap[k]+&#x27;)&quot;&gt;시작&lt;/button&gt;&#x27;;
+   return &#x27;&lt;div class=&quot;ecy-row&quot; onclick=&quot;ecyOpen(\&#x27;&#x27;+k+&#x27;\&#x27;,&#x27;+rtMap[k]+&#x27;)&quot;&gt;&lt;span class=&quot;ecy-ic&quot; style=&quot;background:&#x27;+C.bg+&#x27;&quot;&gt;&#x27;+C.ic+&#x27;&lt;/span&gt;&#x27;+
+    &#x27;&lt;div class=&quot;ecy-tb&quot;&gt;&lt;b&gt;&#x27;+C.nm+&#x27;&lt;/b&gt;&#x27;+dots+&#x27;&lt;/div&gt;&#x27;+btn+&#x27;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;);
+}
+
 buildRT();
+renderECY();
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -2690,6 +2993,8 @@ button{font:inherit;cursor:pointer}
 
 /* ===== 학습 게임화 — 플레이어 상태바 (RPG 대시보드 톤) ===== */
 .gbar{background:linear-gradient(135deg,#232651,#343873 55%,#2B2E63);border-radius:20px;padding:20px 22px;color:#fff;box-shadow:0 14px 34px -16px rgba(32,35,63,.55)}
+.gb-fold{width:100%;margin-top:12px;background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.22);border-radius:12px;padding:9px;font-size:12px;font-weight:800;color:rgba(255,255,255,.75);font-family:inherit;cursor:pointer}
+.gb-fold:hover{background:rgba(255,255,255,.12);color:#fff}
 .gb-top{display:flex;align-items:center;gap:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.12)}
 .gb-lv{flex:none;text-align:center;background:rgba(182,227,74,.14);border:1px solid rgba(182,227,74,.35);border-radius:16px;padding:10px 16px 11px;min-width:104px;cursor:pointer;transition:.15s}
 .gb-lv:hover{background:rgba(182,227,74,.22);transform:translateY(-1px)}
@@ -4208,8 +4513,10 @@ function nextGoalLabel(){
  var near=SHOP.items.filter(function(x){return x.cost&gt;GAME.point;}).sort(function(a,z){return a.cost-z.cost;})[0];
  return near? near.ic+&#x27; &#x27;+near.n+&#x27;까지 &#x27;+(near.cost-GAME.point).toLocaleString()+&#x27;P&#x27; : &#x27;전부 교환 가능 🎉&#x27;;
 }
+function toggleGB(){GAME.gbOpen=!GAME.gbOpen;renderGameBar();}
 function renderGameBar(){
  var el=document.getElementById(&#x27;gameBar&#x27;); if(!el)return;
+ if(GAME.gbOpen===undefined)GAME.gbOpen=false;
  var ms=todayMissions();
  var done=ms.filter(function(x){return (x.b[6]||{}).done;}).length;
  var tot=ms.length;
@@ -4255,7 +4562,8 @@ function renderGameBar(){
      &#x27;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;gb-streak&quot;&gt;&lt;div class=&quot;gb-fire&quot;&gt;🔥&lt;/div&gt;&lt;div class=&quot;gb-sv&quot;&gt;&#x27;+GAME.streak+&#x27;일&lt;/div&gt;&lt;div class=&quot;gb-sl&quot;&gt;연속 학습 · 최고 &#x27;+GAME.best+&#x27;일&#x27;+(GAME.freeze?&#x27;&lt;br&gt;🧊 프리즈 &#x27;+GAME.freeze+&#x27;개&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;/div&gt;&#x27;+
-   /* 1.5행: 도전 · 리그 · 포인트 상점 */
+   /* 접힘: 핵심(레벨·XP·미션)만. 펼치면 도전·리그·상점·퀘스트·배지·정복도 */
+   (GAME.gbOpen?
    &#x27;&lt;div class=&quot;gb-row15 three&quot;&gt;&#x27;+
      &#x27;&lt;button class=&quot;gb-wide ch&quot; onclick=&quot;openChal()&quot;&gt;&lt;span class=&quot;gw-ic&quot;&gt;🏔&lt;/span&gt;&#x27;+
        &#x27;&lt;span class=&quot;gw-b&quot;&gt;&lt;b&gt;도전 문제 ★5&lt;/b&gt;&lt;span&gt;풀이 과정까지 서술 — &lt;em&gt;&#x27;+
@@ -4267,7 +4575,8 @@ function renderGameBar(){
      &#x27;&lt;button class=&quot;gb-wide sh&quot; onclick=&quot;openShop()&quot;&gt;&lt;span class=&quot;gw-ic&quot;&gt;🪙&lt;/span&gt;&#x27;+
        &#x27;&lt;span class=&quot;gw-b&quot;&gt;&lt;b&gt;&#x27;+GAME.point.toLocaleString()+&#x27; P&lt;/b&gt;&lt;span&gt;모아서 &lt;em&gt;학용품·도서&lt;/em&gt;로 교환 — &#x27;+nextGoalLabel()+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;+
        &#x27;&lt;span class=&quot;gw-ar&quot;&gt;›&lt;/span&gt;&lt;/button&gt;&#x27;+
-   &#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;/div&gt;&#x27;
+   :&#x27;&#x27;)+
    /* 2행: 오늘의 미션 */
    &#x27;&lt;div class=&quot;gb-mis&quot;&gt;&#x27;+
      &#x27;&lt;div class=&quot;gb-mh&quot;&gt;오늘의 미션 &lt;span class=&quot;gb-mc&quot;&gt;&#x27;+done+&#x27;/&#x27;+tot+&#x27;&lt;/span&gt;&#x27;+
@@ -4275,6 +4584,7 @@ function renderGameBar(){
        (done===tot&amp;&amp;tot?&#x27;&lt;span class=&quot;gb-clear&quot;&gt;올클리어 🎉&lt;/span&gt;&#x27;:&#x27;&lt;span class=&quot;gb-rest&quot;&gt;&#x27;+(tot-done)+&#x27;개 남음&lt;/span&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
      &#x27;&lt;div class=&quot;gm-chips&quot;&gt;&#x27;+chips+&#x27;&lt;/div&gt;&#x27;+
    &#x27;&lt;/div&gt;&#x27;+
+   (GAME.gbOpen?
    /* 3행: 주간 퀘스트 + 배지 */
    &#x27;&lt;div class=&quot;gb-row3&quot;&gt;&#x27;+
      &#x27;&lt;div class=&quot;gb-q&quot;&gt;&lt;div class=&quot;gb-qh&quot;&gt;📦 주간 퀘스트 &lt;span&gt;&#x27;+GAME.weekXp+&#x27;/&#x27;+GAME.weekGoal+&#x27; XP&lt;/span&gt;&lt;/div&gt;&#x27;+
@@ -4286,9 +4596,27 @@ function renderGameBar(){
    &#x27;&lt;/div&gt;&#x27;+
    /* 4행: 단원 정복도 */
    &#x27;&lt;div class=&quot;gb-cq&quot;&gt;&lt;div class=&quot;gb-qh&quot;&gt;🏔 단원 정복도 &lt;div class=&quot;cq-tabs&quot;&gt;&#x27;+subTabs+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
-     &#x27;&lt;div class=&quot;cq-path&quot;&gt;&#x27;+nodes+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+     &#x27;&lt;div class=&quot;cq-path&quot;&gt;&#x27;+nodes+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;
+   :&#x27;&#x27;)+
+   /* 접기/펼치기 — 기본은 조용하게, 원할 때만 전부 */
+   &#x27;&lt;button class=&quot;gb-fold&quot; onclick=&quot;toggleGB()&quot;&gt;&#x27;+(GAME.gbOpen
+     ?&#x27;접기 ▴&#x27;
+     :&#x27;🏔 도전 &#x27;+CHAL.probs.filter(function(p){return chalPassed(p.id);}).length+&#x27;/&#x27;+CHAL.probs.length+&#x27; · &#x27;+LEAGUE.tier.ic+&#x27; 리그 &#x27;+myLeagueRank()+&#x27;위 · 🪙 &#x27;+GAME.point.toLocaleString()+&#x27;P · 📦 주간 &#x27;+GAME.weekXp+&#x27;/&#x27;+GAME.weekGoal+&#x27; — 펼치기 ▾&#x27;)+&#x27;&lt;/button&gt;&#x27;+
   &#x27;&lt;/div&gt;&#x27;;
 }
+/* 정답 순간 소리 보상 — 말해보카식 띵↗ (설정에서 끌 수 있음) */
+var SND={on:true};
+var mAC=null;
+function mTone(f1,f2,dur){if(!SND.on)return;try{
+ mAC=mAC||new (window.AudioContext||window.webkitAudioContext)();
+ var t=mAC.currentTime,o=mAC.createOscillator(),g=mAC.createGain();
+ o.type=&#x27;sine&#x27;;o.frequency.setValueAtTime(f1,t);
+ if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+dur*.7);
+ g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);
+ o.connect(g);g.connect(mAC.destination);o.start(t);o.stop(t+dur);
+}catch(e){}}
+function mDing(){mTone(880,1320,.26);}
+function mBuzz(){mTone(220,180,.16);}
 /* ===== 콤보 — &quot;푸는 순간&quot;의 재미 (연속 정답) ===== */
 var COMBO={n:0,best:0,day:0,hits:0,bonus:0,
  tiers:[{n:3,ic:&#x27;🔥&#x27;,t:&#x27;3연속&#x27;,xp:5,m:&#x27;불붙었다!&#x27;},
@@ -4297,6 +4625,7 @@ var COMBO={n:0,best:0,day:0,hits:0,bonus:0,
         {n:12,ic:&#x27;🌟&#x27;,t:&#x27;12연속&#x27;,xp:50,m:&#x27;12연속 — 오늘 미쳤다&#x27;}]};
 function comboTier(){var t=null;COMBO.tiers.forEach(function(x){if(COMBO.n&gt;=x.n)t=x;});return t;}
 function comboHit(ok){
+ if(ok)mDing();else mBuzz();
  if(ok){
   COMBO.n++; COMBO.hits++; COMBO.day++;
   if(COMBO.n&gt;COMBO.best)COMBO.best=COMBO.n;
