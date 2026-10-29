@@ -732,6 +732,10 @@ button{font:inherit;cursor:pointer}
 .etk-mopen{font-size:10.5px;font-weight:900;color:var(--ink3);flex:none}
 .etk-mtag{font-size:10.5px;font-weight:900;color:var(--ok);flex:none}
 
+.ecy-ref{margin:6px 0 2px;text-align:left}
+.ecy-ref summary{font-size:12px;font-weight:800;color:var(--ink3);cursor:pointer;padding:6px 4px;list-style-position:inside}
+.ecy-ref summary:hover{color:var(--brand)}
+
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -871,9 +875,9 @@ button{font:inherit;cursor:pointer}
 var RT=[
  {ic:&#x27;📣&#x27;,bg:&#x27;var(--brand-s)&#x27;,t:&#x27;개념특강 · 수학 연산&#x27;,s:&#x27;15:30 라이브 · 초등 타임 자동편성&#x27;,live:1,done:1,hist:[2,2,2,null,1,0,0]},
  {ic:&#x27;✏️&#x27;,bg:&#x27;var(--pink-s)&#x27;,t:&#x27;학교 숙제 30분&#x27;,s:&#x27;수학익힘 p.32~33&#x27;,done:1,hist:[2,2,2,null,1,0,0]},
- {ic:&#x27;📕&#x27;,bg:&#x27;var(--pink-s)&#x27;,t:&#x27;국어 — 오늘의 글&#x27;,s:&#x27;👂듣고 → ✍️받아쓰고 → 🗣️말하기&#x27;,done:0,go:&#x27;eCycleKo&#x27;,hist:[2,0,2,null,1,0,0]},
- {ic:&#x27;🔤&#x27;,bg:&#x27;var(--sky-s)&#x27;,t:&#x27;영어 — 오늘의 문장&#x27;,s:&#x27;👂듣고 → ✍️채우고 → 🗣️따라 말하기&#x27;,done:0,go:&#x27;eCycleEn&#x27;,hist:[2,2,2,null,1,1,1]},
- {ic:&#x27;📐&#x27;,bg:&#x27;var(--brand-s)&#x27;,t:&#x27;수학 — 오늘의 개념&#x27;,s:&#x27;👂듣고 → ✍️과정 풀고 → 🗣️설명하기&#x27;,done:0,go:&#x27;eCycleMa&#x27;,hist:[2,2,1,null,1,0,0]},
+ {ic:&#x27;📕&#x27;,bg:&#x27;var(--pink-s)&#x27;,t:&#x27;국어 — 오늘의 글&#x27;,s:&#x27;빈칸 채우면 바로 읽어줘요 → 🗣️말하기&#x27;,done:0,go:&#x27;eCycleKo&#x27;,hist:[2,0,2,null,1,0,0]},
+ {ic:&#x27;🔤&#x27;,bg:&#x27;var(--sky-s)&#x27;,t:&#x27;영어 — 오늘의 문장&#x27;,s:&#x27;문장 완성하면 바로 들려줘요 → 🗣️따라 말하기&#x27;,done:0,go:&#x27;eCycleEn&#x27;,hist:[2,2,2,null,1,1,1]},
+ {ic:&#x27;📐&#x27;,bg:&#x27;var(--brand-s)&#x27;,t:&#x27;수학 — 오늘의 개념&#x27;,s:&#x27;과정 한 줄 맞을 때마다 바로 확인 → 🗣️설명하기&#x27;,done:0,go:&#x27;eCycleMa&#x27;,hist:[2,2,1,null,1,0,0]},
  {ic:&#x27;📷&#x27;,bg:&#x27;var(--vio-s)&#x27;,t:&#x27;오늘 필기 올리기&#x27;,s:&#x27;공책 사진 1장&#x27;,done:0,go:&#x27;eUpload&#x27;,hist:[2,2,1,null,1,0,0]}
 ];
 function buildRT(){
@@ -884,7 +888,7 @@ function buildRT(){
   var cyKey={eCycleKo:&#x27;ko&#x27;,eCycleEn:&#x27;en&#x27;,eCycleMa:&#x27;ma&#x27;}[r.go];
   var cyDots=&#x27;&#x27;;
   if(cyKey){var P=ECYCLE[cyKey].prog;
-   cyDots=&#x27;&lt;div class=&quot;ecy-steps&quot; style=&quot;margin-top:3px&quot;&gt;&#x27;+[&#x27;👂&#x27;,&#x27;✍️&#x27;,&#x27;🗣️&#x27;].map(function(x,k){return &#x27;&lt;span class=&quot;&#x27;+(k&lt;P?&#x27;on&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+x+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&lt;span style=&quot;opacity:.25&quot;&gt;→&lt;/span&gt;&#x27;)+(P&gt;0&amp;&amp;P&lt;3?&#x27; &lt;em style=&quot;font-style:normal;font-size:10px;font-weight:900;color:var(--sun-ink)&quot;&gt;하는 중&lt;/em&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;}
+   cyDots=&#x27;&lt;div class=&quot;ecy-steps&quot; style=&quot;margin-top:3px&quot;&gt;&#x27;+[&#x27;✍️&#x27;,&#x27;🗣️&#x27;].map(function(x,k){return &#x27;&lt;span class=&quot;&#x27;+((k===0?P&gt;=2:P&gt;=3)?&#x27;on&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+x+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&lt;span style=&quot;opacity:.25&quot;&gt;→&lt;/span&gt;&#x27;)+(P&gt;0&amp;&amp;P&lt;3?&#x27; &lt;em style=&quot;font-style:normal;font-size:10px;font-weight:900;color:var(--sun-ink)&quot;&gt;하는 중&lt;/em&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;}
   return &#x27;&lt;li class=&quot;&#x27;+(r.done?&#x27;done&#x27;:&#x27;&#x27;)+&#x27;&quot;&#x27;+((!r.done&amp;&amp;r.go)?&#x27; onclick=&quot;&#x27;+r.go+&#x27;(&#x27;+i+&#x27;)&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span class=&quot;ric&quot; style=&quot;background:&#x27;+r.bg+&#x27;&quot;&gt;&#x27;+r.ic+&#x27;&lt;/span&gt;&#x27;+
    &#x27;&lt;div class=&quot;rb&quot;&gt;&lt;b&gt;&#x27;+r.t+&#x27;&lt;/b&gt;&lt;div class=&quot;rs&quot;&gt;&#x27;+r.s+(r.go&amp;&amp;!r.done?&#x27; · 끝내면 자동 체크&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+cyDots+&#x27;&lt;/div&gt;&#x27;+
    (r.live?&#x27;&lt;span class=&quot;lv&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+startBtn+
@@ -1390,6 +1394,9 @@ var ETK_HIGH=[
  {ic:&#x27;🧮&#x27;,c:&#x27;#2E9E5B&#x27;,cat:&#x27;연산&#x27;,t:&#x27;연산 스피드 챌린지&#x27;,
   d:&#x27;1분에 몇 개? 1,000명 동시 랭킹전 — 내 기록도 깨고 등수도 올려요&#x27;,
   day:1,hh:17,mm:0,when:&#x27;매주 화 17:00&#x27;,len:40,mode:&#x27;rank&#x27;,prep:&#x27;없음&#x27;},
+ {ic:&#x27;🗝️&#x27;,c:&#x27;#2E7CF0&#x27;,cat:&#x27;영어 독해&#x27;,t:&#x27;English Escape! 방탈출 독해&#x27;,
+  d:&#x27;영어 지문 속 단서를 찾아 방을 탈출해요 — 문제가 아니라 게임. 다 같이 단서 투표로 진행!&#x27;,
+  day:4,hh:20,mm:0,when:&#x27;매주 금 20:00&#x27;,len:50,mode:&#x27;vote&#x27;,prep:&#x27;없음&#x27;},
  {ic:&#x27;📰&#x27;,c:&#x27;#C28A1E&#x27;,cat:&#x27;사회&#x27;,t:&#x27;뉴스 한 꼭지 읽고 생각 말하기&#x27;,
   d:&#x27;어린이 뉴스로 — 찬성/반대 동시 투표하고, 뽑힌 몇 명은 마이크 열어서 전체에게 말해요&#x27;,
   day:4,hh:17,mm:0,when:&#x27;매주 금 17:00&#x27;,len:40,mode:&#x27;vote&#x27;,prep:&#x27;없음&#x27;}
@@ -1955,39 +1962,23 @@ function esndAsk(){
   &#x27;&lt;div class=&quot;edictshow&quot;&gt;집 상황에 맞게 골라요 — 공부 중에 언제든 바꿀 수 있어요&lt;/div&gt;&#x27;+
   &#x27;&lt;button class=&quot;ebig&quot; onclick=&quot;esndSet(\&#x27;on\&#x27;)&quot;&gt;🔊 소리 내도 돼요 — 들려주고 말해요&lt;/button&gt;&#x27;+
   &#x27;&lt;button class=&quot;ebig&quot; style=&quot;background:var(--vio-s);color:var(--vio)&quot; onclick=&quot;esndSet(\&#x27;quiet\&#x27;)&quot;&gt;🤫 조용히 할래요 — 읽고 골라요&lt;/button&gt;&#x27;+
-  &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;조용 모드도 공부는 똑같아요 — 듣기는 읽기로, 말하기는 낱말 고르기로 바뀌어요&lt;/div&gt;&#x27;;}
+  &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;조용 모드도 공부는 똑같아요 — 정답 소리 대신 초록불, 말하기는 낱말 고르기로 바뀌어요&lt;/div&gt;&#x27;;}
 var ECY={sub:&#x27;ko&#x27;,rt:2,step:0,fi:0};
 function eCycleKo(i){ecyOpen(&#x27;ko&#x27;,i);}
 function eCycleEn(i){ecyOpen(&#x27;en&#x27;,i);}
 function eCycleMa(i){ecyOpen(&#x27;ma&#x27;,i);}
-function ecyOpen(sub,rt){ECY={sub:sub,rt:rt,step:Math.min(ECYCLE[sub].prog,2),fi:0};eOpen();ecyRender();if(&#x27;speechSynthesis&#x27;in window)speechSynthesis.getVoices();}
+function ecyOpen(sub,rt){ECY={sub:sub,rt:rt,step:(ECYCLE[sub].prog&gt;=2?2:1),fi:0};eOpen();ecyRender();if(&#x27;speechSynthesis&#x27;in window)speechSynthesis.getVoices();}
 function ecySay(sub,txt){var C=ECYCLE[sub];if(C.en)eSpeak(txt,0.86);else eSpeakKo(txt);}
 function ecyStepper(){
- var names=[&#x27;👂 듣기&#x27;,&#x27;✍️ &#x27;+(ECY.sub===&#x27;ma&#x27;?&#x27;풀기&#x27;:&#x27;쓰기&#x27;),&#x27;🗣️ 말하기&#x27;];
+ var names=[&#x27;✍️ &#x27;+(ECY.sub===&#x27;ma&#x27;?&#x27;풀기&#x27;:&#x27;쓰기&#x27;),&#x27;🗣️ 말하기&#x27;], cur=ECY.step-1;
  return &#x27;&lt;div class=&quot;ecy-step&quot;&gt;&#x27;+names.map(function(n,i){
-  return &#x27;&lt;span class=&quot;&#x27;+(i===ECY.step?&#x27;cur&#x27;:i&lt;ECY.step?&#x27;ok&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+(i&lt;ECY.step?&#x27;✓ &#x27;:&#x27;&#x27;)+n+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+  return &#x27;&lt;span class=&quot;&#x27;+(i===cur?&#x27;cur&#x27;:i&lt;cur?&#x27;ok&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+(i&lt;cur?&#x27;✓ &#x27;:&#x27;&#x27;)+n+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
 }
 function ecyRender(){
  var C=ECYCLE[ECY.sub], b=document.getElementById(&#x27;eBody&#x27;);
  if(ESND.mode===null){esndAsk();return;}
  var Q=(ESND.mode===&#x27;quiet&#x27;);
- if(ECY.step===0){
-  if(Q){ /* 조용 모드: 듣기 → 읽기 */
-   b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;&#x27;+C.ic+&#x27; &#x27;+C.nm+&#x27;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;edicthint&quot;&gt;&lt;b&gt;👀 소리 없이 천천히 읽어봐요&lt;/b&gt;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;ecy-text&#x27;+(C.en?&#x27; en&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+C.listen.show+&#x27;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;잘 읽어두면 다음 단계 빈칸이 쉬워져요&lt;/div&gt;&#x27;+
-    &#x27;&lt;button class=&quot;ebtn&quot; onclick=&quot;ecyGoto(1)&quot;&gt;✍️ 이제 &#x27;+(ECY.sub===&#x27;ma&#x27;?&#x27;풀어볼래요&#x27;:&#x27;써볼래요&#x27;)+&#x27; →&lt;/button&gt;&#x27;;
-   return;
-  }
-  b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;&#x27;+C.ic+&#x27; &#x27;+C.nm+&#x27;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;edicthint&quot;&gt;&lt;b&gt;&#x27;+C.listen.h+&#x27;&lt;/b&gt;&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;ecy-text&#x27;+(C.en?&#x27; en&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+C.listen.show+&#x27;&lt;/div&gt;&#x27;+
-   &#x27;&lt;button class=&quot;ebig&quot; onclick=&quot;ecySay(ECY.sub,ECYCLE[ECY.sub].listen.t)&quot;&gt;🔊 들려주세요&lt;/button&gt;&#x27;+
-   &#x27;&lt;div class=&quot;ecy-hint&quot;&gt;잘 들어두면 다음 단계 빈칸이 쉬워져요&lt;/div&gt;&#x27;+
-   &#x27;&lt;button class=&quot;ebtn&quot; onclick=&quot;ecyGoto(1)&quot;&gt;✍️ 이제 &#x27;+(ECY.sub===&#x27;ma&#x27;?&#x27;풀어볼래요&#x27;:&#x27;써볼래요&#x27;)+&#x27; →&lt;/button&gt;&#x27;;
-  setTimeout(function(){ecySay(ECY.sub,C.listen.t);},300);
- }else if(ECY.step===1){
+ if(ECY.step===1){
   var rows=C.fill.map(function(f,i){
    if(i&gt;ECY.fi)return &#x27;&lt;div class=&quot;ecy-line lock&quot;&gt;&#x27;+f.pre+&#x27; &lt;span class=&quot;ecy-bl&quot; style=&quot;min-width:60px&quot;&gt;&amp;nbsp;&lt;/span&gt; &#x27;+f.post+&#x27;&lt;/div&gt;&#x27;;
    if(i&lt;ECY.fi)return &#x27;&lt;div class=&quot;ecy-line hit&quot;&gt;&#x27;+f.pre+&#x27; &lt;b style=&quot;color:var(--ok,#16a34a)&quot;&gt;&#x27;+f.ans+&#x27;&lt;/b&gt; &#x27;+f.post+&#x27; ✓&lt;/div&gt;&#x27;;
@@ -1995,9 +1986,11 @@ function ecyRender(){
     (C.num?&#x27;inputmode=&quot;numeric&quot; &#x27;:&#x27;&#x27;)+&#x27;oninput=&quot;ecyIn()&quot; onkeydown=&quot;if(event.key===\&#x27;Enter\&#x27;)ecyMiss()&quot;&gt; &#x27;+f.post+
     &#x27;&lt;div class=&quot;ecy-hint&quot; style=&quot;width:100%&quot;&gt;💡 &#x27;+f.hint+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
   }).join(&#x27;&#x27;);
-  b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;&#x27;+C.ic+&#x27; 빈칸을 채워봐요 (&#x27;+Math.min(ECY.fi+1,C.fill.length)+&#x27;/&#x27;+C.fill.length+&#x27;)&lt;/div&gt;&#x27;+
-   &#x27;&lt;div class=&quot;edicthint&quot;&gt;&#x27;+(Q?&#x27;맞으면 &lt;b&gt;바로 초록불&lt;/b&gt; — 버튼 없이 자동으로 넘어가요!&#x27;:&#x27;맞으면 &lt;b&gt;바로 읽어줘요&lt;/b&gt; — 버튼 없이 자동으로 넘어가요!&#x27;)+&#x27;&lt;/div&gt;&#x27;+rows+
-   (Q?&#x27;&lt;button class=&quot;ebtn sub&quot; onclick=&quot;ecyGoto(0)&quot;&gt;👀 글 다시 보기&lt;/button&gt;&#x27;:&#x27;&lt;button class=&quot;ebtn sub&quot; onclick=&quot;ecySay(ECY.sub,ECYCLE[ECY.sub].listen.t)&quot;&gt;🔊 다시 듣기&lt;/button&gt;&#x27;);
+  b.innerHTML=esndBar()+ecyStepper()+&#x27;&lt;div class=&quot;ekind&quot;&gt;&#x27;+C.ic+&#x27; &#x27;+C.nm+&#x27; (&#x27;+Math.min(ECY.fi+1,C.fill.length)+&#x27;/&#x27;+C.fill.length+&#x27;)&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;edicthint&quot;&gt;&#x27;+(Q?&#x27;맞으면 &lt;b&gt;바로 초록불&lt;/b&gt; — 버튼 없이 자동으로 넘어가요!&#x27;:&#x27;맞으면 &lt;b&gt;바로 읽어줘요&lt;/b&gt; — 누를 거 없어요!&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;details class=&quot;ecy-ref&quot;&gt;&lt;summary&gt;📖 글 먼저 보기&#x27;+(Q?&#x27;&#x27;:&#x27; · 듣기&#x27;)+&#x27; (몰라도 돼요 — 틀리면 힌트가 나와요)&lt;/summary&gt;&#x27;+
+     &#x27;&lt;div class=&quot;ecy-text&#x27;+(C.en?&#x27; en&#x27;:&#x27;&#x27;)+&#x27;&quot; style=&quot;margin-top:8px&quot;&gt;&#x27;+C.listen.show+&#x27;&lt;/div&gt;&#x27;+
+     (Q?&#x27;&#x27;:&#x27;&lt;button class=&quot;ebig&quot; style=&quot;margin-top:8px;padding:10px 18px;font-size:14px&quot; onclick=&quot;ecySay(ECY.sub,ECYCLE[ECY.sub].listen.t)&quot;&gt;🔊 들려주세요&lt;/button&gt;&#x27;)+&#x27;&lt;/details&gt;&#x27;+rows;
   setTimeout(function(){var el=document.getElementById(&#x27;ecyIn&#x27;);if(el)el.focus();},100);
  }else{
   if(Q){ecyPickRender();return;}
@@ -2174,6 +2167,10 @@ renderECY();
   --s-after:#E5607A;  --s-aftert:#FBE8EC;
   --s-teuk:#7B61F2;   --s-teukt:#EEE9FC;
   --s-exam:#D6484F;   --s-examt:#FBE9EA;
+  /* 과목 3색 — 시간표의 주인은 국·영·수 */
+  --c-ko:#E5484D;  --c-kot:#FCE7E7;
+  --c-en:#2F6FED;  --c-ent:#E5EDFD;
+  --c-ma:#0FA678;  --c-mat:#DFF5EC;
   --ok:#17A57E; --ok-s:#E5F4EC;
   --push:#2E7CF0; --push-s:#E8F1FE; --kakao-s:#FFF8DD;
 }
@@ -2310,6 +2307,35 @@ button{font:inherit;cursor:pointer}
 .wko.big{font-size:23px;font-weight:900;margin-top:10px}
 .whint{font-size:11.5px;color:var(--ink3);font-weight:700;margin-top:10px}
 .wsnd{margin-left:auto;margin-right:10px;border:1.5px dashed var(--line);background:none;border-radius:999px;padding:4px 11px;font-size:11px;font-weight:800;color:var(--ink2);font-family:inherit;cursor:pointer}
+/* ===== 오늘 타임라인 (Structured식) — 기본 뷰 ===== */
+.pl-tg{margin-left:auto;display:inline-flex;background:var(--line2);border-radius:999px;padding:3px}
+.pl-tg button{border:0;background:none;border-radius:999px;padding:6px 16px;font-size:12px;font-weight:800;color:var(--ink3);cursor:pointer;font-family:inherit}
+.pl-tg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(20,25,40,.12)}
+.dayline{padding:6px 20px 16px}
+.dl-date{font-size:13px;font-weight:900;margin:6px 0 12px}
+.dl-date em{font-style:normal;background:var(--brand);color:#fff;border-radius:8px;padding:2px 9px;margin-right:7px}
+.dl-item{display:flex;gap:13px;position:relative}
+.dl-rail{display:flex;flex-direction:column;align-items:center;width:38px;flex:none}
+.dl-dot{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:16px;color:#fff;flex:none;z-index:1}
+.dl-ln{width:2.5px;flex:1;background:var(--line);min-height:14px}
+.dl-item:last-child .dl-ln{background:transparent}
+.dl-body{flex:1;min-width:0;padding:2px 0 16px}
+.dl-tm{font-size:10.5px;font-weight:900;color:var(--ink3)}
+.dl-card{margin-top:3px;background:var(--card);border:1.5px solid var(--line);border-radius:13px;padding:10px 13px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:.12s}
+.dl-card:hover{border-color:var(--ink3)}
+.dl-card b{font-size:13.5px;flex:1;min-width:0}
+.dl-card .ds{font-size:10.5px;color:var(--ink3);font-weight:700;display:block;margin-top:1px}
+.dl-item.done .dl-card{opacity:.45}
+.dl-item.done .dl-card b{text-decoration:line-through}
+.dl-item.ext .dl-dot{background:#D5DAE3;color:#8A93AC}
+.dl-item.ext .dl-card{background:var(--line2);border-color:transparent}
+.dl-go{border:0;border-radius:999px;padding:7px 14px;font-size:11.5px;font-weight:900;color:#fff;cursor:pointer;font-family:inherit;flex:none;box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.dl-go:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.dl-now{display:flex;align-items:center;gap:8px;margin:2px 0 14px}
+.dl-now .nl{flex:1;height:2px;background:#FF5A4E;border-radius:2px}
+.dl-now span{font-size:10px;font-weight:900;color:#FF5A4E;flex:none}
+.dl-chk{width:22px;height:22px;border-radius:8px;border:2px solid var(--line);background:#fff;flex:none;display:grid;place-items:center;font-size:12px;color:#fff;cursor:pointer}
+.dl-item.done .dl-chk{background:var(--ok);border-color:var(--ok)}
 .plwk{font-size:11px;font-weight:800;color:var(--ink3);margin-left:10px}
 .gbar.slim{display:flex;align-items:center;gap:14px;padding:12px 18px}
 .gbar.slim .gs-lv{font-size:13px;font-weight:900;color:var(--lime);white-space:nowrap}
@@ -2365,35 +2391,36 @@ button{font:inherit;cursor:pointer}
 .gtbl th .tdd{font-size:10.5px;color:var(--faint);font-weight:700;margin-top:1px}
 .gtbl th.today .tdd{color:rgba(255,255,255,.85)}
 .gtbl th.wkd,.gtbl td.wkd{opacity:.82}
-.gtbl td{border-top:1px solid var(--line2);border-left:1px solid var(--line);height:42px;vertical-align:top;padding:0;position:relative}
+.gtbl td{border-top:1px solid #F0F2F7;height:42px;vertical-align:top;padding:0 2px;position:relative}
 .gtbl td.timecol,.gtbl th.timecol{width:58px}
 .gtbl td.timecol{border-left:0;text-align:right;padding:4px 10px 0 0;font-size:10.5px;color:var(--ink3);font-weight:800;position:sticky;left:0;background:var(--card);z-index:2;white-space:nowrap}
 .gtbl th.timecol{position:sticky;left:0;background:var(--card);z-index:3}
 .gtbl td.todaycol{background:#EBF8F0;border-left:2px solid var(--brand);box-shadow:inset -2px 0 0 var(--brand)}
 .gtbl tbody tr:last-child td.todaycol{border-bottom:2px solid var(--brand)}
-.blk{position:absolute;left:3px;right:3px;top:2px;bottom:2px;border-radius:8px;padding:6px 8px 6px 11px;overflow:hidden;line-height:1.25;cursor:pointer;transition:.1s;box-shadow:inset 0 0 0 1px rgba(20,40,30,.08)}
+.blk{position:absolute;left:3px;right:3px;top:2px;bottom:2px;border-radius:7px;padding:5px 8px;overflow:hidden;line-height:1.3;cursor:pointer;transition:.1s}
 /* 과목 컬러바 — 색으로 한눈에 구분 */
-.blk::before{content:&#x27;&#x27;;position:absolute;left:0;top:0;bottom:0;width:4px;background:currentColor;opacity:.75;border-radius:8px 0 0 8px}
+
 /* 외부 일정(학원·하교) — 내 공부 아님을 시각 구분 */
-.blk.ext{background:repeating-linear-gradient(135deg,rgba(140,146,166,.1) 0 7px,rgba(140,146,166,.03) 7px 14px) !important;color:var(--ink3) !important;box-shadow:inset 0 0 0 1px var(--line)}
-.blk.ext::before{opacity:.35}
+.blk.ext{background:#EEF0F5 !important;color:#9AA3B5 !important}
+
 .blk.ext .bt{font-weight:700;color:var(--ink2)}
 .blk:hover{filter:brightness(.97);box-shadow:0 2px 8px -2px rgba(25,30,46,.18)}
-.blk .bt{font-size:11.5px;font-weight:800;letter-spacing:-.02em}
-.blk .bs{font-size:9.5px;opacity:.8;margin-top:1px;font-weight:600}
-.blk.islive{box-shadow:inset 0 0 0 1.5px var(--s-live)}
-.blk.auto{border-left:3px solid var(--s-live)}
-.blk .atag{display:inline-block;font-size:7.5px;font-weight:900;color:var(--s-live);background:#fff;border-radius:4px;padding:0 4px;margin-top:3px;letter-spacing:.02em}
+.blk .bt{font-size:11.5px;font-weight:800;letter-spacing:-.01em}
+.blk .bs{font-size:9.5px;opacity:.8;margin-top:1px;font-weight:600;color:rgba(255,255,255,.85)}
+.blk.islive{box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--s-live)}
+
+
+.blk .atag{display:inline-block;font-size:7.5px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:4px;padding:0 5px;margin-top:3px;letter-spacing:.02em}
 .blk .aitag{display:inline-block;font-size:7.5px;font-weight:900;color:#fff;background:#7B61F2;border-radius:4px;padding:0 4px;margin-top:3px}
 .blk .ltag{position:absolute;top:4px;right:4px;font-size:8px;font-weight:900;color:#fff;background:var(--s-live);padding:1px 4px;border-radius:4px}
-.blk .chk{position:absolute;bottom:5px;right:5px;width:15px;height:15px;border-radius:5px;background:var(--ok);display:none;place-items:center}
-.blk.done{opacity:.55}
+.blk .chk{position:absolute;bottom:4px;right:4px;width:14px;height:14px;border-radius:5px;background:rgba(255,255,255,.28);display:none;place-items:center}
+.blk.done{opacity:.4}
 .blk.done .chk{display:grid}
 .blk .chk svg{width:9px;height:9px;stroke:#fff;stroke-width:3.5}
 /* 미완료 — 경고판처럼 안 보이게 절제 (좌측 바 + 작은 점만) */
-.blk.overdue{box-shadow:inset 0 0 0 1px rgba(226,59,59,.28)}
+.blk.overdue{}
 .blk.overdue::before{background:#E23B3B;opacity:1}
-.blk .odtag{position:absolute;bottom:5px;right:5px;width:6px;height:6px;padding:0;border-radius:50%;background:#E23B3B;font-size:0;overflow:hidden}
+.blk .odtag{position:absolute;top:4px;right:4px;width:7px;height:7px;padding:0;border-radius:50%;background:#FF5A4E;box-shadow:0 0 0 2px #fff;font-size:0;overflow:hidden}
 
 /* ===== 우측 레일 ===== */
 .rail{width:316px;flex:none;display:flex;flex-direction:column;gap:14px}
@@ -3822,11 +3849,13 @@ button{font:inherit;cursor:pointer}
       &lt;section class=&quot;planner&quot;&gt;
         &lt;div class=&quot;mcycard&quot; id=&quot;mcyCard&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;pl-hd&quot;&gt;&lt;b&gt;나의 학습 플래너&lt;/b&gt;&lt;span class=&quot;plwk&quot; id=&quot;plWk&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;pl-tg&quot;&gt;&lt;button class=&quot;on&quot; id=&quot;pvDay&quot; onclick=&quot;setPlView(&#x27;day&#x27;)&quot;&gt;오늘&lt;/button&gt;&lt;button id=&quot;pvWeek&quot; onclick=&quot;setPlView(&#x27;week&#x27;)&quot;&gt;주간&lt;/button&gt;&lt;/span&gt;
           &lt;span class=&quot;schooltag&quot; onclick=&quot;toast(&#x27;반포중 2학기 학사일정 · 수행평가 일정 자동 연동 중&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; style=&quot;width:12px;height:12px&quot;&gt;&lt;path d=&quot;M20 6L9 17l-5-5&quot;/&gt;&lt;/svg&gt;반포중 학사일정 연동됨&lt;/span&gt;&lt;/div&gt;
         &lt;div class=&quot;radar&quot; id=&quot;radar&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;legend&quot; id=&quot;legend&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;autonote&quot;&gt;&lt;span class=&quot;an-dot&quot;&gt;&lt;/span&gt;개념특강은 중등 타임(매일 21:00) 하나로 자동 편성 — 본방 사수하면 출석, 못 보면 다시보기&lt;/div&gt;
+        &lt;div class=&quot;autonote&quot;&gt;&lt;span class=&quot;an-dot&quot;&gt;&lt;/span&gt;라이브는 &lt;b&gt;특강&lt;/b&gt; 하나 — 매일 21:00 중등 타임에 자동 편성. 본방 사수하면 출석, 못 보면 다시보기&lt;/div&gt;
         &lt;div id=&quot;todayStrip&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;dayline&quot;&gt;&lt;/div&gt;
         &lt;div id=&quot;odBanner&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;grid&quot; id=&quot;grid&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;tkwrap&quot;&gt;&lt;div class=&quot;tkhd&quot;&gt;&lt;b&gt;이번 주 열린 특강&lt;/b&gt;&lt;span class=&quot;tkmore&quot; onclick=&quot;openPage(&#x27;special&#x27;)&quot;&gt;전체 보기 ›&lt;/span&gt;&lt;/div&gt;
@@ -3837,7 +3866,7 @@ button{font:inherit;cursor:pointer}
 
       &lt;aside class=&quot;rail&quot;&gt;
         &lt;div class=&quot;rc now&quot;&gt;
-          &lt;div class=&quot;nk&quot;&gt;&lt;span class=&quot;ld&quot;&gt;&lt;/span&gt;개념특강 · 10분 뒤 시작&lt;/div&gt;
+          &lt;div class=&quot;nk&quot;&gt;&lt;span class=&quot;ld&quot;&gt;&lt;/span&gt;⭐ 특강 · 10분 뒤 시작&lt;/div&gt;
           &lt;h3&gt;영어 독해 · Reading&lt;/h3&gt;
           &lt;div class=&quot;ns&quot;&gt;21:00–21:40 · 중2 타임 · 못 보면 다시보기&lt;/div&gt;
           &lt;button class=&quot;nbtn&quot; onclick=&quot;notify(&#x27;live&#x27;)&quot;&gt;본방 입장하기&lt;/button&gt;
@@ -4144,13 +4173,17 @@ button{font:inherit;cursor:pointer}
 &lt;script&gt;
 var SUB={
  school:[&#x27;학교&#x27;,&#x27;--s-school&#x27;,&#x27;--s-schoolt&#x27;,&#x27;🏫&#x27;], eng:[&#x27;영어학원&#x27;,&#x27;--s-eng&#x27;,&#x27;--s-engt&#x27;,&#x27;🔤&#x27;], math:[&#x27;수학학원&#x27;,&#x27;--s-math&#x27;,&#x27;--s-matht&#x27;,&#x27;🧮&#x27;],
- live:[&#x27;개념특강&#x27;,&#x27;--s-live&#x27;,&#x27;--s-livet&#x27;,&#x27;📡&#x27;], lec:[&#x27;다시보기&#x27;,&#x27;--s-lec&#x27;,&#x27;--s-lect&#x27;,&#x27;▶&#x27;], prob:[&#x27;과제·문제&#x27;,&#x27;--s-prob&#x27;,&#x27;--s-probt&#x27;,&#x27;✏️&#x27;],
+ live:[&#x27;특강&#x27;,&#x27;--s-live&#x27;,&#x27;--s-livet&#x27;,&#x27;⭐&#x27;], lec:[&#x27;다시보기&#x27;,&#x27;--s-lec&#x27;,&#x27;--s-lect&#x27;,&#x27;▶&#x27;], prob:[&#x27;과제·문제&#x27;,&#x27;--s-prob&#x27;,&#x27;--s-probt&#x27;,&#x27;✏️&#x27;],
  word:[&#x27;단어&#x27;,&#x27;--s-word&#x27;,&#x27;--s-wordt&#x27;,&#x27;📖&#x27;], after:[&#x27;방과후&#x27;,&#x27;--s-after&#x27;,&#x27;--s-aftert&#x27;,&#x27;🎒&#x27;], teuk:[&#x27;특강&#x27;,&#x27;--s-teuk&#x27;,&#x27;--s-teukt&#x27;,&#x27;⭐&#x27;],
  check:[&#x27;개념체크&#x27;,&#x27;--s-check&#x27;,&#x27;--s-checkt&#x27;,&#x27;🧩&#x27;],
  exam:[&#x27;시험공부&#x27;,&#x27;--s-exam&#x27;,&#x27;--s-examt&#x27;,&#x27;📝&#x27;]
 };
-var LEG=[&#x27;school&#x27;,&#x27;eng&#x27;,&#x27;math&#x27;,&#x27;live&#x27;,&#x27;lec&#x27;,&#x27;check&#x27;,&#x27;prob&#x27;,&#x27;word&#x27;,&#x27;teuk&#x27;,&#x27;exam&#x27;];
-document.getElementById(&#x27;legend&#x27;).innerHTML=LEG.map(function(k){return &#x27;&lt;span class=&quot;lg&quot;&gt;&lt;i style=&quot;background:var(&#x27;+SUB[k][1]+&#x27;)&quot;&gt;&lt;/i&gt;&#x27;+SUB[k][0]+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;);
+/* 범례 — 색은 과목이 정하고, 종류는 뱃지가 말한다 */
+document.getElementById(&#x27;legend&#x27;).innerHTML=[
+ [&#x27;--c-ko&#x27;,&#x27;국어&#x27;],[&#x27;--c-en&#x27;,&#x27;영어&#x27;],[&#x27;--c-ma&#x27;,&#x27;수학&#x27;],
+ [&#x27;--s-school&#x27;,&#x27;학교·학원 (외부)&#x27;],[&#x27;--s-exam&#x27;,&#x27;시험·기타&#x27;]
+].map(function(x){return &#x27;&lt;span class=&quot;lg&quot;&gt;&lt;i style=&quot;background:var(&#x27;+x[0]+&#x27;)&quot;&gt;&lt;/i&gt;&#x27;+x[1]+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+
+ &#x27;&lt;span class=&quot;lg&quot;&gt;⭐ 특강(라이브) = 과목색 + 두꺼운 테두리&lt;/span&gt;&#x27;;
 
 var TIMES=[&#x27;15:30&#x27;,&#x27;16:00&#x27;,&#x27;16:30&#x27;,&#x27;17:00&#x27;,&#x27;17:30&#x27;,&#x27;18:00&#x27;,&#x27;18:30&#x27;,&#x27;19:00&#x27;,&#x27;19:30&#x27;,&#x27;20:00&#x27;,&#x27;20:30&#x27;,&#x27;21:00&#x27;,&#x27;21:30&#x27;,&#x27;22:00&#x27;,&#x27;22:30&#x27;];
 var DAYS=[[&#x27;월&#x27;,19],[&#x27;화&#x27;,20],[&#x27;수&#x27;,21],[&#x27;목&#x27;,22],[&#x27;금&#x27;,23],[&#x27;토&#x27;,24],[&#x27;일&#x27;,25]];
@@ -4161,29 +4194,28 @@ var BLK=[
  [0,1,5,&#x27;영어학원&#x27;,&#x27;16:00–18:20&#x27;,&#x27;eng&#x27;,{ext:1,done:1}],[2,1,5,&#x27;영어학원&#x27;,&#x27;16:00–18:20&#x27;,&#x27;eng&#x27;,{ext:1}],
  [1,0,5,&#x27;수학학원&#x27;,&#x27;15:50–18:00&#x27;,&#x27;math&#x27;,{ext:1}],[3,0,5,&#x27;수학학원&#x27;,&#x27;15:50–18:00&#x27;,&#x27;math&#x27;,{ext:1,done:1}],
  [5,1,4,&#x27;수학 보충&#x27;,&#x27;16:00–18:00&#x27;,&#x27;math&#x27;,{ext:1}],
- // 이번 주 오더
  [0,6,2,&#x27;이번 주 오더 작성·제출&#x27;,&#x27;18:30–19:10&#x27;,&#x27;prob&#x27;,{order:1,done:1}],
- // 시험 스텝업
- [2,8,1,&#x27;[D-10] 국어 문법 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1}],[3,8,1,&#x27;[D-9] 수학 오답 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1,done:1}],[5,7,2,&#x27;[D-7] 사회 암기노트&#x27;,&#x27;19:00–20:00&#x27;,&#x27;exam&#x27;,{plan:1}],
- // 과제형
- [0,9,2,&#x27;쎈 수학 p.52–55&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{done:1}],[1,9,2,&#x27;쎈 수학 p.56–59&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{}],[2,9,2,&#x27;수학 오답 재풀이&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{}],[3,9,2,&#x27;국어 문제 1장&#x27;,&#x27;20:00–20:30&#x27;,&#x27;prob&#x27;,{done:1}],[4,9,2,&#x27;English Escape! 독해 스피드&#x27;,&#x27;20:00–20:50&#x27;,&#x27;teuk&#x27;,{teuk:1}],
- [6,7,2,&#x27;주간 복습 · 특강 다시보기&#x27;,&#x27;19:00–20:00&#x27;,&#x27;lec&#x27;,{}],
- // ★ 정해진 타임 개념특강 — 중등 21:00 단일 타임, 과목별 로테이션
- [0,11,2,&#x27;개념특강 · 수학 일차함수&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{}],
- [1,11,2,&#x27;개념특강 · 영어 문법 8품사&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{}],
- [2,11,2,&#x27;다시보기 · 수학 개념&#x27;,&#x27;21:00–21:40&#x27;,&#x27;lec&#x27;,{}],
- [2,13,1,&#x27;개념체크 · 일차함수&#x27;,&#x27;강의 직후&#x27;,&#x27;check&#x27;,{}],
- [3,11,2,&#x27;개념특강 · 영어 독해 Reading&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{live:1}],
- [3,13,1,&#x27;개념체크 · 일차함수&#x27;,&#x27;강의 직후&#x27;,&#x27;check&#x27;,{done:1}],
- [4,11,2,&#x27;개념특강 · 국어 문해력&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{}],
- // ★ 영단어 — 매일 22:30 (하루 20개, SRS 복습 포함). 지난 요일은 완료
- [0,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{done:1}],
- [1,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{done:1}],
- [2,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{done:1}],
- [3,14,1,&#x27;영단어 20개 (시험범위)&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{}],
- [4,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{}],
- [5,14,1,&#x27;영단어 20개 (주말 복습)&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{}],
- [6,14,1,&#x27;영단어 20개 (주간 총복습)&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{}]
+ // 시험 스텝업 — 과목색으로
+ [2,8,1,&#x27;[D-10] 문법 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1,sub:&#x27;ko&#x27;}],[3,8,1,&#x27;[D-9] 오답 정리&#x27;,&#x27;19:30&#x27;,&#x27;exam&#x27;,{plan:1,done:1,sub:&#x27;ma&#x27;}],[5,7,2,&#x27;[D-7] 사회 암기노트&#x27;,&#x27;19:00–20:00&#x27;,&#x27;exam&#x27;,{plan:1}],
+ // 과제형 — 제목은 짧게, 색은 과목
+ [0,9,2,&#x27;쎈 p.52–55&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{done:1,sub:&#x27;ma&#x27;}],[1,9,2,&#x27;쎈 p.56–59&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{sub:&#x27;ma&#x27;}],[2,9,2,&#x27;오답 재풀이&#x27;,&#x27;20:00–20:40&#x27;,&#x27;prob&#x27;,{sub:&#x27;ma&#x27;}],[3,9,2,&#x27;문제 1장&#x27;,&#x27;20:00–20:30&#x27;,&#x27;prob&#x27;,{done:1,sub:&#x27;ko&#x27;}],
+ [6,7,2,&#x27;주간 복습·다시보기&#x27;,&#x27;19:00–20:00&#x27;,&#x27;lec&#x27;,{}],
+ // ★ 라이브는 오직 특강 — 21:00 단일 타임, 과목 로테이션, 제목은 강의명만
+ [0,11,2,&#x27;일차함수 개념 이해&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{sub:&#x27;ma&#x27;}],
+ [1,11,2,&#x27;문법 8품사&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{sub:&#x27;en&#x27;}],
+ [2,11,2,&#x27;일차함수 다시보기&#x27;,&#x27;21:00–21:40&#x27;,&#x27;lec&#x27;,{sub:&#x27;ma&#x27;}],
+ [2,13,1,&#x27;일차함수 체크&#x27;,&#x27;강의 직후&#x27;,&#x27;check&#x27;,{sub:&#x27;ma&#x27;}],
+ [3,11,2,&#x27;독해 필승법&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{live:1,sub:&#x27;en&#x27;}],
+ [3,13,1,&#x27;일차함수 체크&#x27;,&#x27;강의 직후&#x27;,&#x27;check&#x27;,{done:1,sub:&#x27;ma&#x27;}],
+ [4,11,2,&#x27;문해력 한 방&#x27;,&#x27;21:00–21:40&#x27;,&#x27;live&#x27;,{sub:&#x27;ko&#x27;}],
+ // 영단어 — 매일 22:30
+ [0,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{done:1,sub:&#x27;en&#x27;}],
+ [1,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{done:1,sub:&#x27;en&#x27;}],
+ [2,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{done:1,sub:&#x27;en&#x27;}],
+ [3,14,1,&#x27;영단어 20개 (시험범위)&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{sub:&#x27;en&#x27;}],
+ [4,14,1,&#x27;영단어 20개&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{sub:&#x27;en&#x27;}],
+ [5,14,1,&#x27;영단어 20개 (주말 복습)&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{sub:&#x27;en&#x27;}],
+ [6,14,1,&#x27;영단어 20개 (주간 총복습)&#x27;,&#x27;22:30&#x27;,&#x27;word&#x27;,{sub:&#x27;en&#x27;}]
 ];
 
 /* 수행평가·시험: 학교 허브에서 &quot;일정·배점&quot;만 자동으로 떠 있고,
@@ -4301,8 +4333,7 @@ var TKB=[
  {g:&#x27;linear-gradient(120deg,#3A3D8F,#6B4FD0)&#x27;,cat:&#x27;✦ 공부 기술&#x27;,tit:&#x27;시험 D-14 역산 공부법&#x27;,desc:&#x27;시험 전날 밤새우는 애들 보면서 여유 부리는 법 — D-14부터 거꾸로 짠다&#x27;,when:&#x27;화 19:30&#x27;,day:1,len:1},
  {g:&#x27;linear-gradient(120deg,#1E8E7E,#2FB3A0)&#x27;,cat:&#x27;∑ 서술형 대비&#x27;,tit:&#x27;서술형 감점 안 당하는 법&#x27;,desc:&#x27;답은 맞았는데 왜 깎였지? 채점 기준은 따로 있다 — 태블릿 판서로 직접 첨삭&#x27;,when:&#x27;토 18:00&#x27;,day:5,len:1},
  {g:&#x27;linear-gradient(120deg,#C28A1E,#E0A93A)&#x27;,cat:&#x27;🎓 입시 세미나&#x27;,tit:&#x27;중2 외고·자사고 로드맵&#x27;,desc:&#x27;지금 뭘 해야 3년 뒤가 달라지나 — 내신·원서 일정 역산 (학부모 같이 들어요)&#x27;,when:&#x27;토 19:00&#x27;,day:5,len:2},
- {g:&#x27;linear-gradient(120deg,#8C5BC2,#B07FE0)&#x27;,cat:&#x27;📒 노트 기술&#x27;,tit:&#x27;오답노트, 진짜 되는 방식&#x27;,desc:&#x27;&quot;아 이거 알았는데&quot; 두 번 안 나오게 — 오답 정리의 진짜 방식&#x27;,when:&#x27;목 20:00&#x27;,day:3,len:1},
- {g:&#x27;linear-gradient(120deg,#2E7CF0,#6BA8FF)&#x27;,cat:&#x27;✦ 영어 독해&#x27;,tit:&#x27;English Escape! 독해 스피드&#x27;,desc:&#x27;몰라서 못 푼 게 아니라 길어서 못 푼 거다 — 읽는 속도부터&#x27;,when:&#x27;금 20:00&#x27;,day:4,len:1}
+ {g:&#x27;linear-gradient(120deg,#8C5BC2,#B07FE0)&#x27;,cat:&#x27;📒 노트 기술&#x27;,tit:&#x27;오답노트, 진짜 되는 방식&#x27;,desc:&#x27;&quot;아 이거 알았는데&quot; 두 번 안 나오게 — 오답 정리의 진짜 방식&#x27;,when:&#x27;목 20:00&#x27;,day:3,len:1}
 ];
 /* slot은 when에서 자동 계산 — 데이터 불일치 방지 */
 TKB.forEach(function(t){t.slot=whenToSlot(t.when);});
@@ -4492,11 +4523,18 @@ function buildGrid(){
       if(cell){
         var b=cell.b, sk=SUB[b[5]], st=b[6]||{};
         var over=isOverdue(b);
-        var bstyle=(b[5]===&#x27;exam&#x27;)?&#x27;background:var(--s-exam);color:#fff&#x27;:&#x27;background:var(&#x27;+sk[2]+&#x27;);color:var(&#x27;+sk[1]+&#x27;)&#x27;;
+        /* 구글 캘린더 문법: 블록 = 과목색 솔리드 칩 + 흰 글자. 종류는 아이콘 하나로만 */
+        var CSUB={ko:&#x27;--c-ko&#x27;,en:&#x27;--c-en&#x27;,ma:&#x27;--c-ma&#x27;};
+        var sc=CSUB[st.sub];
+        var bstyle = sc ? &#x27;background:var(&#x27;+sc+&#x27;);color:#fff&#x27;
+          : (b[5]===&#x27;exam&#x27;) ? &#x27;background:var(--s-exam);color:#fff&#x27;
+          : &#x27;background:var(&#x27;+sk[1]+&#x27;);color:#fff&#x27;;
+        var KT={live:&#x27;⭐ &#x27;,teuk:&#x27;⭐ &#x27;,lec:&#x27;▶ &#x27;,check:&#x27;🧩 &#x27;};
+        var ktag=(!st.ext&amp;&amp;KT[b[5]])?KT[b[5]]:&#x27;&#x27;;
         tds+=&#x27;&lt;td&#x27;+(b[2]&gt;1?&#x27; rowspan=&quot;&#x27;+b[2]+&#x27;&quot;&#x27;:&#x27;&#x27;)+cattr+&#x27;&gt;&#x27;+
-          &#x27;&lt;div class=&quot;blk&#x27;+(st.live?&#x27; islive&#x27;:&#x27;&#x27;)+(st.done?&#x27; done&#x27;:&#x27;&#x27;)+(over?&#x27; overdue&#x27;:&#x27;&#x27;)+(b[5]===&#x27;live&#x27;?&#x27; auto&#x27;:&#x27;&#x27;)+(st.ext?&#x27; ext&#x27;:&#x27;&#x27;)+&#x27;&quot; style=&quot;&#x27;+bstyle+&#x27;&quot; onclick=&quot;openDlg(&#x27;+cell.i+&#x27;)&quot;&gt;&#x27;+
+          &#x27;&lt;div class=&quot;blk&#x27;+(st.live?&#x27; islive&#x27;:&#x27;&#x27;)+(st.done?&#x27; done&#x27;:&#x27;&#x27;)+(over?&#x27; overdue&#x27;:&#x27;&#x27;)+((b[5]===&#x27;live&#x27;||b[5]===&#x27;teuk&#x27;)?&#x27; isteuk&#x27;:&#x27;&#x27;)+(st.ext?&#x27; ext&#x27;:&#x27;&#x27;)+&#x27;&quot; style=&quot;&#x27;+bstyle+&#x27;&quot; onclick=&quot;openDlg(&#x27;+cell.i+&#x27;)&quot;&gt;&#x27;+
           (st.live?&#x27;&lt;span class=&quot;ltag&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+
-          &#x27;&lt;div class=&quot;bt&quot;&gt;&#x27;+b[3]+&#x27;&lt;/div&gt;&#x27;+(b[4]?&#x27;&lt;div class=&quot;bs&quot;&gt;&#x27;+b[4]+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+          &#x27;&lt;div class=&quot;bt&quot;&gt;&#x27;+ktag+b[3]+&#x27;&lt;/div&gt;&#x27;+(b[4]?&#x27;&lt;div class=&quot;bs&quot;&gt;&#x27;+b[4]+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+
           (b[5]===&#x27;live&#x27;?&#x27;&lt;span class=&quot;atag&quot;&gt;본방 사수&lt;/span&gt;&#x27;:&#x27;&#x27;)+
           (st.ai?&#x27;&lt;span class=&quot;aitag&quot;&gt;AI 담음&lt;/span&gt;&#x27;:&#x27;&#x27;)+
           (over?&#x27;&lt;span class=&quot;odtag&quot;&gt;미완료&lt;/span&gt;&#x27;:&#x27;&#x27;)+
@@ -5090,7 +5128,7 @@ function buildTodo(){
     else if(paper &amp;&amp; !st.done){chkBtn=&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();setCurTodo(&#x27;+x.i+&#x27;);openPaper(\&#x27;&#x27;+b[3].replace(/&#x27;/g,&#x27;&#x27;)+&#x27;\&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
     else{chkBtn=&#x27;&lt;button class=&quot;cb&quot; onclick=&quot;event.stopPropagation();tgl(&#x27;+x.i+&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 12l5 5L20 6&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&#x27;;}
     return &#x27;&lt;li class=&quot;&#x27;+(st.done?&#x27;done &#x27;:&#x27;&#x27;)+(ext?&#x27;ext&#x27;:&#x27;&#x27;)+(tappable?&#x27; tap&#x27;:&#x27;&#x27;)+&#x27;&quot;&#x27;+(tappable?&#x27; onclick=&quot;&#x27;+open+&#x27;&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+
-      &#x27;&lt;span class=&quot;tic&quot; style=&quot;background:var(&#x27;+sk[2]+&#x27;);color:var(&#x27;+sk[1]+&#x27;)&quot;&gt;&#x27;+(sk[3]||&#x27;•&#x27;)+&#x27;&lt;/span&gt;&#x27;+
+      &#x27;&lt;span class=&quot;tic&quot; style=&quot;background:var(&#x27;+({ko:&#x27;--c-kot&#x27;,en:&#x27;--c-ent&#x27;,ma:&#x27;--c-mat&#x27;}[st.sub]||sk[2])+&#x27;);color:var(&#x27;+({ko:&#x27;--c-ko&#x27;,en:&#x27;--c-en&#x27;,ma:&#x27;--c-ma&#x27;}[st.sub]||sk[1])+&#x27;)&quot;&gt;&#x27;+(sk[3]||&#x27;•&#x27;)+&#x27;&lt;/span&gt;&#x27;+
       &#x27;&lt;div class=&quot;tb&quot;&gt;&lt;b&gt;&#x27;+b[3]+&#x27;&lt;/b&gt;&lt;div class=&quot;ts&quot;&gt;&#x27;+tm+&#x27; · &#x27;+sk[0]+(ext?&#x27; · 외부&#x27;:&#x27;&#x27;)+(st.ai?&#x27; · AI&#x27;:&#x27;&#x27;)+(autoLearn&amp;&amp;!st.done?&#x27; · 학습 완료 시 체크&#x27;:&#x27;&#x27;)+(paper&amp;&amp;!st.done?&#x27; · 책으로 직접 풀기&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
       (st.live?&#x27;&lt;span class=&quot;lvb&quot;&gt;LIVE&lt;/span&gt;&#x27;:&#x27;&#x27;)+startBtn+chkBtn+
       &#x27;&lt;/li&gt;&#x27;;
@@ -5100,7 +5138,7 @@ function buildTodo(){
   renderGameBar(); renderPush();
   renderRadar();
 }
-function tgl(i){ var st=BLK[i][6]=BLK[i][6]||{}; st.done=st.done?0:1; buildGrid(); buildTodo();
+function tgl(i){ var st=BLK[i][6]=BLK[i][6]||{}; st.done=st.done?0:1; buildGrid(); buildTodo(); if(PLVIEW===&#x27;day&#x27;)renderDayline();
   if(st.done){
     var items=BLK.filter(function(b){return b[0]===TODAY &amp;&amp; !(b[6]&amp;&amp;b[6].ext);});
     var allDone=items.length &amp;&amp; items.every(function(b){return b[6]&amp;&amp;b[6].done;});
@@ -7119,14 +7157,16 @@ function renderReview(){
 /* ===== 오늘의 한 바퀴 (중등) — 기획 §6: 듣기 자리에 &quot;아라온 해설강의 2분 클립&quot; =====
    초등 eCycle과 같은 뼈대: 듣다 → 과정 빈칸(0초 피드백) → 내 말로 설명 → 틀린 건 복습 큐 */
 var MCYCLE={
- ko:{nm:&#x27;국어 — 동사·형용사 구별&#x27;,ic:&#x27;📕&#x27;,prog:0,mast:2,
-  clip:{t:&#x27;용언 구별 한 방 정리 — 동사 vs 형용사&#x27;,len:&#x27;1:52&#x27;,tag:&#x27;아라온 해설강의 · 중2 국어 문법&#x27;},
+ ko:{nm:&#x27;국어 — 우리말 음운 체계&#x27;,ic:&#x27;📕&#x27;,prog:0,mast:2,
+  /* ★ 실데이터 시연 — 아라온 문제은행 내보내기 1행 그대로:
+     번호 221767 · 코드 243534 · 중등 2학년 국어 · 지학사 · 3. 체계적인 음운, 과학적인 문자 &gt; (1) 우리말 음운 체계 · 난이도 중 · 객관식 */
+  clip:{t:&#x27;우리말 음운 체계 — 음운·자음·모음 한 방 정리&#x27;,len:&#x27;1:54&#x27;,tag:&#x27;아라온 해설강의 · 문항 221767 · 1:1 매칭 (지학사 중2 국어)&#x27;},
   fill:[
-   {pre:&quot;&#x27;달리다&#x27; — 움직임을 나타내요 →&quot;,post:&#x27;&#x27;,ans:&#x27;동사&#x27;,hint:&#x27;움직임 = ?사&#x27;,say:&quot;달리다는 움직임이니까 동사&quot;},
-   {pre:&quot;&#x27;예쁘다&#x27; — 상태·성질이에요 →&quot;,post:&#x27;&#x27;,ans:&#x27;형용사&#x27;,hint:&#x27;상태 = ?&#x27;,say:&quot;예쁘다는 상태니까 형용사&quot;},
-   {pre:&quot;구별법: &#x27;~는다&#x27;를 붙여 말이 되면&quot;,post:&#x27;&#x27;,ans:&#x27;동사&#x27;,hint:&#x27;달린다(O) 예쁜다(X)&#x27;,say:&quot;는다를 붙여 되면 동사, 안 되면 형용사&quot;}
+   {pre:&#x27;말의 뜻을 구별해 주는 가장 작은 소리 단위 =&#x27;,post:&#x27;&#x27;,ans:&#x27;음운&#x27;,hint:&#x27;물/불이 달라지는 이유&#x27;,say:&#x27;가장 작은 소리 단위는 음운&#x27;},
+   {pre:&#x27;공기가 막히거나 방해를 받으며 나는 소리 =&#x27;,post:&#x27;&#x27;,ans:&#x27;자음&#x27;,hint:&#x27;ㄱㄴㄷ…&#x27;,say:&#x27;방해를 받으면 자음&#x27;},
+   {pre:&#x27;방해 없이 순하게 나오는 소리 =&#x27;,post:&#x27;&#x27;,ans:&#x27;모음&#x27;,hint:&#x27;ㅏㅑㅓㅕ…&#x27;,say:&#x27;방해 없이 나오면 모음&#x27;}
   ],
-  speak:{q:&#x27;동사와 형용사를 어떻게 구별하는지 내 말로 써봐요&#x27;,keys:[[&#x27;움직&#x27;,&#x27;는다&#x27;],[&#x27;상태&#x27;,&#x27;성질&#x27;],[&#x27;동사&#x27;],[&#x27;형용사&#x27;]]}},
+  speak:{q:&quot;&#x27;물&#x27;과 &#x27;불&#x27;의 뜻이 달라지는 이유를 음운으로 설명해봐요&quot;,keys:[[&#x27;음운&#x27;],[&#x27;ㅁ&#x27;,&#x27;ㅂ&#x27;,&#x27;자음&#x27;],[&#x27;구별&#x27;,&#x27;달라&#x27;,&#x27;바뀌&#x27;]]}},
  en:{nm:&#x27;영어 — 현재완료 (have + p.p.)&#x27;,ic:&#x27;🔤&#x27;,prog:0,mast:1,en:1,
   clip:{t:&#x27;현재완료가 과거와 다른 딱 한 가지&#x27;,len:&#x27;2:00&#x27;,tag:&#x27;아라온 해설강의 · 중2 영어&#x27;},
   fill:[
@@ -7253,7 +7293,53 @@ function renderMCY(){
   }).join(&#x27;&#x27;);
 }
 
-buildGrid(); buildTodo(); renderTkb(); renderMCY();
+
+/* ===== 플래너 이중 뷰 — 기본: 오늘 타임라인(아이 뷰) / 토글: 주간 격자(관리 뷰) ===== */
+var PLVIEW=&#x27;day&#x27;;
+function setPlView(v){
+ PLVIEW=v;
+ var g=document.getElementById(&#x27;grid&#x27;),d=document.getElementById(&#x27;dayline&#x27;),st=document.getElementById(&#x27;todayStrip&#x27;),od=document.getElementById(&#x27;odBanner&#x27;);
+ if(g)g.style.display=v===&#x27;week&#x27;?&#x27;&#x27;:&#x27;none&#x27;;
+ if(st)st.style.display=v===&#x27;week&#x27;?&#x27;&#x27;:&#x27;none&#x27;;
+ if(d)d.style.display=v===&#x27;day&#x27;?&#x27;&#x27;:&#x27;none&#x27;;
+ var pd=document.getElementById(&#x27;pvDay&#x27;),pw=document.getElementById(&#x27;pvWeek&#x27;);
+ if(pd)pd.classList.toggle(&#x27;on&#x27;,v===&#x27;day&#x27;); if(pw)pw.classList.toggle(&#x27;on&#x27;,v===&#x27;week&#x27;);
+ if(v===&#x27;day&#x27;)renderDayline();
+}
+function renderDayline(){
+ var el=document.getElementById(&#x27;dayline&#x27;); if(!el)return;
+ el.className=&#x27;dayline&#x27;;
+ var CSUB={ko:&#x27;--c-ko&#x27;,en:&#x27;--c-en&#x27;,ma:&#x27;--c-ma&#x27;};
+ var items=BLK.map(function(b,i){return{b:b,i:i};})
+   .filter(function(x){return x.b[0]===TODAY;})
+   .sort(function(a,c){return a.b[1]-c.b[1];});
+ var nowSlot=11; /* 데모: 지금 20:5x — 21:00 특강 직전 */
+ var nowDrawn=false, html=&#x27;&#x27;;
+ items.forEach(function(x){
+  var b=x.b, st=x.b[6]||{}, sk=SUB[b[5]];
+  if(!nowDrawn &amp;&amp; b[1]&gt;=nowSlot &amp;&amp; !st.ext){
+    html+=&#x27;&lt;div class=&quot;dl-now&quot;&gt;&lt;span&gt;지금 20:50&lt;/span&gt;&lt;div class=&quot;nl&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;; nowDrawn=true;
+  }
+  var col=CSUB[st.sub]?&#x27;var(&#x27;+CSUB[st.sub]+&#x27;)&#x27;:(b[5]===&#x27;exam&#x27;?&#x27;var(--s-exam)&#x27;:&#x27;var(&#x27;+sk[1]+&#x27;)&#x27;);
+  var KT={live:&#x27;⭐&#x27;,teuk:&#x27;⭐&#x27;,lec:&#x27;▶&#x27;,check:&#x27;🧩&#x27;,word:&#x27;📖&#x27;};
+  var ic=st.ext?&#x27;🏫&#x27;:(KT[b[5]]||&#x27;✏️&#x27;);
+  var open= st.live ? &quot;openLec(&#x27;&quot;+b[3].replace(/&#x27;/g,&#x27;&#x27;)+&quot;&#x27;,&#x27;live&#x27;)&quot; : todoOpen(b,x.i);
+  var tappable=(!st.ext &amp;&amp; !st.done &amp;&amp; open &amp;&amp; open.indexOf(&#x27;openDlg&#x27;)!==0);
+  var verb=st.live?&#x27;입장&#x27;:todoVerb(b);
+  html+=&#x27;&lt;div class=&quot;dl-item&#x27;+(st.done?&#x27; done&#x27;:&#x27;&#x27;)+(st.ext?&#x27; ext&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+
+   &#x27;&lt;div class=&quot;dl-rail&quot;&gt;&lt;div class=&quot;dl-dot&quot; style=&quot;&#x27;+(st.ext?&#x27;&#x27;:&#x27;background:&#x27;+col)+&#x27;&quot;&gt;&#x27;+ic+&#x27;&lt;/div&gt;&lt;div class=&quot;dl-ln&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;dl-body&quot;&gt;&lt;div class=&quot;dl-tm&quot;&gt;&#x27;+b[4]+(st.live?&#x27; · &lt;b style=&quot;color:var(--s-live)&quot;&gt;LIVE&lt;/b&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;dl-card&quot; onclick=&quot;&#x27;+(tappable?open:&#x27;openDlg(&#x27;+x.i+&#x27;)&#x27;)+&#x27;&quot;&gt;&#x27;+
+     &#x27;&lt;div style=&quot;flex:1;min-width:0&quot;&gt;&lt;b&gt;&#x27;+b[3]+&#x27;&lt;/b&gt;&lt;span class=&quot;ds&quot;&gt;&#x27;+sk[0]+(st.ext?&#x27; · 외부 일정&#x27;:&#x27;&#x27;)+(st.ai?&#x27; · AI 담음&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+     (tappable?&#x27;&lt;button class=&quot;dl-go&quot; style=&quot;background:&#x27;+col+&#x27;&quot; onclick=&quot;event.stopPropagation();&#x27;+open+&#x27;&quot;&gt;&#x27;+verb+&#x27;&lt;/button&gt;&#x27;:&#x27;&#x27;)+
+     (st.ext?&#x27;&#x27;:&#x27;&lt;span class=&quot;dl-chk&quot; onclick=&quot;event.stopPropagation();&#x27;+(st.done?&#x27;&#x27;:&#x27;tgl(&#x27;+x.i+&#x27;)&#x27;)+&#x27;&quot;&gt;&#x27;+(st.done?&#x27;✓&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&#x27;)+
+    &#x27;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+ });
+ var left=items.filter(function(x){var st=x.b[6]||{};return !st.ext&amp;&amp;!st.done;}).length;
+ el.innerHTML=&#x27;&lt;div class=&quot;dl-date&quot;&gt;&lt;em&gt;오늘 · &#x27;+WDAY[TODAY]+&#x27;&lt;/em&gt;&#x27;+(left?left+&#x27;개 남았어요&#x27;:&#x27;다 끝냈어요 🎉&#x27;)+&#x27;&lt;/div&gt;&#x27;+html;
+}
+
+buildGrid(); buildTodo(); renderTkb(); renderMCY(); setPlView(&#x27;day&#x27;);
 /* 모달 배경(빈 부분) 클릭 → 닫기. 오버레이별 전용 close 호출 */
 var OVL_CLOSE={wordOvl:&#x27;closeWord&#x27;,checkOvl:&#x27;closeCheck&#x27;,diagOvl:&#x27;closeDiag&#x27;,rptOvl:&#x27;closeReport&#x27;,teukOvl:&#x27;closeTeuk&#x27;,paperOvl:&#x27;closePaper&#x27;,lecOvl:&#x27;closeLec&#x27;,examOvl:&#x27;closeExam&#x27;,tierOvl:&#x27;closeTier&#x27;,lgOvl:&#x27;closeLeague&#x27;,shOvl:&#x27;closeShop&#x27;,chOvl:&#x27;closeChal&#x27;};
 document.addEventListener(&#x27;click&#x27;,function(e){
@@ -8393,9 +8479,97 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
 .nl-tag{flex:none;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--line2);color:var(--ink3)}
 .nl-tag.warn{background:#FBF0DC;color:#B57B18}
 .nl-tag.risk{background:#FBE4E4;color:#C23A3A}
+
+/* ===== 관제 현황판 — 응급실 보드 ===== */
+.ctl-livedot{margin-left:auto;width:8px;height:8px;border-radius:50%;background:#E23B3B;animation:ctlblink 1.2s infinite}
+@keyframes ctlblink{0%,100%{opacity:1}50%{opacity:.25}}
+.ctl{background:#10131F;border-radius:18px;padding:18px;color:#E7EAF4}
+.ctl-top{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.ctl-kpi{flex:1;min-width:130px;background:#181D2E;border:1px solid #262D44;border-radius:13px;padding:11px 14px}
+.ctl-kpi .k{font-size:10.5px;font-weight:800;color:#8A93AC;display:flex;align-items:center;gap:6px}
+.ctl-kpi .v{font-size:22px;font-weight:900;margin-top:3px;letter-spacing:-.02em}
+.ctl-kpi .s{font-size:10px;font-weight:700;color:#6B748C;margin-top:1px}
+.ctl-kpi.bad{border-color:rgba(226,59,59,.55);background:rgba(226,59,59,.1)}
+.ctl-kpi.bad .v{color:#FF7A6E}
+.ctl-kpi.warn .v{color:#FFC14A}
+.ctl-kpi.ok .v{color:#5EE3A1}
+.ctl-h{font-size:13px;font-weight:900;margin:16px 0 8px;display:flex;align-items:center;gap:8px;color:#fff}
+.ctl-h .sub{font-size:10.5px;font-weight:700;color:#8A93AC;margin-left:auto}
+.ctl-al{display:flex;align-items:center;gap:11px;background:#181D2E;border-left:4px solid;border-radius:10px;padding:10px 13px;margin-bottom:7px}
+.ctl-al.sev1{border-color:#E23B3B;background:rgba(226,59,59,.1)}
+.ctl-al.sev2{border-color:#FFB224;background:rgba(255,178,36,.07)}
+.ctl-al .ic2{font-size:16px;flex:none}
+.ctl-al .b2{flex:1;min-width:0}
+.ctl-al .b2 b{font-size:12.5px;display:block}
+.ctl-al .b2 span{font-size:10.5px;color:#8A93AC;font-weight:700}
+.ctl-al .dur{font-size:11px;font-weight:900;color:#FF7A6E;flex:none}
+.ctl-al button{border:1px solid #39415E;background:#1F2537;color:#C9D1E6;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;flex:none}
+.ctl-al button:hover{border-color:#5B6684}
+.ctl-al button.pri2{background:#E23B3B;border-color:#E23B3B;color:#fff}
+/* 골든타임 */
+.ctl-rule{font-size:11px;font-weight:700;color:#FFD88F;background:rgba(255,178,36,.1);border:1px dashed rgba(255,178,36,.4);border-radius:10px;padding:8px 12px;margin-bottom:9px}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:9px}
+.gt-card{background:#181D2E;border:1px solid #262D44;border-radius:13px;padding:11px 13px}
+.gt-card.warn{border-color:rgba(255,178,36,.6)}
+.gt-card.bad{border-color:rgba(226,59,59,.7);box-shadow:0 0 0 1px rgba(226,59,59,.35)}
+.gt-hd{display:flex;align-items:center;gap:8px}
+.gt-hd b{font-size:13px}
+.gt-hd .d{font-size:10px;font-weight:800;color:#8A93AC}
+.gt-timer{margin-left:auto;font-size:12px;font-weight:900;font-variant-numeric:tabular-nums}
+.gt-card.bad .gt-timer{color:#FF7A6E}
+.gt-card.warn .gt-timer{color:#FFC14A}
+.gt-card.okc .gt-timer{color:#5EE3A1}
+.gt-steps{display:flex;gap:4px;margin:9px 0 7px}
+.gt-steps i{flex:1;height:5px;border-radius:3px;background:#262D44}
+.gt-steps i.on{background:#5EE3A1}
+.gt-steps i.cur{background:#FFC14A;animation:ctlblink 1.4s infinite}
+.gt-st{font-size:10.5px;font-weight:700;color:#8A93AC}
+.gt-act{display:flex;gap:6px;margin-top:9px}
+.gt-act button{flex:1;border:1px solid #39415E;background:#1F2537;color:#C9D1E6;border-radius:8px;padding:6px 0;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit}
+.gt-act button.call{background:#E23B3B;border-color:#E23B3B;color:#fff}
+/* 퍼널 */
+.ctl-fun{display:flex;gap:8px;align-items:stretch}
+.fun-s{flex:1;background:#181D2E;border:1px solid #262D44;border-radius:12px;padding:10px 12px;position:relative}
+.fun-s .n{font-size:10.5px;font-weight:800;color:#8A93AC}
+.fun-s .v2{font-size:19px;font-weight:900;margin-top:2px}
+.fun-s .p{font-size:10px;font-weight:800;margin-top:1px}
+.fun-s .p.u{color:#5EE3A1}.fun-s .p.d{color:#FF7A6E}
+.fun-bar{height:6px;border-radius:4px;background:#262D44;margin-top:7px;overflow:hidden}
+.fun-bar i{display:block;height:100%;background:linear-gradient(90deg,#4C8DFF,#5EE3A1)}
+.fun-ar{align-self:center;color:#3A4260;font-weight:900}
+
+
+/* ===== 어드민 모바일 (≤760px): 사이드바 → 하단 탭바 ===== */
+.admmb{display:none}
+@media(max-width:760px){
+ .side{display:none}
+ .main{padding-bottom:74px}
+ .admmb{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:120;background:#20233F;border-top:1px solid rgba(255,255,255,.08);padding:7px 6px calc(7px + env(safe-area-inset-bottom))}
+ .admmb button{flex:1;border:0;background:none;color:rgba(255,255,255,.6);font-family:inherit;font-size:9.5px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;border-radius:10px;cursor:pointer;position:relative}
+ .admmb button .mbic{font-size:17px}
+ .admmb button.on{color:#B6E34A}
+ .admmb .mbdot{position:absolute;top:2px;right:50%;margin-right:-16px;width:7px;height:7px;border-radius:50%;background:#E23B3B;animation:ctlblink 1.2s infinite}
+ /* 관제 보드 */
+ .ctl{padding:13px;border-radius:14px}
+ .ctl-kpi{min-width:calc(50% - 10px)}
+ .ctl-al{flex-wrap:wrap}
+ .ctl-al .b2{min-width:60%}
+ .ctl-al .dur{margin-left:auto}
+ .ctl-fun{flex-direction:column}
+ .fun-ar{display:none}
+ .gt-grid{grid-template-columns:1fr}
+}
+
 &lt;/style&gt;&lt;/head&gt;
 &lt;body&gt;
 &lt;div class=&quot;app&quot;&gt;
+  &lt;nav class=&quot;admmb&quot; id=&quot;admMb&quot;&gt;
+    &lt;button id=&quot;mb_control&quot; onclick=&quot;go(&#x27;control&#x27;)&quot;&gt;&lt;span class=&quot;mbic&quot;&gt;🛰&lt;/span&gt;관제&lt;span class=&quot;mbdot&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;button id=&quot;mb_home&quot; onclick=&quot;go(&#x27;home&#x27;)&quot;&gt;&lt;span class=&quot;mbic&quot;&gt;🏠&lt;/span&gt;할 일&lt;/button&gt;
+    &lt;button id=&quot;mb_students&quot; onclick=&quot;go(&#x27;students&#x27;)&quot;&gt;&lt;span class=&quot;mbic&quot;&gt;👧&lt;/span&gt;학생&lt;/button&gt;
+    &lt;button id=&quot;mb_mastery&quot; onclick=&quot;go(&#x27;mastery&#x27;)&quot;&gt;&lt;span class=&quot;mbic&quot;&gt;📊&lt;/span&gt;이해도&lt;/button&gt;
+    &lt;button id=&quot;mb_upload&quot; onclick=&quot;go(&#x27;upload&#x27;)&quot;&gt;&lt;span class=&quot;mbic&quot;&gt;⬆️&lt;/span&gt;업로드&lt;/button&gt;
+  &lt;/nav&gt;
   &lt;aside class=&quot;side&quot;&gt;
     &lt;div class=&quot;logo&quot;&gt;&lt;span class=&quot;mk&quot;&gt;&lt;svg viewBox=&quot;0 0 52 52&quot;&gt;&lt;rect width=&quot;52&quot; height=&quot;52&quot; rx=&quot;12&quot; fill=&quot;#B6E34A&quot;/&gt;&lt;path d=&quot;M14 15h24a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H24l-7 6v-6h-3a3 3 0 0 1-3-3V18a3 3 0 0 1 3-3z&quot; fill=&quot;#2A2D6B&quot;/&gt;&lt;path d=&quot;M20 25l4 4 9-9&quot; stroke=&quot;#B6E34A&quot; stroke-width=&quot;3.2&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;마이플래너&lt;span class=&quot;adm&quot;&gt;ADMIN&lt;/span&gt;&lt;/div&gt;
     &lt;!-- 역할 전환 (시연) — 역할마다 보이는 메뉴가 달라짐 --&gt;
@@ -8409,6 +8583,7 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
     &lt;/div&gt;
     &lt;nav class=&quot;menu&quot;&gt;
       &lt;div class=&quot;mdiv grp&quot; data-grp=&quot;edu&quot;&gt;🎓 교육 — 교사·관리자&lt;/div&gt;
+      &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mCtl&quot; onclick=&quot;go(&#x27;control&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M12 2v4M2 12h4M18 12h4M12 18v4&quot;/&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;4&quot;/&gt;&lt;/svg&gt;관제 현황판 &lt;span class=&quot;ctl-livedot&quot;&gt;&lt;/span&gt;&lt;/button&gt;
       &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mHome&quot; onclick=&quot;go(&#x27;home&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;오늘 할 일&lt;/button&gt;
       &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mStu&quot; onclick=&quot;go(&#x27;students&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2&quot;/&gt;&lt;circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/&gt;&lt;/svg&gt;학생 관리&lt;/button&gt;
       &lt;button class=&quot;mi&quot; data-role=&quot;edu&quot; id=&quot;mMastery&quot; onclick=&quot;go(&#x27;mastery&#x27;)&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;&gt;&lt;path d=&quot;M3 3v18h18&quot;/&gt;&lt;path d=&quot;M7 15l3-3 3 2 5-6&quot;/&gt;&lt;/svg&gt;학습 이해도 &lt;span style=&quot;margin-left:auto;background:#E23B3B;color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:999px&quot;&gt;4&lt;/span&gt;&lt;/button&gt;
@@ -8426,6 +8601,7 @@ body{font-family:&#x27;Noto Sans KR&#x27;,sans-serif;background:var(--bg);color:
   &lt;/aside&gt;
 
   &lt;div class=&quot;main&quot;&gt;
+   &lt;div id=&quot;viewControl&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;
    &lt;div id=&quot;viewHome&quot;&gt;
     &lt;div class=&quot;top&quot;&gt;&lt;div&gt;&lt;h1&gt;오늘 할 일&lt;/h1&gt;&lt;div class=&quot;sub&quot;&gt;AI 코칭 튜터가 담당 100명을 훑어 — 안 되거나 문제가 벌어진 것만 추렸어요&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;sp&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;stusel&quot;&gt;&lt;div class=&quot;sa&quot; style=&quot;background:var(--ink)&quot;&gt;김&lt;/div&gt;&lt;div&gt;&lt;b&gt;김튜터 매니저&lt;/b&gt; &lt;span class=&quot;sg&quot;&gt;내 담당 100명만 보기&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
@@ -9334,22 +9510,24 @@ function dtDeepDive(s){
      &#x27;&lt;div class=&quot;dd-rptnote&quot;&gt;참여 점수 &#x27;+s.engage+&#x27; — &#x27;+(s.engage&gt;=70?&#x27;🟢 자동 발송 대상&#x27;:s.engage&gt;=40?&#x27;🟡 덜 된 것 포함 자동 발송&#x27;:&#x27;🔴 담임 검수 후 발송 (날것 발송 안 됨)&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
 }
 function go(v){
- [&#x27;Home&#x27;,&#x27;Students&#x27;,&#x27;Mastery&#x27;,&#x27;Mkt&#x27;,&#x27;Leads&#x27;,&#x27;Assign&#x27;,&#x27;Upload&#x27;].forEach(function(n){var el=document.getElementById(&#x27;view&#x27;+n);if(el)el.style.display=&#x27;none&#x27;;});
- [&#x27;mHome&#x27;,&#x27;mStu&#x27;,&#x27;mMastery&#x27;,&#x27;mMkt&#x27;,&#x27;mLead&#x27;,&#x27;mUp&#x27;].forEach(function(m){var e=document.getElementById(m);if(e)e.classList.remove(&#x27;on&#x27;);});
+ [&#x27;Home&#x27;,&#x27;Students&#x27;,&#x27;Mastery&#x27;,&#x27;Mkt&#x27;,&#x27;Leads&#x27;,&#x27;Assign&#x27;,&#x27;Upload&#x27;,&#x27;Control&#x27;].forEach(function(n){var el=document.getElementById(&#x27;view&#x27;+n);if(el)el.style.display=&#x27;none&#x27;;});
+ [&#x27;mHome&#x27;,&#x27;mStu&#x27;,&#x27;mMastery&#x27;,&#x27;mMkt&#x27;,&#x27;mLead&#x27;,&#x27;mUp&#x27;,&#x27;mCtl&#x27;].forEach(function(m){var e=document.getElementById(m);if(e)e.classList.remove(&#x27;on&#x27;);});
  if(v===&#x27;upload&#x27;){document.getElementById(&#x27;viewUpload&#x27;).style.display=&#x27;block&#x27;;var mu=document.getElementById(&#x27;mUp&#x27;);if(mu)mu.classList.add(&#x27;on&#x27;);renderUpload();}
+ if(v===&#x27;control&#x27;){document.getElementById(&#x27;viewControl&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mCtl&#x27;).classList.add(&#x27;on&#x27;);renderControl();}
  if(v===&#x27;home&#x27;){document.getElementById(&#x27;viewHome&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mHome&#x27;).classList.add(&#x27;on&#x27;);renderHome();}
  if(v===&#x27;students&#x27;){document.getElementById(&#x27;viewStudents&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mStu&#x27;).classList.add(&#x27;on&#x27;);renderStudents();}
  if(v===&#x27;mastery&#x27;){document.getElementById(&#x27;viewMastery&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mMastery&#x27;).classList.add(&#x27;on&#x27;);renderMastery();}
  if(v===&#x27;mkt&#x27;){document.getElementById(&#x27;viewMkt&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mMkt&#x27;).classList.add(&#x27;on&#x27;);renderMkt();}
  if(v===&#x27;leads&#x27;){document.getElementById(&#x27;viewLeads&#x27;).style.display=&#x27;block&#x27;;document.getElementById(&#x27;mLead&#x27;).classList.add(&#x27;on&#x27;);renderLeads();}
  if(v===&#x27;assign&#x27;){document.getElementById(&#x27;viewAssign&#x27;).style.display=&#x27;flex&#x27;;document.getElementById(&#x27;mStu&#x27;).classList.add(&#x27;on&#x27;);renderDtDash();buildPlan();}
+ [&#x27;control&#x27;,&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;upload&#x27;].forEach(function(k){var e=document.getElementById(&#x27;mb_&#x27;+k);if(e)e.classList.toggle(&#x27;on&#x27;,k===v);});
  window.scrollTo(0,0);}
 
 /* ===== 역할 기반 접근 제어 (교사·관리자 / 마케터 / 전체관리자) ===== */
 var ROLE_VIEWS={
- teacher:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;upload&#x27;],      /* 교육만 */
+ teacher:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;upload&#x27;,&#x27;control&#x27;],      /* 교육만 */
  mkt:[&#x27;mkt&#x27;,&#x27;leads&#x27;],                                                  /* 마케팅만 */
- admin:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;upload&#x27;,&#x27;mkt&#x27;,&#x27;leads&#x27;] /* 전부 */
+ admin:[&#x27;home&#x27;,&#x27;students&#x27;,&#x27;mastery&#x27;,&#x27;noti&#x27;,&#x27;assign&#x27;,&#x27;upload&#x27;,&#x27;mkt&#x27;,&#x27;leads&#x27;,&#x27;control&#x27;] /* 전부 */
 };
 var ROLE_INFO={
  teacher:{av:&#x27;김&#x27;,nm:&#x27;김튜터 선생님&#x27;,role:&#x27;담임 · 담당 100명&#x27;,home:&#x27;home&#x27;},
@@ -9812,6 +9990,89 @@ function renderHome(){var w=document.getElementById(&#x27;homeWrap&#x27;);if(!w)
  sec(&#x27;👀 확인만 — 자동으로 이미 나갔어요&#x27;,&#x27;g&#x27;,INFO);
  w.innerHTML=h;}
 if(document.getElementById(&#x27;viewHome&#x27;).style.display!==&#x27;none&#x27;) renderHome();
+
+/* ===== 관제 현황판 — 응급실 보드: 이상이 먼저 울리고, 1000명은 흐름으로, 신규는 골든타임으로 ===== */
+var CTRL={
+ online:312, liveNow:0, iv:null,
+ alerts:[
+  {sev:1,ic:&#x27;📼&#x27;,t:&#x27;해설강의 재생 오류 급증&#x27;,s:&#x27;최근 10분 41건 (평소 3건) · 영상서버 응답 지연&#x27;,since:Date.now()-14*60000,who:null},
+  {sev:1,ic:&#x27;💳&#x27;,t:&#x27;결제 실패 7건 연속&#x27;,s:&#x27;PG 응답 지연 — 신규 결제 전부 영향&#x27;,since:Date.now()-6*60000,who:null},
+  {sev:2,ic:&#x27;🔔&#x27;,t:&#x27;푸시 발송 지연 4분&#x27;,s:&#x27;21:00 특강 입장 알림 대기 1,004건&#x27;,since:Date.now()-4*60000,who:&#x27;장윤호&#x27;},
+  {sev:2,ic:&#x27;🧮&#x27;,t:&#x27;채점 대기열 밀림&#x27;,s:&#x27;오답 유형 분석 큐 1,203건 (평소 200)&#x27;,since:Date.now()-22*60000,who:null}
+ ],
+ /* 신규 회원 골든타임 — 가입 후 48시간 안에 &quot;첫 한 바퀴&quot;를 돌게 하는 게 전부 */
+ newbies:[
+  {nm:&#x27;윤지아&#x27;,g:&#x27;초5&#x27;,joined:41.2,step:1,note:&#x27;온보딩만 하고 멈춤 — 어머니 통화 필요&#x27;},
+  {nm:&#x27;백도윤&#x27;,g:&#x27;중1&#x27;,joined:18.5,step:2,note:&#x27;첫 한 바퀴 중간에 이탈 (수학 빈칸 2번째)&#x27;},
+  {nm:&#x27;서하린&#x27;,g:&#x27;초4&#x27;,joined:5.1,step:3,note:&#x27;순항 — 오늘 첫 라이브 예정 21:00&#x27;},
+  {nm:&#x27;임준서&#x27;,g:&#x27;중2&#x27;,joined:29.8,step:1,note:&#x27;앱 설치 후 미접속 — 카톡 안내 2회 미열람&#x27;},
+  {nm:&#x27;한소율&#x27;,g:&#x27;초6&#x27;,joined:2.3,step:2,note:&#x27;순항 — 첫 한 바퀴 진행 중&#x27;},
+  {nm:&#x27;구현우&#x27;,g:&#x27;중2&#x27;,joined:51.0,step:2,note:&#x27;골든타임 지남 — 오늘 안 잡으면 놓침&#x27;}
+ ],
+ steps:[&#x27;가입&#x27;,&#x27;온보딩&#x27;,&#x27;첫 한 바퀴&#x27;,&#x27;첫 라이브&#x27;,&#x27;첫 주 완주&#x27;],
+ funnel:[[&#x27;오늘 접속&#x27;,812,&#x27;+6%&#x27;,1],[&#x27;한 바퀴 시작&#x27;,640,&#x27;+11%&#x27;,1],[&#x27;한 바퀴 완료&#x27;,517,&#x27;+9%&#x27;,1],[&#x27;라이브 입장&#x27;,388,&#x27;-4%&#x27;,0],[&#x27;복습 수행&#x27;,214,&#x27;+2%&#x27;,1]]
+};
+function ctlDur(ms){var m=Math.floor(ms/60000);return m&gt;=60?Math.floor(m/60)+&#x27;시간 &#x27;+(m%60)+&#x27;분&#x27;:m+&#x27;분&#x27;;}
+function gtState(n){return n.joined&gt;=36?&#x27;bad&#x27;:n.joined&gt;=12&amp;&amp;n.step&lt;3?&#x27;warn&#x27;:&#x27;okc&#x27;;}
+function renderControl(){
+ var el=document.getElementById(&#x27;viewControl&#x27;); if(!el)return;
+ var sev1=CTRL.alerts.filter(function(a){return a.sev===1;}).length;
+ var gtBad=CTRL.newbies.filter(function(n){return gtState(n)===&#x27;bad&#x27;;}).length;
+ var gtWarn=CTRL.newbies.filter(function(n){return gtState(n)===&#x27;warn&#x27;;}).length;
+ el.innerHTML=&#x27;&lt;div class=&quot;ctl&quot;&gt;&#x27;+
+  /* 신호등 KPI */
+  &#x27;&lt;div class=&quot;ctl-top&quot;&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ctl-kpi ok&quot;&gt;&lt;div class=&quot;k&quot;&gt;&lt;span class=&quot;ctl-livedot&quot; style=&quot;margin:0;background:#5EE3A1&quot;&gt;&lt;/span&gt;지금 접속&lt;/div&gt;&lt;div class=&quot;v&quot; id=&quot;ctlOn&quot;&gt;&#x27;+CTRL.online+&#x27;&lt;/div&gt;&lt;div class=&quot;s&quot;&gt;학생 · 실시간&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ctl-kpi&quot;&gt;&lt;div class=&quot;k&quot;&gt;오늘 한 바퀴 이행&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;64%&lt;/div&gt;&lt;div class=&quot;s&quot;&gt;517/812 · 어제 58%&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ctl-kpi&quot;&gt;&lt;div class=&quot;k&quot;&gt;라이브 시청&lt;/div&gt;&lt;div class=&quot;v&quot; id=&quot;ctlLive&quot;&gt;0&lt;/div&gt;&lt;div class=&quot;s&quot;&gt;21:00 특강 전 — 입장 대기&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ctl-kpi &#x27;+(sev1?&#x27;bad&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;k&quot;&gt;🔴 경보&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;&#x27;+sev1+&#x27;&lt;/div&gt;&lt;div class=&quot;s&quot;&gt;즉시 대응&lt;/div&gt;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;ctl-kpi warn&quot;&gt;&lt;div class=&quot;k&quot;&gt;🟡 골든타임 위험&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;&#x27;+gtBad+&#x27;+&#x27;+gtWarn+&#x27;&lt;/div&gt;&lt;div class=&quot;s&quot;&gt;신규 &#x27;+CTRL.newbies.length+&#x27;명 중&lt;/div&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;/div&gt;&#x27;+
+  /* 경보 레인 */
+  &#x27;&lt;div class=&quot;ctl-h&quot;&gt;🚨 이상 징후 &lt;span class=&quot;sub&quot;&gt;오류·지연은 여기 먼저 뜨고, 30분 넘으면 전체 알림&lt;/span&gt;&lt;/div&gt;&#x27;+
+  CTRL.alerts.map(function(a,i){
+   return &#x27;&lt;div class=&quot;ctl-al sev&#x27;+a.sev+&#x27;&quot;&gt;&lt;span class=&quot;ic2&quot;&gt;&#x27;+a.ic+&#x27;&lt;/span&gt;&#x27;+
+    &#x27;&lt;div class=&quot;b2&quot;&gt;&lt;b&gt;&#x27;+a.t+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+a.s+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;span class=&quot;dur&quot;&gt;&#x27;+ctlDur(Date.now()-a.since)+&#x27; 경과&lt;/span&gt;&#x27;+
+    (a.who?&#x27;&lt;button disabled style=&quot;opacity:.6&quot;&gt;&#x27;+a.who+&#x27; 대응 중&lt;/button&gt;&#x27;
+          :&#x27;&lt;button class=&quot;pri2&quot; onclick=&quot;CTRL.alerts[&#x27;+i+&#x27;].who=\&#x27;나\&#x27;;renderControl();toast(\&#x27;&#x27;+a.t+&#x27; — 내가 잡음\&#x27;)&quot;&gt;담당 잡기&lt;/button&gt;&#x27;)+
+    &#x27;&lt;button onclick=&quot;toast(\&#x27;상세 로그 — 실제론 모니터링 도구로 연결\&#x27;)&quot;&gt;로그&lt;/button&gt;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+
+  /* 골든타임 */
+  &#x27;&lt;div class=&quot;ctl-h&quot;&gt;⏱ 신규 회원 골든타임 &lt;span class=&quot;sub&quot;&gt;가입 후 48시간이 전부 — 멈춘 순서대로 정렬&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ctl-rule&quot;&gt;📞 규칙: &lt;b&gt;48시간 안에 &quot;첫 한 바퀴&quot;를 못 돌면&lt;/b&gt; 그 회원은 거의 돌아오지 않아요. 🔴는 오늘 안에 전화, 🟡는 카톡 먼저.&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;gt-grid&quot;&gt;&#x27;+
+  CTRL.newbies.slice().sort(function(a,b){var o={bad:0,warn:1,okc:2};return o[gtState(a)]-o[gtState(b)]||b.joined-a.joined;}).map(function(n){
+   var st=gtState(n);
+   var steps=CTRL.steps.map(function(x,i){return &#x27;&lt;i class=&quot;&#x27;+(i&lt;n.step?&#x27;on&#x27;:i===n.step?&#x27;cur&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;/i&gt;&#x27;;}).join(&#x27;&#x27;);
+   return &#x27;&lt;div class=&quot;gt-card &#x27;+st+&#x27;&quot;&gt;&lt;div class=&quot;gt-hd&quot;&gt;&lt;b&gt;&#x27;+n.nm+&#x27;&lt;/b&gt;&lt;span class=&quot;d&quot;&gt;&#x27;+n.g+&#x27; · 가입 후&lt;/span&gt;&#x27;+
+    &#x27;&lt;span class=&quot;gt-timer&quot;&gt;&#x27;+(st===&#x27;bad&#x27;&amp;&amp;n.joined&gt;=48?&#x27;⛔ &#x27;:&#x27;&#x27;)+n.joined.toFixed(1)+&#x27;h&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gt-steps&quot;&gt;&#x27;+steps+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gt-st&quot;&gt;지금: &lt;b style=&quot;color:#C9D1E6&quot;&gt;&#x27;+CTRL.steps[n.step]+&#x27;&lt;/b&gt; 단계 · &#x27;+n.note+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;gt-act&quot;&gt;&#x27;+(st===&#x27;bad&#x27;?&#x27;&lt;button class=&quot;call&quot; onclick=&quot;toast(\&#x27;&#x27;+n.nm+&#x27; 학부모 전화 연결 — TM 큐에 올림\&#x27;)&quot;&gt;📞 지금 전화&lt;/button&gt;&#x27;:&#x27;&#x27;)+
+     &#x27;&lt;button onclick=&quot;toast(\&#x27;&#x27;+n.nm+&#x27; 카톡 발송 — 첫 한 바퀴 5분 가이드\&#x27;)&quot;&gt;카톡 보내기&lt;/button&gt;&#x27;+
+     &#x27;&lt;button onclick=&quot;toast(\&#x27;&#x27;+n.nm+&#x27; 상세 — 어디서 멈췄는지 화면 단위 기록\&#x27;)&quot;&gt;여정 보기&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  /* 흐름 퍼널 */
+  &#x27;&lt;div class=&quot;ctl-h&quot;&gt;📈 오늘의 흐름 &lt;span class=&quot;sub&quot;&gt;1,000명을 다 보는 게 아니라, 어디서 새는지를 봐요&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ctl-fun&quot;&gt;&#x27;+
+  CTRL.funnel.map(function(f,i){
+   var pct=Math.round(f[1]/CTRL.funnel[0][1]*100);
+   return (i?&#x27;&lt;span class=&quot;fun-ar&quot;&gt;›&lt;/span&gt;&#x27;:&#x27;&#x27;)+
+    &#x27;&lt;div class=&quot;fun-s&quot;&gt;&lt;div class=&quot;n&quot;&gt;&#x27;+f[0]+&#x27;&lt;/div&gt;&lt;div class=&quot;v2&quot;&gt;&#x27;+f[1].toLocaleString()+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;p &#x27;+(f[3]?&#x27;u&#x27;:&#x27;d&#x27;)+&#x27;&quot;&gt;&#x27;+f[2]+&#x27; 어제比&lt;/div&gt;&lt;div class=&quot;fun-bar&quot;&gt;&lt;i style=&quot;width:&#x27;+pct+&#x27;%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ctl-h&quot;&gt;🧭 연결 &lt;span class=&quot;sub&quot;&gt;&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;ctl-al sev2&quot;&gt;&lt;span class=&quot;ic2&quot;&gt;🪫&lt;/span&gt;&lt;div class=&quot;b2&quot;&gt;&lt;b&gt;몰입 이탈 위험 재학생 4명&lt;/b&gt;&lt;span&gt;3주 이상 다니다 식어가는 아이들 — 학생 관리에서&lt;/span&gt;&lt;/div&gt;&lt;button onclick=&quot;go(\&#x27;students\&#x27;)&quot;&gt;학생 관리로&lt;/button&gt;&lt;/div&gt;&#x27;+
+ &#x27;&lt;/div&gt;&#x27;;
+ if(!CTRL.iv)CTRL.iv=setInterval(function(){
+  var on=document.getElementById(&#x27;ctlOn&#x27;); if(!on)return;
+  CTRL.online=Math.max(280,Math.min(340,CTRL.online+Math.round(Math.random()*8-4)));
+  on.textContent=CTRL.online;
+  var lv=document.getElementById(&#x27;ctlLive&#x27;); if(lv)lv.textContent=Math.max(0,parseInt(lv.textContent)+Math.round(Math.random()*5));
+ },2500);
+}
+
 &lt;/script&gt;
 
 &lt;/body&gt;&lt;/html&gt;
