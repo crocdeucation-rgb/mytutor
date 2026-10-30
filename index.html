@@ -4346,6 +4346,12 @@ button{font:inherit;cursor:pointer}
           &lt;button class=&quot;nbtn&quot; onclick=&quot;notify(&#x27;live&#x27;)&quot;&gt;본방 입장하기&lt;/button&gt;
         &lt;/div&gt;
 
+        &lt;div class=&quot;rc&quot;&gt;
+          &lt;div class=&quot;rh&quot;&gt;&lt;b&gt;🎤 전국 3분 스피치 챌린지&lt;/b&gt;&lt;span class=&quot;dday tnum&quot; style=&quot;background:#EEF4FF;color:#2F6FED&quot;&gt;11/8 토&lt;/span&gt;&lt;/div&gt;
+          &lt;div style=&quot;font-size:11px;font-weight:700;color:var(--ink2);line-height:1.55;margin:4px 0 9px&quot;&gt;수행 발표 원고 그대로 들고 와도 OK. 라이브로 전국 친구들 앞에서 &lt;b&gt;3분 발표&lt;/b&gt; — 참가만 해도 &lt;b&gt;캡슐권 +1&lt;/b&gt;, 베스트3는 &lt;b&gt;신화 캡슐&lt;/b&gt; 🎁&lt;br&gt;&lt;span style=&quot;color:var(--ink3);font-size:10px&quot;&gt;리허설 기록이 있으면 코치가 미리 보고 코멘트를 줘요&lt;/span&gt;&lt;/div&gt;
+          &lt;button class=&quot;nbtn&quot; style=&quot;background:#2F6FED&quot; onclick=&quot;toast(&#x27;참가 신청 완료 — 리허설 기록이 코치에게 전달돼요 🎙️&#x27;)&quot;&gt;참가 신청하기&lt;/button&gt;
+        &lt;/div&gt;
+
         &lt;div class=&quot;rc exam&quot;&gt;
           &lt;div class=&quot;rh&quot;&gt;&lt;b&gt;중간고사&lt;/b&gt;&lt;span class=&quot;dday tnum&quot;&gt;D-12&lt;/span&gt;&lt;/div&gt;
           &lt;div class=&quot;goalrow&quot;&gt;
@@ -4754,10 +4760,11 @@ var BLK=[
 /* 수행평가·시험: 학교 허브에서 &quot;일정·배점&quot;만 자동으로 떠 있고,
    준비(주제·자료·계획)는 AI가 대신 안 하고 학생이 직접 올리고 세운다 */
 var SCH={
- 2:[{k:&#x27;perf&#x27;,t:&#x27;과학 보고서 제출&#x27;,subj:&#x27;과학&#x27;,date:&#x27;10/21 수&#x27;,topic:&#x27;빛의 굴절 실험 보고서&#x27;,pts:&#x27;15점&#x27;,share:&#x27;수행평가 40% 중 15점&#x27;,tip:&#x27;실험 과정 사진 첨부 시 가산&#x27;,
-    myTopic:&#x27;&#x27;,files:[],fb:[],steps:[{t:&#x27;실험 주제·가설 정하기&#x27;,done:false},{t:&#x27;실험 과정 사진 찍어두기&#x27;,done:false},{t:&#x27;보고서 초안 쓰기&#x27;,done:false},{t:&#x27;검토 후 제출&#x27;,done:false}]}],
- 4:[{k:&#x27;perf&#x27;,t:&#x27;국어 말하기 수행&#x27;,subj:&#x27;국어&#x27;,date:&#x27;10/23 금&#x27;,topic:&#x27;설득하는 말하기 — 3분 스피치&#x27;,pts:&#x27;20점&#x27;,share:&#x27;수행평가 40% 중 20점&#x27;,tip:&#x27;원고 제출 후 발표 순서 추첨&#x27;,
+ 2:[{k:&#x27;perf&#x27;,t:&#x27;과학 보고서 제출&#x27;,subj:&#x27;과학&#x27;,date:&#x27;10/21 수&#x27;,unit:&#x27;Ⅱ. 빛과 파동 — 학기초 평가계획엔 여기까지만&#x27;,noticeAt:&#x27;10/15(수) 긴급 공지 · 발표까지 7일&#x27;,topic:&#x27;빛의 굴절 실험 보고서&#x27;,pts:&#x27;15점&#x27;,share:&#x27;수행평가 40% 중 15점&#x27;,tip:&#x27;실험 과정 사진 첨부 시 가산&#x27;,
+    myTopic:&#x27;&#x27;,files:[],fb:[],reh:[],steps:[{t:&#x27;실험 주제·가설 정하기&#x27;,done:false},{t:&#x27;실험 과정 사진 찍어두기&#x27;,done:false},{t:&#x27;보고서 초안 쓰기&#x27;,done:false},{t:&#x27;검토 후 제출&#x27;,done:false}]}],
+ 4:[{k:&#x27;perf&#x27;,t:&#x27;국어 말하기 수행&#x27;,subj:&#x27;국어&#x27;,date:&#x27;10/23 금&#x27;,unit:&#x27;4. 설득의 힘 — 학기초 평가계획엔 여기까지만&#x27;,noticeAt:&#x27;10/16(목) 긴급 공지 · 발표까지 7일&#x27;,topic:&#x27;설득하는 말하기 — 3분 스피치&#x27;,pts:&#x27;20점&#x27;,share:&#x27;수행평가 40% 중 20점&#x27;,tip:&#x27;원고 제출 후 발표 순서 추첨&#x27;,
     myTopic:&#x27;교복 자율화에 찬성하는 입장으로, 학생 자기표현권 + 경제적 부담 2가지 근거로 가려고 해요&#x27;,
+    reh:[{at:&#x27;그제&#x27;,len:&#x27;3:28&#x27;,um:12,note:&#x27;시간 초과 · 군더더기 많음&#x27;},{at:&#x27;어제&#x27;,len:&#x27;3:02&#x27;,um:5,note:&#x27;3분에 근접 — 좋아지는 중&#x27;}],
     files:[&#x27;원고초안_1차.hwp&#x27;,&#x27;연습녹음_1회.m4a&#x27;],
     /* 선생님 피드백 — 올린 자료마다 달림 */
     fb:[
@@ -4784,8 +4791,13 @@ function renderPerf(){
   dlg.innerHTML=&#x27;&lt;button class=&quot;x&quot; onclick=&quot;closeDlg()&quot;&gt;✕&lt;/button&gt;&#x27;+
     &#x27;&lt;div class=&quot;shd&quot;&gt;&lt;span class=&quot;sdot&quot; style=&quot;background:var(--s-prob)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;scat&quot; style=&quot;color:#9A6310&quot;&gt;&#x27;+c.subj+&#x27; 수행평가&lt;/span&gt;&lt;span class=&quot;srcb&quot;&gt;반포중 평가계획 · 자동&lt;/span&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;h3&gt;&#x27;+c.topic+&#x27;&lt;/h3&gt;&lt;div class=&quot;smeta&quot;&gt;&#x27;+c.date+&#x27; · &#x27;+c.t+&#x27; · &#x27;+c.pts+&#x27; (&#x27;+c.share+&#x27;)&lt;/div&gt;&#x27;+
-    /* 안내 — 자동은 &#x27;일정&#x27;뿐, 준비는 네가 */
-    &#x27;&lt;div class=&quot;pf-note&quot;&gt;📌 학교 일정·배점은 자동으로 들어와 있어요. &lt;b&gt;준비는 네가 직접&lt;/b&gt; — 어떻게 할지 정하고, 자료를 올리면 선생님이 봐줘요.&lt;/div&gt;&#x27;+
+    /* 공지 2단계 구조: 학기초 대단원 → 시행 1주 전 세부 긴급 공지 */
+    &#x27;&lt;div style=&quot;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0 4px;display:flex;flex-direction:column;gap:7px&quot;&gt;&#x27;+
+      &#x27;&lt;div style=&quot;display:flex;gap:8px;align-items:baseline&quot;&gt;&lt;span style=&quot;flex:none;font-size:9.5px;font-weight:900;color:var(--ink3);width:74px&quot;&gt;학기초 계획&lt;/span&gt;&lt;span style=&quot;font-size:11px;font-weight:800;color:var(--ink2)&quot;&gt;&#x27;+(c.unit||c.subj+&#x27; 대단원만 공지&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div style=&quot;display:flex;gap:8px;align-items:baseline&quot;&gt;&lt;span style=&quot;flex:none;font-size:9.5px;font-weight:900;color:#C2410C;width:74px&quot;&gt;🚨 세부 공지&lt;/span&gt;&lt;span style=&quot;font-size:11px;font-weight:800&quot;&gt;&#x27;+(c.noticeAt||&#x27;시행 약 1주 전 긴급 공지&#x27;)+&#x27; — “&#x27;+c.topic+&#x27;”&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div style=&quot;display:flex;gap:8px;align-items:baseline&quot;&gt;&lt;span style=&quot;flex:none;font-size:9.5px;font-weight:900;color:var(--ink3);width:74px&quot;&gt;발표·제출&lt;/span&gt;&lt;span style=&quot;font-size:11px;font-weight:800&quot;&gt;&#x27;+c.date+&#x27; · &#x27;+c.pts+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;pf-note&quot;&gt;📌 세부 범위는 보통 &lt;b&gt;시행 1주 전에야&lt;/b&gt; 떠요. 마이튜터가 공지를 감지하면 &lt;b&gt;남은 날짜로 역산한 준비 스프린트&lt;/b&gt;를 플래너에 자동으로 깔아줘요 — 준비 자체는 네가, 자료 올리면 선생님이 봐줘요.&lt;/div&gt;&#x27;+
     /* 1. 내 주제·방향 */
     &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;1. 어떤 주제·방향으로 할까?&lt;/div&gt;&#x27;+
       &#x27;&lt;textarea class=&quot;pf-ta&quot; id=&quot;pfTopic&quot; placeholder=&quot;예) 빛의 굴절을 물컵·렌즈로 보여주고, 생활 속 예시(안경·무지개)로 연결하려고 해요&quot;&gt;&#x27;+(c.myTopic||&#x27;&#x27;)+&#x27;&lt;/textarea&gt;&#x27;+
@@ -4795,12 +4807,22 @@ function renderPerf(){
       &#x27;&lt;div class=&quot;pf-up&quot; onclick=&quot;perfUpload()&quot;&gt;&lt;div class=&quot;pf-upic&quot;&gt;📎&lt;/div&gt;&lt;div&gt;원고·사진·실험기록·초안을 올려두면&lt;br&gt;&lt;b&gt;선생님이 보고 피드백&lt;/b&gt;해줘요&lt;/div&gt;&lt;/div&gt;&#x27;+
       (c.files.length?&#x27;&lt;div class=&quot;pf-files&quot;&gt;&#x27;+c.files.map(function(f){return &#x27;&lt;span class=&quot;pf-file&quot;&gt;📄 &#x27;+f+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
     /* 3. 내 준비 체크리스트 */
-    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;3. 내 준비 단계 &lt;span class=&quot;pf-cnt&quot;&gt;&#x27;+doneN+&#x27;/&#x27;+c.steps.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;3. 남은 날짜 역산 스프린트 — 조사→개요→작성→연습→발표&lt;span style=&quot;font-size:8.5px;font-weight:900;background:#EEF4FF;color:#2F6FED;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:1px&quot;&gt;⚙️ 풀오토&lt;/span&gt; &lt;span class=&quot;pf-cnt&quot;&gt;&#x27;+doneN+&#x27;/&#x27;+c.steps.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;pf-steps&quot;&gt;&#x27;+c.steps.map(function(s,i){
         return &#x27;&lt;label class=&quot;pf-step&#x27;+(s.done?&#x27; done&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;input type=&quot;checkbox&quot; &#x27;+(s.done?&#x27;checked&#x27;:&#x27;&#x27;)+&#x27; onchange=&quot;perfToggle(&#x27;+i+&#x27;)&quot;&gt;&lt;span class=&quot;pf-cb&quot;&gt;&lt;/span&gt;&#x27;+s.t+&#x27;&lt;/label&gt;&#x27;;}).join(&#x27;&#x27;)+
       &#x27;&lt;button class=&quot;pf-add&quot; onclick=&quot;perfAddStep()&quot;&gt;+ 단계 직접 추가&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
-    /* 4. 선생님 피드백 — 올린 자료마다 (과정이 보이게) */
-    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;4. 선생님 피드백 &lt;span class=&quot;pf-cnt&quot;&gt;&#x27;+(c.fb||[]).length+&#x27;건&lt;/span&gt;&lt;/div&gt;&#x27;+
+    /* 4. 발표 리허설 — 수행의 반은 발표 */
+    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;4. 발표 리허설 🎙️&lt;span style=&quot;font-size:8.5px;font-weight:900;background:#EEF4FF;color:#2F6FED;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:1px&quot;&gt;⚙️ 풀오토&lt;/span&gt; &lt;span class=&quot;pf-cnt&quot;&gt;&#x27;+(c.reh||[]).length+&#x27;회&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;pf-note&quot; style=&quot;margin:6px 0 8px&quot;&gt;수행의 반은 &lt;b&gt;발표&lt;/b&gt;예요. 원고를 소리 내어 읽으면 &lt;b&gt;시간·빠르기·군더더기(&quot;어…&quot;, &quot;음…&quot;)&lt;/b&gt;를 재서 알려주고, 녹음은 선생님 피드백으로 이어져요.&lt;/div&gt;&#x27;+
+      ((c.reh&amp;&amp;c.reh.length)?c.reh.map(function(r,ri){
+        return &#x27;&lt;div style=&quot;display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:7px 11px;margin-bottom:5px;font-size:11px;font-weight:800&quot;&gt;&#x27;+
+          &#x27;&lt;span style=&quot;color:var(--ink3);flex:none&quot;&gt;&#x27;+(ri+1)+&#x27;회차 · &#x27;+r.at+&#x27;&lt;/span&gt;&lt;span&gt;⏱ &#x27;+r.len+&#x27;&lt;/span&gt;&#x27;+
+          &#x27;&lt;span style=&quot;color:&#x27;+(r.um&lt;=5?&#x27;var(--ok)&#x27;:&#x27;#C2410C&#x27;)+&#x27;&quot;&gt;군더더기 &#x27;+r.um+&#x27;회&lt;/span&gt;&#x27;+
+          &#x27;&lt;i style=&quot;font-style:normal;font-size:9.5px;color:var(--ink3);margin-left:auto&quot;&gt;&#x27;+r.note+&#x27;&lt;/i&gt;&lt;/div&gt;&#x27;;
+      }).join(&#x27;&#x27;):&#x27;&lt;div class=&quot;fb-empty&quot; style=&quot;margin-bottom:6px&quot;&gt;아직 리허설 기록이 없어요 — 한 번만 녹음해봐도 뭘 고칠지 보여요&lt;/div&gt;&#x27;)+
+      &#x27;&lt;button class=&quot;pf-save&quot; onclick=&quot;perfReh()&quot;&gt;🎙️ 리허설 녹음 시작 (3분 타이머)&lt;/button&gt;&lt;/div&gt;&#x27;+
+    /* 5. 선생님 피드백 — 올린 자료마다 (과정이 보이게) */
+    &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;5. 선생님 피드백&lt;span style=&quot;font-size:8.5px;font-weight:900;background:#FFF1EC;color:#C2410C;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:1px&quot;&gt;👩‍🏫 수행관리 +5만/월&lt;/span&gt; &lt;span class=&quot;pf-cnt&quot;&gt;&#x27;+(c.fb||[]).length+&#x27;건&lt;/span&gt;&lt;/div&gt;&#x27;+
       /* 피드백 과정 스테퍼 */
       (function(){
         var hasFile=c.files.length&gt;0, hasFb=(c.fb||[]).length&gt;0, applied=hasFb&amp;&amp;c.steps.filter(function(s){return s.done;}).length&gt;=3;
@@ -4821,7 +4843,18 @@ function renderPerf(){
         : &#x27;&lt;div class=&quot;fb-empty&quot;&gt;아직 피드백이 없어요 — 자료를 올리면 선생님이 보고 &lt;b&gt;24시간 안에&lt;/b&gt; 코멘트를 남겨줘요. 도착하면 알림이 가요 🔔&lt;/div&gt;&#x27;)+
       (c.files.length&amp;&amp;(!c.fb||c.fb.length&lt;c.files.length)?&#x27;&lt;div class=&quot;fb-wait&quot;&gt;⏳ &lt;b&gt;&#x27;+(c.files.length-(c.fb||[]).length)+&#x27;건 검토 중&lt;/b&gt; — 선생님이 확인하고 있어요&lt;/div&gt;&#x27;:&#x27;&#x27;)+
       &#x27;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:4px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;closeDlg();toast(\&#x27;준비 현황 저장 — 선생님도 볼 수 있어요\&#x27;)&quot;&gt;저장하고 닫기&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;openSchFix()&quot;&gt;일정 바뀜&lt;/button&gt;&lt;/div&gt;&#x27;;
+    &#x27;&lt;div style=&quot;margin-top:10px;border:1.5px dashed #F2C094;background:#FFFBF4;border-radius:12px;padding:10px 12px;font-size:10.5px;font-weight:800;color:var(--ink2);line-height:1.7&quot;&gt;&#x27;+
+      (c.tip?&#x27;💡 &lt;b&gt;수행 꿀팁&lt;/b&gt; — &#x27;+c.tip+&#x27;&lt;br&gt;&#x27;:&#x27;&#x27;)+
+      &#x27;⚙️ &lt;b&gt;기본 상품(풀오토)&lt;/b&gt; — 일정 수집 · 세부 공지 감지 · 스프린트 자동 생성 · 리허설 측정까지 전부 자동&lt;br&gt;&#x27;+
+      &#x27;👩‍🏫 &lt;b&gt;수행관리 애드온 +5만/월&lt;/b&gt; — 사람이 붙는 구간: 자료 첨삭 · 리허설 코멘트 · 발표 전 1:1 점검 &lt;span style=&quot;color:var(--ink3)&quot;&gt;(이 화면은 구독 ON 상태)&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:8px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;closeDlg();toast(\&#x27;준비 현황 저장 — 선생님도 볼 수 있어요\&#x27;)&quot;&gt;저장하고 닫기&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;openSchFix()&quot;&gt;일정 바뀜&lt;/button&gt;&lt;/div&gt;&#x27;;
+}
+function perfReh(){
+ var c=curSch.c; c.reh=c.reh||[];
+ var last=c.reh[c.reh.length-1];
+ var um=last?Math.max(1,last.um-4):9;
+ c.reh.push({at:&#x27;방금&#x27;,len:&#x27;2:5&#x27;+Math.floor(Math.random()*9),um:um,note:(um&lt;=4?&#x27;군더더기 확 줄었어요 — 이대로면 본방 OK&#x27;:&#x27;빠르기 좋아요 — \&#x27;음…\&#x27;만 줄여보자&#x27;)});
+ renderPerf(); toast(&#x27;🎙️ 리허설 분석 완료 — &#x27;+c.reh.length+&#x27;회차 기록 저장&#x27;);
 }
 function perfSaveTopic(){var v=document.getElementById(&#x27;pfTopic&#x27;).value;curSch.c.myTopic=v;toast(v?&#x27;주제 저장 — 선생님이 확인해요&#x27;:&#x27;주제를 적어주세요&#x27;);}
 function perfUpload(){
@@ -5005,8 +5038,9 @@ function renderOverdueBanner(){
 var RADAR=[
  // dd, 제목, 아이콘색, 상태pill색, 서브텍스트, pill텍스트, go
  {dd:&#x27;1&#x27;, t:&#x27;국어 말하기 수행&#x27;, ic:&#x27;ic-perf&#x27;, pill:&#x27;pill-perf&#x27;, pt:&#x27;내가 준비&#x27;, sub:&#x27;일정 자동 · 준비는 직접&#x27;, go:function(){openSch(4,0);}},
- {dd:&#x27;6&#x27;, t:&#x27;과학 실험보고서&#x27;, ic:&#x27;ic-exam&#x27;, pill:&#x27;pill-exam&#x27;, pt:&#x27;시작하기&#x27;, sub:&#x27;일정 자동 · 준비는 직접&#x27;, go:function(){openSch(2,0);}},
- {dd:&#x27;12&#x27;, t:&#x27;중간고사&#x27;, ic:&#x27;ic-exam&#x27;, exam:1, sub:&#x27;국·영·수·사·과 · 계획 직접 세우기&#x27;, go:function(){openForm(&#x27;exam&#x27;);}},
+ {dd:&#x27;6&#x27;, t:&#x27;과학 실험보고서&#x27;, ic:&#x27;ic-exam&#x27;, pill:&#x27;pill-exam&#x27;, pt:&#x27;🚨 세부 공지&#x27;, sub:&#x27;어제 범위 떴어요 · 1주 스프린트 가동&#x27;, go:function(){openSch(2,0);}},
+ {dd:&#x27;—&#x27;, t:&#x27;수학 수행 (11월 예정)&#x27;, ic:&#x27;ic-perf&#x27;, pill:&#x27;pill-perf&#x27;, pt:&#x27;대단원만 공지&#x27;, sub:&#x27;세부 범위 뜨면 1주 플랜 자동 생성&#x27;, go:function(){toast(&#x27;아직 세부 공지 전 — 뜨는 즉시 역산 플랜을 깔아드려요 🚨&#x27;);}},
+ {dd:&#x27;12&#x27;, t:&#x27;중간고사&#x27;, ic:&#x27;ic-exam&#x27;, exam:1, sub:&#x27;📌 11/3→11/5 변경 감지 · 플랜 재배치됨&#x27;, go:function(){openForm(&#x27;exam&#x27;);}},
  {dd:&#x27;59&#x27;, t:&#x27;외고·자사고 원서&#x27;, ic:&#x27;ic-dim&#x27;, pill:&#x27;pill-dim&#x27;, pt:&#x27;안내 예정&#x27;, sub:&#x27;입시 일정 허브&#x27;, go:function(){toast(&#x27;입시 일정 — D-30·D-7에 자동 안내돼요 (SCH-04)&#x27;);}}
 ];
 function weekRate(){var tot=0,done=0;BLK.forEach(function(b){var st=b[6]||{};if(st.ext)return;tot++;if(st.done)done++;});return tot?Math.round(done/tot*100):0;}
@@ -6780,7 +6814,9 @@ function renderExamPlan(){
   dlg.innerHTML=&#x27;&lt;button class=&quot;x&quot; onclick=&quot;closeDlg()&quot;&gt;✕&lt;/button&gt;&#x27;+
     &#x27;&lt;h3 class=&quot;fh&quot;&gt;시험 계획표 직접 세우기&lt;/h3&gt;&#x27;+
     /* 자동 등록된 일정·범위 (읽기전용) */
-    &#x27;&lt;div class=&quot;examplan&quot;&gt;&lt;div class=&quot;eph&quot;&gt;&lt;b&gt;📅 반포중 중간고사&lt;/b&gt;&lt;span class=&quot;dd3&quot;&gt;11/3(월) · D-12&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;examplan&quot;&gt;&lt;div class=&quot;eph&quot;&gt;&lt;b&gt;📅 반포중 중간고사&lt;/b&gt;&lt;span class=&quot;dd3&quot;&gt;11/5(수) · D-12&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div style=&quot;margin:6px 0 2px;background:#FFF4E8;border:1.5px solid #F2C094;border-radius:10px;padding:7px 10px;font-size:10.5px;font-weight:800;color:#9A5B10&quot;&gt;📌 학교 공지 변경 감지 — 시험 시작 &lt;b&gt;11/3 → 11/5&lt;/b&gt; (10/20 가정통신문). 과목별 플랜을 이틀 뒤로 자동 재배치했어요. 범위·날짜는 &lt;b&gt;학교 공지가 기준&lt;/b&gt;이고 바뀌면 플랜이 따라와요.&lt;/div&gt;&#x27;+
+    &#x27;&lt;div style=&quot;margin:2px 0 4px;font-size:9.5px;font-weight:800;color:var(--ink3)&quot;&gt;⚙️ 날짜·범위 감지와 플랜 재배치 = &lt;b&gt;풀오토(기본)&lt;/b&gt; · 계획 점검·오답 코칭은 &lt;b&gt;시험관리 애드온 +5만/월&lt;/b&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;fsub&quot;&gt;✓ 시험 일정·범위는 &lt;b&gt;학교 허브에서 자동 등록&lt;/b&gt;됨 (수학: 일차함수~도형 / 영어 Lesson5~6 …). &lt;b&gt;계획표는 네가 직접&lt;/b&gt; 채워요.&lt;/div&gt;&lt;/div&gt;&#x27;+
     /* 학생이 채우는 계획표 */
     &#x27;&lt;div class=&quot;frow&quot; style=&quot;margin-top:4px&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;내 시험 계획표&lt;/span&gt;&#x27;+
@@ -11423,6 +11459,15 @@ if(document.getElementById(&#x27;viewHome&#x27;).style.display!==&#x27;none&#x27
 /* ===== 관제 현황판 — 응급실 보드: 이상이 먼저 울리고, 1000명은 흐름으로, 신규는 골든타임으로 ===== */
 var CTRL={
  online:312, liveNow:0, iv:null,
+ auto:[[&#x27;공지 감지→플랜 생성&#x27;,12],[&#x27;시험 변동 재배치&#x27;,8],[&#x27;주간 리포트 발송&#x27;,46],[&#x27;카톡 안내 발송&#x27;,31],[&#x27;리허설 측정&#x27;,9],[&#x27;오답 리마인드&#x27;,57]],
+ queue:[
+  {cat:&#x27;문의&#x27;,cl:&#x27;#FF7A88&#x27;,t:&#x27;학부모 문의 — 결제 수단 변경&#x27;,who:&#x27;박서연 母 · 10분 전 · SLA 2시간&#x27;,act:&#x27;답변&#x27;},
+  {cat:&#x27;확인&#x27;,cl:&#x27;#F2C04A&#x27;,t:&#x27;공지 파싱 확신도 71% — 수학 수행 세부 범위&#x27;,who:&#x27;반포중 2-3 · 가정통신문 원문 대조 필요&#x27;,act:&#x27;원문 확인&#x27;},
+  {cat:&#x27;수행관리&#x27;,cl:&#x27;#7FB2F0&#x27;,t:&#x27;수행 원고 첨삭 대기 2건&#x27;,who:&#x27;김민준 · 이지우 — 애드온 구독&#x27;,act:&#x27;첨삭&#x27;},
+  {cat:&#x27;수행관리&#x27;,cl:&#x27;#7FB2F0&#x27;,t:&#x27;발표 리허설 코멘트 1건&#x27;,who:&#x27;김민준 — 3회차 녹음 · 군더더기 1회&#x27;,act:&#x27;듣고 코멘트&#x27;},
+  {cat:&#x27;시험관리&#x27;,cl:&#x27;#A06DF0&#x27;,t:&#x27;중간고사 계획 점검 1건&#x27;,who:&#x27;정하늘 — 변경된 11/5 기준 재점검&#x27;,act:&#x27;점검&#x27;},
+  {cat:&#x27;숙제관리&#x27;,cl:&#x27;#49C98A&#x27;,t:&#x27;숙제 검사 4건&#x27;,who:&#x27;구독 3명 — 어제 제출분&#x27;,act:&#x27;검사&#x27;}
+ ],
  alerts:[
   {sev:1,ic:&#x27;📼&#x27;,t:&#x27;해설강의 재생 오류 급증&#x27;,s:&#x27;최근 10분 41건 (평소 3건) · 영상서버 응답 지연&#x27;,since:Date.now()-14*60000,who:null},
   {sev:1,ic:&#x27;💳&#x27;,t:&#x27;결제 실패 7건 연속&#x27;,s:&#x27;PG 응답 지연 — 신규 결제 전부 영향&#x27;,since:Date.now()-6*60000,who:null},
@@ -11457,6 +11502,21 @@ function renderControl(){
    &#x27;&lt;div class=&quot;ctl-kpi &#x27;+(sev1?&#x27;bad&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;div class=&quot;k&quot;&gt;🔴 경보&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;&#x27;+sev1+&#x27;&lt;/div&gt;&lt;div class=&quot;s&quot;&gt;즉시 대응&lt;/div&gt;&lt;/div&gt;&#x27;+
    &#x27;&lt;div class=&quot;ctl-kpi warn&quot;&gt;&lt;div class=&quot;k&quot;&gt;🟡 골든타임 위험&lt;/div&gt;&lt;div class=&quot;v&quot;&gt;&#x27;+gtBad+&#x27;+&#x27;+gtWarn+&#x27;&lt;/div&gt;&lt;div class=&quot;s&quot;&gt;신규 &#x27;+CTRL.newbies.length+&#x27;명 중&lt;/div&gt;&lt;/div&gt;&#x27;+
   &#x27;&lt;/div&gt;&#x27;+
+  /* 풀오토 요약 — 사람 손 안 탄 것 */
+  &#x27;&lt;div class=&quot;ctl-h&quot;&gt;⚙️ 오늘 풀오토가 처리한 것 &lt;span class=&quot;sub&quot;&gt;기본 상품은 전부 자동 — 선생님은 이 목록을 &quot;안 봐도&quot; 돌아가요&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 10px&quot;&gt;&#x27;+CTRL.auto.map(function(a){
+   return &#x27;&lt;div style=&quot;background:#1E2340;border:1px solid #2E3560;border-radius:10px;padding:8px 12px&quot;&gt;&lt;b style=&quot;font-size:16px;color:#5EE3A1&quot;&gt;&#x27;+a[1]+&#x27;&lt;/b&gt; &lt;span style=&quot;font-size:10.5px;color:#8E97B8;font-weight:800&quot;&gt;&#x27;+a[0]+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+  /* 사람 워크 큐 — 예외·문의·애드온 구독자만 */
+  &#x27;&lt;div class=&quot;ctl-h&quot;&gt;👩‍🏫 내가 할 일 &#x27;+CTRL.queue.filter(function(q){return !q.done;}).length+&#x27;건 &lt;span class=&quot;sub&quot;&gt;문의 · 확인 필요 · 애드온(수행·시험·숙제관리) 구독자만 — 나머지는 오토&lt;/span&gt;&lt;/div&gt;&#x27;+
+  CTRL.queue.map(function(q,i){
+   return &#x27;&lt;div class=&quot;ctl-al sev2&quot; style=&quot;&#x27;+(q.done?&#x27;opacity:.45&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+
+    &#x27;&lt;span style=&quot;flex:none;font-size:9px;font-weight:900;color:&#x27;+q.cl+&#x27;;border:1px solid &#x27;+q.cl+&#x27;;border-radius:999px;padding:3px 8px&quot;&gt;&#x27;+q.cat+&#x27;&lt;/span&gt;&#x27;+
+    &#x27;&lt;div class=&quot;b2&quot;&gt;&lt;b&gt;&#x27;+q.t+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+q.who+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    (q.done?&#x27;&lt;button disabled style=&quot;opacity:.7&quot;&gt;완료 ✓&lt;/button&gt;&#x27;
+      :&#x27;&lt;button class=&quot;pri2&quot; onclick=&quot;CTRL.queue[&#x27;+i+&#x27;].done=1;renderControl();toast(\&#x27;&#x27;+q.act+&#x27; 완료 — 큐에서 내림\&#x27;)&quot;&gt;&#x27;+q.act+&#x27;&lt;/button&gt;&#x27;)+
+   &#x27;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;)+
   /* 경보 레인 */
   &#x27;&lt;div class=&quot;ctl-h&quot;&gt;🚨 이상 징후 &lt;span class=&quot;sub&quot;&gt;오류·지연은 여기 먼저 뜨고, 30분 넘으면 전체 알림&lt;/span&gt;&lt;/div&gt;&#x27;+
   CTRL.alerts.map(function(a,i){
