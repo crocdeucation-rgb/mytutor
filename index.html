@@ -4784,6 +4784,8 @@ function openSch(d,j){
   document.getElementById(&#x27;ovl&#x27;).classList.add(&#x27;show&#x27;);
 }
 /* ===== 수행평가 자기주도 준비 패널 ===== */
+var PERF_PRO=true;
+function perfPlanToggle(v){PERF_PRO=v;renderPerf();}
 function renderPerf(){
   var c=curSch.c;
   var doneN=c.steps.filter(function(s){return s.done;}).length;
@@ -4791,6 +4793,10 @@ function renderPerf(){
   dlg.innerHTML=&#x27;&lt;button class=&quot;x&quot; onclick=&quot;closeDlg()&quot;&gt;✕&lt;/button&gt;&#x27;+
     &#x27;&lt;div class=&quot;shd&quot;&gt;&lt;span class=&quot;sdot&quot; style=&quot;background:var(--s-prob)&quot;&gt;&lt;/span&gt;&lt;span class=&quot;scat&quot; style=&quot;color:#9A6310&quot;&gt;&#x27;+c.subj+&#x27; 수행평가&lt;/span&gt;&lt;span class=&quot;srcb&quot;&gt;반포중 평가계획 · 자동&lt;/span&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;h3&gt;&#x27;+c.topic+&#x27;&lt;/h3&gt;&lt;div class=&quot;smeta&quot;&gt;&#x27;+c.date+&#x27; · &#x27;+c.t+&#x27; · &#x27;+c.pts+&#x27; (&#x27;+c.share+&#x27;)&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;pl-tg&quot; style=&quot;margin:8px 0 2px;display:inline-flex&quot;&gt;&#x27;+
+      &#x27;&lt;button class=&quot;&#x27;+(PERF_PRO?&#x27;&#x27;:&#x27;on&#x27;)+&#x27;&quot; onclick=&quot;perfPlanToggle(false)&quot;&gt;무료 기본&lt;/button&gt;&#x27;+
+      &#x27;&lt;button class=&quot;&#x27;+(PERF_PRO?&#x27;on&#x27;:&#x27;&#x27;)+&#x27;&quot; onclick=&quot;perfPlanToggle(true)&quot;&gt;수행관리 PRO +5만&lt;/button&gt;&#x27;+
+    &#x27;&lt;/div&gt;&#x27;+
     /* 공지 2단계 구조: 학기초 대단원 → 시행 1주 전 세부 긴급 공지 */
     &#x27;&lt;div style=&quot;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0 4px;display:flex;flex-direction:column;gap:7px&quot;&gt;&#x27;+
       &#x27;&lt;div style=&quot;display:flex;gap:8px;align-items:baseline&quot;&gt;&lt;span style=&quot;flex:none;font-size:9.5px;font-weight:900;color:var(--ink3);width:74px&quot;&gt;학기초 계획&lt;/span&gt;&lt;span style=&quot;font-size:11px;font-weight:800;color:var(--ink2)&quot;&gt;&#x27;+(c.unit||c.subj+&#x27; 대단원만 공지&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
@@ -4798,13 +4804,14 @@ function renderPerf(){
       &#x27;&lt;div style=&quot;display:flex;gap:8px;align-items:baseline&quot;&gt;&lt;span style=&quot;flex:none;font-size:9.5px;font-weight:900;color:var(--ink3);width:74px&quot;&gt;발표·제출&lt;/span&gt;&lt;span style=&quot;font-size:11px;font-weight:800&quot;&gt;&#x27;+c.date+&#x27; · &#x27;+c.pts+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;pf-note&quot;&gt;📌 세부 범위는 보통 &lt;b&gt;시행 1주 전에야&lt;/b&gt; 떠요. 마이튜터가 공지를 감지하면 &lt;b&gt;남은 날짜로 역산한 준비 스프린트&lt;/b&gt;를 플래너에 자동으로 깔아줘요 — 준비 자체는 네가, 자료 올리면 선생님이 봐줘요.&lt;/div&gt;&#x27;+
+    (PERF_PRO?(&#x27;&#x27;+
     /* 1. 내 주제·방향 */
     &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;1. 어떤 주제·방향으로 할까?&lt;/div&gt;&#x27;+
       &#x27;&lt;textarea class=&quot;pf-ta&quot; id=&quot;pfTopic&quot; placeholder=&quot;예) 빛의 굴절을 물컵·렌즈로 보여주고, 생활 속 예시(안경·무지개)로 연결하려고 해요&quot;&gt;&#x27;+(c.myTopic||&#x27;&#x27;)+&#x27;&lt;/textarea&gt;&#x27;+
       &#x27;&lt;button class=&quot;pf-save&quot; onclick=&quot;perfSaveTopic()&quot;&gt;주제 저장&lt;/button&gt;&lt;/div&gt;&#x27;+
     /* 2. 자료 올리기 */
     &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;2. 내가 만든 자료 올리기&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;pf-up&quot; onclick=&quot;perfUpload()&quot;&gt;&lt;div class=&quot;pf-upic&quot;&gt;📎&lt;/div&gt;&lt;div&gt;원고·사진·실험기록·초안을 올려두면&lt;br&gt;&lt;b&gt;선생님이 보고 피드백&lt;/b&gt;해줘요&lt;/div&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;pf-up&quot; onclick=&quot;perfUpload()&quot;&gt;&lt;div class=&quot;pf-upic&quot;&gt;📎&lt;/div&gt;&lt;div&gt;원고·사진·실험기록을 올리면 &lt;b&gt;담당 김튜터 쌤 카톡으로 바로 전송&lt;/b&gt;돼요&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:var(--ink3)&quot;&gt;💬 피드백도 앱 + 학부모 카톡으로 동시 도착&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
       (c.files.length?&#x27;&lt;div class=&quot;pf-files&quot;&gt;&#x27;+c.files.map(function(f){return &#x27;&lt;span class=&quot;pf-file&quot;&gt;📄 &#x27;+f+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
     /* 3. 내 준비 체크리스트 */
     &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;3. 남은 날짜 역산 스프린트 — 조사→개요→작성→연습→발표&lt;span style=&quot;font-size:8.5px;font-weight:900;background:#EEF4FF;color:#2F6FED;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:1px&quot;&gt;⚙️ 풀오토&lt;/span&gt; &lt;span class=&quot;pf-cnt&quot;&gt;&#x27;+doneN+&#x27;/&#x27;+c.steps.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
@@ -4841,12 +4848,27 @@ function renderPerf(){
               &#x27;&lt;div class=&quot;fb-tags&quot;&gt;&#x27;+f.tags.map(function(t){return &#x27;&lt;span class=&quot;fb-tag&#x27;+(/필요|초과|부족/.test(t)?&#x27; warn&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&#x27;+t+&#x27;&lt;/span&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
           }).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;
         : &#x27;&lt;div class=&quot;fb-empty&quot;&gt;아직 피드백이 없어요 — 자료를 올리면 선생님이 보고 &lt;b&gt;24시간 안에&lt;/b&gt; 코멘트를 남겨줘요. 도착하면 알림이 가요 🔔&lt;/div&gt;&#x27;)+
+      &#x27;&lt;div style=&quot;margin-top:8px;background:#FEE500;border-radius:12px;padding:9px 12px;display:flex;gap:9px;align-items:flex-start&quot;&gt;&#x27;+
+       &#x27;&lt;span style=&quot;flex:none;width:26px;height:26px;border-radius:9px;background:#3C1E1E;color:#FEE500;display:grid;place-items:center;font-size:12px;font-weight:900&quot;&gt;톡&lt;/span&gt;&#x27;+
+       &#x27;&lt;div style=&quot;font-size:10.5px;font-weight:800;color:#3C1E1E;line-height:1.55&quot;&gt;&lt;b&gt;김튜터 쌤 → 민준이·어머니 카톡&lt;/b&gt;&lt;br&gt;민준아 서론 좋아! 근거 2번이 약하니까 통계 하나만 붙이자. 리허설 3회차 들었는데 속도 완벽 — 내일 본방 가자 👍&lt;br&gt;&lt;span style=&quot;opacity:.6&quot;&gt;수행관리 PRO — 피드백은 카톡으로도 자동 전송&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
       (c.files.length&amp;&amp;(!c.fb||c.fb.length&lt;c.files.length)?&#x27;&lt;div class=&quot;fb-wait&quot;&gt;⏳ &lt;b&gt;&#x27;+(c.files.length-(c.fb||[]).length)+&#x27;건 검토 중&lt;/b&gt; — 선생님이 확인하고 있어요&lt;/div&gt;&#x27;:&#x27;&#x27;)+
+      &#x27;&lt;/div&gt;&#x27;)
+    :(&#x27;&#x27;+
+      &#x27;&lt;div class=&quot;pf-sec&quot;&gt;&lt;div class=&quot;pf-h&quot;&gt;이렇게 준비해봐 — 무료 기본 안내&lt;/div&gt;&#x27;+
+       &#x27;&lt;div class=&quot;pf-note&quot; style=&quot;margin-top:6px&quot;&gt;💡 &#x27;+(c.tip||&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+       &#x27;&lt;div style=&quot;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-size:11px;font-weight:700;color:var(--ink2);line-height:1.8&quot;&gt;① 주제 관련 자료 2개 찾기 (교과서 + 기사 1개)&lt;br&gt;② 개요 짜기 — 주장 1 + 근거 2 + 마무리&lt;br&gt;③ 초안 완성 후 소리 내어 2번 읽기&lt;br&gt;④ 전날 밤 최종 점검 — 제출물·준비물 확인&lt;/div&gt;&#x27;+
+       &#x27;&lt;div style=&quot;font-size:9.5px;font-weight:800;color:var(--ink3);margin-top:6px&quot;&gt;⚙️ 일정·공지 감지·스프린트·리허설 측정은 무료에서도 전부 자동 — 안내는 여기까지, 사람 피드백은 PRO부터.&lt;/div&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;pf-sec&quot; style=&quot;opacity:.55&quot;&gt;&#x27;+
+       &#x27;&lt;div class=&quot;pf-h&quot;&gt;🔒 자료 올리기 → 담당 쌤 카톡 연결&lt;/div&gt;&#x27;+
+       &#x27;&lt;div class=&quot;pf-h&quot; style=&quot;margin-top:8px&quot;&gt;🔒 리허설 코멘트 · 발표 전 1:1 점검&lt;/div&gt;&#x27;+
+       &#x27;&lt;div class=&quot;pf-h&quot; style=&quot;margin-top:8px&quot;&gt;🔒 선생님 첨삭 피드백 (앱+카톡)&lt;/div&gt;&#x27;+
       &#x27;&lt;/div&gt;&#x27;+
+      &#x27;&lt;button class=&quot;wbtn&quot; style=&quot;margin-top:4px;background:#C2410C&quot; onclick=&quot;perfPlanToggle(true);toast(&amp;quot;수행관리 PRO 화면으로 전환 — 실제론 결제 플로우&amp;quot;)&quot;&gt;수행관리 PRO 시작하기 — 월 5만 원&lt;/button&gt;&#x27;
+    ))+
     &#x27;&lt;div style=&quot;margin-top:10px;border:1.5px dashed #F2C094;background:#FFFBF4;border-radius:12px;padding:10px 12px;font-size:10.5px;font-weight:800;color:var(--ink2);line-height:1.7&quot;&gt;&#x27;+
       (c.tip?&#x27;💡 &lt;b&gt;수행 꿀팁&lt;/b&gt; — &#x27;+c.tip+&#x27;&lt;br&gt;&#x27;:&#x27;&#x27;)+
       &#x27;⚙️ &lt;b&gt;기본 상품(풀오토)&lt;/b&gt; — 일정 수집 · 세부 공지 감지 · 스프린트 자동 생성 · 리허설 측정까지 전부 자동&lt;br&gt;&#x27;+
-      &#x27;👩‍🏫 &lt;b&gt;수행관리 애드온 +5만/월&lt;/b&gt; — 사람이 붙는 구간: 자료 첨삭 · 리허설 코멘트 · 발표 전 1:1 점검 &lt;span style=&quot;color:var(--ink3)&quot;&gt;(이 화면은 구독 ON 상태)&lt;/span&gt;&lt;/div&gt;&#x27;+
+      &#x27;👩‍🏫 &lt;b&gt;수행관리 애드온 +5만/월&lt;/b&gt; — 사람이 붙는 구간: 자료 첨삭 · 리허설 코멘트 · 발표 전 1:1 점검 &lt;span style=&quot;color:var(--ink3)&quot;&gt;&#x27;+(PERF_PRO?&#x27;(지금: 구독 ON)&#x27;:&#x27;(지금: 무료 보기)&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;sact&quot; style=&quot;margin-top:8px&quot;&gt;&lt;button class=&quot;pri&quot; onclick=&quot;closeDlg();toast(\&#x27;준비 현황 저장 — 선생님도 볼 수 있어요\&#x27;)&quot;&gt;저장하고 닫기&lt;/button&gt;&lt;button class=&quot;sub&quot; onclick=&quot;openSchFix()&quot;&gt;일정 바뀜&lt;/button&gt;&lt;/div&gt;&#x27;;
 }
 function perfReh(){
@@ -6816,7 +6838,7 @@ function renderExamPlan(){
     /* 자동 등록된 일정·범위 (읽기전용) */
     &#x27;&lt;div class=&quot;examplan&quot;&gt;&lt;div class=&quot;eph&quot;&gt;&lt;b&gt;📅 반포중 중간고사&lt;/b&gt;&lt;span class=&quot;dd3&quot;&gt;11/5(수) · D-12&lt;/span&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;div style=&quot;margin:6px 0 2px;background:#FFF4E8;border:1.5px solid #F2C094;border-radius:10px;padding:7px 10px;font-size:10.5px;font-weight:800;color:#9A5B10&quot;&gt;📌 학교 공지 변경 감지 — 시험 시작 &lt;b&gt;11/3 → 11/5&lt;/b&gt; (10/20 가정통신문). 과목별 플랜을 이틀 뒤로 자동 재배치했어요. 범위·날짜는 &lt;b&gt;학교 공지가 기준&lt;/b&gt;이고 바뀌면 플랜이 따라와요.&lt;/div&gt;&#x27;+
-    &#x27;&lt;div style=&quot;margin:2px 0 4px;font-size:9.5px;font-weight:800;color:var(--ink3)&quot;&gt;⚙️ 날짜·범위 감지와 플랜 재배치 = &lt;b&gt;풀오토(기본)&lt;/b&gt; · 계획 점검·오답 코칭은 &lt;b&gt;시험관리 애드온 +5만/월&lt;/b&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div style=&quot;margin:2px 0 4px;font-size:9.5px;font-weight:800;color:var(--ink3)&quot;&gt;⚙️ &lt;b&gt;무료 기본&lt;/b&gt;: 날짜·범위 감지 + 플랜 자동 생성·재배치 + 공부 순서 팁 · &lt;b&gt;시험관리 PRO(+5만)&lt;/b&gt;: 담당 쌤 계획 점검 + 오답 코칭 — 코멘트는 &lt;b&gt;카톡으로도&lt;/b&gt; 와요&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;fsub&quot;&gt;✓ 시험 일정·범위는 &lt;b&gt;학교 허브에서 자동 등록&lt;/b&gt;됨 (수학: 일차함수~도형 / 영어 Lesson5~6 …). &lt;b&gt;계획표는 네가 직접&lt;/b&gt; 채워요.&lt;/div&gt;&lt;/div&gt;&#x27;+
     /* 학생이 채우는 계획표 */
     &#x27;&lt;div class=&quot;frow&quot; style=&quot;margin-top:4px&quot;&gt;&lt;span class=&quot;fl2&quot;&gt;내 시험 계획표&lt;/span&gt;&#x27;+
