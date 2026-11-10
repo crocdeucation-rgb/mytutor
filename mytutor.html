@@ -1272,7 +1272,8 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
             <button class="chip" data-w="올라간다">올라간다</button>
             <button class="chip" data-w="절편">절편</button>
           </div>
-          <div style="display:flex;gap:8px;margin-top:15px">
+          <div class="mini" style="margin-top:9px">아래 <b>단어를 누르면</b> 빈칸이 차례대로 채워져요 · 채운 빈칸을 누르면 지워져요</div>
+          <div style="display:flex;gap:8px;margin-top:12px">
             <button class="btn g" id="clozeGrade">채점</button>
             <button class="btn line" id="clozeReset">다시</button>
             <span class="mini" id="clozeMsg" style="margin-left:auto;align-self:center"></span>
@@ -2208,42 +2209,54 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
     });
   });
 
-  /* ---- 빈칸 ---- */
-  var KEY={a:'y',b:'x',c:'내려간다'}, picked=null;
+  /* ---- 빈칸: 어떤 순서로 눌러도 됨 ---- */
+  var KEY={a:'y',b:'x',c:'내려간다'}, selBlank=null;
+  function blanks(){return qsa('#cloze .blank');}
+  function chipOf(w){return document.querySelector('#chips .chip[data-w="'+w+'"]');}
+  function clearSel(){qsa('#cloze .blank').forEach(function(x){x.style.boxShadow='';x.style.background='';});selBlank=null;}
+  function fillB(b,c){
+    if(b.dataset.w){var old=chipOf(b.dataset.w);if(old)old.classList.remove('used');}
+    b.textContent=c.dataset.w; b.dataset.w=c.dataset.w;
+    b.classList.remove('empty','right','wrong');
+    c.classList.add('used'); clearSel();
+    var left=blanks().filter(function(x){return !x.dataset.w;});
+    var cg=document.getElementById('clozeGrade');
+    if(cg) cg.style.boxShadow = left.length? '' : '0 0 0 3px rgba(31,171,94,.35)';
+  }
   qsa('#chips .chip').forEach(function(c){
     c.addEventListener('click',function(){
-      picked=c;
-      qsa('#chips .chip').forEach(function(x){x.style.outline='';});
-      c.style.outline='2px solid #3A3D8F';
+      if(c.classList.contains('used'))return;
+      var t=selBlank || blanks().find(function(x){return !x.dataset.w;});
+      if(t) fillB(t,c);
     });
   });
   qsa('#cloze .blank').forEach(function(b){
     b.addEventListener('click',function(){
-      if(!picked) return;
-      if(b.dataset.w){ var old=document.querySelector('#chips .chip[data-w="'+b.dataset.w+'"]'); if(old) old.classList.remove('used'); }
-      b.textContent=picked.dataset.w; b.dataset.w=picked.dataset.w;
-      b.classList.remove('empty','right','wrong');
-      picked.classList.add('used'); picked.style.outline=''; picked=null;
+      if(b.dataset.w){ /* 채운 칸 누르면 비우기 */
+        var old=chipOf(b.dataset.w); if(old)old.classList.remove('used');
+        b.textContent='______'; b.removeAttribute('data-w'); b.className='blank empty';
+        clearSel(); return;
+      }
+      clearSel(); selBlank=b;
+      b.style.boxShadow='0 3px 0 0 #3A3D8F'; b.style.background='var(--navy-s)';
     });
   });
   var cg=document.getElementById('clozeGrade');
   if(cg) cg.addEventListener('click',function(){
     var n=0;
-    qsa('#cloze .blank').forEach(function(b){
+    blanks().forEach(function(b){
       var ok=b.dataset.w===KEY[b.dataset.k];
       b.classList.remove('right','wrong'); b.classList.add(ok?'right':'wrong');
       if(ok)n++;
     });
+    cg.style.boxShadow='';
     document.getElementById('clozeMsg').textContent=n+' / 3 정답 · 결과가 쌤 티칭룸으로 갑니다';
   });
   var cr=document.getElementById('clozeReset');
   if(cr) cr.addEventListener('click',function(){
-    qsa('#cloze .blank').forEach(function(b){
-      b.textContent='______'; b.removeAttribute('data-w');
-      b.className='blank empty';
-    });
-    qsa('#chips .chip').forEach(function(c){c.classList.remove('used');c.style.outline='';});
-    document.getElementById('clozeMsg').textContent=''; picked=null;
+    blanks().forEach(function(b){b.textContent='______';b.removeAttribute('data-w');b.className='blank empty';});
+    qsa('#chips .chip').forEach(function(c){c.classList.remove('used');});
+    document.getElementById('clozeMsg').textContent=''; clearSel();
   });
 
   render();
