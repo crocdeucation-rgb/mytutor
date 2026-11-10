@@ -2268,6 +2268,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
   }
   qzRender();
 
+  window.__renderAll=render;
   render();
 })();
 
@@ -2391,7 +2392,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
      return '<div class="reh"><span style="color:var(--ink3)">'+r.n+'회</span><b>'+r.sec+'</b>'+
        '<span style="color:var(--ink3);font-weight:700">'+r.fil+'</span><span class="m" style="color:var(--sun-ink)">'+r.note+'</span></div>';}).join('')
      :'<div class="mini">아직 녹음이 없어요</div>';
-   h+='<button class="btn g sm" style="width:100%;margin-top:7px">🎙️ 지금 읽어보기</button></div>';
+   h+='<button class="btn g sm" data-reh="1" style="width:100%;margin-top:7px">🎙️ 지금 읽어보기</button></div>';
   }else{
    h+='<div class="pf-sec"><div class="pf-h">범위 관리<span class="auto-b">⚙️ 풀오토</span></div>'+
       '<div class="mini">시험 <b>3일 전</b>엔 전체 오답 총정리가 자동으로 뜹니다. 이 진도는 쌤 티칭룸·학부모 리포트에 반영돼요.</div>'+
@@ -2404,8 +2405,9 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
   h+='<div class="pf-sec"><div class="pf-h">일정이 바뀌었나요?</div>'+
      '<div class="mini">학교 일정은 가끔 바뀝니다. 바뀐 걸 알려주면 <b>허브 원본은 그대로 두고</b> 검수 후 반영해요.</div>'+
      '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">'+
-     '<span class="chip2">우리 반/나만 — 내 일정만 수정</span>'+
-     '<span class="chip2">학교 전체 — 정정 제보</span></div></div>';
+     '<span class="chip2" data-fix="me">우리 반/나만 — 내 일정만 수정</span>'+
+     '<span class="chip2" data-fix="all">학교 전체 — 정정 제보</span></div>'+
+     '<div class="mini" id="fixNote" style="margin-top:8px"></div></div>';
 
   h+='<button class="btn g" style="margin-top:6px" data-ddgo="'+(perf?'suh':'exam')+'">'+(perf?'수행관리 전체 보기':'시험관리 전체 보기')+'</button>';
 
@@ -2426,10 +2428,28 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
  document.addEventListener('click',function(e){
   var c=e.target.closest('[data-dd]'); if(c){open(c.dataset.dd);return;}
   if(!CUR)return;
+  var ad=e.target.closest('#ddB [data-add]');
+  if(ad){ if(window.__ADDONS){window.__ADDONS[ad.dataset.add]=true; window.__ADDONS.base=true;}
+   if(window.__renderAll)window.__renderAll();
+   PRO=true; render();
+   if(typeof toast==='function')toast('PRO가 켜졌어요 — 화면 잠금도 함께 풀렸습니다'); return;}
+  var rh=e.target.closest('#ddB [data-reh]');
+  if(rh){ rh.disabled=true; rh.textContent='🎙 녹음 중… 소리 내어 읽어보세요';
+   setTimeout(function(){var cc=DD[CUR]; cc.reh=cc.reh||[];
+    cc.reh.push({n:cc.reh.length+1,sec:'2분 58초',fil:'\"어…\" 2회',note:'시간 OK — 좋아요'});
+    render(); if(typeof toast==='function')toast('리허설 기록됨 — 피드백으로 이어져요');},1600); return;}
+  var fx=e.target.closest('#ddB [data-fix]');
+  if(fx){ document.querySelectorAll('#ddB [data-fix]').forEach(function(x){x.style.cssText='';});
+   fx.style.borderColor='var(--brand)'; fx.style.background='var(--brand-s)'; fx.style.color='var(--brand-ink)';
+   var fn=document.getElementById('fixNote');
+   if(fn)fn.innerHTML=(fx.dataset.fix==='me')?'✓ 내 일정만 바뀝니다 — 허브 원본은 그대로예요'
+     :'✓ 정정 제보 접수 — 검수 후 학교 전체에 반영돼요';
+   return;}
   var p=e.target.closest('[data-pro]'); if(p){PRO=(p.dataset.pro==='1');render();return;}
   var st=e.target.closest('[data-step]'); if(st){var o=DD[CUR].steps[+st.dataset.step];o.done=!o.done;render();return;}
   var as=e.target.closest('[data-addstep]'); if(as){DD[CUR].steps.push({t:'내가 추가한 단계',done:false});render();return;}
   var sv=e.target.closest('[data-savetopic]'); if(sv){var ta=el('pfTopic');if(ta)DD[CUR].myTopic=ta.value;
+    sv.textContent='저장됨 ✓';setTimeout(function(){sv.textContent='주제 저장';},1800);
     if(typeof toast==='function')toast('주제 저장됨');return;}
   var g=e.target.closest('[data-ddgo]'); if(g){close();
     var b=document.querySelector('.side .nav[data-v="'+g.dataset.ddgo+'"]'); if(b)b.click();}
