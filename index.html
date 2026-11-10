@@ -356,6 +356,36 @@ body.mob .xpbar .xn{display:none}
 
 
 
+
+.pl-tg{display:inline-flex;background:var(--line2);border-radius:999px;padding:3px;gap:3px;margin:9px 0 3px}
+.pl-tg button{font-size:11px;font-weight:900;padding:6px 12px;border-radius:999px;color:var(--ink3)}
+.pl-tg button.on{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.nt2{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:7px;background:#fff}
+.nt2 .r{display:flex;gap:8px;align-items:baseline}
+.nt2 .l{flex:none;font-size:9.5px;font-weight:900;color:var(--ink3);width:70px}
+.nt2 .l.hot{color:#C2410C}
+.nt2 .v{font-size:11px;font-weight:800;color:var(--ink2);line-height:1.45}
+.pf-sec{border-top:1px solid var(--line2);padding-top:12px;margin-top:4px}
+.pf-h{font-size:12px;font-weight:900;display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.auto-b{font-size:8.5px;font-weight:900;background:var(--navy-s);color:var(--navy);border-radius:999px;padding:2px 7px}
+.pro-b{font-size:8.5px;font-weight:900;background:var(--sun-s);color:var(--sun-ink);border-radius:999px;padding:2px 7px}
+.pf-cnt{margin-left:auto;font-size:10.5px;font-weight:900;color:var(--ink3)}
+.pf-ta{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px;font:inherit;font-size:12px;
+ font-weight:600;min-height:66px;resize:vertical;background:#fff}
+.pf-up{border:1.5px dashed var(--line);border-radius:11px;padding:12px;display:flex;gap:10px;align-items:center;
+ background:#fff;cursor:pointer;font-size:11px;font-weight:700;line-height:1.5}
+.pf-up:hover{border-color:var(--navy);background:var(--navy-s)}
+.pf-step{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line);border-radius:10px;
+ padding:9px 11px;font-size:11.5px;font-weight:800;background:#fff;cursor:pointer;margin-bottom:5px}
+.pf-step .cb{width:17px;height:17px;border-radius:5px;border:1.8px solid var(--faint);flex:none;
+ display:grid;place-items:center;font-size:10px;color:#fff}
+.pf-step.done{background:var(--brand-s);border-color:var(--brand-s);color:var(--brand-ink)}
+.pf-step.done .cb{background:var(--brand);border-color:var(--brand)}
+.pf-step .dd2{margin-left:auto;font-size:10px;font-weight:900;color:var(--ink3)}
+.reh{display:flex;gap:9px;align-items:center;border:1.5px solid var(--line);border-radius:10px;
+ padding:8px 11px;margin-bottom:5px;font-size:11px;font-weight:800;background:#fff}
+.reh .m{margin-left:auto;font-size:10.5px;font-weight:900}
+
 /* ========== 모달 ========== */
 .ovl{position:absolute;inset:0;z-index:200;background:rgba(16,18,32,.6);display:none;
  align-items:flex-end;justify-content:center;padding:16px}
@@ -565,6 +595,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 @keyframes m2orb{0%{transform:translate(-26px,4px)}25%{transform:translate(0,-16px)}50%{transform:translate(26px,4px)}75%{transform:translate(0,20px)}100%{transform:translate(-26px,4px)}}
 @keyframes m2fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .mini{font-size:10.5px;color:var(--faint);font-weight:700;line-height:1.55}
+body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g-mi .hionly,body.g-mi .elonly{display:none!important}
 </style>
 </head>
 <body class="pc">
@@ -590,10 +621,10 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
     <button data-d="pc" class="on">💻 PC</button>
   </div>
   <div class="grp lab add" data-lab="애드온">
-    <button data-a="base" class="on">기본 10만</button>
-    <button data-a="suh">수행관리</button>
-    <button data-a="note">필기관리</button>
-    <button data-a="exam">시험관리</button>
+    <button data-a="base" class="on">기본</button>
+    <button data-a="suh">수행 PRO</button>
+    <button data-a="note">필기 PRO</button>
+    <button data-a="exam">시험 PRO</button>
   </div>
   <div class="hint">애드온 버튼을 끄면 <b>해당 기능이 실제로 잠깁니다</b> — 학부모가 보는 그대로</div>
 </div>
@@ -616,10 +647,10 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
   <button class="nav" data-v="check"><span class="ic">🧩</span>이해도 점검</button>
   <button class="nav" data-v="parent"><span class="ic">📈</span>성적·성장</button>
 
-  <div class="seg">애드온</div>
-  <button class="nav" data-v="suh" data-need="suh"><span class="ic">📝</span>수행관리<span class="lk">+</span></button>
-  <button class="nav" data-v="note" data-need="note"><span class="ic">📓</span>필기관리<span class="lk">+</span></button>
-  <button class="nav" data-v="exam" data-need="exam"><span class="ic">📅</span>시험관리<span class="lk">+</span></button>
+  <div class="seg">PRO</div>
+  <button class="nav" data-v="suh" data-need="suh"><span class="ic">📝</span>수행 PRO<span class="lk">+</span></button>
+  <button class="nav" data-v="note" data-need="note"><span class="ic">📓</span>필기 PRO<span class="lk">+</span></button>
+  <button class="nav" data-v="exam" data-need="exam"><span class="ic">📅</span>시험 PRO<span class="lk">+</span></button>
 
   <div class="seg">시연 전용</div>
   <button class="nav" data-v="teacher"><span class="ic">👨‍🏫</span>쌤 · 수업종료</button>
@@ -663,7 +694,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
     <!-- 학습 플래너 -->
     <div class="card">
       <div class="ch"><h2>나의 학습 플래너</h2>
-        <span class="tag t-base">기본 10만</span>
+        <span class="tag t-base">기본</span>
         <span class="note"><span class="tie-chip elonly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포초 가정통신문·알림장 연동됨</span><span class="tie-chip mionly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포중 학사일정 연동됨</span><span class="tie-chip hionly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포고 학사일정 연동됨</span></span></div>
 
       <!-- 초등 · 가정통신문 기반 -->
@@ -813,7 +844,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 
         <!-- 오늘 할 것 -->
         <div class="card">
-          <div class="ch"><h2>오늘 할 것</h2><span class="tag t-base">기본 10만</span>
+          <div class="ch"><h2>오늘 할 것</h2><span class="tag t-base">기본</span>
             <span class="note">4개 중 1개 완료</span></div>
 
           <div class="task done">
@@ -846,7 +877,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 
         <!-- 수행평가: 자동 일정은 기본, 사람 첨삭만 애드온 -->
         <div class="card">
-          <div class="ch"><h2>수행평가</h2><span class="tag t-base">일정은 기본 10만</span>
+          <div class="ch"><h2>수행평가</h2><span class="tag t-base">기본</span>
             <span class="note">학교 공지 자동 감지</span></div>
           <div class="task">
             <div class="ic i-s">📝</div>
@@ -864,14 +895,14 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
             <div class="inner">
               <div class="task" style="border-color:var(--sun)">
                 <div class="ic i-v">🙋</div>
-                <div class="tb"><div class="tt">원고 첨삭 <span class="tag t-suh">수행관리</span></div>
+                <div class="tb"><div class="tt">원고 첨삭 <span class="tag t-suh">PRO</span></div>
                   <div class="ts">말하기 원고 1차 제출 → 전담 매니저 검토 중 · 내일 오전 회신</div></div>
                 <button class="btn g sm">열기</button>
               </div>
             </div>
             <div class="lockbox">
-              <div class="ln">🔒 첨삭은 수행관리 애드온</div>
-              <div class="lp">일정·플랜은 기본에 포함. <b>사람이 원고를 봐주는 것</b>만 애드온입니다</div>
+              <div class="ln">🔒 첨삭은 PRO</div>
+              <div class="lp">일정·플랜은 기본에 포함. <b>사람이 원고를 봐주는 것</b>만 PRO입니다</div>
               <button class="btn g sm" data-add="suh">켜서 보기</button>
             </div>
           </div>
@@ -900,13 +931,13 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
           </div>
           <div class="ban lime" style="margin-top:11px">
             <span class="bi">🎯</span>
-            <span>특강의 자리는 <b>과외가 안 다루는 과목</b>입니다. 과외는 보통 한 과목(수학)만 하니 국어·영어가 비는데, 과목을 더 붙이면 +38만이지만 특강이면 +10만입니다. 그게 이 가격의 근거예요.</span>
+            <span>특강의 자리는 <b>과외가 안 다루는 과목</b>입니다. 과외는 보통 한 과목(수학)만 하니 국어·영어가 비는데, 그 빈 과목을 특강이 메워요.</span>
           </div>
         </div>
 
         <!-- AI 문제 배정 -->
         <div class="card">
-          <div class="ch"><h2>AI 문제 배정</h2><span class="tag t-base">기본 10만</span>
+          <div class="ch"><h2>AI 문제 배정</h2><span class="tag t-base">기본</span>
             <span class="note">오늘 25문제</span></div>
           <table class="tbl">
             <tr><td>지난 과외에서 막힌 것<small>기울기 · 두 점 대입</small></td><td class="num">8문제</td></tr>
@@ -923,7 +954,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
         <!-- 필기관리 (애드온) -->
         <div class="card lock" data-lock="note">
           <div class="inner">
-            <div class="ch"><h2>필기 피드백</h2><span class="tag t-note">필기관리</span>
+            <div class="ch"><h2>필기 피드백</h2><span class="tag t-note">PRO</span>
               <span class="note">담당 쌤이 직접</span></div>
             <div class="task">
               <div class="ic i-v">📓</div>
@@ -940,8 +971,8 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
           </div>
           <div class="lockbox">
             <div style="font-size:21px">🔒</div>
-            <div class="ln">필기관리 애드온</div>
-            <div class="lp">필기 사진을 올리면 담당 과외 쌤이 직접 코멘트합니다. 10만 — 단, 본체 ALL INCLUDED의 ‘노트필기피드백’과 선을 그어야 판매 가능</div>
+            <div class="ln">필기관리 PRO</div>
+            <div class="lp">필기 사진을 올리면 담당 과외 쌤이 직접 코멘트합니다 — PRO에서 열려요</div>
             <button class="btn g sm" data-add="note">켜서 보기</button>
           </div>
         </div>
@@ -1055,7 +1086,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
         </div>
 
         <div class="card">
-          <div class="ch"><h2>시험 일정</h2><span class="tag t-base">일정은 기본 10만</span></div>
+          <div class="ch"><h2>시험 일정</h2><span class="tag t-base">기본</span></div>
           <div class="task"><div class="ic i-k">📅</div>
             <div class="tb"><div class="tt">2학기 중간 · D-12</div>
               <div class="ts">11/3~11/5 · 범위 변동 시 자동 반영</div></div></div>
@@ -1067,12 +1098,12 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
             <div class="inner">
               <div class="task" style="border-color:var(--sky)">
                 <div class="ic i-k">🗂</div>
-                <div class="tb"><div class="tt">시험 계획 관리 <span class="tag t-exam">시험관리</span></div>
+                <div class="tb"><div class="tt">시험 계획 관리 <span class="tag t-exam">PRO</span></div>
                   <div class="ts">과목별 회차 계획을 사람이 짜고 주간 점검</div></div></div>
             </div>
             <div class="lockbox">
-              <div class="ln">🔒 시험관리 애드온</div>
-              <div class="lp">일정은 기본 포함 · 10만 — 사람이 붙는지 <b>미정</b></div>
+              <div class="ln">🔒 시험관리 PRO</div>
+              <div class="lp">일정은 기본 포함 — 사람이 붙는 구간은 PRO (범위 미정)</div>
               <button class="btn g sm" data-add="exam">켜서 보기</button>
             </div>
           </div>
@@ -1092,7 +1123,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
   <div class="hd">
     <div class="r1">
       <div><h1>문제풀이</h1><div class="sub">출판사별 · 단원별 · 강의 없음</div></div>
-      <div class="right"><span class="tag t-base">기본 10만</span></div>
+      <div class="right"><span class="tag t-base">기본</span></div>
     </div>
   </div>
   <div class="wrap">
@@ -1212,7 +1243,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
   <div class="hd">
     <div class="r1">
       <div><h1>이해도 점검</h1><div class="sub">11/8 과외 · 일차함수의 기울기</div></div>
-      <div class="right"><span class="tag t-base">기본 10만</span></div>
+      <div class="right"><span class="tag t-base">기본</span></div>
     </div>
   </div>
   <div class="wrap">
@@ -1307,7 +1338,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
         <div class="lock" data-lock="suh" style="border-radius:16px">
           <div class="inner">
             <div class="card" style="border-color:var(--sun)">
-              <div class="ch"><h2>원고 첨삭</h2><span class="tag t-suh">수행관리 애드온</span>
+              <div class="ch"><h2>원고 첨삭</h2><span class="tag t-suh">PRO</span>
                 <span class="note">전담 매니저</span></div>
               <table class="tbl">
                 <tr><td>1차 원고<small>11/8 제출 · 600자</small></td><td class="num" style="color:var(--ok)">회신 완료</td></tr>
@@ -1319,8 +1350,8 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
           </div>
           <div class="lockbox">
             <div style="font-size:21px">🔒</div>
-            <div class="ln">첨삭은 수행관리 애드온</div>
-            <div class="lp">일정·역산 플랜·채점기준표는 기본 10만에 포함됩니다. <b>사람이 원고를 봐주는 것</b>만 애드온이에요</div>
+            <div class="ln">첨삭은 PRO</div>
+            <div class="lp">일정·역산 플랜·채점기준표는 기본에 포함됩니다. <b>사람이 원고를 봐주는 것</b>만 PRO예요</div>
             <button class="btn g sm" data-add="suh">켜서 보기</button>
           </div>
         </div>
@@ -1390,7 +1421,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
     <div class="cols">
       <div class="stk">
         <div class="card">
-          <div class="ch"><h2>오늘의 시험 스텝업</h2><span class="tag t-base">기본 10만</span>
+          <div class="ch"><h2>오늘의 시험 스텝업</h2><span class="tag t-base">기본</span>
             <span class="note">수학 · 일차함수</span></div>
           <div class="task done"><div class="ic i-g">1</div>
             <div class="tb"><div class="tt">범위 핵심 정리 읽기</div><div class="ts">오늘 범위 요약 · 완료</div></div></div>
@@ -1418,7 +1449,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
         <div class="lock" data-lock="exam" style="border-radius:16px">
           <div class="inner">
             <div class="card" style="border-color:var(--sky)">
-              <div class="ch"><h2>시험 계획 관리</h2><span class="tag t-exam">시험관리 애드온</span></div>
+              <div class="ch"><h2>시험 계획 관리</h2><span class="tag t-exam">PRO</span></div>
               <table class="tbl">
                 <tr><td>주간 점검<small>11/7 · 담당자</small></td><td class="num">영어 이행률 낮음</td></tr>
                 <tr><td>계획 조정<small>과목별 회차 재배분</small></td><td class="num" style="color:var(--ok)">반영됨</td></tr>
@@ -1427,7 +1458,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
           </div>
           <div class="lockbox">
             <div style="font-size:21px">🔒</div>
-            <div class="ln">시험관리 애드온 · 10만</div>
+            <div class="ln">시험관리 PRO</div>
             <div class="lp">일정·범위·스텝업은 기본 포함. 사람이 붙는지는 <b>아직 미정</b>이라 이 화면도 가안입니다</div>
             <button class="btn g sm" data-add="exam">켜서 보기</button>
           </div>
@@ -1454,7 +1485,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 <section class="view" data-view="note">
   <div class="hd"><div class="r1">
     <div><h1>필기관리</h1><div class="sub">담당 과외 쌤이 직접 코멘트</div></div>
-    <div class="right"><span class="tag t-note">애드온 10만</span></div>
+    <div class="right"><span class="tag t-note">PRO</span></div>
   </div></div>
   <div class="wrap">
     <div class="ban warn"><span class="bi">🚨</span>
@@ -1505,7 +1536,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
       </div>
       <div class="lockbox">
         <div style="font-size:23px">🔒</div>
-        <div class="ln">필기관리 애드온 · 10만</div>
+        <div class="ln">필기관리 PRO</div>
         <div class="lp">담당 과외 쌤이 직접 봅니다 · 쌤 정산 대상</div>
         <button class="btn g sm" data-add="note">켜서 보기</button>
       </div>
@@ -1574,13 +1605,13 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
       <div class="stk">
         <div class="card lock" data-lock="note">
           <div class="inner">
-            <div class="ch"><h2>필기 코멘트</h2><span class="tag t-note">필기관리</span></div>
+            <div class="ch"><h2>필기 코멘트</h2><span class="tag t-note">PRO</span></div>
             <div class="task"><div class="ic i-v">📓</div>
               <div class="tb"><div class="tt">민준 필기 2장 도착</div><div class="ts">다음 수업 전까지 코멘트</div></div>
               <button class="btn g sm">열기</button></div>
             <div class="mini" style="margin-top:9px">기존 <code style="background:var(--line2);padding:1px 5px;border-radius:4px">pick_photo_feedback_threads</code> 구조 그대로 사용 — 신규 개발 거의 없음</div>
           </div>
-          <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">필기관리 애드온</div>
+          <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">필기관리 PRO</div>
             <div class="lp">담당 쌤이 직접 봅니다 · 쌤 정산 대상</div>
             <button class="btn g sm" data-add="note">켜서 보기</button></div>
         </div>
@@ -1635,14 +1666,14 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 
         <div class="card lock" data-lock="suh">
           <div class="inner">
-            <div class="ch"><h2>수행평가 진행</h2><span class="tag t-suh">수행관리</span></div>
+            <div class="ch"><h2>수행평가 진행</h2><span class="tag t-suh">PRO</span></div>
             <table class="tbl">
               <tr><td>국어 말하기<small>11/16 시행</small></td><td class="num" style="color:var(--sun-ink)">원고 1차 첨삭 중</td></tr>
               <tr><td>과학 실험보고서<small>11/21 시행</small></td><td class="num" style="color:var(--ink3)">범위 공지 대기</td></tr>
             </table>
           </div>
-          <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">수행관리 애드온</div>
-            <div class="lp">기본 20만 · 공통 25만 · 선택 30만 (기본 10만 포함)</div>
+          <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">수행관리 PRO</div>
+            <div class="lp">학교 평가계획 해석 · 1주 역산 · 원고 첨삭 — PRO에서 열려요</div>
             <button class="btn g sm" data-add="suh">켜서 보기</button></div>
         </div>
       </div>
@@ -2034,6 +2065,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 <script>
 (function(){
   var ADDONS={base:true,suh:false,note:false,exam:false};
+  window.__ADDONS=ADDONS;
   var DEV='pc', AGE='hi';
   var GRADE='common';
 
@@ -2080,7 +2112,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
   var FREQ='w2';
   var LEC={el:80000,mi:100000,hi:0};
   var PRICE={base:100000,note:100000,exam:100000};
-  var LABEL={base:'마이튜터 기본',suh:'수행관리',note:'필기관리',exam:'시험관리'};
+  var LABEL={base:'마이튜터 기본',suh:'수행 PRO',note:'필기 PRO',exam:'시험 PRO'};
   var SUB={base:'문제풀이 · 점검 · 자동 수행/시험',suh:'기본 포함 + 전담 매니저',note:'담당 쌤 코멘트',exam:'시험 일정 관리'};
 
   function won(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
@@ -2156,8 +2188,8 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
       render();
     });
   });
-  var fb=document.getElementById('frBtn');
-  if(fb) fb.addEventListener('click',function(){ FREQ=(FREQ==='w2')?'w3':'w2'; render(); });
+  var fb2=document.getElementById('frBtn');
+  if(fb2) fb2.addEventListener('click',function(){ FREQ=(FREQ==='w2')?'w3':'w2'; render(); });
 
   /* ---- 객관식 ---- */
   qsa('.q').forEach(function(q){
@@ -2215,101 +2247,166 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
   render();
 })();
 
-
-/* ===== D-day 카드 모달 ===== */
+/* ===== D-day 패널 — 원본 renderPerf 구조 복원 ===== */
 (function(){
+ var PRO=false, CUR=null;
  var DD={
-  el_a:{t:'국어 3단원 단원평가',s:'D-2 · 알림장에서 자동 수집',go:'suh',
-   note:'초등은 평가계획서가 아니라 <b>가정통신문·알림장</b>에서 일정을 읽어 옵니다. 범위가 짧고 예고가 늦어서 D-2~D-3이 기본이에요.',
-   steps:[['done','D-3','범위 확인','3단원 받아쓰기 50낱말'],
-          ['now','D-2','낱말 연습 20개','틀린 것만 다시 나와요'],
-          ['','D-1','전체 받아쓰기 연습','']]},
-  el_b:{t:'수학 익힘책 검사',s:'D-5 · 3단원까지',go:'suh',
-   note:'안 푼 쪽을 사진으로 확인해 밀린 양을 계산했어요.',
-   steps:[['now','','안 푼 쪽 3장','하루 1장씩 나눠 담았어요'],
-          ['','','검사 전날 훑기','']]},
-  el_c:{t:'현장학습 동의서',s:'D-8 · 부모님 서명 필요',go:'suh',
-   note:'학습이 아니라 <b>부모가 해야 하는 일</b>이에요. 아이 화면엔 안 뜨고 학부모 쪽에만 알림이 갑니다.',
-   steps:[['now','','학부모 알림 발송됨','카톡으로 전달'],
-          ['','','서명 후 제출','']]},
-  el_d:{t:'독서록 10권',s:'D-14 · 현재 6권',go:'suh',
-   note:'학기말까지 누적 과제라 D-day 압박 대신 <b>주당 분량</b>으로 쪼갰어요.',
-   steps:[['done','','6권 완료',''],
-          ['now','','주 2권씩 2주','남은 4권']]},
-  hi_a:{t:'영어 영작 수행',s:'D-3 · 세특에 그대로 반영',go:'suh',
-   note:'고등 수행은 점수만이 아니라 <b>교과 세특</b>의 재료가 됩니다. 무엇을 조사했고 무엇을 알게 됐는지가 남아야 해요.',
-   steps:[['done','D-7','채점기준표 확인','내용 40 / 어휘 30 / 구조 30'],
-          ['done','D-5','개요 작성',''],
-          ['now','D-3','초안 영작 150단어','첨삭은 수행관리 애드온'],
-          ['','D-0','제출','']]},
-  hi_b:{t:'사회 탐구보고서',s:'D-7 · 세특 재료',go:'suh',
-   note:'주제를 고르는 것부터가 실력이에요. <b>교과서 단원에서 출발</b>해야 세특에 자연스럽게 남습니다.',
-   steps:[['now','D-7','주제 선정','고1→고2→고3 주제가 이어지면 진로 방향이 보임'],
-          ['','D-4','자료 조사·정리',''],
-          ['','D-1','보고서 작성','']]},
-  hi_c:{t:'2학기 기말고사',s:'D-12 · 내신 마지막 반영',go:'exam',
-   note:'등록된 범위에서 오늘 분량만 집었어요. 정리 → 문제 → 오답 순서.',
-   steps:[['done','1','범위 핵심 정리',''],
-          ['now','2','범위 문제 풀기','문항 DB · 출판사 매칭'],
-          ['','3','오답 정리','']],
-   foot:'시험 3일 전 전체 오답 총정리가 자동으로 뜹니다.'},
-  hi_d:{t:'전국연합 학력평가',s:'D-20 · 학교 공지 기준',go:'exam',
-   note:'학평은 내신과 성격이 달라서 <b>범위가 아니라 유형</b>으로 준비합니다. 날짜는 학교 공지를 그대로 따릅니다.',
-   steps:[['now','','지난 학평 오답 유형 분석','30P'],
-          ['','','취약 유형 집중 세트','20P']]},
-  hi_e:{t:'교과 세특 마감',s:'D-35 · 그 전까지 쌓인 것만',go:'suh',
-   note:'마감 뒤에 한 활동은 들어가지 않습니다. <b>역산해서 지금 뭘 해야 하는지</b>가 중요한 일정이에요.',
-   steps:[['done','','영어 영작 수행','D-3 진행 중'],
-          ['now','','사회 탐구보고서','D-7 · 세특 재료'],
-          ['','','발표 1회 더','교과별 1회 이상 권장']]},
-  ko:{t:'국어 말하기 수행',s:'D-1 · 11/11(화) 3교시 · 세부 범위 공지됨',go:'suh',
-   note:'평가계획서에서 채점기준표를 뽑아 왔어요 — 논리성 40 / 전달력 30 / 시간준수 30',
-   steps:[['done','D-7','채점기준표 확인','자동 추출 완료'],
-          ['done','D-5','주제 정하기','교과서 단원에서 출발 — 세특에 남는 주제로'],
-          ['done','D-3','원고 1차 600자','제출함'],
-          ['now','D-1','소리 내어 3번 읽기','3분 안에 들어가는지 타이머로 확인'],
-          ['','D-0','발표','끝나고 한 줄 기록 → 다음 수행에 반영']]},
-  sc:{t:'과학 실험보고서',s:'D-6 · 11/16(일) 제출 · 어제 범위 떴어요',go:'suh',
-   note:'세부 범위가 어제 공지돼서 1주 역산 플랜이 방금 생성됐어요',
-   steps:[['now','D-6','실험 주제·가설 정하기','교과서 Ⅲ단원 범위 안에서'],
-          ['','D-4','실험 수행·데이터 기록','표로 정리'],
-          ['','D-2','보고서 초안','서론-과정-결과-고찰 틀 제공'],
-          ['','D-0','제출','']]},
-  ma:{t:'수학 수행',s:'D-9 · 대단원만 공지됨',go:'suh',
-   note:'아직 대단원까지만 떴어요. 세부 범위가 뜨면 그날 바로 1주 역산 플랜이 자동으로 짜여요.',
-   steps:[['','대기','세부 범위 공지 감지','학교 알림·평가계획 모니터링 중'],
-          ['','D-7','공지 뜨면 자동 플랜 생성','알림톡으로 알려드려요']]},
-  mid:{t:'2학기 중간고사',s:'D-12 · 11/3~11/5 · 범위 변동 반영됨',go:'exam',
-   note:'등록된 시험범위에서 오늘 할 분량만 콕 집었어요. 정리 → 문제 → 오답 순서.',
-   steps:[['done','1','범위 핵심 정리 읽기','수학 · 오늘 범위 요약'],
-          ['now','2','범위 문제 풀기','문항 DB · 시험범위 10문항 · 천재교육 매칭'],
-          ['','3','틀린 것 오답 정리','풀고 나면 자동으로 모여요']],
-   foot:'시험 3일 전엔 전체 오답 총정리가 자동으로 떠요. 이 진도는 쌤 티칭룸·학부모 리포트에 반영됩니다.'},
-  fin:{t:'2학기 기말',s:'D-26 · 범위 공지 대기 중',go:'exam',
-   note:'시험지 분석을 받은 과목은 예상문제를 받을 수 있어요.',
-   steps:[['done','','수학 시험지 분석 완료','약한 단원: 일차함수 · 닮음 · 확률'],
-          ['now','','기말 예상문제 10문제','50P · 약한 단원 비중을 높여 생성'],
-          ['','','선생님께 보내기','받은 예상문제가 쌤 티칭룸 숙제로 들어가요']]}
+  /* ---- 초등: 가정통신문 ---- */
+  el_a:{k:'perf',t:'국어 3단원 단원평가',subj:'국어',date:'11/12(수) 2교시',pts:'20점',share:'수행 20%',
+    unit:'학기초: 국어 3단원 (받아쓰기 포함)',notice:'알림장 11/9 — “3단원 낱말 50개”',
+    steps:[{t:'범위 낱말 50개 받기',done:true},{t:'1차 연습 — 틀린 것만 추리기',done:true},{t:'틀린 낱말 20개 반복',done:false},{t:'전체 받아쓰기 모의',done:false}],
+    reh:[]},
+  el_b:{k:'perf',t:'수학 익힘책 검사',subj:'수학',date:'11/15(토)',pts:'검사',share:'과제',
+    unit:'학기초: 3단원까지',notice:'알림장 11/8 — “안 푼 쪽 채워올 것”',
+    steps:[{t:'안 푼 쪽 확인 (3장)',done:true},{t:'1장 — 11/11',done:false},{t:'2장 — 11/13',done:false},{t:'3장 — 11/14',done:false}],
+    reh:[]},
+  el_c:{k:'perf',t:'현장학습 동의서',subj:'학교',date:'11/18(화) 제출',pts:'—',share:'부모 서명',
+    unit:'—',notice:'가정통신문 11/9',parentOnly:true,
+    steps:[{t:'학부모 알림 발송됨',done:true},{t:'서명 후 사진 제출',done:false}],reh:[]},
+  el_d:{k:'perf',t:'독서록 10권',subj:'국어',date:'학기말까지',pts:'누적',share:'6/10권',
+    unit:'학기초: 학기당 10권',notice:'가정통신문 9/2',
+    steps:[{t:'6권 완료',done:true},{t:'7~8권 — 이번 주',done:false},{t:'9~10권 — 다음 주',done:false}],reh:[]},
+
+  /* ---- 중등: 평가계획서 ---- */
+  ko:{k:'perf',t:'말하기 수행 — 우리 지역 문제 제안 발표',subj:'국어',date:'11/11(화) 3교시',pts:'20점',share:'수행 40% 중 20점',
+    unit:'학기초: 3. 상황에 맞는 표현 (대단원만 공지)',notice:'11/4 세부 공지 — 3분 발표 · 개요서 제출',
+    steps:[{t:'채점기준표 확인 (논리 40/전달 30/시간 30)',done:true},{t:'주제 정하기 — 교과 단원에서 출발',done:true},{t:'자료 조사 2건',done:true},{t:'원고 600자 작성',done:true},{t:'소리 내어 3번 읽기',done:false},{t:'발표',done:false}],
+    reh:[{n:1,sec:'3분 18초',fil:'어… 7회',note:'18초 초과 — 도입 줄이기'},{n:2,sec:'2분 54초',fil:'어… 3회',note:'좋아요'}]},
+  sc:{k:'perf',t:'과학 실험보고서 — 빛의 굴절',subj:'과학',date:'11/16(일) 제출',pts:'15점',share:'수행 30%',
+    unit:'학기초: Ⅲ. 빛과 파동 (대단원만 공지)',notice:'11/9 세부 공지 — 실험 설계 + 보고서',
+    steps:[{t:'주제·가설 정하기',done:false},{t:'실험 수행·데이터 기록',done:false},{t:'보고서 초안 (서론-과정-결과-고찰)',done:false},{t:'제출',done:false}],reh:[]},
+  ma:{k:'perf',t:'수학 수행 — 미정',subj:'수학',date:'11/19(수) 예정',pts:'15점',share:'수행 30%',
+    unit:'학기초: Ⅲ. 일차함수 (대단원만 공지)',notice:'아직 안 떴어요 — 감지 중',waiting:true,
+    steps:[{t:'세부 공지 감지 대기',done:false},{t:'공지 뜨면 1주 역산 플랜 자동 생성',done:false}],reh:[]},
+  mid:{k:'exam',t:'2학기 중간고사',subj:'수학',date:'11/3~11/5',pts:'지필 60%',share:'이행 35%',
+    unit:'범위: Ⅱ.식의 계산 ~ Ⅲ.일차함수 2단원',notice:'11/3 범위 변동 — 플랜 재생성됨',
+    steps:[{t:'범위 핵심 정리 읽기',done:true},{t:'범위 문제 10문항 (출판사 매칭)',done:false},{t:'틀린 것 오답 정리',done:false}],reh:[]},
+  fin:{k:'exam',t:'2학기 기말고사',subj:'수학',date:'12/15~12/17',pts:'지필 60%',share:'범위 대기',
+    unit:'범위: 미공지',notice:'시험지 분석 받은 과목은 예상문제 가능',
+    steps:[{t:'수학 시험지 분석 완료 (−30P)',done:true},{t:'기말 예상문제 10문제 (−50P)',done:false},{t:'선생님께 보내기 → 티칭룸 숙제',done:false}],reh:[]},
+
+  /* ---- 고등 ---- */
+  hi_a:{k:'perf',t:'영어 영작 수행 — 사회문제 에세이',subj:'영어',date:'11/13(목)',pts:'20점',share:'수행 40%',
+    unit:'학기초: Lesson 5~7 (대단원만 공지)',notice:'11/6 세부 공지 — 150단어 · 세특 반영',
+    steps:[{t:'채점기준표 확인 (내용 40/어휘 30/구조 30)',done:true},{t:'개요 작성',done:true},{t:'초안 150단어',done:false},{t:'제출',done:false}],
+    reh:[{n:1,sec:'—',fil:'어휘 반복 4회',note:'같은 단어 반복 — 대체어 제안'}]},
+  hi_b:{k:'perf',t:'사회 탐구보고서',subj:'사회',date:'11/17(월)',pts:'20점',share:'세특 재료',
+    unit:'학기초: 현대사회와 사회문제',notice:'11/5 세부 공지 — 주제 자유',
+    steps:[{t:'주제 선정 — 교과 단원에서 출발',done:false},{t:'자료 조사·정리',done:false},{t:'보고서 작성',done:false}],reh:[]},
+  hi_c:{k:'exam',t:'2학기 기말고사',subj:'수학',date:'12/10~12/12',pts:'지필 60%',share:'이행 28%',
+    unit:'범위: 수학Ⅰ 전 범위',notice:'내신 마지막 반영 — 변동 시 자동 재생성',
+    steps:[{t:'범위 핵심 정리',done:true},{t:'범위 문제 풀기 (출판사 매칭)',done:false},{t:'오답 정리',done:false}],reh:[]},
+  hi_d:{k:'exam',t:'전국연합 학력평가',subj:'전과목',date:'학교 공지 기준',pts:'모의고사',share:'유형 대비',
+    unit:'범위 아님 — 유형으로 준비',notice:'학교가 공지한 날짜를 그대로 따름',
+    steps:[{t:'지난 학평 오답 유형 분석 (−30P)',done:false},{t:'취약 유형 집중 세트 (−20P)',done:false}],reh:[]},
+  hi_e:{k:'perf',t:'교과 세특 마감',subj:'전과목',date:'12/20 마감',pts:'학생부',share:'D-35',
+    unit:'마감 뒤 활동은 반영 안 됨',notice:'마감 역산이 수행 역산보다 상위 일정',
+    steps:[{t:'영어 영작 수행 (D-3 진행 중)',done:false},{t:'사회 탐구보고서 (D-7)',done:false},{t:'교과별 발표 1회 이상',done:false}],reh:[]}
  };
  function el(i){return document.getElementById(i);}
+ function esc(t){return (t||'').replace(/</g,'&lt;');}
+
+ function render(){
+  var c=DD[CUR]; if(!c)return;
+  var doneN=c.steps.filter(function(x){return x.done;}).length;
+  var perf=(c.k==='perf');
+  var proLabel='PRO';
+  var h='';
+
+  h+='<div class="nt2">'+
+     '<div class="r"><span class="l">학기초 계획</span><span class="v">'+esc(c.unit)+'</span></div>'+
+     '<div class="r"><span class="l hot">🚨 세부 공지</span><span class="v">'+esc(c.notice)+'</span></div>'+
+     '<div class="r"><span class="l">'+(perf?'발표·제출':'시행')+'</span><span class="v">'+esc(c.date)+' · '+esc(c.pts)+' ('+esc(c.share)+')</span></div>'+
+     '</div>';
+
+  h+='<div class="ban info"><span class="bi">📌</span><span>세부 범위는 보통 <b>시행 1주 전에야</b> 떠요. 공지를 감지하면 <b>남은 날짜로 역산한 준비 스프린트</b>를 플래너에 자동으로 깔아줍니다 — 준비는 본인이, 자료를 올리면 사람이 봐줘요.</span></div>';
+
+  h+='<div class="pl-tg">'+
+     '<button class="'+(PRO?'':'on')+'" data-pro="0">기본</button>'+
+     '<button class="'+(PRO?'on':'')+'" data-pro="1">PRO</button></div>';
+
+  if(c.parentOnly){
+   h+='<div class="ban warn"><span class="bi">👪</span><span>이건 <b>아이가 할 수 없는 일</b>이라 아이 화면엔 안 뜹니다. 학부모 쪽에만 알림이 갑니다 — 초등 가정통신문엔 이런 항목이 섞여 들어와요.</span></div>';
+  }
+
+  /* 3. 역산 스프린트 — 기본 포함 */
+  h+='<div class="pf-sec"><div class="pf-h">'+(perf?'남은 날짜 역산 스프린트':'시험 스텝업')+
+     '<span class="auto-b">⚙️ 풀오토</span><span class="pf-cnt">'+doneN+'/'+c.steps.length+'</span></div>';
+  if(c.waiting){
+   h+='<div class="ban warn" style="margin-bottom:8px"><span class="bi">⏳</span><span>아직 세부 공지가 안 떴어요. 뜨는 즉시 알림톡이 가고 플랜이 자동으로 깔립니다.</span></div>';
+  }
+  h+=c.steps.map(function(x,n){
+    return '<div class="pf-step'+(x.done?' done':'')+'" data-step="'+n+'">'+
+      '<span class="cb">'+(x.done?'✓':'')+'</span>'+esc(x.t)+'</div>';}).join('');
+  h+='<button class="btn line sm" style="width:100%;margin-top:3px" data-addstep="1">+ 단계 직접 추가</button></div>';
+
+  if(perf){
+   /* 1. 주제 */
+   h+='<div class="pf-sec"><div class="pf-h">어떤 주제·방향으로 할까?'+(PRO?'<span class="pro-b">피드백 받음</span>':'')+'</div>'+
+      '<textarea class="pf-ta" id="pfTopic" placeholder="예) 빛의 굴절을 물컵·렌즈로 보여주고 생활 속 예시(안경·무지개)로 연결하려고 해요">'+esc(c.myTopic||'')+'</textarea>'+
+      '<button class="btn soft sm" style="margin-top:7px" data-savetopic="1">주제 저장</button>'+
+      (PRO?'<div class="ban info" style="margin-top:9px"><span class="bi">✍️</span><span>“주제는 좋아요. 다만 <b>제안</b>까지 가야 점수가 나옵니다 — 문제만 말하고 끝내지 마세요.”</span></div>':'')+
+      '</div>';
+
+   /* 2. 자료 올리기 */
+   h+='<div class="pf-sec"><div class="pf-h">내가 만든 자료 올리기'+(PRO?'<span class="pro-b">사람이 봄</span>':'')+'</div>';
+   if(PRO){
+    h+='<div class="pf-up"><div style="font-size:19px">📎</div><div>원고·사진·실험기록을 올리면 <b>전담 매니저</b>가 보고, 피드백이 <b>앱 + 학부모 카톡</b>으로 같이 도착해요</div></div>'+
+       '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">'+
+       '<span class="chip2">📄 원고_1차.hwp</span><span class="chip2">📄 개요서.jpg</span></div>';
+   }else{
+    h+='<div class="ban warn"><span class="bi">🔒</span><span>자료를 올려 <b>사람이 봐주는 것</b>은 PRO입니다. 기본에서는 일정·역산 플랜·채점기준표까지 제공돼요.</span>'+
+       '</div><button class="btn g sm" style="margin-top:9px;width:100%" data-add="'+(perf?'suh':'exam')+'">PRO 켜서 보기</button>';
+   }
+   h+='</div>';
+
+   /* 4. 발표 리허설 */
+   h+='<div class="pf-sec"><div class="pf-h">발표 리허설 🎙️<span class="auto-b">⚙️ 풀오토</span><span class="pf-cnt">'+(c.reh||[]).length+'회</span></div>'+
+      '<div class="mini" style="margin-bottom:8px">수행의 반은 <b>발표</b>예요. 원고를 소리 내어 읽으면 <b>시간·빠르기·군더더기</b>("어…", "음…")를 재서 알려주고, 녹음은 피드백으로 이어져요.</div>';
+   h+=(c.reh&&c.reh.length)?c.reh.map(function(r){
+     return '<div class="reh"><span style="color:var(--ink3)">'+r.n+'회</span><b>'+r.sec+'</b>'+
+       '<span style="color:var(--ink3);font-weight:700">'+r.fil+'</span><span class="m" style="color:var(--sun-ink)">'+r.note+'</span></div>';}).join('')
+     :'<div class="mini">아직 녹음이 없어요</div>';
+   h+='<button class="btn g sm" style="width:100%;margin-top:7px">🎙️ 지금 읽어보기</button></div>';
+  }else{
+   h+='<div class="pf-sec"><div class="pf-h">범위 관리<span class="auto-b">⚙️ 풀오토</span></div>'+
+      '<div class="mini">시험 <b>3일 전</b>엔 전체 오답 총정리가 자동으로 뜹니다. 이 진도는 쌤 티칭룸·학부모 리포트에 반영돼요.</div>'+
+      (PRO?'<div class="ban info" style="margin-top:9px"><span class="bi">🗂</span><span>담당자가 <b>주간 점검</b>으로 과목별 회차를 재배분합니다. (사람이 붙는지는 아직 미정)</span></div>'
+          :'<button class="btn g sm" style="width:100%;margin-top:9px" data-add="exam">PRO 켜서 보기</button>')+
+      '</div>';
+  }
+
+  /* 일정 정정 */
+  h+='<div class="pf-sec"><div class="pf-h">일정이 바뀌었나요?</div>'+
+     '<div class="mini">학교 일정은 가끔 바뀝니다. 바뀐 걸 알려주면 <b>허브 원본은 그대로 두고</b> 검수 후 반영해요.</div>'+
+     '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">'+
+     '<span class="chip2">우리 반/나만 — 내 일정만 수정</span>'+
+     '<span class="chip2">학교 전체 — 정정 제보</span></div></div>';
+
+  h+='<button class="btn g" style="margin-top:6px" data-ddgo="'+(perf?'suh':'exam')+'">'+(perf?'수행관리 전체 보기':'시험관리 전체 보기')+'</button>';
+
+  el('ddB').innerHTML=h;
+ }
+
  function open(k){
-  var d=DD[k]; if(!d)return;
-  el('ddT').textContent=d.t; el('ddS').textContent=d.s;
-  var h='<div class="ban info"><span class="bi">📌</span><span>'+d.note+'</span></div>';
-  h+=d.steps.map(function(x){
-    return '<div class="ess '+x[0]+'"><div class="n">'+(x[1]||'·')+'</div>'+
-      '<div class="b"><b>'+x[2]+'</b>'+(x[3]?'<span>'+x[3]+'</span>':'')+'</div>'+
-      (x[0]==='done'?'<span style="color:var(--ok);font-weight:900">✓</span>':
-       x[0]==='now'?'<button class="btn g sm">시작</button>':'')+'</div>';}).join('');
-  if(d.foot) h+='<div class="mini" style="margin-top:2px">'+d.foot+'</div>';
-  h+='<button class="btn g" style="margin-top:4px" data-ddgo="'+d.go+'">'+(d.go==='suh'?'수행관리 전체 보기':'시험관리 전체 보기')+'</button>';
-  el('ddB').innerHTML=h; el('ddOvl').classList.add('show');
+  CUR=k; var c=DD[k]; if(!c)return;
+  PRO = !!(window.__ADDONS && window.__ADDONS[c.k==='perf'?'suh':'exam']);
+  el('ddT').textContent=c.t;
+  el('ddS').textContent=c.subj+' · '+c.date+' · '+c.share;
+  render(); el('ddOvl').classList.add('show');
  }
  function close(){el('ddOvl').classList.remove('show');}
  el('ddX').addEventListener('click',close);
  el('ddOvl').addEventListener('click',function(e){if(e.target===el('ddOvl'))close();});
+
  document.addEventListener('click',function(e){
   var c=e.target.closest('[data-dd]'); if(c){open(c.dataset.dd);return;}
+  if(!CUR)return;
+  var p=e.target.closest('[data-pro]'); if(p){PRO=(p.dataset.pro==='1');render();return;}
+  var st=e.target.closest('[data-step]'); if(st){var o=DD[CUR].steps[+st.dataset.step];o.done=!o.done;render();return;}
+  var as=e.target.closest('[data-addstep]'); if(as){DD[CUR].steps.push({t:'내가 추가한 단계',done:false});render();return;}
+  var sv=e.target.closest('[data-savetopic]'); if(sv){var ta=el('pfTopic');if(ta)DD[CUR].myTopic=ta.value;
+    if(typeof toast==='function')toast('주제 저장됨');return;}
   var g=e.target.closest('[data-ddgo]'); if(g){close();
     var b=document.querySelector('.side .nav[data-v="'+g.dataset.ddgo+'"]'); if(b)b.click();}
  });
