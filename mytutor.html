@@ -619,6 +619,23 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 @keyframes m2fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .mini{font-size:10.5px;color:var(--faint);font-weight:700;line-height:1.55}
 body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g-mi .hionly,body.g-mi .elonly{display:none!important}
+
+/* ===== 보이스 체크 (말해보카식) ===== */
+.vcq{font-size:17px;font-weight:800;line-height:1.5;margin:4px 0 12px}
+.vcmic{width:72px;height:72px;border-radius:50%;border:none;cursor:pointer;margin:6px auto;display:flex;
+ align-items:center;justify-content:center;font-size:28px;background:var(--navy);color:#fff;
+ box-shadow:0 8px 22px rgba(25,29,22,.25);transition:transform .15s}
+.vcmic:active{transform:scale(.93)}
+.vcmic.rec{background:var(--red);animation:vcpulse 1.1s infinite}
+@keyframes vcpulse{0%{box-shadow:0 0 0 0 rgba(180,35,24,.35)}70%{box-shadow:0 0 0 14px rgba(180,35,24,0)}100%{box-shadow:0 0 0 0 rgba(180,35,24,0)}}
+.vcbars{display:flex;gap:3px;align-items:flex-end;height:26px;justify-content:center;margin:8px 0}
+.vcbars i{width:4px;height:6px;background:var(--navy);border-radius:2px;opacity:.25}
+.vcbars.on i{opacity:1;animation:vceq .5s infinite alternate}
+.vcbars.on i:nth-child(2n){animation-duration:.38s}.vcbars.on i:nth-child(3n){animation-duration:.62s}
+@keyframes vceq{from{height:5px}to{height:24px}}
+.vctr{min-height:40px;background:var(--line2);border-radius:10px;padding:10px 12px;font-size:13.5px;line-height:1.6;margin-top:8px}
+.vckw{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:800;margin:3px 3px 0 0;border:1.5px solid var(--line)}
+.vckw.ok{background:var(--ok-s,#e9fbf4);color:var(--ok);border-color:var(--ok)}
 </style>
 </head>
 <body class="pc">
@@ -1290,6 +1307,21 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
     <div class="ban lime">
       <span class="bi">⏱</span>
       <span>점검은 <b>두 번</b> 나갑니다 — 수업 당일 저녁(이해했나)과 다음 수업 전(남았나). 당일만 보면 전부 이해한 것처럼 보입니다.</span>
+    </div>
+
+    <div class="card gameonly" style="text-align:center">
+      <div class="ch" style="justify-content:center"><h2>🎤 말로 설명하기</h2><span class="tag t-base">초·중등 · 1문제씩</span></div>
+      <div id="vcBox">
+        <div style="font-size:12px;font-weight:800;opacity:.55" id="vcStep">1 / 3</div>
+        <div class="vcq" id="vcQ"></div>
+        <button class="vcmic" id="vcMic">🎤</button>
+        <div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div style="font-size:12px;font-weight:700;opacity:.6" id="vcHint">마이크를 누르고 소리 내서 답해봐</div>
+        <div class="vctr" id="vcTr" style="display:none"></div>
+        <div id="vcKw" style="margin-top:6px"></div>
+        <button class="btn g sm" id="vcNext" style="display:none;margin-top:10px">다음 ▸</button>
+      </div>
+      <div class="mini" style="margin-top:10px">음성인식: 오픈소스 Whisper 엔진 · 기기 내 처리 — 녹음이 서버로 가지 않습니다</div>
     </div>
 
     <div class="cols">
@@ -2915,6 +2947,59 @@ function openRoom(){
 function paintNext(){var w=document.getElementById('nxupWrap'); if(w)w.innerHTML=nextUpHtml(2);}
 document.addEventListener('DOMContentLoaded',function(){renderRoomCard();paintNext();});
 renderRoomCard();paintNext();
+</script>
+<script>
+(function(){
+ var VC=[
+  {q:'기울기가 뭐야? 한 문장으로 말해봐', tr:'어… x가 1만큼 커질 때 y가 얼마나 변하는지를 나타내는 값이에요.', kw:[['x 증가량','ok'],['y 변화량','ok'],['비율','ok']], v:'정확해! 변화율 개념까지 들어갔어 👏'},
+  {q:'두 점 (1,2), (3,8)이 있으면 기울기는 어떻게 구해?', tr:'y 차이 6을 x 차이 2로 나눠서… 3이요.', kw:[['y차이÷x차이','ok'],['답 3','ok']], v:'맞았어. 네가 막혔던 그 유형이야 — 이제 말로도 나온다!'},
+  {q:'y절편은 그래프 어디에 있는 점이야?', tr:'y축이랑 만나는 점이요. x가 0일 때 값!', kw:[['y축과 만남','ok'],['x=0','ok']], v:'완벽. x=0까지 말한 건 교과서 정의 그대로야.'}
+ ];
+ var i=0,busy=false;
+ function el(id){return document.getElementById(id);}
+ function paint(){
+  if(!el('vcQ'))return;
+  el('vcStep').textContent=(i+1)+' / '+VC.length;
+  el('vcQ').textContent=VC[i].q;
+  el('vcTr').style.display='none'; el('vcTr').innerHTML='';
+  el('vcKw').innerHTML=''; el('vcNext').style.display='none';
+  el('vcHint').textContent='마이크를 누르고 소리 내서 답해봐';
+  el('vcMic').style.display='flex';
+ }
+ function finish(){
+  el('vcBox').innerHTML='<div style="font-size:34px">🎉</div><div style="font-weight:900;font-size:17px;margin:6px 0">3문제 모두 말로 설명 성공!</div>'+
+   '<div style="font-size:13px;opacity:.7;line-height:1.6">말로 설명이 되면 진짜 아는 거야.<br>쌤 리포트에 "말하기 통과" 배지가 붙어.</div>'+
+   '<div style="margin-top:10px;font-weight:900;color:var(--ok)">+10P 적립</div>';
+  if(typeof toast==='function')toast('말하기 체크 완료 — 10P 적립!');
+ }
+ document.addEventListener('click',function(e){
+  if(e.target.closest('#vcMic')&&!busy){
+   busy=true; var mic=el('vcMic'),bars=el('vcBars');
+   mic.classList.add('rec'); bars.classList.add('on');
+   el('vcHint').textContent='듣는 중… 또박또박 말해줘';
+   setTimeout(function(){
+    mic.classList.remove('rec'); bars.classList.remove('on'); mic.style.display='none';
+    el('vcHint').textContent='분석 중…';
+    setTimeout(function(){
+     var it=VC[i], tr=el('vcTr'); tr.style.display='block';
+     var txt='🗣 "'+it.tr+'"', n=0;
+     (function type(){ tr.innerHTML=txt.slice(0,++n); if(n<txt.length)setTimeout(type,18);
+      else{
+       el('vcKw').innerHTML=it.kw.map(function(k){return '<span class="vckw '+k[1]+'">✓ '+k[0]+'</span>';}).join('')+
+        '<div style="font-size:13px;font-weight:800;margin-top:7px;color:var(--brand-ink)">'+it.v+'</div>';
+       el('vcHint').textContent='';
+       el('vcNext').style.display='inline-block';
+       busy=false;
+      }})();
+    },800);
+   },2200);
+  }
+  if(e.target.closest('#vcNext')){
+   i++; if(i>=VC.length){finish();} else paint();
+  }
+ });
+ paint();
+})();
 </script>
 </body>
 </html>
