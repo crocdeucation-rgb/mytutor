@@ -302,6 +302,38 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .dd:hover{transform:translateY(-3px)}
 .c{transition:box-shadow .2s}
 
+
+/* ===== 모션 MAX ===== */
+body::before,body::after{content:"";position:fixed;z-index:0;width:540px;height:540px;border-radius:50%;
+ filter:blur(95px);opacity:.13;pointer-events:none}
+body::before{background:#C9E600;top:-190px;left:-170px;animation:orbA 17s ease-in-out infinite}
+body::after{background:#15c6a3;bottom:-210px;right:-190px;animation:orbB 21s ease-in-out infinite}
+@keyframes orbA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(90px,70px) scale(1.15)}}
+@keyframes orbB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-90px,-70px) scale(1.1)}}
+.main,.top{position:relative;z-index:2}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.phone{animation:rise .8s .15s cubic-bezier(.2,.8,.25,1) backwards, floaty 7s 1.6s ease-in-out infinite}
+@keyframes tshine{0%,20%{background-position:180% 0}60%,100%{background-position:-60% 0}}
+.lesson h3{color:#fff;background:linear-gradient(100deg,#fff 42%,#d8f07e 50%,#fff 58%);
+ background-size:220% 100%;-webkit-background-clip:text;background-clip:text;
+ -webkit-text-fill-color:transparent;animation:tshine 4.5s 1s infinite}
+@keyframes ringR{0%{box-shadow:0 0 0 0 rgba(180,35,24,.4)}75%{box-shadow:0 0 0 8px rgba(180,35,24,0)}100%{box-shadow:0 0 0 0 rgba(180,35,24,0)}}
+.dd .d.r{animation:ringR 1.9s infinite}
+.gapline .n:not(.k){animation:ringR 2.4s infinite}
+#pl0 .badge{animation:blink 2.4s infinite}
+.plane:hover{filter:brightness(1.25)}
+.c{transition:transform .18s, box-shadow .18s}
+.c:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(25,29,22,.11)}
+@keyframes barflow{0%{background-position:0 0}100%{background-position:200% 0}}
+.qzbar i{background:linear-gradient(90deg,#43531a,#7E9A12,#43531a);background-size:200% 100%;animation:barflow 2.4s linear infinite}
+#clsOvl>div,#genOvl>div,#rptOvl>div{animation:riseS .34s cubic-bezier(.2,.8,.25,1)}
+.row .ic{transition:transform .18s}
+.row:hover .ic{transform:scale(1.12) rotate(-4deg)}
+.stacknote{transition:opacity .22s}
+.apph .logo i{display:inline-block;animation:blink 2.8s 1.2s infinite}
+.tab{transition:color .18s,border-color .25s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -598,8 +630,16 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
    pl.classList.toggle('off', j>v);
    pl.classList.toggle('live', j<=v);
   }
-  document.getElementById('note').innerHTML=NOTES[v];
+  var _nt=document.getElementById('note');
+  _nt.style.opacity='0';
+  setTimeout(function(){_nt.innerHTML=NOTES[v];_nt.style.opacity='1';},180);
   if(v>0) confetti();
+  if(v>=1 && !window.__pUp){window.__pUp=1;
+   var pb=document.querySelector('.pbar b');
+   if(pb){var t0=null;(function f(t){if(t===undefined){requestAnimationFrame(f);return;}
+    if(!t0)t0=t;var p=Math.min(1,(t-t0)/900);
+    pb.textContent=Math.round(80*(1-Math.pow(1-p,3)));
+    if(p<1)requestAnimationFrame(f);})();}}
   var scr=document.getElementById('scr');
   if(v===1) setTimeout(function(){scr.scrollTo({top:430,behavior:'smooth'});},350);
   if(v===2) setTimeout(function(){scr.scrollTo({top:scr.scrollHeight,behavior:'smooth'});},350);
@@ -660,7 +700,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
     var ok=(+o.dataset.k===q.a), bl=document.getElementById('qzBlank');
     bl.textContent=o.textContent; if(!ok)bl.classList.add('no');
     o.classList.add(ok?'ok':'no');
-    if(ok)qScore++;
+    if(ok){qScore++;confetti();}
     else box.querySelectorAll('.qzo').forEach(function(x){if(+x.dataset.k===q.a)x.classList.add('ok');});
     box.querySelectorAll('.qzo').forEach(function(x){x.disabled=true;});
     setTimeout(function(){qi++;qzRender();}, ok?650:1400);
@@ -675,7 +715,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   g.querySelectorAll('.qzo').forEach(function(o,k){
    o.addEventListener('click',function(){
     if(done)return; done=true; svDone++;
-    var ok=(k===a); if(ok)svOk++;
+    var ok=(k===a); if(ok){svOk++;confetti();}
     o.classList.add(ok?'ok':'no');
     if(!ok)g.querySelectorAll('.qzo')[a].classList.add('ok');
     g.querySelectorAll('.qzo').forEach(function(x){x.disabled=true;});
