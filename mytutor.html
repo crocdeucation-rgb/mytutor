@@ -1546,8 +1546,8 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
             <div class="card">
               <div class="ch"><h2>구현 메모</h2></div>
               <div class="mini" style="line-height:1.7">
-                쌤이다에 <b>pick_photo_feedback_threads / _files / _comments</b>가 이미 있습니다. 사진 올리고 쌤이 코멘트 다는 구조가 통째로 있어서 <b>이름만 붙이면 됩니다</b> — 애드온 4개 중 출시가 제일 빠릅니다.<br><br>
-                단, 쌤 노동이 늘어나므로 <b>pick_teacher_settlement_items</b>에 애드온 정산 줄이 들어갈 수 있어야 합니다 (현재 session_id NOT NULL이라 불가).
+                쌤이다에 <b>ssamida_photo_feedback_threads / _files / _comments</b>가 이미 있습니다. 사진 올리고 쌤이 코멘트 다는 구조가 통째로 있어서 <b>이름만 붙이면 됩니다</b> — 애드온 4개 중 출시가 제일 빠릅니다.<br><br>
+                단, 쌤 노동이 늘어나므로 <b>ssamida_teacher_settlement_items</b>에 애드온 정산 줄이 들어갈 수 있어야 합니다 (현재 session_id NOT NULL이라 불가).
               </div>
             </div>
           </div>
@@ -1611,9 +1611,24 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
             <button class="btn line sm" data-toastmsg="텍스트 숙제는 단원 태깅이 안 붙어요 — 마이코칭 화면이 비게 됩니다">✏️ 직접 쓰기</button>
           </div>
           <table class="tbl">
-            <tr><td>기울기와 절편 · 기본<small>중2-1 공통 · 문항 #41801~41812</small></td><td class="num">8문제</td></tr>
-            <tr><td>두 점으로 기울기 구하기<small>지난주 오답 유형 · 숫자 변형</small></td><td class="num">4문제</td></tr>
+            <tr data-qprev="qp1" style="cursor:pointer"><td>기울기와 절편 · 기본<small>중2-1 공통 · 문항 #41801~41812 · 탭하면 문항 미리보기</small></td><td class="num">8문제 ▾</td></tr>
+            <tr data-qprev="qp2" style="cursor:pointer"><td>두 점으로 기울기 구하기<small>지난주 오답 유형 · 숫자 변형 · 탭하면 문항 미리보기</small></td><td class="num">4문제 ▾</td></tr>
           </table>
+          <div id="qp1" style="display:none;margin-top:9px;padding:11px 12px;background:var(--line2);border-radius:10px;font-size:12.5px;line-height:1.65">
+            <div style="font-weight:800;margin-bottom:4px">#41801 <span style="font-weight:400;opacity:.6">— 중2-1 · Ⅲ.일차함수 › 기울기와 절편</span></div>
+            일차함수 y = 3x − 2 의 그래프에서 기울기와 y절편을 차례로 구하면?<br>
+            <span style="opacity:.8">① 3, 2 &nbsp;② 3, −2 &nbsp;③ −2, 3 &nbsp;④ 2, −3 &nbsp;⑤ −3, 2</span>
+            <div style="font-weight:800;margin:9px 0 4px">#41805 <span style="font-weight:400;opacity:.6">— 같은 소단원</span></div>
+            일차함수 y = ax + 5 의 그래프가 점 (2, 1)을 지날 때, 상수 a의 값은?<br>
+            <span style="opacity:.8">① −2 &nbsp;② −1 &nbsp;③ 1 &nbsp;④ 2 &nbsp;⑤ 3</span>
+            <div style="margin-top:8px;font-size:11.5px;opacity:.6">문항은 HWP 원본에서 지문·선택지·정답 자동 추출 (파싱 검증 완료) · 예시 화면</div>
+          </div>
+          <div id="qp2" style="display:none;margin-top:9px;padding:11px 12px;background:var(--line2);border-radius:10px;font-size:12.5px;line-height:1.65">
+            <div style="font-weight:800;margin-bottom:4px">#41809 <span style="font-weight:400;opacity:.6">— 두 점 대입 · 지난주 오답 숫자 변형</span></div>
+            두 점 (1, 2), (3, 8)을 지나는 일차함수의 기울기는?<br>
+            <span style="opacity:.8">① 2 &nbsp;② 3 &nbsp;③ 4 &nbsp;④ 5 &nbsp;⑤ 6</span>
+            <div style="margin-top:8px;font-size:11.5px;opacity:.6">민준이가 세 번 틀린 유형 — 숫자만 바꿔 재출제 · 예시 화면</div>
+          </div>
           <div class="ban info" style="margin-top:11px">
             <span class="bi">⚡</span>
             <span>고른 문항에 학년·과목·대단원·소단원이 이미 붙어 있습니다. <b>고르는 행위가 곧 단원 태깅</b>이라 별도 입력이 없고, 자동 채점이라 <b>쌤의 채점 노동도 사라집니다</b>.</span>
@@ -1628,7 +1643,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
             <div class="task"><div class="ic i-v">📓</div>
               <div class="tb"><div class="tt">민준 필기 2장 도착</div><div class="ts">다음 수업 전까지 코멘트</div></div>
               <button class="btn g sm" data-go="note">열기</button></div>
-            <div class="mini" style="margin-top:9px">기존 <code style="background:var(--line2);padding:1px 5px;border-radius:4px">pick_photo_feedback_threads</code> 구조 그대로 사용 — 신규 개발 거의 없음</div>
+            <div class="mini" style="margin-top:9px">기존 <code style="background:var(--line2);padding:1px 5px;border-radius:4px">ssamida_photo_feedback_threads</code> 구조 그대로 사용 — 신규 개발 거의 없음</div>
           </div>
           <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">필기관리 PRO</div>
             <div class="lp">담당 쌤이 직접 봅니다 · 쌤 정산 대상</div>
@@ -1982,11 +1997,11 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
     <div class="card">
       <div class="ch"><h2>루프</h2><span class="note">수업 → 출제 → 풀이 → 역류</span></div>
       <div class="flow">
-        <div class="fx ssam"><div class="fn">쌤이다</div><h4>수업 종료</h4><p>쌤이 숙제를 문항에서 고름 = 단원 확정</p><code>pick_class_sessions<br>pick_session_notes</code></div>
-        <div class="fx ssam"><div class="fn">쌤이다</div><h4>숙제 생성</h4><p>session_id가 이미 걸려 있음</p><code>pick_homeworks</code></div>
-        <div class="fx"><div class="fn">마이튜터</div><h4>풀이 · 자동채점</h4><p>출판사·단원으로 문항 조회</p><code>pick_homework_submissions<br>+ 채점 컬럼 필요</code></div>
+        <div class="fx ssam"><div class="fn">쌤이다</div><h4>수업 종료</h4><p>쌤이 숙제를 문항에서 고름 = 단원 확정</p><code>ssamida_class_sessions<br>ssamida_session_notes</code></div>
+        <div class="fx ssam"><div class="fn">쌤이다</div><h4>숙제 생성</h4><p>session_id가 이미 걸려 있음</p><code>ssamida_homeworks</code></div>
+        <div class="fx"><div class="fn">마이튜터</div><h4>풀이 · 자동채점</h4><p>출판사·단원으로 문항 조회</p><code>ssamida_homework_submissions<br>+ 채점 컬럼 필요</code></div>
         <div class="fx"><div class="fn">마이튜터</div><h4>이해도 점검</h4><p>당일 + 간격 2회</p><code>신규 테이블</code></div>
-        <div class="fx ssam"><div class="fn">역류</div><h4>티칭룸 · 리포트</h4><p>쌤이 알고 수업 시작</p><code>pick_learning_feedbacks</code></div>
+        <div class="fx ssam"><div class="fn">역류</div><h4>티칭룸 · 리포트</h4><p>쌤이 알고 수업 시작</p><code>ssamida_learning_feedbacks</code></div>
       </div>
     </div>
 
@@ -1995,11 +2010,11 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
         <div class="card">
           <div class="ch"><h2>이미 있는 것</h2><span class="note">그대로 씀</span></div>
           <table class="tbl">
-            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">pick_class_sessions</code><small>수업 회차 · 상태 · 완료시각</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
-            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">pick_session_notes</code><small>진행내용·보완점·다음계획·학교진도</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
-            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">pick_learning_feedbacks</code><small>이해도·참여도 1~5 (세션당 1건)</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
-            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">pick_homeworks</code><small>session_id 연결됨</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
-            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">pick_photo_feedback_*</code><small>사진 + 코멘트 — 필기관리에 그대로</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
+            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">ssamida_class_sessions</code><small>수업 회차 · 상태 · 완료시각</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
+            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">ssamida_session_notes</code><small>진행내용·보완점·다음계획·학교진도</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
+            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">ssamida_learning_feedbacks</code><small>이해도·참여도 1~5 (세션당 1건)</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
+            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">ssamida_homeworks</code><small>session_id 연결됨</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
+            <tr><td><code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">ssamida_photo_feedback_*</code><small>사진 + 코멘트 — 필기관리에 그대로</small></td><td class="num" style="color:var(--ok)">OK</td></tr>
           </table>
         </div>
       </div>
@@ -2030,11 +2045,11 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
         </div>
 
         <div class="card">
-          <div class="ch"><h2>정산도 막힘</h2><span class="tag t-note">필기관리 전제</span></div>
+          <div class="ch"><h2>정산도 막힘</h2><span class="tag t-note">필기 PRO만 해당</span></div>
           <p style="font-size:12px;font-weight:700;line-height:1.6;color:var(--ink2)">
-            <code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">pick_teacher_settlement_items</code>가
+            <code style="background:var(--line2);padding:2px 6px;border-radius:5px;font-size:11px">ssamida_teacher_settlement_items</code>가
             <b>세션 단위로만</b> 설계돼 있습니다 (<code style="background:var(--red-s);padding:1px 5px;border-radius:4px;font-size:11px;color:var(--red)">session_id NOT NULL</code>).
-            애드온 노동은 수업 밖에서 하는 일이라 넣을 자리가 없습니다.
+            애드온 노동은 수업 밖에서 하는 일이라 넣을 자리가 없습니다. 수행·시험 PRO는 전담 매니저(급여)라 쌤 정산과 무관 — 쌤 노동이 늘어나는 건 <b>필기 PRO뿐</b>입니다.
           </p>
           <div class="ban info" style="margin-top:10px"><span class="bi">🔧</span><span>최소 변경 — <b>session_id NULL 허용</b> · <b>item_type</b> 추가(LESSON/SUHAENG/NOTE/EXAM) · <b>member_id</b> 추가. 가상 세션으로 우회하면 잔여 회차가 틀어집니다.</span></div>
         </div>
@@ -2594,7 +2609,10 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
    if(d&&!d.disabled){var p=d.dataset.done.split('|');d.textContent=p[0];d.disabled=true;d.style.opacity='.75';
     if(p[1]&&typeof toast==='function')toast(p[1]);return;}
    var m=e.target.closest('[data-mute]');
-   if(m){m.style.opacity=(m.style.opacity==='0.35')?'1':'0.35';}
+   if(m){m.style.opacity=(m.style.opacity==='0.35')?'1':'0.35';return;}
+   var qp=e.target.closest('[data-qprev]');
+   if(qp){var bx=document.getElementById(qp.dataset.qprev);
+    if(bx)bx.style.display=(bx.style.display==='none')?'block':'none';}
   });
   var db=document.getElementById('distribBtn');
   if(db)db.addEventListener('click',function(){
