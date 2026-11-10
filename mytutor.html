@@ -56,22 +56,22 @@ body.pc .app{grid-template-columns:218px 1fr}
 body.mob .app{grid-template-columns:1fr}
 
 /* 사이드 네비 (PC) */
-.side{background:var(--navy);color:#fff;padding:18px 12px 24px;display:flex;flex-direction:column;gap:3px}
+.side{background:#181A17;color:#fff;padding:18px 12px 24px;display:flex;flex-direction:column;gap:3px}
 body.mob .side{display:none}
 .side .logo{display:flex;gap:9px;align-items:center;padding:4px 8px 14px}
 .side .logo .mk{width:36px;height:36px;border-radius:11px;background:#fff;display:grid;place-items:center;flex:none}
 .side .logo .mk svg{width:21px;height:21px}
 .side .logo b{font-size:16px;font-weight:900;display:block;line-height:1.15}
 .side .logo small{font-size:10px;color:#A9ADE4;font-weight:700}
-.side .seg{font-size:9.5px;font-weight:900;color:#8186D0;letter-spacing:.09em;padding:14px 10px 6px}
+.side .seg{font-size:9.5px;font-weight:900;color:#7E8674;letter-spacing:.09em;padding:14px 10px 6px}
 .nav{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;font-size:13px;
- font-weight:700;color:#CFD2F2;transition:.13s;text-align:left;width:100%}
+ font-weight:700;color:#C3CBBB;transition:.13s;text-align:left;width:100%}
 .nav:hover{background:rgba(255,255,255,.09);color:#fff}
-.nav.on{background:#fff;color:var(--navy);font-weight:900}
+.nav.on{background:var(--lime);color:#1A2000;font-weight:900}
 .nav .ic{width:17px;text-align:center;font-size:14px;flex:none}
 .nav .lk{margin-left:auto;font-size:9px;font-weight:900;background:rgba(255,255,255,.14);
  color:#fff;padding:2px 6px;border-radius:5px}
-.nav.on .lk{background:var(--navy-s);color:var(--navy)}
+.nav.on .lk{background:rgba(0,0,0,.18);color:#1A2000}
 .nav[data-locked="1"]{opacity:.5}
 .side .tie{margin-top:auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
  border-radius:12px;padding:11px;font-size:10.5px;color:#C6C9F0;line-height:1.5}
@@ -638,9 +638,9 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
 
 <!-- ================= 사이드 ================= -->
 <aside class="side">
-  <div class="logo">
-    <div class="mk"><svg viewBox="0 0 52 52"><rect width="52" height="52" rx="12" fill="#3A3D8F"/><path d="M14 15h24a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H24l-7 6v-6h-3a3 3 0 0 1-3-3V18a3 3 0 0 1 3-3z" fill="#fff"/><path d="M20 25l4 4 9-9" stroke="#3A3D8F" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div><b>마이튜터</b><small>쌤이다 학습 애드온</small></div>
+  <div class="logo" style="display:block;padding:4px 8px 14px">
+    <div style="font-size:19px;font-weight:900;letter-spacing:-.03em">쌤이다<span style="color:var(--lime)">.</span></div>
+    <small style="font-size:10px;color:#9AA395;font-weight:800">스터디룸 — 마이코칭 얹힘</small>
   </div>
 
   <div class="seg">학습</div>
@@ -690,6 +690,17 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
         <span class="pill hot">🔥 5일</span>
         <span class="pill">미션 3/5</span>
         <span class="pill lime">뽑기 1</span>
+      </div>
+    </div>
+
+    <!-- 본체: 다음 과외 · 입장 -->
+    <div class="lesson" style="margin-bottom:0">
+      <div class="top"><small>다음 과외 · D-1</small><span class="when">쌤이다 본체</span></div>
+      <h3 style="margin-top:7px">수학 · 김서연 쌤</h3>
+      <div class="unit">내일 20:30 – 21:30 · 주 2회 · 공통과정</div>
+      <div class="go" style="margin-top:14px">
+        <button class="btn lime" style="flex:1;font-size:14px;padding:13px">🎥 수업 입장하기</button>
+        <button class="btn ghost">일정 변경</button>
       </div>
     </div>
 
