@@ -1326,14 +1326,18 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
       <div id="vcBox">
         <div style="font-size:12px;font-weight:800;opacity:.55" id="vcStep">1 / 3</div>
         <div class="vcq" id="vcQ"></div>
-        <button class="vcmic" id="vcMic">🎤</button>
+        <div id="vcOpts" style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:10px 0"></div>
+        <div id="vcListen" style="display:none">
+          <button class="btn soft sm" id="vcPlay">🔊 다시 듣기</button>
+        </div>
+        <button class="vcmic" id="vcMic" style="display:none">🎤</button>
         <div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div style="font-size:12px;font-weight:700;opacity:.6" id="vcHint">마이크를 누르고 소리 내서 답해봐</div>
+        <div style="font-size:12px;font-weight:700;opacity:.6" id="vcHint">빈칸에 들어갈 걸 골라봐</div>
         <div class="vctr" id="vcTr" style="display:none"></div>
         <div id="vcKw" style="margin-top:6px"></div>
         <button class="btn g sm" id="vcNext" style="display:none;margin-top:10px">다음 ▸</button>
       </div>
-      <div class="mini" style="margin-top:10px">음성인식: 오픈소스 Whisper 엔진 · 기기 내 처리 — 녹음이 서버로 가지 않습니다 · 영어 발음 점수는 음소 단위 평가 엔진 연동</div>
+      <div class="mini" style="margin-top:10px">채우고(눈) → 듣고(귀) → 말하고(입) · 읽어주기는 기기 내장 음성 · 음성인식은 오픈소스 Whisper — 녹음이 서버로 가지 않습니다</div>
     </div>
 
     <div class="cols">
@@ -2962,78 +2966,106 @@ renderRoomCard();paintNext();
 </script>
 <script>
 (function(){
+ /* 빈칸 채우기 → TTS 듣기 → 따라 말하기 */
  var VCSETS={
  math:[
-  {q:'기울기가 뭐야? 한 문장으로 말해봐', tr:'어… x가 1만큼 커질 때 y가 얼마나 변하는지를 나타내는 값이에요.', kw:[['x 증가량','ok'],['y 변화량','ok'],['비율','ok']], v:'정확해! 변화율 개념까지 들어갔어 👏'},
-  {q:'두 점 (1,2), (3,8)이 있으면 기울기는 어떻게 구해?', tr:'y 차이 6을 x 차이 2로 나눠서… 3이요.', kw:[['y차이÷x차이','ok'],['답 3','ok']], v:'맞았어. 네가 막혔던 그 유형이야 — 이제 말로도 나온다!'},
-  {q:'y절편은 그래프 어디에 있는 점이야?', tr:'y축이랑 만나는 점이요. x가 0일 때 값!', kw:[['y축과 만남','ok'],['x=0','ok']], v:'완벽. x=0까지 말한 건 교과서 정의 그대로야.'}
+  {pre:'기울기 = x의 증가량 분의 ', blank:'y의 증가량', post:'', opts:['y의 증가량','y절편','상수항'], say:'기울기는, x의 증가량 분의, y의 증가량!', lang:'ko-KR',
+   tr:'기울기는… x의 증가량 분의 y의 증가량!', score:0, v:'정확해! 분모·분자 순서까지 맞았어 👏'},
+  {pre:'두 점 (1,2), (3,8)의 기울기 = 6 ÷ 2 = ', blank:'3', post:'', opts:['3','4','6'], say:'두 점의 기울기는, y의 차이 6을, x의 차이 2로 나눠서, 3!', lang:'ko-KR',
+   tr:'y 차이 6을 x 차이 2로 나눠서… 3!', score:0, v:'네가 세 번 틀렸던 유형이야 — 이제 입에서 바로 나온다!'},
+  {pre:'y절편은 그래프가 ', blank:'y축', post:'과 만나는 점 (x=0)', opts:['y축','x축','원점'], say:'y절편은, 그래프가 y축과 만나는 점. x가 0일 때!', lang:'ko-KR',
+   tr:'y축과 만나는 점… x가 0일 때!', score:0, v:'교과서 정의 그대로야. 완벽.'}
  ],
  eng:[
-  {q:'environment', sub:'환경 — 이번 주 단어 · 따라 말해봐', eng:1, tr:'en·<b style="color:var(--ok)">vi</b>·ron·<span style="color:var(--red)">ment</span>', score:86, v:'강세(vi) 좋았어! 끝 -ment가 "먼트"로 뭉개졌어 — 혀 끝 t 살려서 한 번 더?'},
-  {q:'I have been studying math.', sub:'현재완료진행 — 교과서 3과 문장', eng:1, tr:'I have been <b style="color:var(--ok)">studying</b> math.', score:92, v:'been이 자연스럽게 약하게 나왔어 — 원어민 리듬이야 👏'},
-  {q:'available', sub:'수행 발표 단어 · 지난주 틀린 발음', eng:1, tr:'a·<b style="color:var(--ok)">vai</b>·la·ble', score:95, v:'지난주엔 "어바이어블"이었는데 오늘은 완벽. 이 단어 졸업!'}
+  {pre:'I have ', blank:'been', post:' studying math.', opts:['been','being','be'], say:'I have been studying math.', lang:'en-US',
+   tr:'I have <b style="color:var(--ok)">been</b> studying math.', score:92, v:'been을 약하게 흘린 게 원어민 리듬이야 👏'},
+  {pre:'The schedule is ', blank:'available', post:' online.', opts:['available','availible','avaliable'], say:'The schedule is available online.', lang:'en-US',
+   tr:'The schedule is a·<b style="color:var(--ok)">vai</b>·la·ble online.', score:95, v:'지난주 "어바이어블"에서 완전히 교정됐어. 이 단어 졸업!'},
+  {pre:'We should protect the ', blank:'environment', post:'.', opts:['environment','enviroment','enviroment'], say:'We should protect the environment.', lang:'en-US',
+   tr:'We should protect the en·<b style="color:var(--ok)">vi</b>·ron·<span style="color:var(--red)">ment</span>.', score:86, v:'강세 좋았어! 끝 -ment만 혀 끝 t 살려서 한 번 더?'}
  ]};
- var SET='math', VC=VCSETS.math;
- var i=0,busy=false;
+ var SET='math', VC=VCSETS.math, i=0, busy=false, phase='fill';
  function el(id){return document.getElementById(id);}
+ function speak(it){
+  try{ if(window.speechSynthesis){ speechSynthesis.cancel();
+   var u=new SpeechSynthesisUtterance(it.say); u.lang=it.lang; u.rate=(it.lang==='en-US')?0.92:1.02;
+   speechSynthesis.speak(u);}}catch(e){}
+ }
+ function sent(it,fill){
+  return '<span style="font-size:'+(it.lang==='en-US'?'19px':'16px')+'">'+it.pre+
+   (fill?'<b style="color:var(--brand-ink);border-bottom:3px solid var(--brand)">'+it.blank+'</b>'
+        :'<span style="display:inline-block;min-width:76px;border-bottom:3px solid var(--navy)">&nbsp;</span>')+
+   it.post+'</span>';
+ }
  function paint(){
   if(!el('vcQ'))return;
+  phase='fill'; var it=VC[i];
   el('vcStep').textContent=(i+1)+' / '+VC.length;
-  var it0=VC[i];
-  el('vcQ').innerHTML=it0.eng?'<span style="font-size:24px;letter-spacing:.3px">'+it0.q+'</span><div style="font-size:12.5px;font-weight:700;opacity:.6;margin-top:3px">'+(it0.sub||'')+'</div>':it0.q;
-  el('vcTr').style.display='none'; el('vcTr').innerHTML='';
-  el('vcKw').innerHTML=''; el('vcNext').style.display='none';
-  el('vcHint').textContent='마이크를 누르고 소리 내서 답해봐';
-  el('vcMic').style.display='flex';
+  el('vcQ').innerHTML=sent(it,false);
+  var op=it.opts.slice().sort(function(){return Math.random()-0.5;});
+  el('vcOpts').innerHTML=op.map(function(o){return '<span class="chip" data-vcfill="'+o+'">'+o+'</span>';}).join('');
+  el('vcOpts').style.display='flex';
+  el('vcListen').style.display='none'; el('vcMic').style.display='none';
+  el('vcTr').style.display='none'; el('vcTr').innerHTML=''; el('vcKw').innerHTML='';
+  el('vcNext').style.display='none';
+  el('vcHint').textContent='빈칸에 들어갈 걸 골라봐';
  }
  function finish(){
-  el('vcBox').innerHTML='<div style="font-size:34px">🎉</div><div style="font-weight:900;font-size:17px;margin:6px 0">'+(SET==='eng'?'오늘 발음 3개 통과!':'3문제 모두 말로 설명 성공!')+'</div>'+
-   '<div style="font-size:13px;opacity:.7;line-height:1.6">말로 설명이 되면 진짜 아는 거야.<br>쌤 리포트에 "말하기 통과" 배지가 붙어.</div>'+
-   '<div style="margin-top:10px;font-weight:900;color:var(--ok)">+10P 적립</div>';
-  if(typeof toast==='function')toast('말하기 체크 완료 — 10P 적립!');
+  el('vcBox').innerHTML='<div style="font-size:34px">🎉</div><div style="font-weight:900;font-size:17px;margin:6px 0">'+(SET==='eng'?'오늘 문장 3개 — 채우고, 듣고, 말했어!':'개념 3개 — 채우고, 듣고, 말했어!')+'</div>'+
+   '<div style="font-size:13px;opacity:.7;line-height:1.6">눈으로 → 귀로 → 입으로, 세 번 거치면 진짜 내 것.<br>쌤 리포트에 "말하기 통과" 배지가 붙어.</div>'+
+   '<div style="margin-top:10px;font-weight:900;color:var(--ok)">+10P 적립 · 🔥 연속 7일째</div>';
+  if(typeof toast==='function')toast('말하기 체크 완료 — 10P!');
+  if(typeof confetti==='function')try{confetti();}catch(e){}
  }
  document.addEventListener('click',function(e){
-  if(e.target.closest('#vcMic')&&!busy){
+  /* 1단계: 빈칸 채우기 */
+  var f=e.target.closest('[data-vcfill]');
+  if(f&&phase==='fill'){
+   var it=VC[i];
+   if(f.dataset.vcfill===it.blank){
+    el('vcQ').innerHTML=sent(it,true);
+    el('vcOpts').style.display='none';
+    el('vcListen').style.display='block';
+    el('vcMic').style.display='flex';
+    el('vcHint').textContent='문장을 들려줄게 — 듣고 마이크 눌러서 따라 말해봐';
+    phase='speak'; speak(it);
+   }else{
+    f.style.background='var(--red-s)'; f.style.borderColor='var(--red)'; f.style.color='var(--red)';
+    if(typeof toast==='function')toast('다시 한번 — 소리 내서 읽어보면 보여');
+   }
+   return;
+  }
+  /* 다시 듣기 */
+  if(e.target.closest('#vcPlay')){ speak(VC[i]); return; }
+  /* 2단계: 따라 말하기 */
+  if(e.target.closest('#vcMic')&&phase==='speak'&&!busy){
    busy=true; var mic=el('vcMic'),bars=el('vcBars');
    mic.classList.add('rec'); bars.classList.add('on');
-   el('vcHint').textContent='듣는 중… 또박또박 말해줘';
+   el('vcHint').textContent='듣는 중… 또박또박!';
    setTimeout(function(){
     mic.classList.remove('rec'); bars.classList.remove('on'); mic.style.display='none';
+    el('vcListen').style.display='none';
     el('vcHint').textContent='분석 중…';
     setTimeout(function(){
      var it=VC[i], tr=el('vcTr'); tr.style.display='block';
-     if(it.eng){
-      tr.innerHTML='🗣 '+it.tr+
-       '<div style="margin-top:8px;display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#fff;border-radius:99px;overflow:hidden"><i style="display:block;height:100%;width:'+it.score+'%;background:'+(it.score>=90?'var(--ok)':'var(--navy)')+';border-radius:99px"></i></div><b style="font-size:14px">'+it.score+'점</b></div>';
-      el('vcKw').innerHTML='<div style="font-size:13px;font-weight:800;margin-top:7px;color:var(--brand-ink)">'+it.v+'</div>';
-      el('vcHint').textContent='';
-      el('vcNext').style.display='inline-block';
-      busy=false;
-      return;
-     }
-     var txt='🗣 "'+it.tr+'"', n=0;
-     (function type(){ tr.innerHTML=txt.slice(0,++n); if(n<txt.length)setTimeout(type,18);
-      else{
-       el('vcKw').innerHTML=it.kw.map(function(k){return '<span class="vckw '+k[1]+'">✓ '+k[0]+'</span>';}).join('')+
-        '<div style="font-size:13px;font-weight:800;margin-top:7px;color:var(--brand-ink)">'+it.v+'</div>';
-       el('vcHint').textContent='';
-       el('vcNext').style.display='inline-block';
-       busy=false;
-      }})();
+     tr.innerHTML='🗣 '+it.tr+(it.score?
+      '<div style="margin-top:8px;display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#fff;border-radius:99px;overflow:hidden"><i style="display:block;height:100%;width:'+it.score+'%;background:'+(it.score>=90?'var(--ok)':'var(--navy)')+';border-radius:99px"></i></div><b style="font-size:14px">'+it.score+'점</b></div>':'');
+     el('vcKw').innerHTML='<div style="font-size:13px;font-weight:800;margin-top:7px;color:var(--brand-ink)">'+it.v+'</div>';
+     el('vcHint').textContent='';
+     el('vcNext').style.display='inline-block';
+     busy=false; phase='done';
     },800);
    },2200);
   }
-  if(e.target.closest('#vcNext')){
-   i++; if(i>=VC.length){finish();} else paint();
-  }
+  if(e.target.closest('#vcNext')){ i++; if(i>=VC.length){finish();} else paint(); }
+  /* 탭 전환 */
   var vt=e.target.closest('[data-vcset]');
   if(vt){
    SET=vt.dataset.vcset; VC=VCSETS[SET]; i=0; busy=false;
-   var m=el('vcTabM'),g=el('vcTabE');
-   [m,g].forEach(function(c){if(c){c.style.background='';c.style.color='';c.style.borderColor='';}});
+   var mm=el('vcTabM'),g=el('vcTabE');
+   [mm,g].forEach(function(c){if(c){c.style.background='';c.style.color='';c.style.borderColor='';}});
    vt.style.background='var(--navy)';vt.style.color='#fff';vt.style.borderColor='var(--navy)';
-   var bx=el('vcBox');
-   if(bx&&!el('vcQ')){bx.innerHTML='<div style="font-size:12px;font-weight:800;opacity:.55" id="vcStep"></div><div class="vcq" id="vcQ"></div><button class="vcmic" id="vcMic">🎤</button><div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div style="font-size:12px;font-weight:700;opacity:.6" id="vcHint"></div><div class="vctr" id="vcTr" style="display:none"></div><div id="vcKw" style="margin-top:6px"></div><button class="btn g sm" id="vcNext" style="display:none;margin-top:10px">다음 ▸</button>';}
+   if(!el('vcQ')){el('vcBox').innerHTML='<div style="font-size:12px;font-weight:800;opacity:.55" id="vcStep"></div><div class="vcq" id="vcQ"></div><div id="vcOpts" style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:10px 0"></div><div id="vcListen" style="display:none"><button class="btn soft sm" id="vcPlay">🔊 다시 듣기</button></div><button class="vcmic" id="vcMic" style="display:none">🎤</button><div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div style="font-size:12px;font-weight:700;opacity:.6" id="vcHint"></div><div class="vctr" id="vcTr" style="display:none"></div><div id="vcKw" style="margin-top:6px"></div><button class="btn g sm" id="vcNext" style="display:none;margin-top:10px">다음 ▸</button>';}
    paint();
   }
  });
