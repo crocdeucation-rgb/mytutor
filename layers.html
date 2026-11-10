@@ -168,6 +168,33 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .pbar span{font-size:11px;font-weight:900;color:var(--ink3)}
 .pbar .m{margin-left:auto;font-size:10px;color:var(--ink3);font-weight:700}
 
+
+/* 쌤이다 안 실구동 퀴즈 */
+.pn{display:flex;flex-direction:column;gap:11px}
+.qzbar{height:6px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:9px}
+.qzbar i{display:block;height:100%;background:var(--lime);transition:width .4s;border-radius:99px}
+.qzq{font-size:16.5px;font-weight:800;line-height:1.95;padding:22px 6px 6px;text-align:center;color:var(--ink)}
+.qzb{display:inline-block;min-width:80px;border-bottom:2.5px solid var(--lime);color:var(--lime);
+ font-weight:900;padding:0 8px;text-align:center}
+.qzb.no{border-color:var(--red);color:var(--red)}
+.qzopts{display:flex;flex-direction:column;gap:8px;padding:14px 2px 4px}
+.qzo{border:1.5px solid var(--line2);border-radius:13px;padding:13px;font-size:14px;font-weight:800;
+ background:var(--card2);color:var(--ink);text-align:center;transition:.15s}
+.qzo:hover{border-color:var(--lime)}
+.qzo.ok{background:rgba(201,230,0,.14);border-color:var(--lime);color:var(--lime)}
+.qzo.no{background:rgba(255,107,94,.12);border-color:var(--red);color:var(--red);animation:qshake .3s}
+@keyframes qshake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.qzend{padding:26px 10px;text-align:center}
+.qzend .big{font-size:36px;font-weight:900;color:var(--lime)}
+.qzend .big small{font-size:14px;color:var(--ink3)}
+.qzend p{font-size:11.5px;color:var(--ink2);font-weight:700;margin-top:8px;line-height:1.6}
+.backrow{display:flex;align-items:center;gap:8px}
+.backrow button{font-size:11px;font-weight:900;color:var(--ink3);border:1px solid var(--line2);
+ border-radius:999px;padding:6px 13px}
+.backrow b{font-size:13px;font-weight:900}
+.solq{font-size:13px;font-weight:800;line-height:1.6;color:var(--ink)}
+.solsrc{font-size:9px;color:var(--faint);font-weight:800;margin-bottom:6px}
+
 .fx{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}
 .fx.run{display:block}
 .fx i{position:absolute;width:6px;height:6px;border-radius:2px;background:var(--lime);
@@ -208,10 +235,12 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
      <span class="tab">성적</span>
      <span class="tab newtab" id="tabPlan">플래너</span>
      <span class="tab newtab" id="tabSolve">문제풀이</span>
+     <span class="tab newtab" id="tabCheck">학습점검</span>
     </div>
    </div>
 
    <div class="body">
+   <div class="pn" id="pnHome">
 
     <!-- ── 본체 (항상) ── -->
     <div class="lesson">
@@ -255,11 +284,11 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
       <div class="row"><div class="ic">🧩</div><div class="rb">
         <div class="rt">기울기 개념체크 5문제</div>
         <div class="rs"><em>지난 수업에서 막힌 것</em> · 약 4분</div></div>
-       <button class="sbtn g">시작</button></div>
+       <button class="sbtn g" data-open="check">시작</button></div>
       <div class="row"><div class="ic">✏️</div><div class="rb">
         <div class="rt">쌤 숙제 12문제 · 자동 채점</div>
         <div class="rs">두 점 대입 유형 · 숫자 변형 반복</div></div>
-       <button class="sbtn g">풀기</button></div>
+       <button class="sbtn g" data-open="solve">풀기</button></div>
      </div>
 
      <div class="c">
@@ -302,7 +331,47 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
      </div>
     </div>
 
+   </div><!--/pnHome-->
+
+   <!-- 학습점검 패널 (실구동) -->
+   <div class="pn" id="pnCheck" style="display:none">
+    <div class="c">
+     <div class="backrow"><button data-back>←</button><b>개념 체크 · 기울기</b>
+      <span style="margin-left:auto;font-size:10px;font-weight:900;color:var(--ink3)" id="qzProg">1 / 3</span></div>
+     <div class="qzbar"><i id="qzFill" style="width:8%"></i></div>
+     <div id="qzBody"></div>
+    </div>
+    <div class="c" style="font-size:10.5px;color:var(--ink3);font-weight:700;line-height:1.6">
+     지난 과외(11/8)에서 막힌 <b style="color:var(--ink)">기울기</b> 개념만 묻습니다 · 결과는 쌤 티칭룸과 학부모 리포트로
+    </div>
    </div>
+
+   <!-- 문제풀이 패널 (실구동) -->
+   <div class="pn" id="pnSolve" style="display:none">
+    <div class="c">
+     <div class="backrow"><button data-back>←</button><b>쌤 숙제 · 자동 채점</b>
+      <span style="margin-left:auto;font-size:10px;font-weight:900;color:var(--ink3)" id="svScore">0 / 2</span></div>
+    </div>
+    <div class="c">
+     <div class="solsrc">문항 #41827 · 중2-1 공통 · 기울기와 절편</div>
+     <div class="solq">두 점 (2, 1)과 (5, 7)을 지나는 직선의 기울기는?</div>
+     <div class="qzopts sv" data-a="1">
+      <button class="qzo">−2</button><button class="qzo">2</button><button class="qzo">3</button>
+     </div>
+    </div>
+    <div class="c">
+     <div class="solsrc">문항 #41831 · 변형 재출제 — 지난주 오답 유형</div>
+     <div class="solq">두 점 (1, 5)와 (4, −1)을 지나는 직선의 기울기는?</div>
+     <div class="qzopts sv" data-a="0">
+      <button class="qzo">−2</button><button class="qzo">2</button><button class="qzo">−3</button>
+     </div>
+    </div>
+    <div class="c" style="font-size:10.5px;color:var(--ink3);font-weight:700;line-height:1.6">
+     쌤이 수업 종료 때 고른 문항입니다 · 틀리면 숫자를 바꿔 다시 나와요
+    </div>
+   </div>
+
+  </div><!--/body-->
   </div></div>
  </div>
 
@@ -385,6 +454,80 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
  }
  document.querySelectorAll('.vbtn').forEach(function(b){
   b.addEventListener('click',function(){set(+b.dataset.v);});
+ });
+
+ /* ===== 패널 전환 + 실구동 퀴즈 ===== */
+ function openPanel(p){
+  if(p!=='home' && V<1) set(1);
+  ['Home','Check','Solve'].forEach(function(n){
+   document.getElementById('pn'+n).style.display = (n.toLowerCase()===p)?'':'none';});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  var map={home:0, solve:'tabSolve', check:'tabCheck'};
+  if(p==='home') document.querySelectorAll('.tab')[0].classList.add('on');
+  else document.getElementById(map[p]).classList.add('on');
+  document.getElementById('scr').scrollTo({top:0});
+  if(p==='check'){qi=0;qScore=0;qzRender();}
+ }
+ document.querySelectorAll('.tab')[0].addEventListener('click',function(){openPanel('home');});
+ document.getElementById('tabSolve').addEventListener('click',function(){openPanel('solve');});
+ document.getElementById('tabCheck').addEventListener('click',function(){openPanel('check');});
+ document.addEventListener('click',function(e){
+  var o=e.target.closest('[data-open]'); if(o){openPanel(o.dataset.open);return;}
+  if(e.target.closest('[data-back]')) openPanel('home');
+ });
+
+ /* 개념 체크 — 스텝 퀴즈 */
+ var QZ=[
+  {pre:'두 점을 지나는 직선의 기울기는',post:'의 증가량을 x의 증가량으로 나눈 값이다',c:['y','x','절편'],a:0},
+  {pre:'기울기를 구할 때 분모에 들어가는 것은',post:'의 증가량이다',c:['x','y','원점'],a:0},
+  {pre:'기울기가 음수이면 그래프는 오른쪽으로 갈수록',post:'',c:['내려간다','올라간다'],a:0}
+ ];
+ var qi=0,qScore=0,qLock=false;
+ function qzRender(){
+  var box=document.getElementById('qzBody'); if(!box)return;
+  if(qi>=QZ.length){
+   document.getElementById('qzProg').textContent='완료';
+   document.getElementById('qzFill').style.width='100%';
+   box.innerHTML='<div class="qzend"><div class="big">'+qScore+'<small> / '+QZ.length+'</small></div>'+
+    '<p>결과가 <b>쌤 티칭룸</b>과 <b>학부모 리포트</b>로 갑니다.<br>틀린 개념은 내일 분량에 자동으로 섞여요.</p>'+
+    '<button class="sbtn g" style="margin-top:14px" id="qzAgain">한 번 더</button></div>';
+   document.getElementById('qzAgain').addEventListener('click',function(){qi=0;qScore=0;qzRender();});
+   return;
+  }
+  var q=QZ[qi];
+  document.getElementById('qzProg').textContent=(qi+1)+' / '+QZ.length;
+  document.getElementById('qzFill').style.width=Math.round(qi/QZ.length*100+8)+'%';
+  box.innerHTML='<div class="qzq">'+q.pre+' <span class="qzb" id="qzBlank">&nbsp;</span> '+q.post+'</div>'+
+   '<div class="qzopts">'+q.c.map(function(t,k){return '<button class="qzo" data-k="'+k+'">'+t+'</button>';}).join('')+'</div>';
+  qLock=false;
+  box.querySelectorAll('.qzo').forEach(function(o){
+   o.addEventListener('click',function(){
+    if(qLock)return; qLock=true;
+    var ok=(+o.dataset.k===q.a), bl=document.getElementById('qzBlank');
+    bl.textContent=o.textContent; if(!ok)bl.classList.add('no');
+    o.classList.add(ok?'ok':'no');
+    if(ok)qScore++;
+    else box.querySelectorAll('.qzo').forEach(function(x){if(+x.dataset.k===q.a)x.classList.add('ok');});
+    box.querySelectorAll('.qzo').forEach(function(x){x.disabled=true;});
+    setTimeout(function(){qi++;qzRender();}, ok?650:1400);
+   });
+  });
+ }
+
+ /* 문제풀이 — 자동 채점 */
+ var svDone=0,svOk=0;
+ document.querySelectorAll('.qzopts.sv').forEach(function(g){
+  var a=+g.dataset.a, done=false;
+  g.querySelectorAll('.qzo').forEach(function(o,k){
+   o.addEventListener('click',function(){
+    if(done)return; done=true; svDone++;
+    var ok=(k===a); if(ok)svOk++;
+    o.classList.add(ok?'ok':'no');
+    if(!ok)g.querySelectorAll('.qzo')[a].classList.add('ok');
+    g.querySelectorAll('.qzo').forEach(function(x){x.disabled=true;});
+    document.getElementById('svScore').textContent=svOk+' / 2'+(svDone===2?' · 쌤에게 전송됨':'');
+   });
+  });
  });
 })();
 </script>
