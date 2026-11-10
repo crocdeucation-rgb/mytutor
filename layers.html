@@ -200,6 +200,69 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .fx i{position:absolute;width:6px;height:6px;border-radius:2px;background:var(--lime);
  animation:fall 1s ease-in forwards}
 @keyframes fall{from{opacity:1;transform:translateY(-14px) rotate(0)}to{opacity:0;transform:translateY(90px) rotate(190deg)}}
+
+/* ===== 실제 쌤이다 학생 포털 스킨 (class/style.css 토큰 그대로) ===== */
+.phone{border-color:#1b1d18;background:#EFF1E9}
+.scr{background:#EFF1E9;color:#2a2c26}
+.apph{background:#fff;border-bottom:1px solid #e8eddd}
+.apph .logo{color:#383b31}
+.apph .logo i{color:#15c6a3}
+.apph .me{color:#6c7162}
+.tab{color:#6c7162;font-weight:800}
+.tab.on{color:#43531a;border-color:#43531a}
+.tab.newtab::after{color:#7E9A12}
+.c{background:#fff;border:1px solid #e8eddd;box-shadow:0 10px 26px rgba(25,29,22,.05)}
+.c .ch h3{color:#2a2c26}
+.c .note{color:#8d9282}
+.vtag.vt-core{background:#EFF1E9;color:#6c7162}
+.vtag.vt-1{background:#f4f6ee;color:#43531a}
+.vtag.vt-h{background:#fff3df;color:#9a5c00}
+.lesson{background:linear-gradient(135deg,#3b3f34,#293023);border:0;box-shadow:0 12px 30px rgba(25,29,22,.18)}
+.lesson::after{background:radial-gradient(closest-side,rgba(194,218,105,.25),transparent)}
+.lesson .s{color:#a8f2e4}
+.lesson p{color:#dae1cd}
+.enter{background:#c2da69;color:#26301c;box-shadow:0 10px 26px -8px rgba(38,48,28,.5)}
+.enter:hover{background:#d4ec7a}
+.row+.row{border-top:1px solid #e8eddd}
+.row .ic{background:#EFF1E9}
+.row .rt{color:#2a2c26}
+.row .rs{color:#8d9282}
+.row .rs em{color:#43531a;font-weight:900}
+.sbtn{background:#EFF1E9;border:0;color:#5a5e51}
+.sbtn.g{background:#43531a;color:#fff}
+.dd{background:#fff;border:1px solid #e8eddd}
+.dd b{color:#2a2c26}
+.dd span{color:#8d9282}
+.d.r{background:#fff0f0;color:#b42318}
+.d.s{background:#e9f1fb;color:#1d5fa8}
+.d.y{background:#fff3df;color:#9a5c00}
+.glowline{border-color:rgba(126,154,18,.45)}
+.glowline::after{background:#EFF1E9;color:#7E9A12}
+.glowline.h{border-color:rgba(154,92,0,.4)}
+.glowline.h::after{color:#9a5c00}
+.gapline{color:#2a2c26}
+.gapline+.gapline{border-top:1px solid #e8eddd}
+.gapline .n{background:#fff0f0;color:#b42318}
+.gapline .n.k{background:#e9fbf4;color:#08745b}
+.gapline .w{color:#8d9282}
+.pbar b{color:#43531a}
+.pbar span,.pbar .m{color:#8d9282}
+.qzbar{background:#EFF1E9}
+.qzbar i{background:#43531a}
+.qzq{color:#2a2c26}
+.qzb{border-color:#43531a;color:#43531a}
+.qzb.no{border-color:#b42318;color:#b42318}
+.qzo{background:#fff;border:1.5px solid #dae1cd;color:#2a2c26}
+.qzo:hover{border-color:#43531a;background:#f4f6ee}
+.qzo.ok{background:#e9fbf4;border-color:#08745b;color:#08745b}
+.qzo.no{background:#fff0f0;border-color:#b42318;color:#b42318}
+.qzend .big{color:#43531a}
+.qzend .big small,.qzend p{color:#6c7162}
+.backrow button{border:1px solid #dae1cd;color:#6c7162;background:#fff}
+.backrow b{color:#2a2c26}
+.solq{color:#2a2c26}
+.solsrc{color:#9a9f91}
+
 </style>
 </head>
 <body>
@@ -229,13 +292,14 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
     <div class="r1"><div class="logo">쌤이다<i>.</i></div><div class="me">민준 · 중2 · 공통과정</div></div>
     <div class="tabs">
      <span class="tab on">스터디룸</span>
+     <span class="tab">내 쌤</span>
      <span class="tab">리포트</span>
      <span class="tab">숙제</span>
      <span class="tab">질문</span>
      <span class="tab">성적</span>
+     <span class="tab" id="tabCheck">학습 점검</span>
      <span class="tab newtab" id="tabPlan">플래너</span>
      <span class="tab newtab" id="tabSolve">문제풀이</span>
-     <span class="tab newtab" id="tabCheck">학습점검</span>
     </div>
    </div>
 

@@ -264,7 +264,7 @@ footer{border-top:1px solid var(--line);padding:30px 24px;text-align:center;font
    <div class="lsteps rv" id="lsteps">
     <div class="lstep on" data-i="0"><div class="no">1</div><div><b>수업 종료 — 쌤이 기록</b><p>오늘 단원 · 막힌 지점 · 이해도. 숙제는 문항은행에서 고름 → 고르는 행위가 곧 단원 태깅</p></div></div>
     <div class="lstep" data-i="1"><div class="no">2</div><div><b>마이코치가 자동 배정</b><p>막힌 개념 문제 · 복습 체크 · 수행 D-day 준비를 아이의 일주일에 깔아줌 — 사람 손 0</p></div></div>
-    <div class="lstep" data-i="2"><div class="no">3</div><div><b>아이가 풀고, 기계가 채점</b><p>19.9만 문항 · 출판사 매칭 · 자동 채점. 당일 체크 + 며칠 뒤 간격 체크로 "남았는지"까지 확인</p></div></div>
+    <div class="lstep" data-i="2"><div class="no">3</div><div><b>아이가 풀면, 바로 채점</b><p>19.9만 문항 · 출판사 매칭 · 자동 채점. 당일 체크 + 며칠 뒤 간격 체크로 "남았는지"까지 확인</p></div></div>
     <div class="lstep" data-i="3"><div class="no">4</div><div><b>결과가 역류한다</b><p>쌤은 "지난주 어디서 막혔는지 아는 상태"로 수업 시작. 학부모 리포트엔 쌤 평가 vs 정답률 대조</p></div></div>
     <div class="lstep" data-i="4"><div class="no">5</div><div><b>안 풀리면 — 사람이 붙는다</b><p>자동으로 안 풀리는 아이에게 PRO(사람 구간) 제안이 뜸. 업셀이 영업이 아니라 데이터에서 나옴</p></div></div>
    </div>
@@ -473,7 +473,7 @@ footer{border-top:1px solid var(--line);padding:30px 24px;text-align:center;font
 
  /* loop 원형 배치 + 자동 순환 */
  var loop=document.getElementById('loop');
- var NODES=[['👩‍🏫','수업 종료','쌤이 기록'],['⚙️','자동 배정','마이코치'],['✏️','풀이·채점','기계가'],['↩️','역류','쌤·학부모'],['🧑‍🤝‍🧑','사람 ON','업셀']];
+ var NODES=[['👩‍🏫','수업 종료','쌤이 기록'],['⚙️','자동 배정','마이코치'],['✏️','풀이·채점','자동으로'],['↩️','역류','쌤·학부모'],['🧑‍🤝‍🧑','사람 ON','업셀']];
  NODES.forEach(function(n,i){
   var a=(-90+i*72)*Math.PI/180, r=43;
   var d=document.createElement('div'); d.className='lnode'+(i===0?' on':''); d.dataset.i=i;
