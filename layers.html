@@ -13,8 +13,10 @@
  --sun:#FFC24B; --sky:#6FB7FF; --vio:#B894FF; --red:#FF6B5E; --ok:#7BE38B;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden}
 body{font-family:Pretendard,"Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);
  letter-spacing:-.015em;line-height:1.55;min-height:100vh}
+@media(max-width:640px){.stack{height:340px;transform:scale(.82);transform-origin:top center}.stackwrap{position:static}.main{padding:24px 12px 60px}}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 /* ===== 상단 ===== */

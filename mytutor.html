@@ -44,8 +44,9 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .device{background:var(--bg);overflow:hidden;position:relative;transition:width .25s,height .25s,border-radius .25s}
 body.pc .device{width:100%;max-width:1420px;height:calc(100vh - 92px);border-radius:16px 16px 0 0;
  box-shadow:0 -4px 50px rgba(0,0,0,.4)}
-body.mob .device{width:392px;height:calc(100vh - 104px);max-height:844px;border-radius:30px;
+body.mob .device{width:min(392px,100vw);height:calc(100vh - 104px);max-height:844px;border-radius:30px;
  border:9px solid #14172C;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+@media(max-width:640px){body.mob .device{border-width:0;border-radius:0;height:calc(100vh - 118px)}html,body{overflow-x:hidden}}
 .scroll{height:100%;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
 .scroll::-webkit-scrollbar{width:7px}
 .scroll::-webkit-scrollbar-thumb{background:#D6DCD4;border-radius:99px}
@@ -2115,7 +2116,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
 (function(){
   var ADDONS={base:true,suh:false,note:false,exam:false};
   window.__ADDONS=ADDONS;
-  var DEV='pc', AGE='hi';
+  var DEV=(window.innerWidth<=640)?'mob':'pc', AGE='hi';
   var GRADE='common';
 
   function qsa(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
@@ -2151,6 +2152,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
     });
   });
   shell();
+  qsa('[data-d]').forEach(function(x){x.classList.toggle('on',x.dataset.d===DEV);});
 
   /* ---- 애드온 ---- */
   var COURSE={
