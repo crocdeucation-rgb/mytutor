@@ -339,9 +339,9 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
      <div class="c">
       <div class="ch"><h3>학습 플래너</h3><span class="vtag vt-1">V1 자동</span><span class="note">반포중 학사일정 연동</span></div>
       <div class="ddrow">
-       <div class="dd"><span class="d r">D-1</span><b>국어 말하기 수행</b><span>세부 범위 공지됨 · 역산 플랜</span></div>
-       <div class="dd"><span class="d s">D-6</span><b>과학 실험보고서</b><span>어제 범위 떴어요</span></div>
-       <div class="dd"><span class="d y">D-12</span><b>2학기 중간</b><span>범위 변동 자동 반영</span></div>
+       <div class="dd" data-sheet="dd1" style="cursor:pointer"><span class="d r">D-1</span><b>국어 말하기 수행</b><span>세부 범위 공지됨 · 역산 플랜</span></div>
+       <div class="dd" data-sheet="dd2" style="cursor:pointer"><span class="d s">D-6</span><b>과학 실험보고서</b><span>어제 범위 떴어요</span></div>
+       <div class="dd" data-sheet="dd3" style="cursor:pointer"><span class="d y">D-12</span><b>2학기 중간</b><span>범위 변동 자동 반영</span></div>
       </div>
      </div>
 
@@ -378,7 +378,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
       <div class="row"><div class="ic">✍️</div><div class="rb">
         <div class="rt">말하기 원고 2차 — 코멘트 도착</div>
         <div class="rs">"도입에서 결론을 먼저. 2문단 둘째 줄을 맨 앞으로"</div></div>
-       <button class="sbtn g">열기</button></div>
+       <button class="sbtn g" data-sheet="fb">열기</button></div>
       <div class="row"><div class="ic">🗂</div><div class="rb">
         <div class="rt">시험 주간 점검</div>
         <div class="rs">영어 이행률 낮음 → 회차 재배분됨</div></div></div>
@@ -393,7 +393,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
       <div class="row"><div class="ic">📓</div><div class="rb">
         <div class="rt">11/8 수업 필기 · 코멘트 2</div>
         <div class="rs">"기울기 분모에 x의 차이 — 3번 줄만 고치면 다 맞아요"</div></div>
-       <button class="sbtn g">보기</button></div>
+       <button class="sbtn g" data-sheet="note">보기</button></div>
      </div>
     </div>
 
@@ -505,6 +505,14 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
    <tr><td style="padding:9px 0;border-bottom:1px solid #e8eddd;color:#8d9282">참여도</td><td style="text-align:right;font-weight:900;color:#08745b">●●●●○ 4/5</td></tr>
    <tr><td style="padding:9px 0;color:#8d9282">숙제</td><td style="text-align:right;font-weight:900">12문제 · 자동 채점 대기</td></tr>
   </table>
+ </div>
+</div>
+
+<div id="genOvl" style="position:fixed;inset:0;z-index:300;background:rgba(10,12,9,.7);display:none;align-items:center;justify-content:center;padding:16px">
+ <div style="background:#fff;border-radius:20px;width:min(430px,100%);max-height:90%;overflow:auto;padding:20px;color:#2a2c26">
+  <div style="display:flex;align-items:center;gap:8px"><b style="font-size:15px" id="genT"></b>
+   <button id="genX" style="margin-left:auto;width:28px;height:28px;border-radius:99px;background:#EFF1E9;border:0;font-weight:900">✕</button></div>
+  <div id="genB" style="margin-top:12px"></div>
  </div>
 </div>
 
@@ -666,6 +674,36 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
  var tp=document.getElementById('tabPlan');
  if(tp)tp.addEventListener('click',function(){openPanel('home');
   var dd=document.querySelector('.ddrow'); if(dd)dd.scrollIntoView({behavior:'smooth',block:'center'});});
+
+ /* 범용 시트 */
+ var SHEETS={
+  fb:{t:'말하기 원고 2차 — 첨삭',h:'<div style="background:#EFF1E9;border-radius:12px;padding:12px;font-size:12.5px;font-weight:700;line-height:1.65">"우리 동네 횡단보도가 위험한 이유는… <u>그래서 저는 신호 시간을 늘려야 한다고 생각합니다.</u>"</div>'+
+   '<div style="margin-top:11px;font-size:12px;font-weight:700;line-height:1.6">💬 <b>매니저 코멘트</b><br>① 밑줄 친 결론을 <b>맨 앞으로</b> — 도입에서 결론을 먼저 말하면 3분 안에 들어가요.<br>② 근거 2번이 숫자가 없어요. "하루 몇 명이 건너는지" 한 줄이면 설득력이 달라져요.</div>'+
+   '<button class="sbtn g" data-lt="수정본이 올라갔어요 — 내일 오전까지 회신" style="width:100%;margin-top:14px;padding:12px">수정본 올리기</button>'},
+  note:{t:'11/8 수업 필기 · 코멘트 2',h:'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'+
+   '<div style="border:1px solid #e8eddd;border-radius:10px;height:110px;display:grid;place-items:center;background:#EFF1E9;font-size:11px;color:#8d9282;font-weight:800">📄 1쪽</div>'+
+   '<div style="border:2px solid #43531a;border-radius:10px;height:110px;display:grid;place-items:center;background:#f4f6ee;font-size:11px;color:#43531a;font-weight:800">📄 2쪽 · 코멘트</div></div>'+
+   '<div style="margin-top:11px;font-size:12px;font-weight:700;line-height:1.6">💬 <b>김서연 쌤</b><br>"기울기 구할 때 분모에 <b>x의 차이</b>가 와야 하는데 3번 줄에서 반대로 썼어요. 거기만 고치면 다 맞습니다."<br>"식 전개 과정을 생략하지 말고 한 줄씩 — 시험에서 부분점수가 달라져요."</div>'+
+   '<button class="sbtn g" data-lt="오늘 필기가 올라갔어요 — 다음 수업 전까지 코멘트가 와요" style="width:100%;margin-top:14px;padding:12px">오늘 필기 올리기</button>'},
+  dd1:{t:'국어 말하기 수행 · D-1',h:sheetSteps([['done','채점기준표 확인 — 논리 40 / 전달 30 / 시간 30'],['done','주제 정하기 · 자료 조사'],['done','원고 600자 제출'],['now','소리 내어 3번 읽기 — 3분 타이머'],['','발표']])},
+  dd2:{t:'과학 실험보고서 · D-6',h:sheetSteps([['now','주제·가설 정하기 — 교과서 Ⅲ단원 안에서'],['','실험 수행·데이터 기록'],['','보고서 초안 (서론-과정-결과-고찰)'],['','제출']])},
+  dd3:{t:'2학기 중간고사 · D-12',h:sheetSteps([['done','범위 핵심 정리 읽기'],['now','범위 문제 10문항 — 출판사 매칭'],['','오답 정리 · 시험 3일 전 자동 총정리']])}
+ };
+ function sheetSteps(a){return a.map(function(x){
+  var c=x[0]==='done'?'#08745b':(x[0]==='now'?'#43531a':'#8d9282');
+  var m=x[0]==='done'?'✓':(x[0]==='now'?'▶':'·');
+  return '<div style="display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #e8eddd;font-size:12.5px;font-weight:700;color:'+c+'"><b>'+m+'</b><span>'+x[1]+'</span></div>';}).join('')
+  +'<div style="margin-top:10px;font-size:10.5px;color:#8d9282;font-weight:700">공지 감지 → 남은 날짜 역산으로 자동 생성된 플랜입니다</div>';}
+ document.addEventListener('click',function(e){
+  var sh=e.target.closest('[data-sheet]');
+  if(sh){var d=SHEETS[sh.dataset.sheet]; if(d){document.getElementById('genT').textContent=d.t;
+   document.getElementById('genB').innerHTML=d.h;
+   document.getElementById('genOvl').style.display='flex';} return;}
+  var l=e.target.closest('[data-lt]');
+  if(l){document.getElementById('genOvl').style.display='none'; ltoast(l.dataset.lt); return;}
+ });
+ document.getElementById('genX').addEventListener('click',function(){document.getElementById('genOvl').style.display='none';});
+ document.getElementById('genOvl').addEventListener('click',function(e){if(e.target===this)this.style.display='none';});
 })();
 </script>
 </body>
