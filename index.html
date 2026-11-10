@@ -549,9 +549,9 @@ body.mob .xpbar .xn{display:none}
   <button class="nav" data-v="parent"><span class="ic">📈</span>성적·성장</button>
 
   <div class="seg">애드온</div>
-  <button class="nav" data-need="suh"><span class="ic">📝</span>수행관리<span class="lk">+</span></button>
-  <button class="nav" data-need="note"><span class="ic">📓</span>필기관리<span class="lk">+</span></button>
-  <button class="nav" data-need="exam"><span class="ic">📅</span>시험관리<span class="lk">+</span></button>
+  <button class="nav" data-v="suh" data-need="suh"><span class="ic">📝</span>수행관리<span class="lk">+</span></button>
+  <button class="nav" data-v="note" data-need="note"><span class="ic">📓</span>필기관리<span class="lk">+</span></button>
+  <button class="nav" data-v="exam" data-need="exam"><span class="ic">📅</span>시험관리<span class="lk">+</span></button>
 
   <div class="seg">시연 전용</div>
   <button class="nav" data-v="teacher"><span class="ic">👨‍🏫</span>쌤 · 수업종료</button>
@@ -1146,6 +1146,219 @@ body.mob .xpbar .xn{display:none}
           <div class="gap"><div class="num ok">2</div><div class="gb"><div class="gt">학부모 리포트</div><div class="gs">회차별 이해도 추이에 누적</div></div></div>
           <div class="gap"><div class="num ok">3</div><div class="gb"><div class="gt">막힌 개념 큐</div><div class="gs">틀린 개념은 오늘 할 것에 다시 섞임</div></div></div>
         </div>
+      </div>
+    </div>
+    <div class="sp"></div>
+  </div>
+</section>
+
+
+<!-- ---------- 수행관리 ---------- -->
+<section class="view" data-view="suh">
+  <div class="hd"><div class="r1">
+    <div><h1>수행관리</h1><div class="sub">학교 공지 감지 → 1주 역산 플랜</div></div>
+    <div class="right"><span class="tie-chip" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>수행평가 허브 연동</span></div>
+  </div></div>
+  <div class="wrap">
+    <div class="ban info"><span class="bi">🏫</span>
+      <span>학교 평가계획의 수행평가는 <b>대단원 수준</b>까지만 공지됩니다. 세부 범위는 시행 약 1주 전에 긴급 공지돼요. 그 1주 안에 준비·작성·발표까지 끝내야 해서 <b>공지 감지 → 1주 역산</b> 구조로 갑니다.</span></div>
+
+    <div class="cols">
+      <div class="stk">
+        <div class="card">
+          <div class="ch"><h2>국어 말하기 수행 · D-1</h2><span class="tag t-base">일정은 기본</span>
+            <span class="note">11/11(화) 3교시 시행</span></div>
+          <div class="task done"><div class="ic i-g">✅</div>
+            <div class="tb"><div class="tt">D-7 · 채점기준표 확인</div><div class="ts">평가계획서에서 자동 추출 — 논리성 40 / 전달력 30 / 시간준수 30</div></div></div>
+          <div class="task done"><div class="ic i-g">✅</div>
+            <div class="tb"><div class="tt">D-5 · 주제 정하기</div><div class="ts">교과서 단원에서 출발 — 세특에 자연스럽게 남는 주제로</div></div></div>
+          <div class="task done"><div class="ic i-g">✅</div>
+            <div class="tb"><div class="tt">D-3 · 원고 1차</div><div class="ts">600자 · 제출함</div></div></div>
+          <div class="task"><div class="ic i-s">🗣</div>
+            <div class="tb"><div class="tt">D-1 · 소리 내어 3번 읽기</div><div class="ts">3분 안에 들어가는지 확인 · 타이머 제공</div></div>
+            <button class="btn g sm">시작</button></div>
+          <div class="task"><div class="ic i-k">🎬</div>
+            <div class="tb"><div class="tt">D-0 · 발표</div><div class="ts">끝나고 "어땠는지" 한 줄 기록 → 다음 수행에 반영</div></div></div>
+        </div>
+
+        <div class="lock" data-lock="suh" style="border-radius:16px">
+          <div class="inner">
+            <div class="card" style="border-color:var(--sun)">
+              <div class="ch"><h2>원고 첨삭</h2><span class="tag t-suh">수행관리 애드온</span>
+                <span class="note">전담 매니저</span></div>
+              <table class="tbl">
+                <tr><td>1차 원고<small>11/8 제출 · 600자</small></td><td class="num" style="color:var(--ok)">회신 완료</td></tr>
+                <tr><td>2차 원고<small>11/10 제출 · 수정본</small></td><td class="num" style="color:var(--sun-ink)">검토 중</td></tr>
+              </table>
+              <div class="ban info" style="margin-top:11px"><span class="bi">✍️</span>
+                <span>“도입에서 결론을 먼저 말하면 3분 안에 들어갑니다. 2문단 두 번째 줄을 맨 앞으로 옮겨 보세요.”</span></div>
+            </div>
+          </div>
+          <div class="lockbox">
+            <div style="font-size:21px">🔒</div>
+            <div class="ln">첨삭은 수행관리 애드온</div>
+            <div class="lp">일정·역산 플랜·채점기준표는 기본 10만에 포함됩니다. <b>사람이 원고를 봐주는 것</b>만 애드온이에요</div>
+            <button class="btn g sm" data-add="suh">켜서 보기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stk">
+        <div class="card">
+          <div class="ch"><h2>이번 학기 수행 전체</h2><span class="note">반포중 2학년</span></div>
+          <table class="tbl">
+            <tr><td>국어 말하기<small>세부 범위 공지됨</small></td><td class="num" style="color:var(--red)">D-1</td></tr>
+            <tr><td>과학 실험보고서<small>어제 범위 떴어요</small></td><td class="num" style="color:var(--sun-ink)">D-6</td></tr>
+            <tr><td>수학 수행<small>대단원만 공지</small></td><td class="num">D-9</td></tr>
+            <tr><td>영어 쓰기<small>미공지</small></td><td class="num" style="color:var(--ink3)">—</td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="ch"><h2>수행이 가는 곳</h2></div>
+          <div class="gap"><div class="num ok">1</div><div class="gb"><div class="gt">내신 성적</div><div class="gs">지역·학교마다 다르지만 내신의 30~40%</div></div></div>
+          <div class="gap"><div class="num ok">2</div><div class="gb"><div class="gt">교과 세특</div><div class="gs">탐구·발표 모습이 기록으로 남음</div></div></div>
+          <div class="gap"><div class="num ok">3</div><div class="gb"><div class="gt">고3 면접</div><div class="gs">학생부에 적힌 활동을 물어봄</div></div></div>
+          <div class="ban warn" style="margin-top:11px"><span class="bi">🗣</span>
+            <span>수행을 잘하는 것만큼 <b>한 것을 발표하는 능력</b>이 중요합니다. 말하게 하는 콘텐츠를 따로 넣는 이유예요.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="sp"></div>
+  </div>
+</section>
+
+<!-- ---------- 시험관리 ---------- -->
+<section class="view" data-view="exam">
+  <div class="hd"><div class="r1">
+    <div><h1>시험관리</h1><div class="sub">2학기 중간 · D-12</div></div>
+    <div class="right"><span class="tie-chip" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>수행평가 허브 연동</span></div>
+  </div></div>
+  <div class="wrap">
+    <div class="ban info"><span class="bi">📅</span>
+      <span>시험 범위·날짜는 <b>학교 공지가 기준</b>이고 학교가 바꾸는 경우가 있습니다. 변동이 뜨면 플래너가 자동으로 다시 짜집니다.</span></div>
+
+    <div class="cols">
+      <div class="stk">
+        <div class="card">
+          <div class="ch"><h2>오늘의 시험 스텝업</h2><span class="tag t-base">기본 10만</span>
+            <span class="note">수학 · 일차함수</span></div>
+          <div class="task done"><div class="ic i-g">1</div>
+            <div class="tb"><div class="tt">범위 핵심 정리 읽기</div><div class="ts">오늘 범위 요약 · 완료</div></div></div>
+          <div class="task"><div class="ic i-k">2</div>
+            <div class="tb"><div class="tt">범위 문제 풀기</div><div class="ts">문항 DB · 시험범위 10문항 · 천재교육 매칭</div></div>
+            <button class="btn g sm" data-go="solve">풀기</button></div>
+          <div class="task"><div class="ic i-p">3</div>
+            <div class="tb"><div class="tt">틀린 것 오답 정리</div><div class="ts">풀고 나면 자동으로 모여요</div></div></div>
+          <div class="ban lime" style="margin-top:11px"><span class="bi">🔁</span>
+            <span>시험 <b>3일 전</b>엔 전체 오답 총정리가 자동으로 뜹니다. 이 진도는 쌤 티칭룸과 학부모 리포트에 그대로 반영돼요.</span></div>
+        </div>
+
+        <div class="card">
+          <div class="ch"><h2>시험 범위</h2><span class="note">학교 공지 · 11/3 갱신</span></div>
+          <table class="tbl">
+            <tr><td>수학<small>Ⅱ. 식의 계산 ~ Ⅲ. 일차함수 2단원</small></td><td class="num" style="color:var(--sun-ink)">이행 35%</td></tr>
+            <tr><td>국어<small>3. 상황에 맞는 표현 전체</small></td><td class="num" style="color:var(--ok)">이행 71%</td></tr>
+            <tr><td>영어<small>Lesson 5~7</small></td><td class="num" style="color:var(--red)">이행 12%</td></tr>
+            <tr><td>과학<small>범위 변동 — 11/3 재공지</small></td><td class="num" style="color:var(--ink3)">플랜 재생성됨</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stk">
+        <div class="lock" data-lock="exam" style="border-radius:16px">
+          <div class="inner">
+            <div class="card" style="border-color:var(--sky)">
+              <div class="ch"><h2>시험 계획 관리</h2><span class="tag t-exam">시험관리 애드온</span></div>
+              <table class="tbl">
+                <tr><td>주간 점검<small>11/7 · 담당자</small></td><td class="num">영어 이행률 낮음</td></tr>
+                <tr><td>계획 조정<small>과목별 회차 재배분</small></td><td class="num" style="color:var(--ok)">반영됨</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="lockbox">
+            <div style="font-size:21px">🔒</div>
+            <div class="ln">시험관리 애드온 · 10만</div>
+            <div class="lp">일정·범위·스텝업은 기본 포함. 사람이 붙는지는 <b>아직 미정</b>이라 이 화면도 가안입니다</div>
+            <button class="btn g sm" data-add="exam">켜서 보기</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ch"><h2>예상문제</h2><span class="note">포인트로 교환</span></div>
+          <div class="task"><div class="ic i-v">📝</div>
+            <div class="tb"><div class="tt">수학 기말 예상문제 10문제</div>
+              <div class="ts">시험지 분석 받은 과목 · 약한 단원 위주</div></div>
+            <button class="btn g sm">50P</button></div>
+          <div class="task"><div class="ic i-k">🔒</div>
+            <div class="tb"><div class="tt">국어 예상문제</div>
+              <div class="ts">시험지 분석을 먼저 받아 주세요</div></div></div>
+          <div class="mini" style="margin-top:9px">받은 예상문제는 "선생님께 보내기"로 쌤 티칭룸 숙제가 됩니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sp"></div>
+  </div>
+</section>
+
+<!-- ---------- 필기관리 ---------- -->
+<section class="view" data-view="note">
+  <div class="hd"><div class="r1">
+    <div><h1>필기관리</h1><div class="sub">담당 과외 쌤이 직접 코멘트</div></div>
+    <div class="right"><span class="tag t-note">애드온 10만</span></div>
+  </div></div>
+  <div class="wrap">
+    <div class="ban warn"><span class="bi">🚨</span>
+      <span>본체 <b>ALL INCLUDED</b>에 "노트필기피드백"이 이미 들어 있습니다. 애드온으로 팔려면 <b>포함 = 수업 중 구두 피드백 / 애드온 = 상시 업로드 + 수업 외 코멘트</b>처럼 선을 긋거나, 랜딩에서 빼야 합니다.</span></div>
+
+    <div class="lock" data-lock="note" style="border-radius:16px">
+      <div class="inner">
+        <div class="cols">
+          <div class="stk">
+            <div class="card">
+              <div class="ch"><h2>11/8 수업 필기</h2><span class="note">김서연 쌤 · 코멘트 2</span></div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+                <div style="border:1px solid var(--line);border-radius:10px;height:110px;display:grid;place-items:center;background:var(--line2);font-size:11px;color:var(--faint);font-weight:800">📄 1쪽</div>
+                <div style="border:2px solid var(--vio);border-radius:10px;height:110px;display:grid;place-items:center;background:var(--vio-s);font-size:11px;color:#5B32C4;font-weight:800">📄 2쪽<br>코멘트 2</div>
+                <div style="border:1px solid var(--line);border-radius:10px;height:110px;display:grid;place-items:center;background:var(--line2);font-size:11px;color:var(--faint);font-weight:800">📄 3쪽</div>
+              </div>
+              <div class="ban info" style="margin-top:11px"><span class="bi">💬</span>
+                <span>“기울기 구할 때 <b>분모에 x의 차이</b>를 쓰는데, 3번 줄에서 반대로 썼어요. 거기만 고치면 다 맞습니다.”</span></div>
+            </div>
+
+            <div class="card">
+              <div class="ch"><h2>오늘 필기 올리기</h2></div>
+              <div class="task"><div class="ic i-k">📷</div>
+                <div class="tb"><div class="tt">사진 찍어 올리기</div>
+                  <div class="ts">다음 수업 전까지 코멘트가 와요 · 쪽마다 흐림 자동 검사</div></div>
+                <button class="btn g sm">올리기</button></div>
+            </div>
+          </div>
+
+          <div class="stk">
+            <div class="card">
+              <div class="ch"><h2>지난 코멘트</h2></div>
+              <table class="tbl">
+                <tr><td>11/8 수학<small>부호 실수 반복</small></td><td class="num" style="color:var(--sun-ink)">코멘트 2</td></tr>
+                <tr><td>11/5 수학<small>식 전개 과정 생략</small></td><td class="num">코멘트 1</td></tr>
+                <tr><td>11/1 수학<small>깔끔함</small></td><td class="num" style="color:var(--ok)">통과</td></tr>
+              </table>
+            </div>
+            <div class="card">
+              <div class="ch"><h2>구현 메모</h2></div>
+              <div class="mini" style="line-height:1.7">
+                쌤이다에 <b>pick_photo_feedback_threads / _files / _comments</b>가 이미 있습니다. 사진 올리고 쌤이 코멘트 다는 구조가 통째로 있어서 <b>이름만 붙이면 됩니다</b> — 애드온 4개 중 출시가 제일 빠릅니다.<br><br>
+                단, 쌤 노동이 늘어나므로 <b>pick_teacher_settlement_items</b>에 애드온 정산 줄이 들어갈 수 있어야 합니다 (현재 session_id NOT NULL이라 불가).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lockbox">
+        <div style="font-size:23px">🔒</div>
+        <div class="ln">필기관리 애드온 · 10만</div>
+        <div class="lp">담당 과외 쌤이 직접 봅니다 · 쌤 정산 대상</div>
+        <button class="btn g sm" data-add="note">켜서 보기</button>
       </div>
     </div>
     <div class="sp"></div>
