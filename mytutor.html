@@ -2124,6 +2124,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
 
   /* ---- 뷰 전환 ---- */
   function setView(v){
+    window.__VIEW=v;
     qsa('.view').forEach(function(s){s.classList.toggle('on',s.dataset.view===v);});
     qsa('.bar .grp button[data-v]').forEach(function(b){b.classList.toggle('on',b.dataset.v===v);});
     qsa('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v);});
@@ -2514,6 +2515,27 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
  var LBL={gap:'막힌 거 뭐야?',exam:'시험 범위 맞춰서',wrong:'오답 관리',ask:'쌤한테 질문'};
  var COL={chk:['var(--vio-s)','#5B32C4'],prob:['var(--sun-s)','#8A5A00'],pt:['var(--sky-s)','#1E5BB8'],ask:['var(--brand-s)','#14532D']};
  var opened=false;
+ var AIMODE='stu';
+ var ADM={
+  pick:{t:'<b>김민준</b> 기준이에요. 쌤 태깅 <b>"두 점 대입"</b> 3일째 미해결 · 숙제 정답률 67% vs 쌤 이해도 3/5 — 적용 단계에서 막히는 유형.<br><br>추천 세트: 개념체크 5 + 두 점 대입 변형 8 + 쌤 연계 표시. <button class="chip2" data-done="담았습니다 ✓|민준이 앱에 떴어요 — 시간은 민준이가 고릅니다" style="border-color:var(--brand);color:var(--brand-ink)">민준이에게 담기</button>'},
+  hands:{t:'담당 100명 중 오늘 손이 필요한 건 <b>4명</b>이에요.<br><br>① 김민준 — 막힌 개념 3일째 (담기 추천)<br>② 박서준 — 숙제 2회 연속 미제출 → 학부모 터치 전 쌤 먼저<br>③ 이하은 — 수행 D-2인데 자료 업로드 0건<br>④ 정우진 — 11/8 수업 피드백 미작성 (쌤 리마인드)<br><br>나머지 96명은 자동 루프가 돌고 있어요.'},
+  range:{t:'시험범위 미등록 <b>12명</b> — 범위가 없으면 시험대비 세트가 안 돌아요.<br><br>가장 빠른 길: 학부모 앱 <b>"시험범위표 사진 올리기"</b> 요청 알림톡 일괄 발송. 사진 인식으로 자동 등록돼요. <button class="chip2" data-done="발송 요청됨 ✓|12명 학부모에게 알림톡 발송">일괄 요청</button>'},
+  brief:{t:'이번 주 학부모 브리핑 초안이에요.<br><br>"민준이는 일차함수 기울기에서 3일 막혔다가 오늘 변형 8문제 중 6개를 맞혔습니다. 다음 과외에서 쌤이 두 점 대입부터 다시 짚습니다."<br><br>수치는 기록에서 자동으로 채워지고, 보내기 전에 매니저가 한 줄만 다듬으면 돼요.'}
+ };
+ var ADMLBL={pick:'담아주기 추천',hands:'손 필요한 학생',range:'시험범위 미등록',brief:'학부모 브리핑'};
+ function aiPersona(){
+  var v=window.__VIEW||'home';
+  var m=(v==='admin'||v==='teacher')?'adm':'stu';
+  if(m!==AIMODE){AIMODE=m;opened=false;el('chatw').innerHTML='';}
+  var hd=document.querySelector('#aiwin .aihd div:nth-child(2)');
+  if(hd) hd.innerHTML=(m==='adm')
+   ?'<b>마이코치 — 어드민</b><small>학생용 "내 튜터"와 같은 엔진 · 매니저 보조</small>'
+   :'<b>내 튜터</b><small>어드민 코칭 튜터와 같은 엔진 · 문항 DB</small>';
+  var inp=el('aiin');
+  if(inp) inp.innerHTML=(m==='adm')
+   ?Object.keys(ADMLBL).map(function(k){return '<span class="chip2" data-adm="'+k+'">'+ADMLBL[k]+'</span>';}).join('')
+   :'<span class="chip2" data-ask="gap">막힌 거 뭐야?</span><span class="chip2" data-ask="exam">시험 범위 맞춰서</span><span class="chip2" data-ask="wrong">오답 관리</span><span class="chip2" data-ask="ask">쌤한테 질문</span>';
+ }
  function el(id){return document.getElementById(id);}
  function addU(t){var c=el('chatw');c.innerHTML+='<div class="msg u">'+t+'</div>';c.scrollTop=c.scrollHeight;}
  function addA(h){var c=el('chatw');c.innerHTML+='<div class="msg a"><div class="ab">'+h+'</div></div>';c.scrollTop=c.scrollHeight;}
@@ -2538,13 +2560,18 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
   if(typeof toast==='function') toast('플래너에 '+r.items.length+'개 담았어요');
  }
  el('fab').addEventListener('click',function(){
+  aiPersona();
   el('aiwin').classList.add('show'); el('fab').style.display='none';
   if(!opened){opened=true;
-   addA('안녕 민준아 👋 오늘 상황 보고 왔어.<br><br>지난 과외에서 <b>기울기 두 점 대입</b>이 아직 안 풀렸고, 수행 <b>D-1</b>이야. 뭐부터 할까?');}
+   if(AIMODE==='adm')
+    addA('김튜터 매니저님, 담당 100명 브리핑이에요.<br><br>오늘 손이 필요한 학생 <b>4명</b> · 시험범위 미등록 <b>12명</b>. 나머지는 자동 루프가 돌고 있어요. 어디부터 볼까요?');
+   else
+    addA('안녕 민준아 👋 오늘 상황 보고 왔어.<br><br>지난 과외에서 <b>기울기 두 점 대입</b>이 아직 안 풀렸고, 수행 <b>D-1</b>이야. 뭐부터 할까?');}
  });
  el('aiX').addEventListener('click',function(){el('aiwin').classList.remove('show');el('fab').style.display='grid';});
  document.addEventListener('click',function(e){
   var a=e.target.closest('[data-ask]'); if(a){addU(LBL[a.dataset.ask]);setTimeout(function(){addA(rec(a.dataset.ask));},260);return;}
+  var ad=e.target.closest('[data-adm]'); if(ad){addU(ADMLBL[ad.dataset.adm]);setTimeout(function(){addA(ADM[ad.dataset.adm].t);},260);return;}
   var t=e.target.closest('[data-take]'); if(t){var p=t.dataset.take.split('|');addU(p[1]);setTimeout(function(){take(p[0],p[1]);},240);}
  });
 })();
