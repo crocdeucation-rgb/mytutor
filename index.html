@@ -306,7 +306,7 @@ footer{border-top:1px solid var(--line);padding:30px 24px;text-align:center;font
    </div>
   </div>
   <div class="demo-note" id="demoNote">▲ <b>수업 종료</b>를 눌러보세요</div>
-  <div class="demobtns rv">
+  <div class="demobtns" id="demoNext" style="display:none;opacity:0;transition:.6s">
    <a class="dbtn g" href="layers.html">다음 — 쌤이다 위에 얹히는 구조 보기 →</a>
    <a class="dbtn o" href="mytutor.html">실구동 프로토타입 바로가기</a>
   </div>
@@ -507,7 +507,9 @@ footer{border-top:1px solid var(--line);padding:30px 24px;text-align:center;font
   document.getElementById('sc0t').className='tag2 tg-auto';
   document.getElementById('sc0p').innerHTML='이번 주 분량이 <b style="color:var(--lime)">방금 깔렸습니다</b> — 사람 손 0';
   seq.forEach(function(id,i){setTimeout(function(){document.getElementById(id).classList.add('live');},350+i*420);});
-  setTimeout(function(){document.getElementById('demoNote').innerHTML='쌤의 입력 <b>한 번</b> → 학생의 일주일 <b>전부</b> — 운영 인력 없이 돌아간 장면입니다';},2100);
+  setTimeout(function(){document.getElementById('demoNote').innerHTML='쌤의 입력 <b>한 번</b> → 학생의 일주일 <b>전부</b> — 운영 인력 없이 돌아간 장면입니다';
+   var nx=document.getElementById('demoNext'); nx.style.display='flex';
+   requestAnimationFrame(function(){nx.style.opacity='1';});},2100);
  });
 
  /* ARPU 사다리 */
