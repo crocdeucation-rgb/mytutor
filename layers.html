@@ -311,7 +311,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
      <div class="s">다음 과외 · D-DAY</div>
      <h2>수학 · 김서연 쌤</h2>
      <p>오늘 20:30 – 21:30 · 주 2회</p>
-     <button class="enter">수업 입장하기</button>
+     <button class="enter" id="enterBtn2">🎥 수업 입장하기</button>
     </div>
 
     <div class="c">
@@ -319,15 +319,15 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
      <div class="row"><div class="ic">📒</div><div class="rb">
        <div class="rt">일차함수의 기울기</div>
        <div class="rs">쌤 메모 — 두 점 대입 순서에서 부호 실수 반복 · 이해도 3/5</div></div>
-      <button class="sbtn">리포트</button></div>
+      <button class="sbtn" data-act="report">리포트</button></div>
      <div class="row"><div class="ic">📎</div><div class="rb">
        <div class="rt">숙제 제출</div>
        <div class="rs" id="hwLine">사진 찍어 올리기 → 쌤이 확인해요</div></div>
-      <button class="sbtn" id="hwBtn">올리기</button></div>
+      <button class="sbtn" id="hwBtn" data-act="hw">올리기</button></div>
      <div class="row"><div class="ic">🙋</div><div class="rb">
        <div class="rt">질문하기</div>
        <div class="rs">모르는 문제를 쌤에게 보내요</div></div>
-      <button class="sbtn">질문</button></div>
+      <button class="sbtn" data-act="ask">질문</button></div>
     </div>
 
     <!-- ── V1 레이어 ── -->
@@ -465,6 +465,49 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 <div class="fx" id="fx"></div>
 
+
+<div id="clsOvl" style="position:fixed;inset:0;z-index:300;background:rgba(10,12,9,.7);display:none;align-items:center;justify-content:center;padding:16px">
+ <div style="background:#101210;border-radius:20px;width:min(720px,100%);max-height:92%;overflow:auto;padding:16px;color:#E8EDE2;border:1px solid #2A2F26">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+    <span style="width:8px;height:8px;border-radius:99px;background:#FF5A5A;box-shadow:0 0 10px #FF5A5A"></span>
+    <b style="font-size:14px">LIVE · 수학 과외</b><span style="font-size:11px;color:#9AA395">김서연 쌤 · 민준</span>
+    <b id="clsT" style="margin-left:auto;font-size:13px;color:#C9E600;font-variant-numeric:tabular-nums">00:00</b>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="aspect-ratio:4/3;border-radius:14px;background:linear-gradient(140deg,#23261C,#161812);display:grid;place-items:center;position:relative">
+      <div style="width:60px;height:60px;border-radius:50%;background:#c2da69;color:#26301c;display:grid;place-items:center;font-size:22px;font-weight:900">서</div>
+      <span style="position:absolute;left:10px;bottom:9px;font-size:10.5px;font-weight:800;background:rgba(0,0,0,.45);padding:3px 8px;border-radius:6px">김서연 쌤 🎤</span></div>
+    <div style="aspect-ratio:4/3;border-radius:14px;background:linear-gradient(140deg,#1C2026,#13151A);display:grid;place-items:center;position:relative">
+      <div style="width:60px;height:60px;border-radius:50%;background:#6FB7FF;color:#0E2238;display:grid;place-items:center;font-size:22px;font-weight:900">민</div>
+      <span style="position:absolute;left:10px;bottom:9px;font-size:10.5px;font-weight:800;background:rgba(0,0,0,.45);padding:3px 8px;border-radius:6px">나 (민준)</span></div>
+  </div>
+  <div style="margin-top:10px;border:1px dashed #3A4034;border-radius:14px;padding:13px;font-size:12px;color:#9AA395;font-weight:700">
+   🖊 공유 판서 — 오늘 단원: <b style="color:#E8EDE2">기울기와 절편</b> · 지난 체크에서 막힌 <b style="color:#C9E600">두 점 대입</b>부터</div>
+  <div style="display:flex;gap:8px;margin-top:13px;align-items:center">
+    <button style="border:1px solid #3A4034;border-radius:11px;padding:10px 13px;color:#C3CBBB;background:none">🎤</button>
+    <button style="border:1px solid #3A4034;border-radius:11px;padding:10px 13px;color:#C3CBBB;background:none">📷</button>
+    <button id="clsOut" style="margin-left:auto;background:#E85050;color:#fff;font-weight:900;border-radius:11px;padding:11px 18px;border:0">수업 나가기</button>
+  </div>
+ </div>
+</div>
+
+<div id="rptOvl" style="position:fixed;inset:0;z-index:300;background:rgba(10,12,9,.7);display:none;align-items:center;justify-content:center;padding:16px">
+ <div style="background:#fff;border-radius:20px;width:min(420px,100%);max-height:90%;overflow:auto;padding:20px;color:#2a2c26">
+  <div style="display:flex;align-items:center;gap:8px"><b style="font-size:15px">11/8 수업 리포트</b>
+   <button id="rptX" style="margin-left:auto;width:28px;height:28px;border-radius:99px;background:#EFF1E9;border:0;font-weight:900">✕</button></div>
+  <div style="font-size:11px;color:#8d9282;font-weight:700;margin-top:2px">수학 · 김서연 쌤 · 일차함수의 기울기</div>
+  <div style="background:#EFF1E9;border-radius:12px;padding:12px;margin-top:13px;font-size:12.5px;font-weight:700;line-height:1.6">
+   기울기 공식은 외웠는데 <b>두 점 대입 순서</b>에서 부호 실수가 반복됩니다. 이번 주 숙제는 그 유형만 반복으로 냈어요.</div>
+  <table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:12px">
+   <tr><td style="padding:9px 0;border-bottom:1px solid #e8eddd;color:#8d9282">이해도</td><td style="text-align:right;font-weight:900;color:#43531a">●●●○○ 3/5</td></tr>
+   <tr><td style="padding:9px 0;border-bottom:1px solid #e8eddd;color:#8d9282">참여도</td><td style="text-align:right;font-weight:900;color:#08745b">●●●●○ 4/5</td></tr>
+   <tr><td style="padding:9px 0;color:#8d9282">숙제</td><td style="text-align:right;font-weight:900">12문제 · 자동 채점 대기</td></tr>
+  </table>
+ </div>
+</div>
+
+<div id="lt" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:999;background:#181A17;color:#C9E600;font-size:12.5px;font-weight:800;padding:10px 16px;border-radius:999px;opacity:0;transition:.25s;pointer-events:none">.</div>
+
 <script>
 (function(){
  var V=0;
@@ -593,6 +636,34 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
    });
   });
  });
+
+ /* 토스트 */
+ function ltoast(m){var t=document.getElementById('lt');t.textContent=m;t.style.opacity='1';
+  clearTimeout(t._h);t._h=setTimeout(function(){t.style.opacity='0';},2000);}
+ /* 수업 입장 */
+ var clsT=null,clsS=0;
+ var eb2=document.getElementById('enterBtn2');
+ if(eb2)eb2.addEventListener('click',function(){
+  document.getElementById('clsOvl').style.display='flex';clsS=0;
+  clsT=setInterval(function(){clsS++;document.getElementById('clsT').textContent=
+   ('0'+Math.floor(clsS/60)).slice(-2)+':'+('0'+clsS%60).slice(-2);},1000);});
+ function clsClose(){document.getElementById('clsOvl').style.display='none';clearInterval(clsT);
+  ltoast('수업이 끝나면 쌤의 \"수업 종료\" 기록이 V1의 연료가 돼요');}
+ document.getElementById('clsOut').addEventListener('click',clsClose);
+ document.getElementById('clsOvl').addEventListener('click',function(e){if(e.target===this)clsClose();});
+ /* 리포트/숙제/질문 */
+ document.addEventListener('click',function(e){
+  var a=e.target.closest('[data-act]'); if(!a)return;
+  if(a.dataset.act==='report'){document.getElementById('rptOvl').style.display='flex';}
+  if(a.dataset.act==='hw'){ if(V>=1){openPanel('solve');} else {ltoast('사진이 올라갔어요 — 쌤이 확인해요 (V1을 얹으면 자동 채점)');} }
+  if(a.dataset.act==='ask'){ltoast('질문함으로 보냈어요 — 다음 수업 전에 답이 와요');}
+ });
+ document.getElementById('rptX').addEventListener('click',function(){document.getElementById('rptOvl').style.display='none';});
+ document.getElementById('rptOvl').addEventListener('click',function(e){if(e.target===this)this.style.display='none';});
+ /* 플래너 탭 */
+ var tp=document.getElementById('tabPlan');
+ if(tp)tp.addEventListener('click',function(){openPanel('home');
+  var dd=document.querySelector('.ddrow'); if(dd)dd.scrollIntoView({behavior:'smooth',block:'center'});});
 })();
 </script>
 </body>
