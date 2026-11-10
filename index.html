@@ -311,8 +311,12 @@ body.mob .tabs{display:flex}
 body.g-el .gameonly,body.g-mi .gameonly{display:block}
 .elonly{display:none}
 body.g-el .elonly{display:block}
+.elonly.tie-chip,.mionly.tie-chip,.hionly.tie-chip{display:none}
+body.g-el .elonly.tie-chip,body.g-mi .mionly.tie-chip,body.g-hi .hionly.tie-chip{display:inline-flex}
 .lecture{display:none}
 body.g-el .lecture,body.g-mi .lecture{display:block}
+.mionly{display:none}
+body.g-mi .mionly{display:block}
 .hionly{display:none}
 body.g-hi .hionly{display:block}
 
@@ -412,6 +416,8 @@ body.mob .aiwin{right:8px;left:8px;bottom:8px;width:auto;height:calc(100% - 16px
 .aiin{flex:none;padding:10px 12px;border-top:1px solid var(--line);background:#fff;display:flex;gap:7px;flex-wrap:wrap}
 
 /* ========== 학습 플래너 ========== */
+.elonly.ddrow,.mionly.ddrow,.hionly.ddrow{display:none}
+body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:flex}
 .ddrow{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
 .ddrow::-webkit-scrollbar{display:none}
 .ddc{flex:none;width:168px;border:1px solid var(--line);border-radius:13px;padding:11px;background:#fff;
@@ -658,9 +664,34 @@ body.mob .aiwin{right:8px;left:8px;bottom:8px;width:auto;height:calc(100% - 16px
     <div class="card">
       <div class="ch"><h2>나의 학습 플래너</h2>
         <span class="tag t-base">기본 10만</span>
-        <span class="note"><span class="tie-chip" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포중 학사일정 연동됨</span></span></div>
+        <span class="note"><span class="tie-chip elonly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포초 가정통신문·알림장 연동됨</span><span class="tie-chip mionly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포중 학사일정 연동됨</span><span class="tie-chip hionly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포고 학사일정 연동됨</span></span></div>
 
-      <div class="ddrow">
+      <!-- 초등 · 가정통신문 기반 -->
+      <div class="ddrow elonly">
+        <div class="ddc urgent" data-dd="el_a">
+          <div class="dn"><div class="dd d-ko">D-2</div>
+            <div><div class="dt">국어 3단원 단원평가</div><div class="ds">알림장에서 받음</div></div></div>
+          <span class="db d-ko">가정통신문</span>
+        </div>
+        <div class="ddc" data-dd="el_b">
+          <div class="dn"><div class="dd d-ma">D-5</div>
+            <div><div class="dt">수학 익힘책 검사</div><div class="ds">3단원까지 · 안 푼 쪽 3장</div></div></div>
+          <span class="db d-ma">알림장</span>
+        </div>
+        <div class="ddc" data-dd="el_c">
+          <div class="dn"><div class="dd d-et">D-8</div>
+            <div><div class="dt">현장학습 동의서</div><div class="ds">부모님 서명 필요</div></div></div>
+          <span class="db d-et">부모 확인</span>
+        </div>
+        <div class="ddc" data-dd="el_d">
+          <div class="dn"><div class="dd d-en">D-14</div>
+            <div><div class="dt">독서록 10권</div><div class="ds">학기말까지 · 현재 6권</div></div></div>
+          <span class="db d-en">진행 60%</span>
+        </div>
+      </div>
+
+      <!-- 중등 · 중학교 학사일정 -->
+      <div class="ddrow mionly">
         <div class="ddc urgent" data-dd="ko">
           <div class="dn"><div class="dd d-ko">D-1</div>
             <div><div class="dt">국어 말하기 수행</div><div class="ds">일정 자동 · 준비는 직접</div></div></div>
@@ -678,13 +709,42 @@ body.mob .aiwin{right:8px;left:8px;bottom:8px;width:auto;height:calc(100% - 16px
         </div>
         <div class="ddc" data-dd="mid">
           <div class="dn"><div class="dd d-et">D-12</div>
-            <div><div class="dt">2학기 중간고사</div><div class="ds">11/3~11/5 · 범위 변동 반영</div></div></div>
+            <div><div class="dt">2학기 중간고사</div><div class="ds">범위 변동 자동 반영</div></div></div>
           <span class="db d-et">이행 35%</span>
         </div>
         <div class="ddc" data-dd="fin">
           <div class="dn"><div class="dd d-en">D-26</div>
             <div><div class="dt">2학기 기말</div><div class="ds">예상문제 받을 수 있어요</div></div></div>
           <span class="db d-en">50P</span>
+        </div>
+      </div>
+
+      <!-- 고등 · 고등학교 학사일정 -->
+      <div class="ddrow hionly">
+        <div class="ddc urgent" data-dd="hi_a">
+          <div class="dn"><div class="dd d-en">D-3</div>
+            <div><div class="dt">영어 영작 수행</div><div class="ds">세특에 그대로 반영됨</div></div></div>
+          <span class="db d-en">세특 직결</span>
+        </div>
+        <div class="ddc" data-dd="hi_b">
+          <div class="dn"><div class="dd d-sc">D-7</div>
+            <div><div class="dt">사회 탐구보고서</div><div class="ds">주제 선정부터가 실력</div></div></div>
+          <span class="db d-sc">세특 재료</span>
+        </div>
+        <div class="ddc" data-dd="hi_c">
+          <div class="dn"><div class="dd d-et">D-12</div>
+            <div><div class="dt">2학기 기말고사</div><div class="ds">내신 마지막 반영</div></div></div>
+          <span class="db d-et">이행 28%</span>
+        </div>
+        <div class="ddc" data-dd="hi_d">
+          <div class="dn"><div class="dd d-ma">D-20</div>
+            <div><div class="dt">전국연합 학력평가</div><div class="ds">학교 공지 기준</div></div></div>
+          <span class="db d-ma">모의고사</span>
+        </div>
+        <div class="ddc" data-dd="hi_e">
+          <div class="dn"><div class="dd d-ko">D-35</div>
+            <div><div class="dt">교과 세특 마감</div><div class="ds">그 전까지 쌓인 것만 들어감</div></div></div>
+          <span class="db d-ko">마감</span>
         </div>
       </div>
 
@@ -1219,7 +1279,7 @@ body.mob .aiwin{right:8px;left:8px;bottom:8px;width:auto;height:calc(100% - 16px
 <!-- ---------- 수행관리 ---------- -->
 <section class="view" data-view="suh">
   <div class="hd"><div class="r1">
-    <div><h1>수행관리</h1><div class="sub">학교 공지 감지 → 1주 역산 플랜</div></div>
+    <div><h1>수행관리</h1><div class="sub elonly">가정통신문·알림장 감지 → 짧은 역산</div><div class="sub mionly">평가계획 공지 감지 → 1주 역산 플랜</div><div class="sub hionly">평가계획 + 세특 마감 역산</div></div>
     <div class="right"><span class="tie-chip" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>수행평가 허브 연동</span></div>
   </div></div>
   <div class="wrap">
@@ -1267,14 +1327,40 @@ body.mob .aiwin{right:8px;left:8px;bottom:8px;width:auto;height:calc(100% - 16px
       </div>
 
       <div class="stk">
-        <div class="card">
-          <div class="ch"><h2>이번 학기 수행 전체</h2><span class="note">반포중 2학년</span></div>
+        <div class="card elonly">
+          <div class="ch"><h2>이번 달 할 것</h2><span class="note">반포초 4학년 · 가정통신문</span></div>
+          <table class="tbl">
+            <tr><td>국어 3단원 단원평가<small>알림장</small></td><td class="num" style="color:var(--red)">D-2</td></tr>
+            <tr><td>수학 익힘책 검사<small>알림장</small></td><td class="num" style="color:var(--sun-ink)">D-5</td></tr>
+            <tr><td>현장학습 동의서<small>부모 서명</small></td><td class="num">D-8</td></tr>
+            <tr><td>독서록 10권<small>학기말 누적 · 6/10</small></td><td class="num">D-14</td></tr>
+          </table>
+          <div class="ban info" style="margin-top:11px"><span class="bi">📨</span>
+            <span>초등은 평가계획서가 없어서 <b>가정통신문·알림장</b>이 원본입니다. 예고가 짧고(D-2~3) 부모가 해야 할 일이 섞여 있어서, <b>아이 화면과 학부모 화면을 나눠</b> 보냅니다.</span></div>
+        </div>
+
+        <div class="card mionly">
+          <div class="ch"><h2>이번 학기 수행 전체</h2><span class="note">반포중 2학년 · 평가계획서</span></div>
           <table class="tbl">
             <tr><td>국어 말하기<small>세부 범위 공지됨</small></td><td class="num" style="color:var(--red)">D-1</td></tr>
             <tr><td>과학 실험보고서<small>어제 범위 떴어요</small></td><td class="num" style="color:var(--sun-ink)">D-6</td></tr>
             <tr><td>수학 수행<small>대단원만 공지</small></td><td class="num">D-9</td></tr>
             <tr><td>영어 쓰기<small>미공지</small></td><td class="num" style="color:var(--ink3)">—</td></tr>
           </table>
+          <div class="ban info" style="margin-top:11px"><span class="bi">📋</span>
+            <span>중등은 <b>학교 평가계획서</b>가 원본입니다. 대단원까지만 공지되고 세부 범위는 시행 1주 전에 떠요.</span></div>
+        </div>
+
+        <div class="card hionly">
+          <div class="ch"><h2>이번 학기 수행 전체</h2><span class="note">반포고 1학년 · 평가계획서</span></div>
+          <table class="tbl">
+            <tr><td>영어 영작<small>세특 직결</small></td><td class="num" style="color:var(--red)">D-3</td></tr>
+            <tr><td>사회 탐구보고서<small>세특 재료</small></td><td class="num" style="color:var(--sun-ink)">D-7</td></tr>
+            <tr><td>국어 토론<small>대단원만 공지</small></td><td class="num">D-15</td></tr>
+            <tr><td>교과 세특 마감<small>이후 활동은 반영 안 됨</small></td><td class="num" style="color:var(--vio)">D-35</td></tr>
+          </table>
+          <div class="ban warn" style="margin-top:11px"><span class="bi">🎓</span>
+            <span>고등은 수행 점수만이 아니라 <b>교과 세특</b>이 같이 걸립니다. 세특 마감이 있어서 <b>마감 역산</b>이 수행 역산보다 상위 일정이에요.</span></div>
         </div>
 
         <div class="card">
@@ -2133,6 +2219,49 @@ body.mob .aiwin{right:8px;left:8px;bottom:8px;width:auto;height:calc(100% - 16px
 /* ===== D-day 카드 모달 ===== */
 (function(){
  var DD={
+  el_a:{t:'국어 3단원 단원평가',s:'D-2 · 알림장에서 자동 수집',go:'suh',
+   note:'초등은 평가계획서가 아니라 <b>가정통신문·알림장</b>에서 일정을 읽어 옵니다. 범위가 짧고 예고가 늦어서 D-2~D-3이 기본이에요.',
+   steps:[['done','D-3','범위 확인','3단원 받아쓰기 50낱말'],
+          ['now','D-2','낱말 연습 20개','틀린 것만 다시 나와요'],
+          ['','D-1','전체 받아쓰기 연습','']]},
+  el_b:{t:'수학 익힘책 검사',s:'D-5 · 3단원까지',go:'suh',
+   note:'안 푼 쪽을 사진으로 확인해 밀린 양을 계산했어요.',
+   steps:[['now','','안 푼 쪽 3장','하루 1장씩 나눠 담았어요'],
+          ['','','검사 전날 훑기','']]},
+  el_c:{t:'현장학습 동의서',s:'D-8 · 부모님 서명 필요',go:'suh',
+   note:'학습이 아니라 <b>부모가 해야 하는 일</b>이에요. 아이 화면엔 안 뜨고 학부모 쪽에만 알림이 갑니다.',
+   steps:[['now','','학부모 알림 발송됨','카톡으로 전달'],
+          ['','','서명 후 제출','']]},
+  el_d:{t:'독서록 10권',s:'D-14 · 현재 6권',go:'suh',
+   note:'학기말까지 누적 과제라 D-day 압박 대신 <b>주당 분량</b>으로 쪼갰어요.',
+   steps:[['done','','6권 완료',''],
+          ['now','','주 2권씩 2주','남은 4권']]},
+  hi_a:{t:'영어 영작 수행',s:'D-3 · 세특에 그대로 반영',go:'suh',
+   note:'고등 수행은 점수만이 아니라 <b>교과 세특</b>의 재료가 됩니다. 무엇을 조사했고 무엇을 알게 됐는지가 남아야 해요.',
+   steps:[['done','D-7','채점기준표 확인','내용 40 / 어휘 30 / 구조 30'],
+          ['done','D-5','개요 작성',''],
+          ['now','D-3','초안 영작 150단어','첨삭은 수행관리 애드온'],
+          ['','D-0','제출','']]},
+  hi_b:{t:'사회 탐구보고서',s:'D-7 · 세특 재료',go:'suh',
+   note:'주제를 고르는 것부터가 실력이에요. <b>교과서 단원에서 출발</b>해야 세특에 자연스럽게 남습니다.',
+   steps:[['now','D-7','주제 선정','고1→고2→고3 주제가 이어지면 진로 방향이 보임'],
+          ['','D-4','자료 조사·정리',''],
+          ['','D-1','보고서 작성','']]},
+  hi_c:{t:'2학기 기말고사',s:'D-12 · 내신 마지막 반영',go:'exam',
+   note:'등록된 범위에서 오늘 분량만 집었어요. 정리 → 문제 → 오답 순서.',
+   steps:[['done','1','범위 핵심 정리',''],
+          ['now','2','범위 문제 풀기','문항 DB · 출판사 매칭'],
+          ['','3','오답 정리','']],
+   foot:'시험 3일 전 전체 오답 총정리가 자동으로 뜹니다.'},
+  hi_d:{t:'전국연합 학력평가',s:'D-20 · 학교 공지 기준',go:'exam',
+   note:'학평은 내신과 성격이 달라서 <b>범위가 아니라 유형</b>으로 준비합니다. 날짜는 학교 공지를 그대로 따릅니다.',
+   steps:[['now','','지난 학평 오답 유형 분석','30P'],
+          ['','','취약 유형 집중 세트','20P']]},
+  hi_e:{t:'교과 세특 마감',s:'D-35 · 그 전까지 쌓인 것만',go:'suh',
+   note:'마감 뒤에 한 활동은 들어가지 않습니다. <b>역산해서 지금 뭘 해야 하는지</b>가 중요한 일정이에요.',
+   steps:[['done','','영어 영작 수행','D-3 진행 중'],
+          ['now','','사회 탐구보고서','D-7 · 세특 재료'],
+          ['','','발표 1회 더','교과별 1회 이상 권장']]},
   ko:{t:'국어 말하기 수행',s:'D-1 · 11/11(화) 3교시 · 세부 범위 공지됨',go:'suh',
    note:'평가계획서에서 채점기준표를 뽑아 왔어요 — 논리성 40 / 전달력 30 / 시간준수 30',
    steps:[['done','D-7','채점기준표 확인','자동 추출 완료'],
