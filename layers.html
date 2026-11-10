@@ -265,6 +265,43 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .solq{color:#2a2c26}
 .solsrc{color:#9a9f91}
 
+
+/* ===== 모션 ===== */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes riseS{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pfloat{0%,100%{margin-bottom:0}50%{margin-bottom:7px}}
+@keyframes planeGlow{0%{filter:brightness(1.7)}100%{filter:none}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes shimmer{0%{left:-70%}60%,100%{left:110%}}
+@keyframes pulseNew{0%,100%{opacity:1}50%{opacity:.4}}
+.top{animation:rise .5s .05s backwards}
+.phone{animation:rise .8s .15s cubic-bezier(.2,.8,.25,1) backwards}
+.stackwrap{animation:rise .8s .3s backwards}
+#pnHome>*{animation:riseS .55s backwards}
+#pnHome>*:nth-child(1){animation-delay:.35s}
+#pnHome>*:nth-child(2){animation-delay:.5s}
+#pnHome>*:nth-child(3){animation-delay:.62s}
+.vbtn{animation:riseS .45s backwards}
+.vswitch .vbtn:nth-child(1){animation-delay:.15s}
+.vswitch .vbtn:nth-child(2){animation-delay:.25s}
+.vswitch .vbtn:nth-child(3){animation-delay:.35s}
+.vswitch .vbtn:nth-child(4){animation-delay:.45s}
+.lesson .s{display:inline-flex;align-items:center;gap:6px}
+.lesson .s::before{content:"";width:7px;height:7px;border-radius:99px;background:#15c6a3;animation:blink 1.6s infinite}
+.enter{position:relative;overflow:hidden}
+.enter::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;
+ background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+ animation:shimmer 3.2s 1s infinite}
+.plane{transition:all .7s cubic-bezier(.2,.8,.2,1)}
+.plane.live{animation:planeGlow .9s, pfloat 5.5s 1.2s infinite ease-in-out}
+#pl1.live{animation-delay:0s,.9s;animation-duration:.9s,6.3s}
+#pl2.live{animation-delay:0s,1.6s;animation-duration:.9s,5.1s}
+.tab.newtab.show::after{animation:pulseNew 1.8s infinite}
+.sbtn,.qzo,.dd,.vbtn,.enter{transition:transform .14s, background .14s, border-color .14s, opacity .3s}
+.sbtn:active,.qzo:active,.enter:active,.vbtn:active{transform:scale(.96)}
+.dd:hover{transform:translateY(-3px)}
+.c{transition:box-shadow .2s}
+
 </style>
 </head>
 <body>
