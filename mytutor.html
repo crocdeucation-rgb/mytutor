@@ -386,6 +386,28 @@ body.mob .xpbar .xn{display:none}
  padding:8px 11px;margin-bottom:5px;font-size:11px;font-weight:800;background:#fff}
 .reh .m{margin-left:auto;font-size:10.5px;font-weight:900}
 
+
+/* 말해보카식 개념 체크 */
+.qzbar{height:7px;background:var(--line2);border-radius:99px;overflow:hidden;margin-top:10px}
+.qzbar i{display:block;height:100%;background:var(--brand);transition:width .4s;border-radius:99px}
+.qzq{font-size:18px;font-weight:800;line-height:2;padding:28px 22px 8px;text-align:center;letter-spacing:-.02em}
+.qzb{display:inline-block;min-width:86px;border-bottom:3px solid var(--navy);color:var(--navy);
+ font-weight:900;padding:0 8px;text-align:center;transition:.2s}
+.qzb.ok{border-color:var(--ok);color:var(--ok)}
+.qzb.no{border-color:var(--red);color:var(--red)}
+.qzopts{display:flex;flex-direction:column;gap:9px;padding:18px 20px 22px}
+.qzo{border:1.5px solid var(--line);border-radius:14px;padding:15px;font-size:15.5px;font-weight:800;
+ background:#fff;text-align:center;transition:.15s}
+.qzo:hover{border-color:var(--navy);background:var(--navy-s)}
+.qzo.ok{background:var(--brand-s);border-color:var(--ok);color:var(--brand-ink)}
+.qzo.no{background:var(--red-s);border-color:var(--red);color:#B32B2B;animation:qshake .3s}
+.qzo:disabled{cursor:default}
+@keyframes qshake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.qzend{padding:34px 22px;text-align:center}
+.qzend .big{font-size:40px;font-weight:900;letter-spacing:-.04em}
+.qzend .big small{font-size:16px;color:var(--ink3);font-weight:900}
+.qzend p{font-size:12px;color:var(--ink2);font-weight:700;margin-top:10px;line-height:1.6}
+
 /* ========== 모달 ========== */
 .ovl{position:absolute;inset:0;z-index:200;background:rgba(16,18,32,.6);display:none;
  align-items:flex-end;justify-content:center;padding:16px}
@@ -1267,32 +1289,14 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
 
     <div class="cols">
       <div class="stk">
-        <div class="card">
-          <div class="ch"><h2>개념 빈칸</h2><span class="note">2단계 중 1 · 다음 수업 전 체크</span></div>
-          <div class="cloze" id="cloze">
-            두 점을 지나는 직선의 기울기는
-            <span class="blank empty" data-k="a">______</span>의 증가량을
-            <span class="blank empty" data-k="b">______</span>의 증가량으로 나눈 값이다.
-            기울기가 음수이면 그래프는 오른쪽으로 갈수록
-            <span class="blank empty" data-k="c">______</span>.
+        <div class="card" style="padding:0;overflow:hidden">
+          <div style="padding:15px 16px 0">
+            <div class="ch" style="margin-bottom:0"><h2>개념 체크</h2>
+              <span class="tag t-base">기본</span>
+              <span class="note" id="qzProg">1 / 3</span></div>
+            <div class="qzbar"><i id="qzFill" style="width:8%"></i></div>
           </div>
-          <div class="chips" id="chips">
-            <button class="chip" data-w="x">x</button>
-            <button class="chip" data-w="y">y</button>
-            <button class="chip" data-w="내려간다">내려간다</button>
-            <button class="chip" data-w="올라간다">올라간다</button>
-            <button class="chip" data-w="절편">절편</button>
-          </div>
-          <div class="mini" style="margin-top:9px">아래 <b>단어를 누르면</b> 빈칸이 차례대로 채워져요 · 채운 빈칸을 누르면 지워져요</div>
-          <div style="display:flex;gap:8px;margin-top:12px">
-            <button class="btn g" id="clozeGrade">채점</button>
-            <button class="btn line" id="clozeReset">다시</button>
-            <span class="mini" id="clozeMsg" style="margin-left:auto;align-self:center"></span>
-          </div>
-          <div class="ban info" style="margin-top:13px">
-            <span class="bi">🧠</span>
-            <span>빈칸의 출처는 문항 DB가 아닙니다. <b>쌤이 고른 단원의 개념 목록</b>에서 나옵니다 — 문항은 "문제", 빈칸은 "개념 확인"이라 자산이 다릅니다.</span>
-          </div>
+          <div id="qzBody"></div>
         </div>
       </div>
 
@@ -2220,55 +2224,49 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
     });
   });
 
-  /* ---- 빈칸: 어떤 순서로 눌러도 됨 ---- */
-  var KEY={a:'y',b:'x',c:'내려간다'}, selBlank=null;
-  function blanks(){return qsa('#cloze .blank');}
-  function chipOf(w){return document.querySelector('#chips .chip[data-w="'+w+'"]');}
-  function clearSel(){qsa('#cloze .blank').forEach(function(x){x.style.boxShadow='';x.style.background='';});selBlank=null;}
-  function fillB(b,c){
-    if(b.dataset.w){var old=chipOf(b.dataset.w);if(old)old.classList.remove('used');}
-    b.textContent=c.dataset.w; b.dataset.w=c.dataset.w;
-    b.classList.remove('empty','right','wrong');
-    c.classList.add('used'); clearSel();
-    var left=blanks().filter(function(x){return !x.dataset.w;});
-    var cg=document.getElementById('clozeGrade');
-    if(cg) cg.style.boxShadow = left.length? '' : '0 0 0 3px rgba(31,171,94,.35)';
+  /* ---- 개념 체크: 말해보카식 스텝 퀴즈 ---- */
+  var QZ=[
+   {pre:'두 점을 지나는 직선의 기울기는', post:'의 증가량을 x의 증가량으로 나눈 값이다',
+    c:['y','x','절편'], a:0},
+   {pre:'기울기를 구할 때 분모에 들어가는 것은', post:'의 증가량이다',
+    c:['x','y','원점'], a:0},
+   {pre:'기울기가 음수이면 그래프는 오른쪽으로 갈수록', post:'',
+    c:['내려간다','올라간다'], a:0}
+  ];
+  var qi=0, qScore=0, qLock=false;
+  function qzRender(){
+   var box=document.getElementById('qzBody'); if(!box)return;
+   if(qi>=QZ.length){
+    document.getElementById('qzProg').textContent='완료';
+    document.getElementById('qzFill').style.width='100%';
+    box.innerHTML='<div class="qzend">'+
+     '<div class="big">'+qScore+'<small> / '+QZ.length+'</small></div>'+
+     '<p>결과가 <b>쌤 티칭룸</b>과 <b>학부모 리포트</b>로 갑니다.<br>틀린 개념은 내일 분량에 자동으로 섞여요.</p>'+
+     '<button class="btn g" style="margin-top:16px" id="qzAgain">한 번 더</button></div>';
+    document.getElementById('qzAgain').addEventListener('click',function(){qi=0;qScore=0;qzRender();});
+    return;
+   }
+   var q=QZ[qi];
+   document.getElementById('qzProg').textContent=(qi+1)+' / '+QZ.length;
+   document.getElementById('qzFill').style.width=Math.round(qi/QZ.length*100+8)+'%';
+   box.innerHTML='<div class="qzq">'+q.pre+' <span class="qzb" id="qzBlank">&nbsp;</span> '+q.post+'</div>'+
+    '<div class="qzopts">'+q.c.map(function(t,k){
+      return '<button class="qzo" data-k="'+k+'">'+t+'</button>';}).join('')+'</div>';
+   qLock=false;
+   qsa('#qzBody .qzo').forEach(function(o){
+    o.addEventListener('click',function(){
+     if(qLock)return; qLock=true;
+     var ok=(+o.dataset.k===q.a), bl=document.getElementById('qzBlank');
+     bl.textContent=o.textContent; bl.classList.add(ok?'ok':'no');
+     o.classList.add(ok?'ok':'no');
+     if(ok)qScore++;
+     else qsa('#qzBody .qzo').forEach(function(x){if(+x.dataset.k===q.a)x.classList.add('ok');});
+     qsa('#qzBody .qzo').forEach(function(x){x.disabled=true;});
+     setTimeout(function(){qi++;qzRender();}, ok?700:1400);
+    });
+   });
   }
-  qsa('#chips .chip').forEach(function(c){
-    c.addEventListener('click',function(){
-      if(c.classList.contains('used'))return;
-      var t=selBlank || blanks().find(function(x){return !x.dataset.w;});
-      if(t) fillB(t,c);
-    });
-  });
-  qsa('#cloze .blank').forEach(function(b){
-    b.addEventListener('click',function(){
-      if(b.dataset.w){ /* 채운 칸 누르면 비우기 */
-        var old=chipOf(b.dataset.w); if(old)old.classList.remove('used');
-        b.textContent='______'; b.removeAttribute('data-w'); b.className='blank empty';
-        clearSel(); return;
-      }
-      clearSel(); selBlank=b;
-      b.style.boxShadow='0 3px 0 0 #3A3D8F'; b.style.background='var(--navy-s)';
-    });
-  });
-  var cg=document.getElementById('clozeGrade');
-  if(cg) cg.addEventListener('click',function(){
-    var n=0;
-    blanks().forEach(function(b){
-      var ok=b.dataset.w===KEY[b.dataset.k];
-      b.classList.remove('right','wrong'); b.classList.add(ok?'right':'wrong');
-      if(ok)n++;
-    });
-    cg.style.boxShadow='';
-    document.getElementById('clozeMsg').textContent=n+' / 3 정답 · 결과가 쌤 티칭룸으로 갑니다';
-  });
-  var cr=document.getElementById('clozeReset');
-  if(cr) cr.addEventListener('click',function(){
-    blanks().forEach(function(b){b.textContent='______';b.removeAttribute('data-w');b.className='blank empty';});
-    qsa('#chips .chip').forEach(function(c){c.classList.remove('used');});
-    document.getElementById('clozeMsg').textContent=''; clearSel();
-  });
+  qzRender();
 
   render();
 })();
