@@ -310,6 +310,7 @@ body.mob .tabs{display:flex}
 /* ========== 게임화 (초·중등) ========== */
 .gameonly{display:none}
 body.g-el .gameonly,body.g-mi .gameonly{display:block}
+body.g-el .task.gameonly,body.g-mi .task.gameonly{display:flex!important}
 .elonly{display:none}
 body.g-el .elonly{display:block}
 .elonly.tie-chip,.mionly.tie-chip,.hionly.tie-chip{display:none}
@@ -898,7 +899,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
         <!-- 오늘 할 것 -->
         <div class="card">
           <div class="ch"><h2>오늘 할 것</h2><span class="tag t-base">기본</span>
-            <span class="note">4개 중 1개 완료</span></div>
+            <span class="note">1개 완료</span></div>
 
           <div class="task done">
             <div class="ic i-g">✅</div>
@@ -925,6 +926,13 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
             <div class="tb"><div class="tt">틀린 것 다시</div>
               <div class="ts">지난주 오답 <b>3문제</b> · 숫자만 바꿔서 다시</div></div>
             <button class="btn soft sm">다시</button>
+          </div>
+
+          <div class="task gameonly" data-go="check" style="display:none">
+            <div class="ic i-g">🎤</div>
+            <div class="tb"><div class="tt">오늘의 영어 말하기 <span class="tag t-base">매일 · 🔥 6일 연속</span></div>
+              <div class="ts">이번 주 단어 <b>3개</b> 소리 내서 · 약 2분 · 안 하면 연속 기록 끊겨요</div></div>
+            <button class="btn g sm">말하기</button>
           </div>
         </div>
 
