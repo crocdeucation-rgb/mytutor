@@ -607,7 +607,7 @@ body.mob .tabs{display:flex}
           <div class="q" data-ans="4">
             <div class="qh"><span class="qn">2</span><b style="font-size:11.5px">기울기와 절편</b><span class="qsrc">문항 #41903 · 지문 이미지 포함</span></div>
             <div class="qt">오른쪽 그래프에서 직선 <i>l</i>의 기울기로 옳은 것은?</div>
-            <div class="qimg">🖼 그래프 이미지 — 아라 문항 DB에 그림 파일로 저장됨 (모바일 렌더링 검증 필요)</div>
+            <div class="qimg">🖼 그래프 이미지 — 수학 문항은 그림 파일 (모바일 렌더링 검증 필요)</div>
             <div class="opts">
               <button class="opt" data-i="1"><span class="on">1</span>−1</button>
               <button class="opt" data-i="2"><span class="on">2</span>1/2</button>
@@ -620,7 +620,31 @@ body.mob .tabs{display:flex}
 
           <div class="ban warn" style="margin-top:11px">
             <span class="bi">⚠️</span>
-            <span><b>이관 전 확인할 것</b> — 기존 문항 10만 건은 지문·도형·수식이 그림 파일입니다. 전 화면 모바일 100%가 원칙인데 이미지 문항은 모바일에서 제일 잘 깨집니다. 샘플 20문항 폰 실측이 선행돼야 합니다.</span>
+            <span><b>과목마다 다릅니다.</b> 국어 문항은 순수 텍스트(아래 실측)라 모바일에 그대로 올라갑니다. 수학은 도형·수식이 그림 파일이라 폰 실측이 필요합니다. 이관을 과목별로 쪼개면 <b>국어·영어는 먼저 열 수 있습니다</b>.</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ch"><h2>국어 · 실제 문항</h2>
+            <span class="tag t-base">HWP 파싱 실측</span>
+            <span class="note">중2-2 미래엔(민) 3단원</span></div>
+
+          <div class="q" data-ans="5">
+            <div class="qh"><span class="qn">2</span><b style="font-size:11.5px">상황에 맞는 표현 · 피동</b><span class="qsrc">미래엔(민) · 중2-2 · 3단원(1)</span></div>
+            <div class="qt">능동문을 피동문으로 바꾸어 쓴 것으로 적절하지 <u>않은</u> 것은?</div>
+            <div class="opts">
+              <button class="opt" data-i="1"><span class="on">1</span>언니가 동생을 업다. → 동생이 언니에게 업히다.</button>
+              <button class="opt" data-i="2"><span class="on">2</span>낚시꾼이 고기를 낚다. → 고기가 낚시꾼에게 낚이다.</button>
+              <button class="opt" data-i="3"><span class="on">3</span>형이 모기를 잡다. → 모기가 형에게 잡히다.</button>
+              <button class="opt" data-i="4"><span class="on">4</span>농부가 오리를 사육하다. → 오리가 농부에게 사육되다.</button>
+              <button class="opt" data-i="5"><span class="on">5</span>할머니가 아기를 안았다. → 아기를 할머니에게 안겼다.</button>
+            </div>
+            <div class="sol">정답 ⑤. 피동문에서 능동문의 목적어는 <b>주어</b>가 되어야 합니다 — "아기<b>가</b>"가 맞습니다.</div>
+          </div>
+
+          <div class="ban lime" style="margin-top:11px">
+            <span class="bi">✅</span>
+            <span>HWP 원본에서 <b>제목·단원·문항 20개·보기·선택지 5개·정답표</b>가 전부 추출됐습니다. 그림 없음. 영상 경로에 <code style="background:rgba(201,230,0,.14);padding:1px 5px;border-radius:4px">/M/2/KO/2026/77/2/3-1/</code> 형태로 <b>학년·과목·출판사·학기·단원 코드가 이미 박혀 있습니다</b>.</span>
           </div>
         </div>
       </div>
@@ -884,8 +908,10 @@ body.mob .tabs{display:flex}
     <div class="r1">
       <div><h1>상품 구조</h1><div class="sub">쌤이다 과외 = 본체 · 마이튜터 = 애드온</div></div>
       <div class="right">
-        <button class="btn line sm" data-gr="mid">중등</button>
-        <button class="btn g sm" data-gr="high">고등</button>
+        <button class="btn line sm" data-gr="basic">기본과정</button>
+        <button class="btn g sm" data-gr="common">공통과정</button>
+        <button class="btn line sm" data-gr="select">선택과정</button>
+        <button class="btn line sm" data-fr="w3" id="frBtn">주3회로</button>
       </div>
     </div>
   </div>
@@ -897,15 +923,18 @@ body.mob .tabs{display:flex}
 
     <div class="tiers">
       <div class="tier core">
-        <div class="tn">본체</div>
-        <h3>쌤이다 1:1 과외</h3>
-        <div class="pr" data-p-mid="380,000" data-p-high="420,000">420,000<small> / 월</small></div>
+        <div class="tn">본체 · 진도 기준</div>
+        <h3 id="coreName">공통과정</h3>
+        <div style="font-size:11px;color:#8E9885;font-weight:800;margin-top:3px" id="coreRange">중3 ~ 고1 진도</div>
+        <div style="font-size:12px;color:#7D8775;font-weight:800;text-decoration:line-through;margin-top:9px" id="coreList">정가 460,000원</div>
+        <div class="pr" id="corePrice">420,000<small> / 월</small></div>
         <ul>
-          <li>주 2회 1:1 화상 과외</li>
-          <li>개념 설명 · 교정</li>
-          <li>수업 기록 · 성장 리포트</li>
+          <li>1:1 화상 과외 <span id="coreFreq">주2회 60분 (월 8회)</span></li>
+          <li>학습유형검사 · 레벨테스트</li>
+          <li>숙제피드백 · <b style="color:var(--lime)">노트필기피드백</b></li>
+          <li>월간보고서</li>
         </ul>
-        <div class="who">담당 과외 쌤</div>
+        <div class="who">담당 과외 쌤 · 매달 쌤이다 가격으로 결제</div>
       </div>
 
       <div class="tier pick">
@@ -925,7 +954,7 @@ body.mob .tabs{display:flex}
       <div class="tier">
         <div class="tn">애드온 · 사람</div>
         <h3>수행관리</h3>
-        <div class="pr" data-p-mid="+150,000" data-p-high="+250,000">+250,000<small> / 월</small></div>
+        <div class="pr" id="suhPrice">+300,000<small> / 월</small></div>
         <ul>
           <li><b style="color:var(--brand-ink)">기본 전부 포함</b></li>
           <li>학교 평가계획 해석</li>
@@ -935,40 +964,66 @@ body.mob .tabs{display:flex}
         <div class="who">전담 매니저 (쌤 아님)</div>
       </div>
 
-      <div class="tier">
-        <div class="tn">애드온 · 사람</div>
+      <div class="tier" style="border-color:var(--red);background:var(--red-s)">
+        <div class="tn" style="color:var(--red)">애드온 · 충돌</div>
         <h3>필기관리</h3>
         <div class="pr">+100,000<small> / 월</small></div>
         <ul>
           <li>필기 사진 업로드</li>
           <li>담당 쌤이 직접 코멘트</li>
-          <li>수업 전 교정 반영</li>
+          <li class="no" style="color:var(--red)">본체에 이미 "노트필기피드백" 포함</li>
         </ul>
-        <div class="who">담당 과외 쌤 · 정산 대상</div>
+        <div class="who" style="color:var(--red)">선 긋기 전까지 판매 불가</div>
       </div>
+    </div>
+
+    <div class="ban warn" style="margin-top:4px">
+      <span class="bi">🚨</span>
+      <span><b>랜딩의 ALL INCLUDED와 충돌합니다.</b> 기본 수업료 포함 항목에 <b>노트필기피드백</b>과 <b>숙제피드백</b>이 이미 들어 있습니다. 필기관리를 10만 애드온으로 올리면 상담 전화에서 "포함이라면서 왜 또 받냐"가 바로 나옵니다. 셋 중 하나를 골라야 합니다 — ① 포함은 수업 중 구두 피드백, 애드온은 상시 업로드+수업 외 코멘트로 <b>선을 긋는다</b> ② 랜딩에서 노트필기피드백을 빼고 애드온으로 올린다(이미 광고 중이면 리스크) ③ 필기관리 애드온을 접고 본체에 둔다.</span>
     </div>
 
     <div class="cols" style="margin-top:4px">
       <div class="stk">
         <div class="card">
-          <div class="ch"><h2>묶음 제시</h2><span class="note">고등 기준 · 선택지 3개</span></div>
+          <div class="ch"><h2>본체 가격 체계</h2><span class="note">학년 아님 · 배우는 진도 기준</span></div>
           <table class="tbl">
-            <tr><td><b>기본</b><small>자동만</small></td><td class="num">+10만</td></tr>
-            <tr><td><b>관리</b><small>기본 + 수행(사람)</small></td><td class="num">+25만</td></tr>
-            <tr><td><b>풀</b><small>관리 + 필기</small></td><td class="num">+33만</td></tr>
+            <tr><th>과정</th><th>진도</th><th class="num">주2회</th><th class="num">주3회</th></tr>
+            <tr><td><b>기본과정</b></td><td>초4~중2</td><td class="num">380,000<small style="text-decoration:line-through">420,000</small></td><td class="num">570,000<small style="text-decoration:line-through">630,000</small></td></tr>
+            <tr><td><b>공통과정</b></td><td>중3~고1</td><td class="num">420,000<small style="text-decoration:line-through">460,000</small></td><td class="num">630,000<small style="text-decoration:line-through">690,000</small></td></tr>
+            <tr><td><b>선택과정</b></td><td>고2~고3</td><td class="num">460,000<small style="text-decoration:line-through">500,000</small></td><td class="num">690,000<small style="text-decoration:line-through">750,000</small></td></tr>
           </table>
-          <div class="ban info" style="margin-top:11px"><span class="bi">🎯</span><span>개별 합(10+25+10=45)보다 묶음이 싸야 합니다. 체크박스 4개를 늘어놓으면 학부모가 못 고르고 결국 아무것도 안 삽니다. 선택지가 3개면 <b>중간이 팔립니다</b>.</span></div>
+          <div class="mini" style="margin-top:8px">정가는 회당 +5,000원 취소선 표시용. 매달 쌤이다 가격으로 결제. 중2라도 중3 과정을 배우면 공통과정.</div>
+          <div class="ban warn" style="margin-top:11px">
+            <span class="bi">📏</span>
+            <span><b>애드온 가격 축이 본체와 안 맞습니다.</b> 본체는 진도(기본/공통/선택)로 나누는데 애드온은 학년(중등/고등)으로 잡았습니다. 애드온도 <b>같은 3과정 축</b>으로 가야 상담에서 설명이 한 번에 끝납니다.</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ch"><h2>유입 경로별 가격</h2><span class="note">같은 상품, 다른 진입</span></div>
+          <table class="tbl">
+            <tr><td><b>방문</b><small>무료수업 안 받음 · 영업수수료 포함</small></td><td class="num">표시 가격 그대로</td></tr>
+            <tr><td><b>무료수업 경유</b><small>영업수수료 없음</small></td><td class="num" style="color:var(--ok)">첫 결제 −20,000</td></tr>
+          </table>
+          <div class="ban info" style="margin-top:11px">
+            <span class="bi">❓</span>
+            <span><b>확인 필요</b> — "첫결제시만 중복 할인 가능, 1과목 듣다 나중 1과목은 X"가 두 가지로 읽힙니다. ⓐ 첫 결제에 <b>2과목을 동시에</b> 넣으면 둘 다 할인, 나중 추가는 없음 ⓑ 다른 할인과 겹칠 수 있고 추가 과목만 제외. 결제 로직이 갈립니다.</span>
+          </div>
         </div>
       </div>
 
       <div class="stk">
         <div class="card">
           <div class="ch"><h2>아직 안 정해진 것</h2></div>
-          <div class="gap"><div class="num">1</div><div class="gb"><div class="gt">시험관리 10만에 사람이 붙나</div>
+          <div class="gap"><div class="num">1</div><div class="gb"><div class="gt">필기관리 ↔ 본체 포함 충돌</div>
+            <div class="gs">랜딩 ALL INCLUDED에 노트필기피드백이 이미 있음 — 선 긋기 전엔 판매 불가</div></div></div>
+          <div class="gap"><div class="num">2</div><div class="gb"><div class="gt">수행관리 금액 (내 쪽 계산 착오)</div>
+            <div class="gs">앞서 "중등15 / 고등25면 차액이 10/20과 같다"고 했는데 틀렸습니다. 15−10=5, 25−10=15입니다. 차액을 10/20으로 유지하려면 누적은 <b>20만 / 30만</b>이어야 합니다</div></div></div>
+          <div class="gap"><div class="num">3</div><div class="gb"><div class="gt">시험관리 10만에 사람이 붙나</div>
             <div class="gs">기본에 자동시험 + 문제풀이가 다 들어가서, 사람이 안 붙으면 뭘 더 주는지 설명이 안 됨</div></div></div>
-          <div class="gap"><div class="num">2</div><div class="gb"><div class="gt">필기관리 10만 중 쌤 몫</div>
-            <div class="gs">안 정해지면 쌤이 애드온 학생을 반기지 않음</div></div></div>
-          <div class="gap"><div class="num">3</div><div class="gb"><div class="gt">기본 애드온 출시를 쪼갤지</div>
+          <div class="gap"><div class="num">4</div><div class="gb"><div class="gt">첫결제 2만원 할인의 중복 규칙</div>
+            <div class="gs">동시 2과목 둘 다인지, 다른 할인과 겹치는지</div></div></div>
+          <div class="gap"><div class="num">5</div><div class="gb"><div class="gt">기본 애드온 출시를 쪼갤지</div>
             <div class="gs">1차 자동수행·시험(지금 가능) → 2차 문제풀이 추가(가격 동결)</div></div></div>
         </div>
 
@@ -1032,9 +1087,22 @@ body.mob .tabs{display:flex}
             <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">lesson_topic</code><small>NVARCHAR(200) → 단원 코드 아님</small></td><td class="num" style="color:var(--red)">코드화</td></tr>
             <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">member_textbooks.material_text</code><small>NVARCHAR(1000) → 출판사 코드 아님</small></td><td class="num" style="color:var(--red)">코드화</td></tr>
             <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">improvement_text</code><small>NVARCHAR(2000) 서술 → 개념 단위 아님</small></td><td class="num" style="color:var(--red)">코드화</td></tr>
-            <tr><td>문항 10만 건<small>아라 → 쌤이다 DB 이관 (출판사·단원 유지)</small></td><td class="num" style="color:var(--red)">이관</td></tr>
+            <tr><td>문항 HWP → DB 이관<small>파싱 자체는 검증됨 · 수학 그림만 미확인</small></td><td class="num" style="color:var(--sun-ink)">진행 가능</td></tr>
           </table>
-          <div class="ban warn" style="margin-top:11px"><span class="bi">🚧</span><span>아라 문항 조인키는 <b>(학년·과목·대단원·소단원·출판사)</b>인데, 쌤이다에 코드로 있는 건 <code style="background:#fff;padding:1px 5px;border-radius:4px">subject_code</code> 하나뿐입니다.</span></div>
+          <div class="ban warn" style="margin-top:11px"><span class="bi">🚧</span><span>조인키는 <b>(학년·과목·대단원·소단원·출판사)</b>인데 쌤이다에 코드로 있는 건 <code style="background:#fff;padding:1px 5px;border-radius:4px">subject_code</code> 하나뿐입니다. <b>다만 출판사 코드는 새로 만들 필요가 없습니다</b> — 아라 영상 경로에 이미 체계가 있습니다.</span></div>
+        </div>
+
+        <div class="card">
+          <div class="ch"><h2>HWP 파싱 실측</h2><span class="tag t-base">2026-11-10</span></div>
+          <table class="tbl">
+            <tr><td>제목 메타<small>중2-2 / 국어 / 미래엔(민) / 3단원 (1)</small></td><td class="num" style="color:var(--ok)">추출됨</td></tr>
+            <tr><td>경로 코드<small>/EX/CUR1/M/2/KO/2026/77/2/3-1/01.mp4</small></td><td class="num" style="color:var(--ok)">추출됨</td></tr>
+            <tr><td>문항 20개<small>발문 + 보기 + 선택지 5개</small></td><td class="num" style="color:var(--ok)">추출됨</td></tr>
+            <tr><td>정답표<small>파일 안에 1~20번 전부</small></td><td class="num" style="color:var(--ok)">추출됨</td></tr>
+            <tr><td>①②③④⑤ 기호<small>문단번호 기능이라 텍스트에 없음</small></td><td class="num" style="color:var(--sun-ink)">5개 단위로 묶기</td></tr>
+            <tr><td>문항 순서<small>20번이 정답표 뒤에 나옴</small></td><td class="num" style="color:var(--sun-ink)">번호로 정렬</td></tr>
+          </table>
+          <div class="ban lime" style="margin-top:11px"><span class="bi">🎯</span><span>"한글 문서를 올리면 그대로 읽어 파싱"이 <b>실제로 됩니다</b>. 지문을 따로 캡처해 번호별로 텍스트를 붙이던 기존 수동 방식을 쓸 이유가 없습니다.</span></div>
         </div>
 
         <div class="card">
@@ -1070,7 +1138,7 @@ body.mob .tabs{display:flex}
 <script>
 (function(){
   var ADDONS={base:true,suh:false,note:false,exam:false};
-  var GRADE='high';
+  var GRADE='common';
 
   function qsa(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
 
@@ -1098,8 +1166,13 @@ body.mob .tabs{display:flex}
   });
 
   /* ---- 애드온 ---- */
-  var PRICE={base:100000,suh:{mid:150000,high:250000},note:100000,exam:100000};
-  var CORE={mid:380000,high:420000};
+  var COURSE={
+    basic :{name:'기본과정',range:'초4 ~ 중2 진도', w2:380000,w3:570000, l2:420000,l3:630000, suh:200000},
+    common:{name:'공통과정',range:'중3 ~ 고1 진도', w2:420000,w3:630000, l2:460000,l3:690000, suh:250000},
+    select:{name:'선택과정',range:'고2 ~ 고3 진도', w2:460000,w3:690000, l2:500000,l3:750000, suh:300000}
+  };
+  var FREQ='w2';
+  var PRICE={base:100000,note:100000,exam:100000};
   var LABEL={base:'마이튜터 기본',suh:'수행관리',note:'필기관리',exam:'시험관리'};
   var SUB={base:'문제풀이 · 점검 · 자동 수행/시험',suh:'기본 포함 + 전담 매니저',note:'담당 쌤 코멘트',exam:'시험 일정 관리'};
 
@@ -1120,20 +1193,29 @@ body.mob .tabs{display:flex}
     qsa('.grp.add button').forEach(function(b){
       b.classList.toggle('on',!!ADDONS[b.dataset.a]);
     });
-    /* 가격표 */
-    qsa('[data-p-mid]').forEach(function(el){
-      var v=GRADE==='mid'?el.dataset.pMid:el.dataset.pHigh;
-      el.innerHTML=v+'<small> / 월</small>';
-    });
+    /* 본체 가격 */
+    var c=COURSE[GRADE];
+    var core=(FREQ==='w2')?c.w2:c.w3, list=(FREQ==='w2')?c.l2:c.l3;
+    var el;
+    if(el=document.getElementById('coreName'))  el.textContent=c.name;
+    if(el=document.getElementById('coreRange')) el.textContent=c.range;
+    if(el=document.getElementById('coreList'))  el.textContent='정가 '+won(list)+'원';
+    if(el=document.getElementById('corePrice')) el.innerHTML=won(core)+'<small> / 월</small>';
+    if(el=document.getElementById('coreFreq'))  el.textContent=(FREQ==='w2')?'주2회 60분 (월 8회)':'주3회 60분 (월 12회)';
+    if(el=document.getElementById('suhPrice'))  el.innerHTML='+'+won(c.suh)+'<small> / 월</small>';
+    if(el=document.getElementById('frBtn'))     el.textContent=(FREQ==='w2')?'주3회로':'주2회로';
+
     /* 결제 합계 */
     var tb=document.getElementById('billTbl');
     if(tb){
       qsa('tr.add',tb).forEach(function(r){r.remove();});
-      var sum=CORE[GRADE];
+      var cr=tb.querySelector('tr:first-child');
+      if(cr) cr.innerHTML='<td>쌤이다 1:1 과외<small>'+c.name+' · '+((FREQ==='w2')?'주2회':'주3회')+'</small></td><td class="num">'+won(core)+'</td>';
+      var sum=core;
       ['base','suh','note','exam'].forEach(function(k){
         if(!ADDONS[k]) return;
         if(k==='base'&&ADDONS.suh) return; /* 수행관리가 기본 포함 */
-        var p=(k==='suh')?PRICE.suh[GRADE]:PRICE[k];
+        var p=(k==='suh')?c.suh:PRICE[k];
         sum+=p;
         var tr=document.createElement('tr'); tr.className='add';
         tr.innerHTML='<td>'+LABEL[k]+'<small>'+SUB[k]+'</small></td><td class="num">+'+won(p)+'</td>';
@@ -1160,12 +1242,12 @@ body.mob .tabs{display:flex}
   qsa('[data-gr]').forEach(function(b){
     b.addEventListener('click',function(){
       GRADE=b.dataset.gr;
-      qsa('[data-gr]').forEach(function(x){
-        x.className='btn sm '+(x===b?'g':'line');
-      });
+      qsa('[data-gr]').forEach(function(x){ x.className='btn sm '+(x===b?'g':'line'); });
       render();
     });
   });
+  var fb=document.getElementById('frBtn');
+  if(fb) fb.addEventListener('click',function(){ FREQ=(FREQ==='w2')?'w3':'w2'; render(); });
 
   /* ---- 객관식 ---- */
   qsa('.q').forEach(function(q){
