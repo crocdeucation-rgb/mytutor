@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>쌤이다 위에 얹히는 마이코칭 — 레이어 데모</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#111310; --bg2:#181B16; --card:#1E221B; --card2:#242921; --line:#2E342A; --line2:#3B4335;
+ --lime:#C9E600; --lime2:#E2FF2E; --lime-ink:#1A2000;
+ --ink:#F1F3EB; --ink2:#B6BDAA; --ink3:#7C8472; --faint:#545B4C;
+ --sun:#FFC24B; --sky:#6FB7FF; --vio:#B894FF; --red:#FF6B5E; --ok:#7BE38B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Pretendard,"Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+ letter-spacing:-.015em;line-height:1.55;min-height:100vh}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+/* ===== 상단 ===== */
+.top{position:sticky;top:0;z-index:50;background:rgba(17,19,16,.92);backdrop-filter:blur(14px);
+ border-bottom:1px solid var(--line);padding:16px 20px;text-align:center}
+.top h1{font-size:16px;font-weight:900;letter-spacing:-.02em}
+.top h1 b{color:var(--lime)}
+.top p{font-size:11px;color:var(--ink3);font-weight:700;margin-top:3px}
+
+/* 버전 스위치 */
+.vswitch{display:flex;gap:6px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.vbtn{border:1.5px solid var(--line2);border-radius:999px;padding:9px 18px;font-size:12.5px;
+ font-weight:900;color:var(--ink3);transition:.25s;background:var(--bg2)}
+.vbtn:hover{color:var(--ink)}
+.vbtn.on{background:var(--lime);border-color:var(--lime);color:var(--lime-ink);
+ box-shadow:0 0 26px rgba(201,230,0,.35)}
+.vbtn small{display:block;font-size:8.5px;font-weight:900;letter-spacing:.08em;opacity:.75}
+
+/* ===== 메인 2열 ===== */
+.main{max-width:1180px;margin:0 auto;padding:40px 20px 90px;display:grid;gap:44px;align-items:start}
+@media(min-width:1020px){.main{grid-template-columns:1fr 420px;gap:60px}}
+
+/* ===== 레이어 스택 (시각 효과) ===== */
+.stackwrap{position:sticky;top:150px}
+.stackttl{font-size:11px;font-weight:900;letter-spacing:.18em;color:var(--ink3);margin-bottom:10px}
+.stack{position:relative;height:430px;perspective:1100px}
+.plane{position:absolute;left:8%;right:8%;height:120px;border-radius:20px;
+ transform:rotateX(58deg) rotateZ(-38deg);transform-style:preserve-3d;
+ border:1.5px solid var(--line2);background:linear-gradient(135deg,var(--card),var(--bg2));
+ display:flex;align-items:center;gap:14px;padding:0 26px;
+ transition:all .7s cubic-bezier(.2,.8,.2,1);box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.plane .pic{font-size:26px;flex:none;filter:grayscale(1);opacity:.4;transition:.5s}
+.plane .pb b{font-size:15px;font-weight:900;color:var(--ink3);transition:.5s;display:block}
+.plane .pb span{font-size:10.5px;color:var(--faint);font-weight:700;display:block;margin-top:2px;transition:.5s}
+.plane .badge{margin-left:auto;font-size:9px;font-weight:900;border:1px solid var(--line2);
+ color:var(--faint);border-radius:999px;padding:4px 10px;letter-spacing:.08em;transition:.5s}
+.plane.off{opacity:0;transform:rotateX(58deg) rotateZ(-38deg) translateZ(180px) translateY(-60px)}
+.plane.live{border-color:rgba(201,230,0,.55);
+ background:linear-gradient(135deg,#242B14,#1B2010);
+ box-shadow:0 34px 70px -28px rgba(0,0,0,.85),0 0 50px -10px rgba(201,230,0,.25)}
+.plane.live .pic{filter:none;opacity:1}
+.plane.live .pb b{color:var(--ink)}
+.plane.live .pb span{color:var(--ink2)}
+.plane.live .badge{border-color:var(--lime);color:var(--lime)}
+.plane.human.live{border-color:rgba(255,194,75,.55);background:linear-gradient(135deg,#2B2414,#201B10);
+ box-shadow:0 34px 70px -28px rgba(0,0,0,.85),0 0 50px -10px rgba(255,194,75,.22)}
+.plane.human.live .badge{border-color:var(--sun);color:var(--sun)}
+#pl0{bottom:16px;z-index:4}
+#pl1{bottom:118px;z-index:3}
+#pl2{bottom:220px;z-index:2}
+#pl3{bottom:322px;z-index:1}
+.stacknote{margin-top:6px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;
+ padding:14px 17px;font-size:12px;font-weight:700;color:var(--ink2);line-height:1.6}
+.stacknote b{color:var(--lime)}
+.stacknote .hm{color:var(--sun)}
+
+/* ===== 폰 ===== */
+.phonecol{display:flex;flex-direction:column;align-items:center;gap:14px}
+.phone{width:min(400px,100%);background:#0B0D0A;border:10px solid #060705;border-radius:38px;
+ overflow:hidden;box-shadow:0 36px 90px -30px rgba(0,0,0,.9)}
+.scr{height:690px;overflow-y:auto;background:var(--bg2);scrollbar-width:none}
+.scr::-webkit-scrollbar{display:none}
+
+/* 앱 헤더 — 쌤이다 그대로 */
+.apph{position:sticky;top:0;z-index:10;background:rgba(24,27,22,.95);backdrop-filter:blur(10px);
+ padding:16px 16px 0;border-bottom:1px solid var(--line)}
+.apph .r1{display:flex;align-items:center;gap:9px}
+.apph .logo{font-size:16px;font-weight:900;letter-spacing:-.03em}
+.apph .logo i{color:var(--lime);font-style:normal}
+.apph .me{margin-left:auto;font-size:10.5px;color:var(--ink3);font-weight:800}
+.tabs{display:flex;gap:2px;margin-top:12px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;font-size:12px;font-weight:800;color:var(--ink3);padding:9px 11px;border-bottom:2px solid transparent}
+.tab.on{color:var(--lime);border-color:var(--lime)}
+.tab.newtab{position:relative;opacity:0;transform:translateY(-8px);transition:.5s}
+.tab.newtab.show{opacity:1;transform:none}
+.tab.newtab::after{content:"NEW";position:absolute;top:1px;right:-2px;font-size:6.5px;font-weight:900;
+ color:var(--lime);letter-spacing:.05em}
+
+.body{padding:14px 14px 60px;display:flex;flex-direction:column;gap:11px}
+
+/* 카드 공통 */
+.c{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:15px}
+.c .ch{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.c .ch h3{font-size:13.5px;font-weight:900}
+.vtag{font-size:8.5px;font-weight:900;padding:3px 8px;border-radius:999px;letter-spacing:.06em}
+.vt-core{background:rgba(255,255,255,.07);color:var(--ink3)}
+.vt-1{background:rgba(201,230,0,.14);color:var(--lime)}
+.vt-h{background:rgba(255,194,75,.15);color:var(--sun)}
+.c .note{margin-left:auto;font-size:10px;color:var(--ink3);font-weight:700}
+
+/* 본체: 수업 카드 */
+.lesson{background:linear-gradient(120deg,#20250F,#1A1F12 70%);border:1.5px solid rgba(201,230,0,.4);
+ border-radius:19px;padding:17px;position:relative;overflow:hidden}
+.lesson::after{content:"";position:absolute;right:-50px;top:-60px;width:180px;height:180px;border-radius:50%;
+ background:radial-gradient(closest-side,rgba(201,230,0,.22),transparent)}
+.lesson .s{font-size:10px;font-weight:900;color:var(--lime);letter-spacing:.12em}
+.lesson h2{font-size:19px;font-weight:900;margin-top:6px;letter-spacing:-.03em}
+.lesson p{font-size:11.5px;color:var(--ink2);font-weight:700;margin-top:3px}
+.enter{display:block;width:100%;background:var(--lime);color:var(--lime-ink);font-size:14.5px;
+ font-weight:900;border-radius:13px;padding:14px;margin-top:14px;position:relative;z-index:2;
+ box-shadow:0 10px 30px -8px rgba(201,230,0,.45)}
+.enter:hover{background:var(--lime2)}
+
+.row{display:flex;align-items:center;gap:10px;padding:10px 0}
+.row+.row{border-top:1px solid var(--line)}
+.row .ic{width:34px;height:34px;border-radius:10px;background:var(--card2);display:grid;place-items:center;font-size:15px;flex:none}
+.row .rb{flex:1;min-width:0}
+.row .rt{font-size:12.5px;font-weight:900}
+.row .rs{font-size:10.5px;color:var(--ink3);font-weight:700;margin-top:1px}
+.row .rs em{font-style:normal;color:var(--lime)}
+.sbtn{font-size:11px;font-weight:900;background:var(--card2);border:1px solid var(--line2);
+ border-radius:9px;padding:7px 12px;color:var(--ink2)}
+.sbtn.g{background:rgba(201,230,0,.14);border-color:rgba(201,230,0,.4);color:var(--lime)}
+
+/* D-day 가로줄 */
+.ddrow{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.ddrow::-webkit-scrollbar{display:none}
+.dd{flex:none;width:130px;background:var(--card2);border:1px solid var(--line2);border-radius:13px;padding:10px}
+.dd b{font-size:11.5px;font-weight:900;display:block;line-height:1.3}
+.dd .d{font-size:10px;font-weight:900;margin-bottom:5px;display:inline-block;padding:2px 7px;border-radius:6px}
+.d.r{background:rgba(255,107,94,.16);color:var(--red)}
+.d.s{background:rgba(111,183,255,.14);color:var(--sky)}
+.d.y{background:rgba(255,194,75,.15);color:var(--sun)}
+.dd span{font-size:9.5px;color:var(--ink3);font-weight:700;display:block;margin-top:3px;line-height:1.4}
+
+/* 레이어 등장 애니메이션 */
+.layer{display:none}
+.layer.show{display:flex;flex-direction:column;gap:11px;animation:none}
+.layer.show>*{animation:drop .55s cubic-bezier(.2,.8,.25,1.1) both}
+.layer.show>*:nth-child(1){animation-delay:.05s}
+.layer.show>*:nth-child(2){animation-delay:.16s}
+.layer.show>*:nth-child(3){animation-delay:.27s}
+.layer.show>*:nth-child(4){animation-delay:.38s}
+@keyframes drop{from{opacity:0;transform:translateY(-16px) scale(.97)}to{opacity:1;transform:none}}
+.glowline{height:0;border-top:1.5px dashed rgba(201,230,0,.35);position:relative;margin:4px 2px}
+.glowline::after{content:attr(data-t);position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+ background:var(--bg2);padding:0 10px;font-size:9px;font-weight:900;letter-spacing:.14em;color:var(--lime)}
+.glowline.h{border-color:rgba(255,194,75,.4)}
+.glowline.h::after{color:var(--sun)}
+
+.gapline{display:flex;align-items:center;gap:8px;padding:8px 0;font-size:11.5px;font-weight:800}
+.gapline+.gapline{border-top:1px solid var(--line)}
+.gapline .n{width:20px;height:20px;border-radius:6px;background:rgba(255,107,94,.16);color:var(--red);
+ font-size:10px;font-weight:900;display:grid;place-items:center;flex:none}
+.gapline .n.k{background:rgba(123,227,139,.14);color:var(--ok)}
+.gapline .w{margin-left:auto;font-size:9.5px;color:var(--ink3);font-weight:800}
+
+.pbar{display:flex;align-items:baseline;gap:6px}
+.pbar b{font-size:24px;font-weight:900;color:var(--lime)}
+.pbar span{font-size:11px;font-weight:900;color:var(--ink3)}
+.pbar .m{margin-left:auto;font-size:10px;color:var(--ink3);font-weight:700}
+
+.fx{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}
+.fx.run{display:block}
+.fx i{position:absolute;width:6px;height:6px;border-radius:2px;background:var(--lime);
+ animation:fall 1s ease-in forwards}
+@keyframes fall{from{opacity:1;transform:translateY(-14px) rotate(0)}to{opacity:0;transform:translateY(90px) rotate(190deg)}}
+</style>
+</head>
+<body>
+
+<div class="top">
+ <h1>별도 앱이 아닙니다 — <b>쌤이다 스터디룸이 그대로 진화합니다</b></h1>
+ <p>같은 URL · 같은 로그인 · 같은 화면. 버전을 올려보세요 — 레이어가 얹힙니다.</p>
+ <div style="display:flex;gap:10px;justify-content:center;margin-top:10px">
+  <a href="index.html" style="font-size:11px;font-weight:900;color:var(--ink3);text-decoration:none;border:1px solid var(--line2);border-radius:999px;padding:6px 14px">← 원페이저</a>
+  <a href="mytutor.html" style="font-size:11px;font-weight:900;color:var(--lime-ink);background:var(--lime);text-decoration:none;border-radius:999px;padding:6px 14px">▶ 실구동 프로토타입 — 눌러서 직접 풀어보기</a>
+ </div>
+ <div class="vswitch">
+  <button class="vbtn on" data-v="0">쌤이다 본체<small>1:1 과외</small></button>
+  <button class="vbtn" data-v="1">+ 마이코칭 V1<small>전부 자동</small></button>
+  <button class="vbtn" data-v="2">+ V2<small>수행·시험 — 사람</small></button>
+  <button class="vbtn" data-v="3">+ V3<small>필기 — 사람</small></button>
+ </div>
+</div>
+
+<div class="main">
+
+ <!-- ===== 좌: 폰 ===== -->
+ <div class="phonecol">
+  <div class="phone"><div class="scr" id="scr">
+
+   <div class="apph">
+    <div class="r1"><div class="logo">쌤이다<i>.</i></div><div class="me">민준 · 중2 · 공통과정</div></div>
+    <div class="tabs">
+     <span class="tab on">스터디룸</span>
+     <span class="tab">리포트</span>
+     <span class="tab">숙제</span>
+     <span class="tab">질문</span>
+     <span class="tab">성적</span>
+     <span class="tab newtab" id="tabPlan">플래너</span>
+     <span class="tab newtab" id="tabSolve">문제풀이</span>
+    </div>
+   </div>
+
+   <div class="body">
+
+    <!-- ── 본체 (항상) ── -->
+    <div class="lesson">
+     <div class="s">다음 과외 · D-DAY</div>
+     <h2>수학 · 김서연 쌤</h2>
+     <p>오늘 20:30 – 21:30 · 주 2회</p>
+     <button class="enter">수업 입장하기</button>
+    </div>
+
+    <div class="c">
+     <div class="ch"><h3>지난 수업</h3><span class="vtag vt-core">본체</span><span class="note">11/8 (토)</span></div>
+     <div class="row"><div class="ic">📒</div><div class="rb">
+       <div class="rt">일차함수의 기울기</div>
+       <div class="rs">쌤 메모 — 두 점 대입 순서에서 부호 실수 반복 · 이해도 3/5</div></div>
+      <button class="sbtn">리포트</button></div>
+     <div class="row"><div class="ic">📎</div><div class="rb">
+       <div class="rt">숙제 제출</div>
+       <div class="rs" id="hwLine">사진 찍어 올리기 → 쌤이 확인해요</div></div>
+      <button class="sbtn" id="hwBtn">올리기</button></div>
+     <div class="row"><div class="ic">🙋</div><div class="rb">
+       <div class="rt">질문하기</div>
+       <div class="rs">모르는 문제를 쌤에게 보내요</div></div>
+      <button class="sbtn">질문</button></div>
+    </div>
+
+    <!-- ── V1 레이어 ── -->
+    <div class="layer" id="L1">
+     <div class="glowline" data-t="MYCOACHING V1 — 자동이 얹혔습니다"></div>
+
+     <div class="c">
+      <div class="ch"><h3>학습 플래너</h3><span class="vtag vt-1">V1 자동</span><span class="note">반포중 학사일정 연동</span></div>
+      <div class="ddrow">
+       <div class="dd"><span class="d r">D-1</span><b>국어 말하기 수행</b><span>세부 범위 공지됨 · 역산 플랜</span></div>
+       <div class="dd"><span class="d s">D-6</span><b>과학 실험보고서</b><span>어제 범위 떴어요</span></div>
+       <div class="dd"><span class="d y">D-12</span><b>2학기 중간</b><span>범위 변동 자동 반영</span></div>
+      </div>
+     </div>
+
+     <div class="c">
+      <div class="ch"><h3>오늘 할 것</h3><span class="vtag vt-1">V1 자동</span><span class="note">수업 기록에서 생성</span></div>
+      <div class="row"><div class="ic">🧩</div><div class="rb">
+        <div class="rt">기울기 개념체크 5문제</div>
+        <div class="rs"><em>지난 수업에서 막힌 것</em> · 약 4분</div></div>
+       <button class="sbtn g">시작</button></div>
+      <div class="row"><div class="ic">✏️</div><div class="rb">
+        <div class="rt">쌤 숙제 12문제 · 자동 채점</div>
+        <div class="rs">두 점 대입 유형 · 숫자 변형 반복</div></div>
+       <button class="sbtn g">풀기</button></div>
+     </div>
+
+     <div class="c">
+      <div class="ch"><h3>아직 안 풀린 것</h3><span class="vtag vt-1">V1 자동</span></div>
+      <div class="gapline"><span class="n">3</span>두 점으로 기울기 구하기<span class="w">오늘 섞임</span></div>
+      <div class="gapline"><span class="n">2</span>기울기 부호 판단<span class="w">내일</span></div>
+      <div class="gapline"><span class="n k">✓</span>일차함수 식 세우기<span class="w">해결</span></div>
+     </div>
+
+     <div class="c">
+      <div class="ch"><h3>포인트</h3><span class="vtag vt-1">V1 자동</span></div>
+      <div class="pbar"><b>80</b><span>P</span><span class="m">체크 +10 · 숙제 +15 · 막힌 것 해결 +20</span></div>
+     </div>
+    </div>
+
+    <!-- ── V2 레이어 ── -->
+    <div class="layer" id="L2">
+     <div class="glowline h" data-t="V2 — 사람이 붙었습니다"></div>
+     <div class="c" style="border-color:rgba(255,194,75,.35)">
+      <div class="ch"><h3>수행 원고 첨삭</h3><span class="vtag vt-h">V2 사람</span><span class="note">전담 매니저</span></div>
+      <div class="row"><div class="ic">✍️</div><div class="rb">
+        <div class="rt">말하기 원고 2차 — 코멘트 도착</div>
+        <div class="rs">"도입에서 결론을 먼저. 2문단 둘째 줄을 맨 앞으로"</div></div>
+       <button class="sbtn g">열기</button></div>
+      <div class="row"><div class="ic">🗂</div><div class="rb">
+        <div class="rt">시험 주간 점검</div>
+        <div class="rs">영어 이행률 낮음 → 회차 재배분됨</div></div></div>
+     </div>
+    </div>
+
+    <!-- ── V3 레이어 ── -->
+    <div class="layer" id="L3">
+     <div class="glowline h" data-t="V3 — 필기까지"></div>
+     <div class="c" style="border-color:rgba(255,194,75,.35)">
+      <div class="ch"><h3>필기 코멘트</h3><span class="vtag vt-h">V3 사람</span><span class="note">김서연 쌤 직접</span></div>
+      <div class="row"><div class="ic">📓</div><div class="rb">
+        <div class="rt">11/8 수업 필기 · 코멘트 2</div>
+        <div class="rs">"기울기 분모에 x의 차이 — 3번 줄만 고치면 다 맞아요"</div></div>
+       <button class="sbtn g">보기</button></div>
+     </div>
+    </div>
+
+   </div>
+  </div></div>
+ </div>
+
+ <!-- ===== 우: 레이어 스택 ===== -->
+ <div class="stackwrap">
+  <div class="stackttl">LAYER STACK — 얹히는 구조</div>
+  <div class="stack">
+   <div class="plane live" id="pl0"><div class="pic">🏫</div>
+    <div class="pb"><b>쌤이다 본체</b><span>1:1 과외 · 입장 · 결제 · 리포트 — 실가동</span></div>
+    <div class="badge">LIVE</div></div>
+   <div class="plane off" id="pl1"><div class="pic">⚙️</div>
+    <div class="pb"><b>V1 — 자동</b><span>문제풀이 19.9만 · 플래너 · 점검 · 포인트</span></div>
+    <div class="badge">한계비용 ≈ 0</div></div>
+   <div class="plane human off" id="pl2"><div class="pic">👩‍💼</div>
+    <div class="pb"><b>V2 — 수행·시험</b><span>전담 매니저 · 첨삭 · 주간 점검</span></div>
+    <div class="badge">사람 ON</div></div>
+   <div class="plane human off" id="pl3"><div class="pic">👩‍🏫</div>
+    <div class="pb"><b>V3 — 필기</b><span>담당 쌤 코멘트 · 쌤 정산</span></div>
+    <div class="badge">사람 ON</div></div>
+  </div>
+  <div class="stacknote" id="note">
+   지금은 <b>쌤이다 본체</b>만 보입니다 — 현재 운영 중인 화면 그대로. 위에 V1을 얹어 보세요.
+  </div>
+ </div>
+
+</div>
+
+<div class="fx" id="fx"></div>
+
+<script>
+(function(){
+ var V=0;
+ var NOTES={
+  0:'지금은 <b>쌤이다 본체</b>만 보입니다 — 현재 운영 중인 화면 그대로. 위에 V1을 얹어 보세요.',
+  1:'<b>V1이 얹혔습니다.</b> 새 앱이 아니라 같은 스터디룸에 플래너·문제풀이·점검·포인트가 내려앉았습니다. 전부 자동 — 수업 기록이 연료입니다. 숙제 줄이 "사진 제출"에서 <b>"자동 채점"</b>으로 바뀐 것도 보세요.',
+  2:'<span class="hm">V2 — 처음으로 사람이 붙습니다.</span> 수행 원고 첨삭·시험 주간 점검. 자동이 걸러낸 뒤라 매니저 1명이 많은 학생을 봅니다.',
+  3:'<span class="hm">V3 — 담당 쌤이 필기까지.</span> 레이어 4장이 전부 켜졌습니다. 아래 3장을 빼도 본체는 그대로 돌아갑니다 — 그게 "얹힌다"의 뜻입니다.'
+ };
+ function confetti(){
+  var fx=document.getElementById('fx'); fx.classList.add('run'); fx.innerHTML='';
+  for(var i=0;i<26;i++){
+   var p=document.createElement('i');
+   p.style.left=(20+Math.random()*60)+'%';
+   p.style.top=(10+Math.random()*20)+'%';
+   p.style.animationDelay=(Math.random()*.25)+'s';
+   p.style.background=Math.random()>.5?'var(--lime)':'var(--sun)';
+   fx.appendChild(p);
+  }
+  setTimeout(function(){fx.classList.remove('run');},1200);
+ }
+ function set(v){
+  V=v;
+  document.querySelectorAll('.vbtn').forEach(function(b){b.classList.toggle('on',+b.dataset.v===v);});
+  /* 폰 레이어 */
+  for(var i=1;i<=3;i++){
+   var L=document.getElementById('L'+i);
+   if(i<=v && !L.classList.contains('show')){L.classList.add('show');}
+   if(i>v) L.classList.remove('show');
+  }
+  /* 새 탭 */
+  document.getElementById('tabPlan').classList.toggle('show',v>=1);
+  document.getElementById('tabSolve').classList.toggle('show',v>=1);
+  /* 숙제 줄 변신 */
+  var hw=document.getElementById('hwLine'), hb=document.getElementById('hwBtn');
+  if(v>=1){hw.innerHTML='<em>자동 채점</em>으로 바뀌었어요 — 틀린 유형은 변형 재출제';hb.textContent='풀기';hb.className='sbtn g';}
+  else{hw.textContent='사진 찍어 올리기 → 쌤이 확인해요';hb.textContent='올리기';hb.className='sbtn';}
+  /* 스택 */
+  for(var j=1;j<=3;j++){
+   var pl=document.getElementById('pl'+j);
+   pl.classList.toggle('off', j>v);
+   pl.classList.toggle('live', j<=v);
+  }
+  document.getElementById('note').innerHTML=NOTES[v];
+  if(v>0) confetti();
+  var scr=document.getElementById('scr');
+  if(v===1) setTimeout(function(){scr.scrollTo({top:430,behavior:'smooth'});},350);
+  if(v===2) setTimeout(function(){scr.scrollTo({top:scr.scrollHeight,behavior:'smooth'});},350);
+  if(v===3) setTimeout(function(){scr.scrollTo({top:scr.scrollHeight,behavior:'smooth'});},350);
+  if(v===0) scr.scrollTo({top:0,behavior:'smooth'});
+ }
+ document.querySelectorAll('.vbtn').forEach(function(b){
+  b.addEventListener('click',function(){set(+b.dataset.v);});
+ });
+})();
+</script>
+</body>
+</html>
