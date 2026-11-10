@@ -486,8 +486,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   <div style="margin-top:10px;border:1px dashed #3A4034;border-radius:14px;padding:13px;font-size:12px;color:#9AA395;font-weight:700">
    🖊 공유 판서 — 오늘 단원: <b style="color:#E8EDE2">기울기와 절편</b> · 지난 체크에서 막힌 <b style="color:#C9E600">두 점 대입</b>부터</div>
   <div style="display:flex;gap:8px;margin-top:13px;align-items:center">
-    <button style="border:1px solid #3A4034;border-radius:11px;padding:10px 13px;color:#C3CBBB;background:none">🎤</button>
-    <button style="border:1px solid #3A4034;border-radius:11px;padding:10px 13px;color:#C3CBBB;background:none">📷</button>
+    <button data-mute style="border:1px solid #3A4034;border-radius:11px;padding:10px 13px;color:#C3CBBB;background:none">🎤</button>
+    <button data-mute style="border:1px solid #3A4034;border-radius:11px;padding:10px 13px;color:#C3CBBB;background:none">📷</button>
     <button id="clsOut" style="margin-left:auto;background:#E85050;color:#fff;font-weight:900;border-radius:11px;padding:11px 18px;border:0">수업 나가기</button>
   </div>
  </div>
@@ -702,6 +702,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   var l=e.target.closest('[data-lt]');
   if(l){document.getElementById('genOvl').style.display='none'; ltoast(l.dataset.lt); return;}
  });
+ document.addEventListener('click',function(e){var m=e.target.closest('[data-mute]');
+  if(m){m.style.opacity=(m.style.opacity==='0.35')?'1':'0.35';}});
  document.getElementById('genX').addEventListener('click',function(){document.getElementById('genOvl').style.display='none';});
  document.getElementById('genOvl').addEventListener('click',function(e){if(e.target===this)this.style.display='none';});
 })();
