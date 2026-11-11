@@ -637,6 +637,16 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
 .vctr{min-height:40px;background:var(--line2);border-radius:10px;padding:10px 12px;font-size:13.5px;line-height:1.6;margin-top:8px}
 .vckw{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:800;margin:3px 3px 0 0;border:1.5px solid var(--line)}
 .vckw.ok{background:var(--ok-s,#e9fbf4);color:var(--ok);border-color:var(--ok)}
+
+/* 캐릭터·의상·뽑기 */
+.rm-tr.lock span img,.rm-tr.lock span{filter:grayscale(1);opacity:.5}
+.gch{border:1.5px solid var(--line);border-radius:14px;padding:13px;text-align:center;background:#fff}
+.gch .big{font-size:40px;line-height:1.1}
+.gbadge{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:900;color:#fff}
+.m2aur{position:absolute;left:-10%;top:-6%;width:120%;height:46%;z-index:1;pointer-events:none;filter:blur(14px);opacity:.55;
+ background:linear-gradient(100deg,transparent 5%,#38e8b0 25%,#7fb4ff 45%,#c77fff 62%,#38e8b0 80%,transparent 95%);
+ background-size:220% 100%;animation:aur 9s ease-in-out infinite alternate;border-radius:50%}
+@keyframes aur{from{background-position:0 0;transform:skewX(-8deg)}to{background-position:100% 0;transform:skewX(6deg)}}
 </style>
 </head>
 <body class="pc">
@@ -1076,18 +1086,10 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
           </div>
         </div>
 
-        <!-- 버디 (초등 전용) -->
-        <div class="card elonly">
-          <div class="ch"><h2>내 버디</h2><span class="note">초등 전용</span></div>
-          <div class="buddy">
-            <div class="eg">🐣</div>
-            <div class="bb">
-              <div class="bt">구름이 · 2단계</div>
-              <div class="bs">막힌 개념 3개 더 풀면 진화해요</div>
-              <div class="evo"><i style="width:62%"></i></div>
-            </div>
-          </div>
-          <div class="mini" style="margin-top:9px">중등부터는 버디가 없고 꾸미기·뽑기와 묶인 레벨만 남습니다.</div>
+        <!-- 내 캐릭터 (초·중등) — 레벨로 해금 -->
+        <div class="card gameonly">
+          <div class="ch"><h2>내 캐릭터</h2><span class="note">레벨로 해금 · 의상은 뽑기</span></div>
+          <div id="charCard"></div>
         </div>
 
         <!-- 포인트 (전 학년) -->
@@ -2748,7 +2750,66 @@ var M2CHAR=[
  {s:'char',n:'파랑 단발'},{s:'char_c2',n:'그린 까치머리'},{s:'char_c3',n:'핑크 양갈래'},
  {s:'char_c4',n:'퍼플 금발'},{s:'char_c5',n:'레드 까치머리'},{s:'char_c6',n:'민트 핑크머리'}
 ];
-function m2Char(i){ROOM.m2.ch=i;rmPaint();renderRoomCard();}
+var PLV=7, CHLV=[1,5,10,15,20,25];
+var WARD={'\uD83C\uDF93':1,'\uD83D\uDC53':1,'\uD83E\uDDE3':1,'\uD83D\uDC5F':1,'\uD83E\uDDE2':1,'\uD83C\uDF80':1};
+var ACCMETA={'\uD83E\uDDE2':['루키 캡','c'],'\uD83C\uDF80':['핑크 리본','c'],'\uD83E\uDD7F':['핑크 슬리퍼','c'],
+ '\uD83D\uDD76\uFE0F':['선글라스','r'],'\uD83E\uDDDA':['요정 모자','r'],'\uD83D\uDCFF':['골드 목걸이','r'],'\uD83C\uDF1B':['달 귀걸이','r'],'\uD83E\uDE77':['리본 타이','r'],
+ '\uD83C\uDF93':['현자의 모자','e'],'\uD83D\uDC97':['하프문 안경','e'],'\uD83E\uDEE7':['펄 펜던트','e'],'\uD83E\uDDE3':['포근 머플러','e'],'\uD83C\uDFA7':['윈터 비니','e'],
+ '\uD83C\uDFA9':['마스터 햇','l'],'\uD83D\uDC51':['골드 크라운','l'],'\uD83D\uDC5F':['스피드 운동화','l'],
+ '\uD83D\uDC31':['골드 티아라','m'],'\u26D1\uFE0F':['불굴의 헬멧','m']};
+var GNAME={c:'노멀',r:'레어',e:'에픽',l:'전설',m:'신화'};
+var GCOL={c:'#8a93a6',r:'#2f80ed',e:'#9b51e0',l:'#f2994a',m:'#eb5757'};
+var KEYS=2, TKT=3, PITY=0, STK={'\uD83E\uDDE2':2};
+function accPool(g){var o=[];Object.keys(ACCMETA).forEach(function(e){if(ACCMETA[e][1]===g&&lpcAcc(e))o.push(e);});return o;}
+function accImg(e,px){var A=lpcAcc(e);px=px||34;
+ if(A)return '<span style="display:inline-block;width:'+px+'px;height:'+px+'px;overflow:hidden"><img src="'+A.img+'" style="width:'+px+'px;height:'+px+'px;image-rendering:pixelated"></span>';
+ return '<span style="font-size:'+Math.round(px*0.8)+'px">'+e+'</span>';}
+function m2Wear(e){var A=lpcAcc(e);if(!A)return;
+ if(!WARD[e]){if(typeof toast==='function')toast((ACCMETA[e]?ACCMETA[e][0]:e)+' — 뽑기에서 획득해야 입을 수 있어요');return;}
+ GAME.acc=GAME.acc||{};
+ GAME.acc[A.slot]=(GAME.acc[A.slot]===e)?null:e;
+ rmPaint();renderRoomCard();renderCharCard();paintBig();}
+function gchGrade(rates){var roll=Math.random()*100,acc=0,g='c';
+ rates.some(function(x){acc+=x[1];if(roll<acc){g=x[0];return true;}return false;});return g;}
+function gchGrant(g){var pool=accPool(g);if(!pool.length)pool=accPool('c');
+ var e=pool[Math.floor(Math.random()*pool.length)];
+ STK[e]=(STK[e]||0)+1; var isNew=!WARD[e]; WARD[e]=1; return {e:e,n:(ACCMETA[e]?ACCMETA[e][0]:e),g:g,nw:isNew};}
+function gchShow(r,extra){var el=document.getElementById('gchRes');if(!el)return;
+ el.innerHTML='<div class="gch"><div class="big">'+accImg(r.e,46)+'</div>'+
+  '<div style="margin:5px 0 3px"><span class="gbadge" style="background:'+GCOL[r.g]+'">'+GNAME[r.g]+'</span></div>'+
+  '<b>'+r.n+'</b> '+(r.nw?'<span style="color:var(--ok);font-weight:900">NEW!</span>':'<span style="opacity:.6">×'+STK[r.e]+' — 3개면 합성</span>')+
+  (extra||'')+'<div style="margin-top:8px"><button class="btn g sm" onclick="m2Wear(\''+r.e+'\')">바로 입기</button></div></div>';
+ if(typeof confetti==='function')try{confetti();}catch(x){}}
+function gchBox(){if(KEYS<=0){toast('열쇠가 없어요 — 오늘 루틴을 끝내면 받아요');return;}
+ KEYS--;
+ if(Math.random()<0.08){var el=document.getElementById('gchRes');
+  if(el)el.innerHTML='<div class="gch"><div class="big">\uD83D\uDCA8</div><b>꽝…!</b><div style="font-size:12px;opacity:.7;margin-top:4px">대신 위로 별 \u2B502개 — 빈손은 없어요</div></div>';
+  paintBig();return;}
+ var g=gchGrade([['m',0.1],['l',2.9],['e',12],['r',25],['c',60]]);
+ gchShow(gchGrant(g)); paintBig();}
+function gchCapsule(){if(TKT<=0){toast('뽑기권이 없어요 — 주간 미션 올클리어로 받아요');return;}
+ TKT--;
+ var g=gchGrade([['m',0.5],['l',9.5],['e',20],['r',30],['c',40]]);
+ if(PITY>=9 && (g==='c'||g==='r')) g='e';
+ PITY=(g==='c'||g==='r')?PITY+1:0;
+ gchShow(gchGrant(g),'<div style="font-size:11px;opacity:.6;margin-top:4px">천장 '+(10-PITY)+'회 남음 (에픽 이상 확정)</div>');
+ paintBig();}
+function gchFuse(e){if((STK[e]||0)<3){toast('같은 파츠 3개가 있어야 합성할 수 있어요');return;}
+ STK[e]-=3;
+ var up={c:'r',r:'e',e:'l',l:'m',m:'m'}[ACCMETA[e]?ACCMETA[e][1]:'c'];
+ var r=gchGrant(up); gchShow(r,'<div style="font-size:11px;opacity:.6;margin-top:4px">\uD83D\uDD2E 합성 성공 — '+GNAME[up]+' 등급!</div>'); paintBig();}
+function renderCharCard(){var el=document.getElementById('charCard');if(!el)return;
+ var ni=-1;for(var i=0;i<CHLV.length;i++){if(PLV<CHLV[i]){ni=i;break;}}
+ el.innerHTML='<div style="display:flex;gap:12px;align-items:center">'+
+  '<span style="flex:none">'+lpcCharImg(56,true)+'</span>'+
+  '<div style="flex:1;min-width:0"><b style="font-size:14px">Lv.'+PLV+' · '+(M2CHAR[(ROOM.m2&&ROOM.m2.ch)||0].n)+'</b>'+
+  '<div style="font-size:12px;color:var(--ink3);margin-top:2px">'+(ni<0?'모든 캐릭터 해금 완료':'Lv.'+CHLV[ni]+' 달성 시 <b>'+M2CHAR[ni].n+'</b> 해금')+'</div>'+
+  (ni>=0?'<div class="evo" style="margin-top:6px"><i style="width:'+Math.round(PLV/CHLV[ni]*100)+'%"></i></div>':'')+
+  '</div></div>'+
+  '<div class="mini" style="margin-top:9px">캐릭터는 <b>레벨로만</b> 얻고, 의상·파츠는 <b>뽑기로</b> — 입은 의상이 아바타에 그대로 그려져요.</div>';}
+function m2Char(i){
+ if(PLV<CHLV[i]){if(typeof toast==='function')toast(M2CHAR[i].n+' — Lv.'+CHLV[i]+'에 해금돼요 (지금 Lv.'+PLV+')');return;}
+ ROOM.m2.ch=i;rmPaint();renderRoomCard();renderCharCard();}
 /* 다음 해금 — 전체 목록이 아니라 '곧 얻을 것'만, 진행률과 함께 */
 var NEXTUP=[
  {ic:'🕶️',n:'선글라스',slot:'얼굴 장착',cur:5,max:7,unit:'일 연속'},
@@ -2811,6 +2872,7 @@ function mapleScene(big,edit){
  var floor=dream?((window.LPCA&&LPCA.tiles.floorN)?m2bg({tile:'floorN'}):'repeating-linear-gradient(0deg,#8d7bc7 0 9px,#7b69b4 9px 11px)'):m2bg(M2FL[m2.fl]);
  var deco='';
  if(dream){
+  deco+='<div class="m2aur"></div>';
   [[8,12],[18,34],[30,9],[42,22],[55,13],[66,36],[78,10],[88,30],[94,16],[50,42]].forEach(function(p,i){
    deco+='<i class="m2star" style="left:'+p[0]+'%;top:'+p[1]+'%;animation-delay:'+(i*0.25)+'s"></i>';});
   deco+='<div style="position:absolute;left:-2%;top:3%;width:104%;height:26px;border:2px solid #5a4f8f;border-top:none;border-radius:0 0 100% 100%;z-index:2"></div>';
@@ -2911,7 +2973,7 @@ function paintBig(){
  var b=document.getElementById('m2Big'); if(!b)return;
  b.innerHTML=mapleScene(true,true);
  var t=document.getElementById('m2Tray'); if(!t)return;
- var tabs=[['furn','가구'],['deco','소품'],['pet','펫'],['wall','벽'],['floor','바닥'],['char','캐릭터']];
+ var tabs=[['furn','가구'],['deco','소품'],['pet','펫'],['wall','벽'],['floor','바닥'],['char','캐릭터'],['wear','의상'],['gacha','뽑기']];
  var h='<div class="rm-themes" style="margin-bottom:10px">'+tabs.map(function(x){
    return '<button class="'+(M2TAB===x[0]?'on':'')+'" onclick="M2TAB=\''+x[0]+'\';paintBig()">'+x[1]+'</button>';}).join('')+'</div>';
  if(M2TAB==='wall'||M2TAB==='floor'){
@@ -2921,10 +2983,41 @@ function paintBig(){
       '<span style="display:block;height:22px;border-radius:6px;background:'+(m2bg(x)||'#ccc')+';background-size:cover"></span>'+
       '<b>'+x.n+'</b><i>'+(x.got?'보유':(x.need||'미보유'))+'</i></button>';}).join('')+'</div>';
  } else if(M2TAB==='char'){
+  h+='<div class="mini" style="margin-bottom:7px">캐릭터는 <b>레벨로 해금</b> — 지금 Lv.'+PLV+'</div>';
   h+='<div class="rm-tray">'+M2CHAR.map(function(c,i){
-    return '<button class="rm-tr'+(((ROOM.m2.ch||0)===i)?' on':'')+'" onclick="m2Char('+i+')">'+
+    var ok=PLV>=CHLV[i];
+    return '<button class="rm-tr'+(((ROOM.m2.ch||0)===i)?' on':'')+(ok?'':' lock')+'" onclick="m2Char('+i+')">'+
       (window.LPCA?'<span style="display:block;height:34px;overflow:hidden"><img src="'+LPCA.chars[i].img+'" style="width:34px;height:34px;image-rendering:pixelated"></span>':'<span>\ud83e\uddd1</span>')+
-      '<b>'+c.n+'</b></button>';}).join('')+'</div>';
+      '<b>'+c.n+'</b><i>'+(ok?'해금됨':'\uD83D\uDD12 Lv.'+CHLV[i])+'</i></button>';}).join('')+'</div>';
+ } else if(M2TAB==='wear'){
+  var slots=[['head','머리'],['face','얼굴'],['neck','목'],['shoes','신발']];
+  h+=slots.map(function(sp){
+   var list=Object.keys(ACCMETA).filter(function(e){var A=lpcAcc(e);return A&&A.slot===sp[0];});
+   return '<div style="font-size:10.5px;font-weight:900;color:var(--ink3);margin:8px 0 5px">'+sp[1]+'</div>'+
+    '<div class="rm-tray">'+list.map(function(e){
+     var own=!!WARD[e], on=GAME.acc&&GAME.acc[sp[0]]===e;
+     return '<button class="rm-tr'+(on?' on':'')+(own?'':' lock')+'" onclick="m2Wear(\''+e+'\')">'+
+      '<span style="display:block;height:30px;display:grid;place-items:center">'+accImg(e,30)+'</span>'+
+      '<b>'+ACCMETA[e][0]+'</b><i style="color:'+GCOL[ACCMETA[e][1]]+'">'+GNAME[ACCMETA[e][1]]+(own?(on?' · 입는 중':''):' · 뽑기')+'</i></button>';}).join('')+'</div>';
+  }).join('');
+ } else if(M2TAB==='gacha'){
+  var elG=(document.body.className.indexOf('g-el')>=0);
+  if(elG){
+   h+='<div class="gch" style="margin-bottom:9px"><div class="big">\uD83C\uDF81</div>'+
+    '<b>보물상자</b> · 열쇠 '+KEYS+'개<div style="font-size:11px;opacity:.65;margin:3px 0 8px">노멀60 · 레어25 · 에픽12 · 전설2.9 · <b>신화 0.1%</b> · 꽝8%(위로 별)</div>'+
+    '<button class="btn g sm" onclick="gchBox()">열기</button></div>';
+   var fu=Object.keys(STK).filter(function(e){return STK[e]>=3;});
+   h+='<div style="font-size:10.5px;font-weight:900;color:var(--ink3);margin:8px 0 5px">\uD83D\uDD2E 합성 — 같은 파츠 3개 = 윗 등급 1개</div>';
+   h+=fu.length?('<div class="rm-tray">'+fu.map(function(e){return '<button class="rm-tr" onclick="gchFuse(\''+e+'\')">'+
+    '<span style="display:block;height:30px;display:grid;place-items:center">'+accImg(e,30)+'</span><b>'+(ACCMETA[e]?ACCMETA[e][0]:e)+' ×'+STK[e]+'</b><i>합성!</i></button>';}).join('')+'</div>')
+    :'<div class="mini">아직 3개 모인 파츠가 없어요 — 지금 '+(Object.keys(STK).map(function(e){return (ACCMETA[e]?ACCMETA[e][0]:e)+' ×'+STK[e];}).join(', ')||'0개')+'</div>';
+  }else{
+   h+='<div class="gch" style="margin-bottom:9px"><div class="big">\uD83C\uDFB0</div>'+
+    '<b>스타일 캡슐</b> · 뽑기권 '+TKT+'장<div style="font-size:11px;opacity:.65;margin:3px 0 8px">노멀40 · 레어30 · 에픽20 · 레전드9.5 · <b>신화 0.5%</b> · <b>10회 천장</b>(에픽 이상 확정, 현재 '+PITY+'/10)</div>'+
+    '<button class="btn g sm" onclick="gchCapsule()">1회 뽑기</button></div>'+
+    '<div class="mini">뽑기권은 <b>주간 미션 올클리어</b>로만 — 현질 없음 · P로도 못 사요</div>';
+  }
+  h+='<div id="gchRes" style="margin-top:9px"></div>';
  } else {
   var grp={furn:['bed','ward','shelf','chair','stool','desk','lamp','lamp2','chest','piano','curtain','door','win'],
            deco:['poster','clock','fire','plant','vase','rug','trophy','teddy'],
@@ -2961,8 +3054,8 @@ function openRoom(){
  d.style.display='flex'; paintBig();
 }
 function paintNext(){var w=document.getElementById('nxupWrap'); if(w)w.innerHTML=nextUpHtml(2);}
-document.addEventListener('DOMContentLoaded',function(){renderRoomCard();paintNext();});
-renderRoomCard();paintNext();
+document.addEventListener('DOMContentLoaded',function(){renderRoomCard();paintNext();renderCharCard();});
+renderRoomCard();paintNext();renderCharCard();
 </script>
 <script>
 (function(){
