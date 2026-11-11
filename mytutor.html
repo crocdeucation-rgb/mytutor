@@ -1935,7 +1935,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
         <h3>수행 · 시험</h3>
         <div class="pr" id="suhPrice">+150,000<small> / 월</small></div>
         <ul>
-          <li><b style="color:var(--brand-ink)">기본 전부 포함</b></li>
+          <li><b style="color:var(--brand-ink)">기본(+10만) 위에 추가 과금</b></li>
           <li>학교 평가계획 해석 · 1주 역산 플랜</li>
           <li>원고·보고서 첨삭</li>
           <li>시험 일정·전략 관리 통합</li>
@@ -2236,7 +2236,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
   var LEC={el:80000,mi:100000,hi:0};
   var PRICE={base:100000,note:100000,exam:100000};
   var LABEL={base:'마이튜터 기본',suh:'수행·시험 PRO',note:'필기 PRO',exam:'시험 PRO'};
-  var SUB={base:'문제풀이 · 점검 · 자동 수행/시험',suh:'기본 포함 + 전담 매니저 · 시험관리 통합',note:'담당 쌤 코멘트',exam:'시험 일정 관리'};
+  var SUB={base:'문제풀이 · 점검 · 자동 수행/시험',suh:'전담 매니저 · 시험관리 통합 — 기본과 별도 과금',note:'담당 쌤 코멘트',exam:'시험 일정 관리'};
 
   function won(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
 
@@ -2279,7 +2279,6 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
       var sum=core;
       ['base','suh','note','exam'].forEach(function(k){
         if(!ADDONS[k]) return;
-        if(k==='base'&&ADDONS.suh) return; /* 수행관리가 기본 포함 */
         if(k==='exam') return; /* 수행·시험 PRO에 통합 */
         var p=(k==='suh')?c.suh:PRICE[k];
         sum+=p;
