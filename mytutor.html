@@ -1024,7 +1024,7 @@ body.g-hi .noteonly{display:none!important}
         </div>
 
         <!-- 필기관리 (애드온) -->
-        <div class="card lock" data-lock="note">
+        <div class="card lock noteonly" data-lock="note">
           <div class="inner">
             <div class="ch"><h2>필기 피드백</h2><span class="tag t-note">필기 관리</span>
               <span class="note">담당 쌤이 직접</span></div>
@@ -1692,7 +1692,7 @@ body.g-hi .noteonly{display:none!important}
       </div>
 
       <div class="stk">
-        <div class="card lock" data-lock="note">
+        <div class="card lock noteonly" data-lock="note">
           <div class="inner">
             <div class="ch"><h2>필기 코멘트</h2><span class="tag t-note">필기 관리</span></div>
             <div class="task"><div class="ic i-v">📓</div>
@@ -2220,6 +2220,7 @@ body.g-hi .noteonly{display:none!important}
     b.addEventListener('click',function(){
       AGE=b.dataset.g; shell(); render();
       if(window.roomGradePreset)roomGradePreset(AGE);
+      if(AGE==='hi'){var nv=document.querySelector('.view.on');if(nv&&nv.dataset.view==='note')setView('home');}
       qsa('[data-g]').forEach(function(x){x.classList.toggle('on',x===b);});
       var sc=document.querySelector('.scroll'); if(sc) sc.scrollTop=0;
     });
