@@ -620,6 +620,7 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 @keyframes m2fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .mini{font-size:10.5px;color:var(--faint);font-weight:700;line-height:1.55}
 body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g-mi .hionly,body.g-mi .elonly{display:none!important}
+body.g-hi .noteonly{display:none!important}
 
 /* ===== 보이스 체크 (말해보카식) ===== */
 .vcq{font-size:17px;font-weight:800;line-height:1.5;margin:4px 0 12px}
@@ -674,7 +675,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
   <div class="grp lab add" data-lab="애드온">
     <button data-a="base" class="on">기본</button>
     <button data-a="suh">수행 PRO</button>
-    <button data-a="note">필기 PRO</button>
+    <button data-a="note" class="noteonly">필기 PRO</button>
     
   </div>
   <div class="hint">애드온 버튼을 끄면 <b>해당 기능이 실제로 잠깁니다</b> — 학부모가 보는 그대로
@@ -702,7 +703,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
 
   <div class="seg">PRO</div>
   <button class="nav" data-v="suh" data-need="suh"><span class="ic">📝</span>수행 PRO<span class="lk">+</span></button>
-  <button class="nav" data-v="note" data-need="note"><span class="ic">📓</span>필기 PRO<span class="lk">+</span></button>
+  <button class="nav noteonly" data-v="note" data-need="note"><span class="ic">📓</span>필기 PRO<span class="lk">+</span></button>
   <button class="nav" data-v="exam" data-need="exam"><span class="ic">📅</span>시험 PRO<span class="lk">+</span></button>
 
   <div class="seg">시연 전용</div>
@@ -1966,7 +1967,7 @@ body.g-hi .gameonly,body.g-hi .elonly,body.g-el .hionly,body.g-el .mionly,body.g
           <li>주간 필기 리포트 · 오답노트 체계화</li>
           <li>수업 중 피드백은 본체 포함 그대로</li>
         </ul>
-        <div class="who">담당 과외 쌤 · 전 과정 단일가</div>
+        <div class="who">담당 과외 쌤 · 초·중등만 — 고등 제공 안 함</div>
       </div>
     </div>
 
