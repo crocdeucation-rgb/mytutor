@@ -668,6 +668,43 @@ body.g-hi .noteonly{display:none!important}
 
 /* ===== 보이스 체크 (말해보카식) ===== */
 .vcq{font-size:17px;font-weight:800;line-height:1.5;margin:4px 0 12px}
+/* 말해보카식 학습 카드 */
+.vcbar{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.vcbar .tr{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;
+ display:grid;place-items:center;flex:none}
+.vcbar .pb{flex:1;height:9px;border-radius:99px;background:var(--line2);position:relative;overflow:hidden}
+.vcbar .pb i{position:absolute;left:0;top:0;bottom:0;background:var(--brand);border-radius:99px;transition:width .35s}
+.vcbar .cnt{font-size:11px;font-weight:900;color:var(--ink3);flex:none}
+.vclv{display:inline-block;font-size:9.5px;font-weight:900;background:var(--navy-s);color:var(--navy);
+ border-radius:8px 8px 0 0;padding:3px 10px;margin-left:2px}
+.vccard{border:1.5px solid var(--line);border-radius:13px;overflow:hidden;text-align:left;background:#fff}
+.vccard .ko{background:var(--navy-s);padding:13px 14px 10px;font-size:14.5px;font-weight:800;line-height:1.5}
+.vccard .ko b{color:var(--ok)}
+.vccard .mean{font-size:10.5px;font-weight:700;color:var(--ink3);text-align:right;padding:0 14px 10px;background:var(--navy-s)}
+.vccard .en{padding:20px 14px;font-size:19px;font-weight:800;line-height:1.6;letter-spacing:-.01em}
+.vccard .src{font-size:9.5px;font-weight:800;color:var(--faint);text-align:right;padding:0 14px 10px}
+.vcblank{display:inline-block;min-width:62px;border-bottom:3px solid var(--navy);text-align:center}
+.vcblank.ok{color:var(--ok);border-color:var(--ok)}
+.vcin{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px;font:inherit;
+ font-size:16px;font-weight:800;text-align:center;outline:none}
+.vcin:focus{border-color:var(--brand)}
+.vcin.bad{border-color:var(--red);background:var(--red-s)}
+.vcrow{display:flex;gap:7px;margin-top:8px}
+.vcrow>*{flex:1}
+.vctool{display:flex;gap:2px;border-top:1px solid var(--line2);margin-top:11px;padding-top:9px}
+.vctool button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;
+ font-weight:800;color:var(--ink3);padding:4px 0;position:relative}
+.vctool button .ti{font-size:15px}
+.vctool button .bg{position:absolute;top:-1px;right:14px;background:var(--red);color:#fff;font-size:8px;
+ font-weight:900;border-radius:99px;min-width:14px;height:14px;display:grid;place-items:center;padding:0 3px}
+.vcact{display:flex;gap:7px;margin-top:9px}
+.vcact button{flex:1;border-radius:12px;padding:11px 4px;font-size:11px;font-weight:900;color:#fff;
+ display:flex;flex-direction:column;align-items:center;gap:3px;border:none;cursor:pointer}
+.vcact button .ai{font-size:17px}
+.vcact .a1{background:#8B7BE8}.vcact .a2{background:#7B6FE0}.vcact .a3{background:var(--navy)}
+.vcsc{display:flex;align-items:center;gap:9px;margin-top:9px}
+.vcsc .bar{flex:1;height:9px;background:var(--line2);border-radius:99px;overflow:hidden}
+.vcsc .bar i{display:block;height:100%;border-radius:99px}
 .vcmic{width:72px;height:72px;border-radius:50%;border:none;cursor:pointer;margin:6px auto;display:flex;
  align-items:center;justify-content:center;font-size:28px;background:var(--navy);color:#fff;
  box-shadow:0 8px 22px rgba(25,29,22,.25);transition:transform .15s}
@@ -1366,25 +1403,12 @@ body.g-hi .noteonly{display:none!important}
 
     <div class="card gameonly" style="text-align:center">
       <div class="ch" style="justify-content:center"><h2>🎤 오늘의 영어 말하기</h2><span class="tag t-base">하루 5문장 · 매일</span></div>
-      <div class="mini" style="margin-bottom:9px">빈칸 채우기 → 맞히면 <b>원어민 발음</b>을 들려주고 → 따라 말한 걸 녹음해 <b>발음 점수</b>를 매깁니다. 1문장씩 즉시 채점.</div>
+      <div class="mini" style="margin-bottom:9px">한글 문장을 보고 <b>영어 빈칸을 직접 입력</b> → 맞히면 <b>원어민 발음</b> 재생 → 따라 말한 걸 녹음해 <b>발음 점수</b>. 문항은 <b>이번 주 과외 진도</b>에서 나옵니다.</div>
       <div style="display:flex;gap:6px;justify-content:center;margin-bottom:10px">
         <span class="chip" data-vcset="math" id="vcTabM" style="background:var(--navy);color:#fff;border-color:var(--navy)">수학 · 개념</span>
         <span class="chip" data-vcset="eng" id="vcTabE">영어 · 발음</span>
       </div>
-      <div id="vcBox">
-        <div style="font-size:12px;font-weight:800;opacity:.55" id="vcStep">1 / 5</div>
-        <div class="vcq" id="vcQ"></div>
-        <div id="vcOpts" style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:10px 0"></div>
-        <div id="vcListen" style="display:none">
-          <button class="btn soft sm" id="vcPlay">🔊 다시 듣기</button>
-        </div>
-        <button class="vcmic" id="vcMic" style="display:none">🎤</button>
-        <div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div style="font-size:12px;font-weight:700;opacity:.6" id="vcHint">빈칸에 들어갈 걸 골라봐</div>
-        <div class="vctr" id="vcTr" style="display:none"></div>
-        <div id="vcKw" style="margin-top:6px"></div>
-        <button class="btn g sm" id="vcNext" style="display:none;margin-top:10px">다음 ▸</button>
-      </div>
+      <div id="vcBox"></div>
       <div class="mini" style="margin-top:10px">채우고(눈) → 듣고(귀) → 말하고(입) · 원어민 발음은 기기 내장 음성 · 발음 채점은 오픈소스 Whisper — 녹음이 서버로 가지 않습니다</div>
     </div>
 
@@ -3242,120 +3266,192 @@ renderRoomCard();paintNext();renderCharCard();
 </script>
 <script>
 (function(){
- /* 빈칸 채우기 → TTS 듣기 → 따라 말하기 */
+ /* 말해보카식: 한글 문장 → 영어 빈칸 직접 입력 → 원어민 발음 → 따라 말하기 → 발음 점수 */
+ var DAILY=5;
  var VCSETS={
- math:[
-  {pre:'기울기 = x의 증가량 분의 ', blank:'y의 증가량', post:'', opts:['y의 증가량','y절편','상수항'], say:'기울기는, x의 증가량 분의, y의 증가량!', lang:'ko-KR',
-   tr:'기울기는… x의 증가량 분의 y의 증가량!', score:93, v:'정확해! 분모·분자 순서까지 맞았어 👏'},
-  {pre:'두 점 (1,2), (3,8)의 기울기 = 6 ÷ 2 = ', blank:'3', post:'', opts:['3','4','6'], say:'두 점의 기울기는, y의 차이 6을, x의 차이 2로 나눠서, 3!', lang:'ko-KR',
-   tr:'y 차이 6을 x 차이 2로 나눠서… 3!', score:88, v:'네가 세 번 틀렸던 유형이야 — 이제 입에서 바로 나온다!'},
-  {pre:'y절편은 그래프가 ', blank:'y축', post:'과 만나는 점 (x=0)', opts:['y축','x축','원점'], say:'y절편은, 그래프가 y축과 만나는 점. x가 0일 때!', lang:'ko-KR',
-   tr:'y축과 만나는 점… x가 0일 때!', score:96, v:'교과서 정의 그대로야. 완벽.'},
-  {pre:'기울기가 음수면 그래프는 오른쪽으로 갈수록 ', blank:'내려간다', post:'', opts:['내려간다','올라간다','그대로다'], say:'기울기가 음수면, 오른쪽으로 갈수록, 내려간다!', lang:'ko-KR',
-   tr:'음수면… 오른쪽으로 갈수록 내려간다!', score:91, v:'"음수면"에서 한 박자 쉰 게 좋았어. 설명하는 말투야.'},
-  {pre:'y = 2x + 5 에서 기울기는 2, y절편은 ', blank:'5', post:'', opts:['5','2','-5'], say:'y는, 2엑스 더하기 5. 기울기는 2, 와이절편은 5!', lang:'ko-KR',
-   tr:'기울기는 2… y절편은 5!', score:94, v:'식을 보고 바로 읽어냈어 — 이제 안 헷갈린다.'}
- ],
  eng:[
-  {pre:'I have ', blank:'been', post:' studying math.', opts:['been','being','be'], say:'I have been studying math.', lang:'en-US',
-   tr:'I have <b style="color:var(--ok)">been</b> studying math.', score:92, v:'been을 약하게 흘린 게 원어민 리듬이야 👏'},
-  {pre:'The schedule is ', blank:'available', post:' online.', opts:['available','availible','avaliable'], say:'The schedule is available online.', lang:'en-US',
-   tr:'The schedule is a·<b style="color:var(--ok)">vai</b>·la·ble online.', score:95, v:'지난주 "어바이어블"에서 완전히 교정됐어. 이 단어 졸업!'},
-  {pre:'We should protect the ', blank:'environment', post:'.', opts:['environment','enviroment','envirenment'], say:'We should protect the environment.', lang:'en-US',
-   tr:'We should protect the en·<b style="color:var(--ok)">vi</b>·ron·<span style="color:var(--red)">ment</span>.', score:86, v:'강세 좋았어! 끝 -ment만 혀 끝 t 살려서 한 번 더?'},
-  {pre:'She ', blank:'rarely', post:' misses a class.', opts:['rarely','rarly','rearly'], say:'She rarely misses a class.', lang:'en-US',
-   tr:'She <b style="color:var(--ok)">rare</b>·ly misses a class.', score:89, v:'rare의 r 입모양이 좋아졌어. 미국식 r 거의 잡혔다.'},
-  {pre:'I will ', blank:'hand in', post:' my report tomorrow.', opts:['hand in','hand on','hand out'], say:'I will hand in my report tomorrow.', lang:'en-US',
-   tr:'I will <b style="color:var(--ok)">hand in</b> my report to·mor·row.', score:94, v:'hand in을 한 덩어리로 붙여 읽었어 — 이게 연음이야!'}
+  {lv:2, ko:'초콜릿 좀 <b>사자</b>.', mean:'물건을 구입한다는 뜻',
+   pre:"Let's ", ans:'buy', post:' some chocolate.', say:"Let's buy some chocolate.",
+   src:'중2 영어 · 천재교육 Lesson 5', score:92, v:'buy의 [바이]를 길게 안 끌었어 — 좋아!'},
+  {lv:3, ko:'너 왜 나를 <b>초대하</b>지 않았어?', mean:'모임에 오라고 부르다',
+   pre:"Why didn't you ", ans:'invite', post:' me?', say:"Why didn't you invite me?",
+   src:'중2 영어 · 천재교육 Lesson 5', score:88, v:'in·VITE — 뒤에 강세! 지금은 앞을 세게 읽었어.'},
+  {lv:4, ko:'나는 수학을 공부해 <b>오고 있어</b>.', mean:'과거부터 지금까지 계속',
+   pre:'I have ', ans:'been', post:' studying math.', say:'I have been studying math.',
+   src:'중3 영어 · 천재교육 Lesson 2', score:94, v:'been을 약하게 흘린 게 원어민 리듬이야 👏'},
+  {lv:5, ko:'그 일정은 온라인에서 <b>확인할 수 있어</b>.', mean:'구할 수 있는, 이용 가능한',
+   pre:'The schedule is ', ans:'available', post:' online.', say:'The schedule is available online.',
+   src:'중3 영어 · 천재교육 Lesson 6', score:95, v:'지난주 "어바이어블"에서 교정 완료. 이 단어 졸업!'},
+  {lv:6, ko:'우리는 <b>환경</b>을 보호해야 해.', mean:'우리를 둘러싼 자연',
+   pre:'We should protect the ', ans:'environment', post:'.', say:'We should protect the environment.',
+   src:'중3 영어 · 천재교육 Lesson 6', score:86, v:'강세 좋았어! 끝 -ment만 혀끝 t 살려서 한 번 더?'}
+ ],
+ math:[
+  {lv:2, ko:'기울기는 x의 증가량 분의 <b>무엇</b>인가?', mean:'분자에 올라가는 값',
+   pre:'기울기 = x의 증가량 분의 ', ans:'y의 증가량', post:'', say:'기울기는, x의 증가량 분의, y의 증가량!',
+   src:'중2 수학 · 일차함수', score:93, v:'분모·분자 순서까지 맞았어 👏'},
+  {lv:3, ko:'두 점 (1,2), (3,8)의 기울기를 구하면?', mean:'y차이 6 ÷ x차이 2',
+   pre:'기울기 = 6 ÷ 2 = ', ans:'3', post:'', say:'y의 차이 6을, x의 차이 2로 나눠서, 3!',
+   src:'중2 수학 · 일차함수', score:88, v:'네가 세 번 틀렸던 유형이야 — 이제 입에서 바로 나온다!'},
+  {lv:4, ko:'y절편은 그래프가 무엇과 만나는 점인가?', mean:'x가 0일 때',
+   pre:'y절편 = 그래프가 ', ans:'y축', post:'과 만나는 점', say:'y절편은, 그래프가 y축과 만나는 점!',
+   src:'중2 수학 · 일차함수', score:96, v:'교과서 정의 그대로야. 완벽.'},
+  {lv:5, ko:'기울기가 음수면 그래프는 오른쪽으로 갈수록?', mean:'올라간다 / 내려간다',
+   pre:'오른쪽으로 갈수록 ', ans:'내려간다', post:'', say:'기울기가 음수면, 오른쪽으로 갈수록, 내려간다!',
+   src:'중2 수학 · 일차함수', score:91, v:'"음수면"에서 한 박자 쉰 게 좋았어. 설명하는 말투야.'},
+  {lv:6, ko:'y = 2x + 5 에서 y절편은?', mean:'상수항을 보면 됨',
+   pre:'y절편 = ', ans:'5', post:'', say:'와이는, 2엑스 더하기 5. 와이절편은 5!',
+   src:'중2 수학 · 일차함수', score:94, v:'식을 보고 바로 읽어냈어 — 이제 안 헷갈린다.'}
  ]};
- var SET='math', VC=VCSETS.math, i=0, busy=false, phase='fill';
+
+ var SET='eng', VC=VCSETS.eng, i=0, busy=false, phase='fill', voice=false, wrong=0, got=[];
  function el(id){return document.getElementById(id);}
- function speak(it){
+ function esc(t){return (t||'').replace(/</g,'&lt;');}
+ function speak(it,fast){
   try{ if(window.speechSynthesis){ speechSynthesis.cancel();
-   var u=new SpeechSynthesisUtterance(it.say); u.lang=it.lang; u.rate=(it.lang==='en-US')?0.92:1.02;
+   var u=new SpeechSynthesisUtterance(it.say);
+   u.lang=(SET==='eng')?'en-US':'ko-KR';
+   u.rate=fast?1.25:((SET==='eng')?0.92:1.02);
    speechSynthesis.speak(u);}}catch(e){}
  }
- function sent(it,fill){
-  return '<span style="font-size:'+(it.lang==='en-US'?'19px':'16px')+'">'+it.pre+
-   (fill?'<b style="color:var(--brand-ink);border-bottom:3px solid var(--brand)">'+it.blank+'</b>'
-        :'<span style="display:inline-block;min-width:76px;border-bottom:3px solid var(--navy)">&nbsp;</span>')+
-   it.post+'</span>';
+ function bar(){
+  var pct=Math.round(i/DAILY*100);
+  return '<div class="vcbar"><span class="tr">🏆</span>'+
+   '<span class="pb"><i style="width:'+pct+'%"></i></span>'+
+   '<span class="cnt">'+i+' / '+DAILY+'</span></div>';
+ }
+ function card(it,filled){
+  var blank = filled
+    ? '<span class="vcblank ok">'+esc(it.ans)+'</span>'
+    : '<span class="vcblank">&nbsp;</span>';
+  return '<span class="vclv">레벨 '+it.lv+'</span>'+
+   '<div class="vccard">'+
+    '<div class="ko">'+it.ko+'</div>'+
+    '<div class="mean">※ '+esc(it.mean)+'</div>'+
+    '<div class="en">'+esc(it.pre)+blank+esc(it.post)+'</div>'+
+    '<div class="src">[출처] '+esc(it.src)+'</div>'+
+   '</div>';
+ }
+ function tools(){
+  return '<div class="vctool">'+
+   '<button data-vct="ex"><span class="ti">💬</span>다른 예문</button>'+
+   '<button data-vct="wr"><span class="ti">📒</span>오답 노트'+(wrong?'<span class="bg">'+wrong+'</span>':'')+'</button>'+
+   '<button data-vct="ai"><span class="ti">🤖</span>AI 질문</button>'+
+   '<button data-vct="wd"><span class="ti">📖</span>단어 정보</button>'+
+   '<button data-vct="pr"><span class="ti">🔈</span>발음 진단</button>'+
+   '</div>';
  }
  function paint(){
-  if(!el('vcQ'))return;
-  phase='fill'; var it=VC[i];
-  el('vcStep').textContent=(i+1)+' / '+VC.length;
-  el('vcQ').innerHTML=sent(it,false);
-  var op=it.opts.slice().sort(function(){return Math.random()-0.5;});
-  el('vcOpts').innerHTML=op.map(function(o){return '<span class="chip" data-vcfill="'+o+'">'+o+'</span>';}).join('');
-  el('vcOpts').style.display='flex';
-  el('vcListen').style.display='none'; el('vcMic').style.display='none';
-  el('vcTr').style.display='none'; el('vcTr').innerHTML=''; el('vcKw').innerHTML='';
-  el('vcNext').style.display='none';
-  el('vcHint').textContent='빈칸에 들어갈 걸 골라봐';
+  if(!el('vcBox'))return;
+  phase='fill'; busy=false; var it=VC[i];
+  el('vcBox').innerHTML = bar()+card(it,false)+
+   '<div style="margin-top:10px">'+
+     (voice
+       ? '<button class="vcmic" id="vcMic">🎤</button><div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>'
+       : '<input class="vcin" id="vcIn" placeholder="영어로 입력" autocomplete="off" autocapitalize="off" spellcheck="false">')+
+   '</div>'+
+   '<div class="vcrow">'+
+     '<button class="btn line sm" data-vch="1">❓ 힌트 보기</button>'+
+     '<button class="btn line sm" data-vcv="1">'+(voice?'⌨ 입력 모드':'🎙 음성 모드')+'</button>'+
+     '<button class="btn g sm" data-vcok="1">✓ 확인</button>'+
+   '</div>'+
+   '<div style="font-size:11.5px;font-weight:800;opacity:.6;margin-top:8px" id="vcHint">한글 문장을 보고 빈칸에 들어갈 영어를 써봐</div>'+
+   tools();
+  if(SET!=='eng'&&el('vcIn'))el('vcIn').placeholder='답을 입력';
+ }
+ function solved(){
+  var it=VC[i]; phase='speak';
+  el('vcBox').innerHTML = bar()+card(it,true)+
+   '<div class="ban info" style="margin-top:10px"><span class="bi">🔊</span><span>정답! <b>원어민 발음</b>을 들려줄게 — 듣고 마이크를 눌러 따라 말해봐.</span></div>'+
+   '<button class="vcmic" id="vcMic">🎤</button>'+
+   '<div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>'+
+   '<div style="font-size:11.5px;font-weight:800;opacity:.6" id="vcHint">마이크를 누르고 또박또박 말해봐</div>'+
+   tools()+
+   '<div class="vcact">'+
+     '<button class="a1" data-vcsp="fast"><span class="ai">🐇</span>실전 속도</button>'+
+     '<button class="a2" data-vcsp="slow"><span class="ai">🔊</span>다시 듣기</button>'+
+     '<button class="a3" data-vcnext="1"><span class="ai">▶</span>다음 문제</button>'+
+   '</div>';
+  speak(it,false);
+ }
+ function scored(){
+  var it=VC[i]; phase='done'; got.push(it.score);
+  var col=it.score>=90?'var(--ok)':(it.score>=80?'var(--navy)':'var(--sun-ink)');
+  el('vcBox').innerHTML = bar()+card(it,true)+
+   '<div class="vcsc"><span class="bar"><i style="width:'+it.score+'%;background:'+col+'"></i></span>'+
+   '<b style="font-size:19px;color:'+col+'">'+it.score+'<span style="font-size:12px">점</span></b></div>'+
+   '<div style="font-size:12.5px;font-weight:800;margin-top:7px;text-align:left;color:var(--brand-ink)">🗣 '+it.v+'</div>'+
+   tools()+
+   '<div class="vcact">'+
+     '<button class="a1" data-vcsp="fast"><span class="ai">🐇</span>실전 속도</button>'+
+     '<button class="a2" data-vcsp="slow"><span class="ai">🔊</span>다시 듣기</button>'+
+     '<button class="a3" data-vcnext="1"><span class="ai">▶</span>다음 문제</button>'+
+   '</div>';
  }
  function finish(){
-  var sc=VC.filter(function(x){return x.score;}),
-      avg=sc.length?Math.round(sc.reduce(function(a,b){return a+b.score;},0)/sc.length):0;
-  el('vcBox').innerHTML='<div style="font-size:34px">🎉</div><div style="font-weight:900;font-size:17px;margin:6px 0">'+(SET==='eng'?'오늘 영어 5문장 끝!':'오늘 개념 5문장 끝!')+'</div>'+
-   (avg?'<div style="font-size:30px;font-weight:900;letter-spacing:-.03em;color:'+(avg>=90?'var(--ok)':'var(--navy)')+'">'+avg+'<span style="font-size:15px">점</span></div>'+
-        '<div style="font-size:11.5px;font-weight:800;opacity:.6;margin-bottom:7px">오늘 발음 평균 · 어제보다 +3</div>':'')+
-   '<div style="font-size:13px;opacity:.7;line-height:1.6">눈으로 → 귀로 → 입으로, 세 번 거치면 진짜 내 것.<br>쌤 리포트에 오늘 점수가 그대로 올라가.</div>'+
+  var avg=got.length?Math.round(got.reduce(function(a,b){return a+b;},0)/got.length):0;
+  el('vcBox').innerHTML='<div style="font-size:34px">🎉</div>'+
+   '<div style="font-weight:900;font-size:17px;margin:6px 0">오늘 '+DAILY+'문장 완료!</div>'+
+   '<div style="font-size:32px;font-weight:900;letter-spacing:-.03em;color:'+(avg>=90?'var(--ok)':'var(--navy)')+'">'+avg+'<span style="font-size:15px">점</span></div>'+
+   '<div style="font-size:11.5px;font-weight:800;opacity:.6">오늘 발음 평균 · 어제보다 +3</div>'+
+   (wrong?'<div class="ban warn" style="margin-top:10px;text-align:left"><span class="bi">📒</span><span>틀린 '+wrong+'문항은 <b>오답 노트</b>에 들어갔고, <b>다음 과외 숙제</b>로 자동 편성돼요.</span></div>'
+         :'<div class="ban lime" style="margin-top:10px;text-align:left"><span class="bi">✨</span><span>한 번도 안 틀렸어 — 다음 세트는 <b>레벨을 올려서</b> 나갑니다.</span></div>')+
    '<div style="margin-top:10px;font-weight:900;color:var(--ok)">+10P 적립 · 🔥 연속 7일째</div>';
-  if(typeof toast==='function')toast('오늘 5문장 완료 — 평균 '+avg+'점, 10P!');
+  if(typeof toast==='function')toast('오늘 '+DAILY+'문장 완료 — 평균 '+avg+'점, 10P!');
   if(typeof confetti==='function')try{confetti();}catch(e){}
  }
- document.addEventListener('click',function(e){
-  /* 1단계: 빈칸 채우기 */
-  var f=e.target.closest('[data-vcfill]');
-  if(f&&phase==='fill'){
-   var it=VC[i];
-   if(f.dataset.vcfill===it.blank){
-    el('vcQ').innerHTML=sent(it,true);
-    el('vcOpts').style.display='none';
-    el('vcListen').style.display='block';
-    el('vcMic').style.display='flex';
-    el('vcHint').textContent='정답! 원어민 발음을 들려줄게 — 듣고 마이크 눌러 따라 말해봐';
-    phase='speak'; speak(it);
-   }else{
-    f.style.background='var(--red-s)'; f.style.borderColor='var(--red)'; f.style.color='var(--red)';
-    if(typeof toast==='function')toast('다시 한번 — 소리 내서 읽어보면 보여');
-   }
-   return;
+ function check(){
+  var it=VC[i], inp=el('vcIn'); if(!inp)return;
+  var v=(inp.value||'').trim().toLowerCase().replace(/\s+/g,' ');
+  if(v===it.ans.toLowerCase()){ solved(); }
+  else{
+   wrong++; inp.classList.add('bad');
+   el('vcHint').innerHTML='<span style="color:var(--red)">아직이야 — 뜻 힌트를 다시 봐. 오답 노트에 담았어.</span>';
+   var t=el('vcBox').querySelector('[data-vct="wr"]');
+   if(t&&!t.querySelector('.bg'))t.insertAdjacentHTML('beforeend','<span class="bg">'+wrong+'</span>');
+   else if(t)t.querySelector('.bg').textContent=wrong;
   }
-  /* 다시 듣기 */
-  if(e.target.closest('#vcPlay')){ speak(VC[i]); return; }
-  /* 2단계: 따라 말하기 */
-  if(e.target.closest('#vcMic')&&phase==='speak'&&!busy){
-   busy=true; var mic=el('vcMic'),bars=el('vcBars');
-   mic.classList.add('rec'); bars.classList.add('on');
+ }
+ document.addEventListener('click',function(e){
+  var tab=e.target.closest('[data-vcset]');
+  if(tab){ SET=tab.dataset.vcset; VC=VCSETS[SET]; i=0; wrong=0; got=[];
+   var mm=el('vcTabM'),g=el('vcTabE');
+   if(mm&&g){ var on='background:var(--navy);color:#fff;border-color:var(--navy)';
+    mm.style.cssText=(SET==='math')?on:''; g.style.cssText=(SET==='eng')?on:''; }
+   paint(); return; }
+  if(!el('vcBox'))return;
+  if(e.target.closest('[data-vcok]')){ check(); return; }
+  var hb=e.target.closest('[data-vch]');
+  if(hb&&phase==='fill'){ var it=VC[i];
+   el('vcHint').innerHTML='첫 글자는 <b>'+esc(it.ans.charAt(0))+'</b> · 글자 수 <b>'+it.ans.replace(/\s/g,'').length+'</b>개';
+   return; }
+  var vb=e.target.closest('[data-vcv]');
+  if(vb&&phase==='fill'){ voice=!voice; paint(); return; }
+  var sp=e.target.closest('[data-vcsp]');
+  if(sp){ speak(VC[i], sp.dataset.vcsp==='fast'); return; }
+  if(e.target.closest('[data-vcnext]')){ i++; if(i>=DAILY||i>=VC.length)finish(); else paint(); return; }
+  var vt=e.target.closest('[data-vct]');
+  if(vt){ var m={ex:'다른 예문 3개를 불러왔어요',wr:'오답 노트 — 다음 과외 숙제로 넘어갑니다',
+   ai:'AI에게 질문하기 — 왜 이 답인지 설명해 줍니다',wd:'단어 정보 — 뜻·품사·유의어',pr:'단어 발음 진단 — 음절별로 짚어줍니다'};
+   if(typeof toast==='function')toast(m[vt.dataset.vct]||''); return; }
+  var mic=e.target.closest('#vcMic');
+  if(mic&&!busy){
+   busy=true; var bars=el('vcBars');
+   mic.classList.add('rec'); if(bars)bars.classList.add('on');
    el('vcHint').textContent='듣는 중… 또박또박!';
    setTimeout(function(){
-    mic.classList.remove('rec'); bars.classList.remove('on'); mic.style.display='none';
-    el('vcListen').style.display='none';
+    mic.classList.remove('rec'); if(bars)bars.classList.remove('on');
     el('vcHint').textContent='분석 중…';
     setTimeout(function(){
-     var it=VC[i], tr=el('vcTr'); tr.style.display='block';
-     tr.innerHTML='🗣 '+it.tr+(it.score?
-      '<div style="margin-top:8px;display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#fff;border-radius:99px;overflow:hidden"><i style="display:block;height:100%;width:'+it.score+'%;background:'+(it.score>=90?'var(--ok)':'var(--navy)')+';border-radius:99px"></i></div><b style="font-size:14px">'+it.score+'점</b></div>':'');
-     el('vcKw').innerHTML='<div style="font-size:13px;font-weight:800;margin-top:7px;color:var(--brand-ink)">'+it.v+'</div>';
-     el('vcHint').textContent='';
-     el('vcNext').style.display='inline-block';
-     busy=false; phase='done';
+     if(phase==='fill'){ var it=VC[i]; solved(); }
+     else scored();
     },800);
-   },2200);
+   },1500);
+   return;
   }
-  if(e.target.closest('#vcNext')){ i++; if(i>=VC.length){finish();} else paint(); }
-  /* 탭 전환 */
-  var vt=e.target.closest('[data-vcset]');
-  if(vt){
-   SET=vt.dataset.vcset; VC=VCSETS[SET]; i=0; busy=false;
-   var mm=el('vcTabM'),g=el('vcTabE');
-   [mm,g].forEach(function(c){if(c){c.style.background='';c.style.color='';c.style.borderColor='';}});
-   vt.style.background='var(--navy)';vt.style.color='#fff';vt.style.borderColor='var(--navy)';
-   if(!el('vcQ')){el('vcBox').innerHTML='<div style="font-size:12px;font-weight:800;opacity:.55" id="vcStep"></div><div class="vcq" id="vcQ"></div><div id="vcOpts" style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:10px 0"></div><div id="vcListen" style="display:none"><button class="btn soft sm" id="vcPlay">🔊 다시 듣기</button></div><button class="vcmic" id="vcMic" style="display:none">🎤</button><div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div style="font-size:12px;font-weight:700;opacity:.6" id="vcHint"></div><div class="vctr" id="vcTr" style="display:none"></div><div id="vcKw" style="margin-top:6px"></div><button class="btn g sm" id="vcNext" style="display:none;margin-top:10px">다음 ▸</button>';}
-   paint();
-  }
+ });
+ document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&phase==='fill'&&el('vcIn')&&document.activeElement===el('vcIn')){e.preventDefault();check();}
  });
  paint();
 })();
