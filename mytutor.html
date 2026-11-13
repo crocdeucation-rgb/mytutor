@@ -584,6 +584,13 @@ body.mob .aiwin{right:8px;left:8px;bottom:8px;width:auto;height:calc(100% - 16px
 body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:flex}
 .ddrow{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
 .ddrow::-webkit-scrollbar{display:none}
+/* PC에선 가로 스크롤 대신 줄바꿈 — 스크롤할 수 있는 걸 모르고 지나친다 */
+body.pc .ddrow{flex-wrap:wrap;overflow-x:visible}
+body.pc .ddc{width:calc(25% - 7px);min-width:168px}
+/* 모바일은 스크롤 유지하되, 더 있다는 걸 보이게 */
+body.mob .ddwrap{position:relative}
+body.mob .ddwrap::after{content:'';position:absolute;top:0;bottom:4px;right:0;width:26px;
+ background:linear-gradient(90deg,rgba(255,255,255,0),#fff);pointer-events:none;border-radius:0 13px 13px 0}
 .ddc{flex:none;width:168px;border:1px solid var(--line);border-radius:13px;padding:11px;background:#fff;
  display:flex;flex-direction:column;gap:5px;position:relative}
 .ddc .dn{display:flex;align-items:center;gap:7px}
@@ -944,6 +951,7 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
         <span class="note"><span class="tie-chip elonly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포초 가정통신문·알림장 연동됨</span><span class="tie-chip mionly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포중 학사일정 연동됨</span><span class="tie-chip hionly" style="background:var(--brand-s);color:var(--brand-ink)"><i style="background:var(--brand)"></i>반포고 학사일정 연동됨</span></span></div>
 
       <!-- 초등 · 가정통신문 기반 -->
+      <div class="ddwrap">
       <div class="ddrow elonly">
         <div class="ddc urgent" data-dd="el_a">
           <div class="dn"><div class="dd d-ko">D-2</div>
@@ -971,8 +979,10 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
           <div class="ps">수업 중 생긴 의문으로<br>직접 시작하기</div>
         </div>
       </div>
+      </div>
 
       <!-- 중등 · 중학교 학사일정 -->
+      <div class="ddwrap">
       <div class="ddrow mionly">
         <div class="ddc urgent" data-dd="ko">
           <div class="dn"><div class="dd d-ko">D-1</div>
@@ -1005,8 +1015,10 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
           <div class="ps">수업 중 생긴 의문으로<br>직접 시작하기</div>
         </div>
       </div>
+      </div>
 
       <!-- 고등 · 고등학교 학사일정 -->
+      <div class="ddwrap">
       <div class="ddrow hionly">
         <div class="ddc urgent" data-dd="hi_a">
           <div class="dn"><div class="dd d-en">D-3</div>
@@ -1048,6 +1060,7 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
           <div class="pt">내가 만든 탐구</div>
           <div class="ps">수업 중 생긴 의문으로<br>직접 시작하기</div>
         </div>
+      </div>
       </div>
 
       <div class="legend">
