@@ -4300,12 +4300,12 @@ document.addEventListener('click',function(e){
   if(SET!=='eng'&&el('vcIn'))el('vcIn').placeholder='답을 입력';
  }
  function solved(){
-  var it=VC[i]; phase='speak';
+  var it=VC[i]; phase='speak'; busy=false; HEARD=''; MYURL=null;
   el('vcBox').innerHTML = bar()+card(it,true)+
    '<div class="ban info" style="margin-top:10px"><span class="bi">🔊</span><span>정답! <b>원어민 발음</b>을 들려줄게 — 듣고 마이크를 눌러 따라 말해봐.</span></div>'+
    '<button class="vcmic" id="vcMic">🎤</button>'+
    '<div class="vcbars" id="vcBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>'+
-   '<div style="font-size:11.5px;font-weight:800;opacity:.6" id="vcHint">마이크를 누르고 또박또박 말해봐</div>'+
+   '<div style="font-size:11.5px;font-weight:800;opacity:.6" id="vcHint">마이크 누르고 말하기 → 한 번 더 누르면 끝 · 내 목소리 다시 들을 수 있어</div>'+
    tools()+
    '<div class="vcact">'+
      '<button class="a1" data-vcsp="fast"><span class="ai">🐇</span>실전 속도</button>'+
@@ -4314,13 +4314,48 @@ document.addEventListener('click',function(e){
    '</div>';
   speak(it,false);
  }
+ /* ---- 실제 녹음: MediaRecorder(내 목소리 저장) + 음성인식(채점) — 권한·브라우저 미지원이면 시연 점수 ---- */
+ var REC={on:false}, MYURL=null, HEARD='', REAL=false;
+ function norm(t){return String(t||'').toLowerCase().replace(/[^a-z0-9가-힣' ]/g,' ').replace(/\s+/g,' ').trim();}
+ function scoreOf(said,target){
+  var a=norm(target).split(' '), b=norm(said).split(' '), hit=0, used={};
+  a.forEach(function(w){ for(var k=0;k<b.length;k++){ if(!used[k]&&b[k]===w){used[k]=1;hit++;break;} } });
+  return Math.max(40,Math.min(100,Math.round(45+55*hit/Math.max(1,a.length))));
+ }
+ function startRec(mic){
+  busy=true; HEARD=''; REAL=false; if(MYURL){try{URL.revokeObjectURL(MYURL);}catch(_){} MYURL=null;}
+  try{speechSynthesis.cancel();}catch(_){}
+  var bars=el('vcBars');
+  function ui(on){ mic.classList.toggle('rec',on); if(bars)bars.classList.toggle('on',on); }
+  if(!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder)){ fake(); return; }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(st){
+   var ch=[], mr=new MediaRecorder(st); REC={on:true,mr:mr,st:st};
+   mr.ondataavailable=function(ev){ if(ev.data&&ev.data.size)ch.push(ev.data); };
+   mr.onstop=function(){ st.getTracks().forEach(function(t){t.stop();});
+     if(ch.length){ MYURL=URL.createObjectURL(new Blob(ch,{type:mr.mimeType||'audio/webm'})); REAL=true; }
+     ui(false); el('vcHint').textContent='채점 중…';
+     setTimeout(function(){ busy=false; scored(); },REC.sr?500:200); };
+   try{ var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+     if(SR){ var r=new SR(); r.lang=(SET==='eng')?'en-US':'ko-KR'; r.interimResults=false; r.maxAlternatives=1;
+       r.onresult=function(ev){ HEARD=ev.results[0][0].transcript; }; r.onerror=function(){}; r.start(); REC.sr=r; } }catch(_){}
+   mr.start(); ui(true); el('vcHint').textContent='녹음 중… 다 말하면 마이크를 한 번 더 눌러 (최대 6초)';
+   REC.t=setTimeout(stopRec,6000);
+  }).catch(function(){ fake('마이크 권한이 없어 시연 점수로 보여줘요'); });
+  function fake(msg){ ui(true); el('vcHint').textContent='듣는 중… 또박또박!';
+   setTimeout(function(){ ui(false); el('vcHint').textContent=msg||'분석 중…'; setTimeout(function(){busy=false;scored();},700); },1500); }
+ }
+ function stopRec(){ if(!REC.on)return; REC.on=false; clearTimeout(REC.t);
+  try{ REC.sr&&REC.sr.stop(); }catch(_){} try{ REC.mr.state!=='inactive'&&REC.mr.stop(); }catch(_){} }
  function scored(){
-  var it=VC[i]; phase='done'; got.push(it.score);
+  var it=VC[i]; phase='done';
+  var sc=HEARD?scoreOf(HEARD,it.say):it.score; got.push(sc); it=Object.assign({},it,{score:sc});
   var col=it.score>=90?'var(--ok)':(it.score>=80?'var(--navy)':'var(--sun-ink)');
   el('vcBox').innerHTML = bar()+card(it,true)+
    '<div class="vcsc"><span class="bar"><i style="width:'+it.score+'%;background:'+col+'"></i></span>'+
    '<b style="font-size:19px;color:'+col+'">'+it.score+'<span style="font-size:12px">점</span></b></div>'+
-   '<div style="font-size:12.5px;font-weight:800;margin-top:7px;text-align:left;color:var(--brand-ink)">🗣 '+it.v+'</div>'+
+   '<div style="font-size:12.5px;font-weight:800;margin-top:7px;text-align:left;color:var(--brand-ink)">🗣 '+(HEARD?'들린 문장: <b>'+esc(HEARD)+'</b>':it.v)+'</div>'+
+   (MYURL?'<button class="btn line sm" style="width:100%;margin-top:8px" data-vcmy="1">▶ 내 목소리 듣기</button>':'')+
+   '<div style="font-size:10.5px;font-weight:800;opacity:.55;margin-top:6px;text-align:left">'+(HEARD?'음성인식 결과를 정답 문장과 단어 단위로 대조한 점수':(REAL?'녹음은 됐지만 이 브라우저는 음성인식 미지원 — 점수는 시연값':'시연 점수'))+'</div>'+
    tools()+
    '<div class="vcact">'+
      '<button class="a1" data-vcsp="fast"><span class="ai">🐇</span>실전 속도</button>'+
@@ -4374,7 +4409,9 @@ document.addEventListener('click',function(e){
   if(vt){ var m={ex:'다른 예문 3개를 불러왔어요',wr:'오답 노트 — 다음 과외 숙제로 넘어갑니다',
    ai:'AI에게 질문하기 — 왜 이 답인지 설명해 줍니다',wd:'단어 정보 — 뜻·품사·유의어',pr:'단어 발음 진단 — 음절별로 짚어줍니다'};
    if(typeof toast==='function')toast(m[vt.dataset.vct]||''); return; }
+  if(e.target.closest('[data-vcmy]')){ if(MYURL){ try{speechSynthesis.cancel();}catch(_){} var au=new Audio(MYURL); au.play(); } return; }
   var mic=e.target.closest('#vcMic');
+  if(mic&&phase==='speak'){ if(REC.on){ stopRec(); } else if(!busy){ startRec(mic); } return; }
   if(mic&&!busy){
    busy=true; var bars=el('vcBars');
    mic.classList.add('rec'); if(bars)bars.classList.add('on');
