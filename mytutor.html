@@ -384,6 +384,21 @@ body.mob .xpbar .xn{display:none}
 .pf-step.done{background:var(--brand-s);border-color:var(--brand-s);color:var(--brand-ink)}
 .pf-step.done .cb{background:var(--brand);border-color:var(--brand)}
 .pf-step .dd2{margin-left:auto;font-size:10px;font-weight:900;color:var(--ink3)}
+.pf-now{border:1.5px solid var(--navy);background:var(--navy-s);border-radius:11px;padding:10px 11px;margin:-2px 0 7px}
+.pf-now .nh{font-size:9px;font-weight:900;color:var(--navy);letter-spacing:.04em;margin-bottom:5px}
+.pf-now .nt{font-size:11.5px;font-weight:800;line-height:1.6}
+.pf-out{display:flex;align-items:center;gap:7px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.pf-out .ol{font-size:9px;font-weight:900;color:var(--ink3);flex:none}
+.pf-out .ov{font-size:11px;font-weight:900}
+.vchk{border:1.5px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:6px}
+.vchk .vt{font-size:11.5px;font-weight:900;display:flex;gap:6px;align-items:center}
+.vchk .vr{font-size:10.5px;font-weight:700;color:var(--faint);line-height:1.55;margin-top:4px}
+.vchk .vr b{color:var(--ink)}
+.v-au{font-size:8.5px;font-weight:900;background:var(--navy-s);color:var(--navy);border-radius:999px;padding:2px 6px;flex:none}
+.v-hu{font-size:8.5px;font-weight:900;background:var(--sun-s);color:var(--sun-ink);border-radius:999px;padding:2px 6px;flex:none}
+.vq{display:flex;gap:8px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:5px;font-size:11.5px;font-weight:800;line-height:1.5}
+.vq .qn{width:16px;height:16px;border-radius:50%;background:var(--navy-s);color:var(--navy);font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px}
+.pf-type{font-size:8.5px;font-weight:900;background:var(--line2);color:var(--ink3);border-radius:999px;padding:2px 7px}
 .reh{display:flex;gap:9px;align-items:center;border:1.5px solid var(--line);border-radius:10px;
  padding:8px 11px;margin-bottom:5px;font-size:11px;font-weight:800;background:#fff}
 .reh .m{margin-left:auto;font-size:10.5px;font-weight:900}
@@ -2382,6 +2397,18 @@ body.g-hi .noteonly{display:none!important}
 /* ===== D-day 패널 — 원본 renderPerf 구조 복원 ===== */
 (function(){
  var PRO=false, CUR=null;
+ /* 수행 유형 5종 × 검증 항목 — 사례 49건에서 역산한 유한 집합 */
+ var VTYPE={arg:'논증·에세이형',res:'자료조사·통계형',exp:'실험·탐구형',read:'독서·감상형',pres:'발표·구술형'};
+ var VCHK={
+  mix:{n:'저자 말과 내 말이 섞였다',au:'인용 표시 없는 단정문을 표시',hu:'어느 쪽이 네 주장인지 확정'},
+  eval:{n:'"뛰어난·탁월한"으로 사실을 대체',au:'평가 형용사 검출',hu:'사실·빈도·상황 문장으로 교체'},
+  src:{n:'출처의 기준연도·분모가 다르다',au:'출처표의 연도 칸을 비교',hu:'자료 신뢰도 판정'},
+  smp:{n:'표본이 작은데 원인으로 단정',au:'표본 수 입력을 요구',hu:'인과 문장을 상관으로 교정'},
+  nod:{n:'안 한 실험을 한 것처럼 썼다',au:'원자료 첨부 없으면 "실험계획"으로 표기 전환',hu:'실시 여부 확인'},
+  ana:{n:'비유를 원인으로 비약',au:'"~처럼" 뒤의 단정문을 표시',hu:'비유와 사실을 두 칸으로 분리'},
+  quo:{n:'인용이 원문에 실제 있는지 미확인',au:'따옴표 문장에 장·페이지 입력 요구',hu:'원문 대조'}
+ };
+ var VMAP={arg:['mix','eval'],res:['src','smp'],exp:['nod','ana'],read:['quo','mix'],pres:['eval']};
  var DD={
   /* ---- 초등: 가정통신문 ---- */
   el_a:{k:'perf',t:'국어 3단원 단원평가',subj:'국어',date:'11/12(수) 2교시',pts:'20점',share:'수행 20%',
@@ -2402,14 +2429,31 @@ body.g-hi .noteonly{display:none!important}
   /* ---- 중등: 평가계획서 ---- */
   ko:{k:'perf',t:'말하기 수행 — 우리 지역 문제 제안 발표',subj:'국어',date:'11/11(화) 3교시',pts:'20점',share:'수행 40% 중 20점',
     unit:'학기초: 3. 상황에 맞는 표현 (대단원만 공지)',notice:'11/4 세부 공지 — 3분 발표 · 개요서 제출',
-    steps:[{t:'채점기준표 확인 (논리 40/전달 30/시간 30)',done:true},{t:'주제 정하기 — 교과 단원에서 출발',done:true},{t:'자료 조사 2건',done:true},{t:'원고 600자 작성',done:true},{t:'소리 내어 3번 읽기',done:false},{t:'발표',done:false}],
+    vt:['arg','pres'],
+    vq:['네가 제안한 게 정확히 뭐야? 한 문장으로.','그 제안을 반대하는 사람은 뭐라고 할까?','네 자료 두 개는 같은 연도 거야?'],
+    steps:[
+      {d:'D-7',t:'채점기준표 확인 (논리 40/전달 30/시간 30)',done:true,tip:'배점이 가장 큰 항목부터 준비해. 논리 40점이면 자료보다 <b>구조</b>가 먼저야.',out:'기준 3개를 네 말로 적기'},
+      {d:'D-6',t:'주제 정하기 — 교과 단원에서 출발',done:true,tip:'주제는 하나만. 범위가 넓어지면 3분에 안 들어가고 근거가 전부 얇아져.',out:'주제 1문장'},
+      {d:'D-5',t:'자료 조사 2건',done:true,tip:'두 자료의 <b>기준연도</b>가 다르면 비교가 아니야. 기관·연도·수치를 같이 적어.',out:'출처표 2행 (기관/연도/수치)'},
+      {d:'D-4',t:'원고 600자 작성',done:true,tip:'문제만 말하고 끝내면 "제안"이 없어서 깎여. <b>문제 → 제안 → 실행</b> 순서로.',out:'원고 600자'},
+      {d:'D-2',t:'소리 내어 3번 읽기',done:false,tip:'3분이면 600자가 한계야. 넘으면 내용을 자르지 말고 <b>도입</b>을 줄여.',out:'리허설 녹음 1회 이상'},
+      {d:'D-0',t:'발표',done:false,tip:'끝나고 "어땠는지" 한 줄만 남겨. 다음 수행의 시작점이 돼.',out:'발표 후 한 줄 기록'}],
     reh:[{n:1,sec:'3분 18초',fil:'어… 7회',note:'18초 초과 — 도입 줄이기'},{n:2,sec:'2분 54초',fil:'어… 3회',note:'좋아요'}]},
   sc:{k:'perf',t:'과학 실험보고서 — 빛의 굴절',subj:'과학',date:'11/16(일) 제출',pts:'15점',share:'수행 30%',
     unit:'학기초: Ⅲ. 빛과 파동 (대단원만 공지)',notice:'11/9 세부 공지 — 실험 설계 + 보고서',
-    steps:[{t:'주제·가설 정하기',done:false},{t:'실험 수행·데이터 기록',done:false},{t:'보고서 초안 (서론-과정-결과-고찰)',done:false},{t:'제출',done:false}],reh:[]},
+    vt:['exp'],
+    vq:['바꾼 변인은 하나였어?','측정한 숫자를 보고 뭘 알게 됐어?','오차가 생긴 이유 하나를 말해봐.'],
+    steps:[
+      {d:'D-7',t:'주제·가설 정하기',done:false,tip:'가설은 "무엇을 바꾸면 무엇이 변한다" 형태로. 안 그러면 결과 칸을 쓸 수가 없어.',out:'가설 1문장 + 바꿀 변인 1개'},
+      {d:'D-6',t:'변인·대조군 정하기',done:false,tip:'바꾸는 건 1개, 나머지는 전부 똑같이. <b>대조군이 없으면 결과가 아니라 느낌</b>이야.',out:'변인통제표'},
+      {d:'D-4',t:'실험 수행·데이터 기록',done:false,tip:'측정값은 그 자리에서 적어. 나중에 기억으로 채우면 그건 실험 기록이 아니야.',out:'원자료표(측정값 그대로) + 사진'},
+      {d:'D-2',t:'보고서 초안 (서론-과정-결과-고찰)',done:false,tip:'결과와 고찰을 섞지 마. <b>본 것</b>과 <b>생각한 것</b>은 다른 칸이야.',out:'초안'},
+      {d:'D-0',t:'제출',done:false,tip:'오차 원인 1개는 반드시 써. "오차 없음"은 감점이야.',out:'제출 확인'}],reh:[]},
   ma:{k:'perf',t:'수학 수행 — 미정',subj:'수학',date:'11/19(수) 예정',pts:'15점',share:'수행 30%',
     unit:'학기초: Ⅲ. 일차함수 (대단원만 공지)',notice:'아직 안 떴어요 — 감지 중',waiting:true,
-    steps:[{t:'세부 공지 감지 대기',done:false},{t:'공지 뜨면 1주 역산 플랜 자동 생성',done:false}],reh:[]},
+    steps:[
+      {d:'대기',t:'세부 공지 감지 대기',done:false,tip:'대단원(Ⅲ.일차함수)만 공지된 상태야. 세부 범위가 뜨면 알림톡이 가고 아래 플랜이 자동으로 깔려.',out:'—'},
+      {d:'자동',t:'공지 뜨면 1주 역산 플랜 자동 생성',done:false,tip:'유형이 판정되면 그 유형의 검증 항목이 같이 붙어. 수학 수행은 보통 <b>자료조사·통계형</b>으로 떨어져.',out:'—'}],reh:[]},
   mid:{k:'exam',t:'2학기 중간고사',subj:'수학',date:'11/3~11/5',pts:'지필 60%',share:'이행 35%',
     unit:'범위: Ⅱ.식의 계산 ~ Ⅲ.일차함수 2단원',notice:'11/3 범위 변동 — 플랜 재생성됨',
     steps:[{t:'범위 핵심 정리 읽기',done:true},{t:'범위 문제 10문항 (출판사 매칭)',done:false},{t:'틀린 것 오답 정리',done:false}],reh:[]},
@@ -2420,11 +2464,26 @@ body.g-hi .noteonly{display:none!important}
   /* ---- 고등 ---- */
   hi_a:{k:'perf',t:'영어 영작 수행 — 사회문제 에세이',subj:'영어',date:'11/13(목)',pts:'20점',share:'수행 40%',
     unit:'학기초: Lesson 5~7 (대단원만 공지)',notice:'11/6 세부 공지 — 150단어 · 세특 반영',
-    steps:[{t:'채점기준표 확인 (내용 40/어휘 30/구조 30)',done:true},{t:'개요 작성',done:true},{t:'초안 150단어',done:false},{t:'제출',done:false}],
+    vt:['arg'],
+    vq:['What is your claim in one sentence?','What is the strongest objection to it?','어디까지가 저자 말이고 어디부터가 네 말이야?'],
+    steps:[
+      {d:'D-7',t:'채점기준표 확인 (내용 40/어휘 30/구조 30)',done:true,tip:'내용이 40점이야. 어려운 단어보다 <b>주장 1개</b>가 먼저야.',out:'기준 3개를 네 말로 적기'},
+      {d:'D-6',t:'개요 작성',done:true,tip:'주장 1문장 → 근거 2개 → 반론 1개. 150단어엔 이것만 들어가.',out:'개요 4줄'},
+      {d:'D-4',t:'초안 150단어',done:false,tip:'저자 말과 네 말이 섞이면 <b>제일 먼저 깎여</b>. 인용한 문장엔 출처를 붙여.',out:'초안 150단어'},
+      {d:'D-3',t:'반론 1문장 넣기',done:false,tip:'가장 강한 반대 의견 1개가 없으면 주장만 선명하고 설득은 안 돼.',out:'반론 + 재반박 각 1문장'},
+      {d:'D-1',t:'원고 없이 1분 설명',done:false,tip:'아래 3질문에 자기 말로 답 못 하면 표현이 아니라 <b>개념부터</b> 다시야.',out:'1분 녹음'},
+      {d:'D-0',t:'제출',done:false,tip:'같은 단어가 4번 넘게 반복되면 어휘 점수에서 깎여.',out:'제출 확인'}],
     reh:[{n:1,sec:'—',fil:'어휘 반복 4회',note:'같은 단어 반복 — 대체어 제안'}]},
   hi_b:{k:'perf',t:'사회 탐구보고서',subj:'사회',date:'11/17(월)',pts:'20점',share:'세특 재료',
     unit:'학기초: 현대사회와 사회문제',notice:'11/5 세부 공지 — 주제 자유',
-    steps:[{t:'주제 선정 — 교과 단원에서 출발',done:false},{t:'자료 조사·정리',done:false},{t:'보고서 작성',done:false}],reh:[]},
+    vt:['res'],
+    vq:['기사에서 확인된 사실은 어디까지야?','네 대안은 누가 실행하는 거야?','그 대안의 한계 하나를 말해봐.'],
+    steps:[
+      {d:'D-7',t:'주제 선정 — 교과 단원에서 출발',done:false,tip:'세특 재료야. 단원에서 출발하지 않으면 <b>교과 연계</b>가 없어서 기재되기 어려워.',out:'주제 + 해당 단원명'},
+      {d:'D-6',t:'사실과 내 판단 분리',done:false,tip:'기사에서 확인된 사실은 어디까지인지 선을 그어. 그 뒤부터가 네 판단이야.',out:'사실 2개 / 내 판단 2개'},
+      {d:'D-5',t:'제도·법 근거 확인',done:false,tip:'"~해야 한다"엔 근거가 필요해. 조문이나 기관 자료 1건은 붙여.',out:'근거 1건 (조문 또는 기관명)'},
+      {d:'D-3',t:'보고서 작성',done:false,tip:'대안엔 <b>실행 주체</b>를 적어. 누가 하는지 없으면 대안이 아니라 소망이야.',out:'사실–원인–대안–한계 4칸'},
+      {d:'D-0',t:'제출',done:false,tip:'사건 당사자 이름·학교는 쓰지 마. 익명으로 바꿔.',out:'제출 확인'}],reh:[]},
   hi_c:{k:'exam',t:'2학기 기말고사',subj:'수학',date:'12/10~12/12',pts:'지필 60%',share:'이행 28%',
     unit:'범위: 수학Ⅰ 전 범위',notice:'내신 마지막 반영 — 변동 시 자동 재생성',
     steps:[{t:'범위 핵심 정리',done:true},{t:'범위 문제 풀기 (출판사 매칭)',done:false},{t:'오답 정리',done:false}],reh:[]},
@@ -2462,15 +2521,42 @@ body.g-hi .noteonly{display:none!important}
   }
 
   /* 3. 역산 스프린트 — 기본 포함 */
+  var vts=(c.vt||[]);
+  var typeChip=vts.map(function(k){return '<span class="pf-type">'+VTYPE[k]+'</span>';}).join('');
   h+='<div class="pf-sec"><div class="pf-h">'+(perf?'남은 날짜 역산 스프린트':'시험 스텝업')+
-     '<span class="auto-b">⚙️ 풀오토</span><span class="pf-cnt">'+doneN+'/'+c.steps.length+'</span></div>';
+     '<span class="auto-b">⚙️ 풀오토</span>'+typeChip+'<span class="pf-cnt">'+doneN+'/'+c.steps.length+'</span></div>';
   if(c.waiting){
    h+='<div class="ban warn" style="margin-bottom:8px"><span class="bi">⏳</span><span>아직 세부 공지가 안 떴어요. 뜨는 즉시 알림톡이 가고 플랜이 자동으로 깔립니다.</span></div>';
   }
+  var nextI=-1;
+  for(var ni=0;ni<c.steps.length;ni++){ if(!c.steps[ni].done){nextI=ni;break;} }
   h+=c.steps.map(function(x,n){
-    return '<div class="pf-step'+(x.done?' done':'')+'" data-step="'+n+'">'+
-      '<span class="cb">'+(x.done?'✓':'')+'</span>'+esc(x.t)+'</div>';}).join('');
+    var row='<div class="pf-step'+(x.done?' done':'')+'" data-step="'+n+'">'+
+      '<span class="cb">'+(x.done?'✓':'')+'</span>'+esc(x.t)+
+      (x.d?'<span class="dd2">'+esc(x.d)+'</span>':'')+'</div>';
+    if(n===nextI && x.tip){
+      row+='<div class="pf-now">'+
+        '<div class="nh">⚙️ 지금 할 것 — 자동 코칭</div>'+
+        '<div class="nt">'+x.tip+'</div>'+
+        (x.out&&x.out!=='—'?'<div class="pf-out"><span class="ol">남길 것</span><span class="ov">'+esc(x.out)+'</span></div>':'')+
+        '</div>';
+    }
+    return row;}).join('');
   h+='<button class="btn line sm" style="width:100%;margin-top:3px" data-addstep="1">+ 단계 직접 추가</button></div>';
+
+  if(perf && vts.length){
+   /* 2.5 검증 체크 — 유형에서 자동 장착 */
+   var seen={}, keys=[];
+   vts.forEach(function(t){ (VMAP[t]||[]).forEach(function(k){ if(!seen[k]){seen[k]=1;keys.push(k);} }); });
+   h+='<div class="pf-sec"><div class="pf-h">이 유형이 늘 걸리는 것'+
+      '<span class="auto-b">⚙️ 자동 장착</span><span class="pf-cnt">'+keys.length+'항목</span></div>'+
+      '<div class="mini" style="margin-bottom:8px">사례 <b>49건</b>에서 반복된 실패만 추렸어요. 유형이 정해지면 해당 항목이 자동으로 붙습니다 — <b>찾아내는 건 자동</b>, <b>고칠지 판단은 사람</b>.</div>';
+   h+=keys.map(function(k){var v=VCHK[k];
+     return '<div class="vchk"><div class="vt">'+esc(v.n)+'</div>'+
+       '<div class="vr"><span class="v-au">자동</span> '+v.au+'<br>'+
+       '<span class="v-hu">사람</span> '+(PRO?'<b>'+v.hu+'</b>':v.hu+' — 수행·시험관리')+'</div></div>';}).join('');
+   h+='</div>';
+  }
 
   if(perf){
    /* 1. 주제 */
@@ -2500,6 +2586,16 @@ body.g-hi .noteonly{display:none!important}
        '<span style="color:var(--ink3);font-weight:700">'+r.fil+'</span><span class="m" style="color:var(--sun-ink)">'+r.note+'</span></div>';}).join('')
      :'<div class="mini">아직 녹음이 없어요</div>';
    h+='<button class="btn g sm" data-reh="1" style="width:100%;margin-top:7px">🎙️ 지금 읽어보기</button></div>';
+
+   /* 5. 1분 설명 게이트 */
+   if(c.vq&&c.vq.length){
+    h+='<div class="pf-sec"><div class="pf-h">원고 없이 1분 설명<span class="auto-b">⚙️ 자동 배정</span></div>'+
+       '<div class="mini" style="margin-bottom:8px">제출 전에 이 3개를 <b>자기 말로</b> 답해보세요. 하나도 못 답하면 글을 고치는 게 아니라 <b>개념부터</b> 다시입니다.</div>';
+    h+=c.vq.map(function(q,i){return '<div class="vq"><span class="qn">'+(i+1)+'</span><span>'+esc(q)+'</span></div>';}).join('');
+    h+=(PRO?'<div class="ban info" style="margin-top:8px"><span class="bi">🧑‍🏫</span><span>답변 녹음이 <b>전담 매니저</b>에게 넘어가고, 막힌 개념은 <b>다음 과외 숙제</b>로 자동 편성됩니다.</span></div>'
+          :'<div class="ban warn" style="margin-top:8px"><span class="bi">🔒</span><span>질문은 <b>기본관리</b>에서 자동으로 떠요. <b>답변을 듣고 개념을 다시 잡아주는 것</b>이 수행·시험관리입니다.</span></div>')+
+       '</div>';
+   }
   }else{
    h+='<div class="pf-sec"><div class="pf-h">범위 관리<span class="auto-b">⚙️ 풀오토</span></div>'+
       '<div class="mini">시험 <b>3일 전</b>엔 전체 오답 총정리가 자동으로 뜹니다. 이 진도는 쌤 티칭룸·학부모 리포트에 반영돼요.</div>'+
