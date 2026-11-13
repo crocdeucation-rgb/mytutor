@@ -79,6 +79,26 @@ body.navOpen .navsheet{transform:translateY(0)}
 .nf input:focus,.nf select:focus,.nf textarea:focus{border-color:var(--brand)}
 .nf textarea{min-height:60px;resize:vertical}
 .nf .two{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+/* 리포트 — 학습 결과 기반 상세 */
+.rp{border:1.5px solid var(--line);border-radius:11px;padding:10px 11px;margin-bottom:6px}
+.rp .rh{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:900}
+.rp .rh .rd{margin-left:auto;font-size:11px;font-weight:900;color:var(--ink3)}
+.rp .rb{height:7px;border-radius:99px;background:var(--line2);margin-top:7px;overflow:hidden}
+.rp .rb i{display:block;height:100%;border-radius:99px}
+.rp .rn{font-size:10.5px;font-weight:700;color:var(--ink3);line-height:1.5;margin-top:6px}
+.rp .rn b{color:var(--ink)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:4px}
+.ba>div{border-radius:10px;padding:9px 10px}
+.ba .bf{background:var(--line2)}
+.ba .af{background:var(--ok-s,#EEF8EE)}
+.ba .lb{font-size:9px;font-weight:900;color:var(--ink3);letter-spacing:.04em}
+.ba .tx{font-size:11.5px;font-weight:800;line-height:1.45;margin-top:4px}
+.ba .af .tx{color:var(--ok)}
+.rnext{display:flex;gap:8px;align-items:flex-start;background:var(--navy-s);border-radius:10px;
+ padding:10px 11px;margin-top:8px;font-size:11.5px;font-weight:800;line-height:1.5}
+.rmiss{display:flex;gap:7px;align-items:center;border:1.5px dashed var(--sun-ink);background:var(--sun-s);
+ border-radius:10px;padding:9px 11px;margin-bottom:5px;font-size:11.5px;font-weight:800}
+.rmiss .md{margin-left:auto;font-size:10.5px;font-weight:900;color:var(--sun-ink);flex:none}
 #moreTab{display:none}
 
 /* ========== 스테이지 ========== */
@@ -2039,13 +2059,69 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
           </div>
         </div>
 
+        <div class="card">
+          <div class="ch"><h2>이번 주, 달라진 것</h2><span class="note">4주 전 대비</span></div>
+          <div class="ba">
+            <div class="bf"><div class="lb">4주 전</div>
+              <div class="tx">기울기를 "y분의 x"라고 말함. 식은 맞는데 설명을 못 함.</div></div>
+            <div class="af"><div class="lb">지금</div>
+              <div class="tx">원고 없이 "x의 증가량 분의 y의 증가량"을 바로 말함.</div></div>
+          </div>
+          <div class="rnext"><span>📌</span><span>말로 설명되면 시험에서 안 흔들려요. <b>다음 4주는 "왜 그렇게 되는지"</b>를 말하게 할 차례입니다.</span></div>
+        </div>
+
+        <div class="card">
+          <div class="ch"><h2>매일 영어 말하기</h2><span class="tag t-base">기본</span>
+            <span class="note">이번 주 5일 중 5일</span></div>
+          <div class="rp"><div class="rh">발음 평균 <span class="rd">91점 · 지난주 +4</span></div>
+            <div class="rb"><i style="width:91%;background:var(--ok)"></i></div>
+            <div class="rn">하루 5문장씩 빈칸을 채우고 원어민 발음을 따라 말한 결과예요. <b>available</b>은 지난주 교정 후 95점 — 이 단어는 졸업했습니다.</div></div>
+          <div class="rp"><div class="rh">아직 걸리는 것 <span class="rd">2개</span></div>
+            <div class="rn"><b>environment</b> 86점 — 끝 -ment 의 t 가 묻힙니다.<br>
+              <b>invite</b> 88점 — 강세를 앞에 둡니다 (in·VITE 가 맞아요).<br>
+              둘 다 이번 주 문장에 다시 섞어 넣었어요.</div></div>
+        </div>
+
         <div class="card lock" data-lock="suh">
           <div class="inner">
-            <div class="ch"><h2>수행평가 진행</h2><span class="tag t-suh">수행·시험관리</span></div>
-            <table class="tbl">
-              <tr><td>국어 말하기<small>11/16 시행</small></td><td class="num" style="color:var(--sun-ink)">원고 1차 첨삭 중</td></tr>
-              <tr><td>과학 실험보고서<small>11/21 시행</small></td><td class="num" style="color:var(--ink3)">범위 공지 대기</td></tr>
-            </table>
+            <div class="ch"><h2>반복해서 걸리는 것</h2><span class="tag t-suh">수행·시험관리</span></div>
+            <div class="rp"><div class="rh">저자 말과 내 말이 섞임 <span class="rd">3회</span></div>
+              <div class="rn">영어 영작·사회 보고서·독서 감상에서 같은 지적이 나왔어요. 인용한 문장에 출처를 붙이는 습관 하나로 해결됩니다.</div></div>
+            <div class="rp"><div class="rh">출처의 기준연도가 다름 <span class="rd">2회</span></div>
+              <div class="rn">2019년 자료와 2024년 자료를 나란히 비교했습니다. <b>연도를 같이 적는 것</b>부터 시작하기로 했어요.</div></div>
+            <div class="rnext"><span>🧑‍🏫</span><span>이 두 가지는 <b>글솜씨가 아니라 습관</b>이라 과외에서 잡힙니다. 다음 2회 수업 숙제에 넣었어요.</span></div>
+          </div>
+          <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">수행·시험관리</div>
+            <div class="lp">제출물에서 반복되는 실수를 모아 과외 숙제로 연결합니다</div>
+            <button class="btn g sm" data-add="suh">켜서 보기</button></div>
+        </div>
+
+        <div class="card lock" data-lock="suh">
+          <div class="inner">
+            <div class="ch"><h2>놓치고 있는 기회</h2><span class="tag t-suh">수행·시험관리</span>
+              <span class="note">희망자 과제</span></div>
+            <div class="rmiss"><span>🙋</span><span>생활과윤리 심화탐구보고서</span><span class="md">D-9 · 미정</span></div>
+            <div class="rmiss"><span>🎤</span><span>자유 주제 발표 (선착순)</span><span class="md">D-16 · 미신청</span></div>
+            <div class="rn" style="font-size:11px;font-weight:700;color:var(--ink3);line-height:1.55;margin-top:7px">
+              둘 다 <b style="color:var(--ink)">안 해도 점수는 안 깎입니다.</b> 대신 한 사람만 세특에 한 줄이 생겨요.
+              성적으로는 차이가 안 나는데 기록으로는 벌어지는 자리라, 할지 말지만 정해주시면 준비는 저희가 끌고 갑니다.</div>
+          </div>
+          <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">수행·시험관리</div>
+            <div class="lp">희망자 과제·자원 발표를 놓치지 않게 챙깁니다</div>
+            <button class="btn g sm" data-add="suh">켜서 보기</button></div>
+        </div>
+
+        <div class="card lock" data-lock="suh">
+          <div class="inner">
+            <div class="ch"><h2>수행평가 진행</h2><span class="tag t-suh">수행·시험관리</span>
+              <span class="note">역산 단계 이행률</span></div>
+            <div class="rp"><div class="rh">국어 말하기 <span class="rd">D-3 · 4/6단계</span></div>
+              <div class="rb"><i style="width:67%;background:var(--ok)"></i></div>
+              <div class="rn">원고까지 썼고 <b>남은 건 소리 내어 읽기 2회</b>. 3분 안에 들어가는지가 배점 30점이라 여기서 끝내면 안 됩니다.</div></div>
+            <div class="rp"><div class="rh">과학 실험보고서 <span class="rd">D-8 · 0/5단계</span></div>
+              <div class="rb"><i style="width:4%;background:var(--ink3)"></i></div>
+              <div class="rn">아직 <b>대단원까지만</b> 공지됐어요. 세부 범위가 뜨면 알림이 가고 역산이 자동으로 깔립니다.</div></div>
+            <div class="rnext"><span>👉</span><span><b>이번 주에 할 것 하나</b> — 국어 말하기 원고를 소리 내어 3번 읽고 시간 재기. 그것만 하면 이번 수행은 끝입니다.</span></div>
           </div>
           <div class="lockbox"><div style="font-size:19px">🔒</div><div class="ln">수행·시험관리</div>
             <div class="lp">학교 평가계획 해석 · 1주 역산 · 원고 첨삭 — 수행·시험관리에서 열려요</div>
