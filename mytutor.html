@@ -40,18 +40,31 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .hint b{color:var(--lime)}
 
 /* ========== 스테이지 ========== */
-#stage{position:fixed;inset:0;top:0;padding-top:86px;display:grid;place-items:start center;overflow:hidden}
+#stage{position:fixed;inset:0;top:0;padding-top:var(--barH,86px);display:grid;place-items:start center;overflow:hidden}
 .device{background:var(--bg);overflow:hidden;position:relative;transition:width .25s,height .25s,border-radius .25s}
-body.pc .device{width:100%;max-width:1420px;height:calc(100vh - 92px);border-radius:16px 16px 0 0;
+body.pc .device{width:100%;max-width:1420px;height:calc(100vh - var(--barH,86px) - 6px);border-radius:16px 16px 0 0;
  box-shadow:0 -4px 50px rgba(0,0,0,.4)}
-body.mob .device{width:min(392px,100vw);height:calc(100vh - 104px);max-height:844px;border-radius:30px;
+body.mob .device{width:min(392px,100vw);height:calc(100vh - var(--barH,86px) - 18px);max-height:844px;border-radius:30px;
  border:9px solid #14172C;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-@media(max-width:640px){body.mob .device{border-width:0;border-radius:0;height:calc(100vh - 118px)}html,body{overflow-x:hidden}}
+@media(max-width:640px){body.mob .device{border-width:0;border-radius:0}html,body{overflow-x:hidden}}
 /* 실제 화면이 좁으면 기기 토글과 무관하게 모바일 레이아웃 — 좌측 메뉴 대신 하단 탭 */
 @media(max-width:760px){
  html,body{overflow-x:hidden}
- .device{width:100%!important;max-width:100%!important;height:calc(100vh - 118px)!important;
+ .device{width:100%!important;max-width:100%!important;height:calc(100vh - var(--barH,86px))!important;
   border:0!important;border-radius:0!important;box-shadow:none!important;max-height:none!important}
+ /* 데모 컨트롤 바 압축 — 세로를 먹으면 그만큼 기기 화면이 잘린다 */
+ .bar{padding:6px 7px 5px!important;gap:5px!important}
+ .bar .grp{padding:2px!important}
+ .bar .grp button{font-size:10.5px!important;padding:5px 9px!important}
+ .bar .grp.add button{font-size:10px!important;padding:5px 8px!important}
+ .bar .grp.lab::before{font-size:8.5px!important;padding:0 6px 0 8px!important}
+ .bar .grp.lab[data-lab="화면"]{flex-wrap:nowrap!important;max-width:100%;overflow-x:auto;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .bar .grp.lab[data-lab="화면"]::-webkit-scrollbar{display:none}
+ .bar .hint{display:none!important}
+ /* 하단 탭 라벨이 기기 테두리·브라우저 하단에 잘리지 않게 */
+ .tabs{padding:7px 4px calc(10px + env(safe-area-inset-bottom,0px))!important}
+ .tabs button{font-size:9px!important}
  .app{grid-template-columns:1fr!important}
  .side{display:none!important}
  .tabs{display:flex!important}
@@ -3265,6 +3278,21 @@ document.addEventListener('DOMContentLoaded',function(){renderRoomCard();paintNe
 renderRoomCard();paintNext();renderCharCard();
 </script>
 <script>
+/* 상단 데모 컨트롤 바의 실제 높이를 재서 --barH 로 — 줄바꿈 수가 달라져도 기기 화면이 안 잘림 */
+(function(){
+ function setBarH(){
+  var b=document.querySelector('.bar'); if(!b)return;
+  var h=Math.ceil(b.getBoundingClientRect().height);
+  if(h>0)document.documentElement.style.setProperty('--barH',h+'px');
+ }
+ window.addEventListener('resize',setBarH);
+ window.addEventListener('orientationchange',function(){setTimeout(setBarH,120);});
+ document.addEventListener('DOMContentLoaded',setBarH);
+ document.addEventListener('click',function(e){ if(e.target.closest('.bar'))setTimeout(setBarH,70); });
+ if(window.ResizeObserver){ try{ var b=document.querySelector('.bar');
+  if(b)new ResizeObserver(setBarH).observe(b); }catch(e){} }
+ setBarH(); setTimeout(setBarH,200); setTimeout(setBarH,800);
+})();
 (function(){
  /* 말해보카식: 한글 문장 → 영어 빈칸 직접 입력 → 원어민 발음 → 따라 말하기 → 발음 점수 */
  var DAILY=5;
