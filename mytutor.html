@@ -99,6 +99,64 @@ body.navOpen .navsheet{transform:translateY(0)}
 .rmiss{display:flex;gap:7px;align-items:center;border:1.5px dashed var(--sun-ink);background:var(--sun-s);
  border-radius:10px;padding:9px 11px;margin-bottom:5px;font-size:11.5px;font-weight:800}
 .rmiss .md{margin-left:auto;font-size:10.5px;font-weight:900;color:var(--sun-ink);flex:none}
+/* 막힌 유형 → 문항 매칭 */
+.mt-tw{margin-top:7px;border-top:1px dashed var(--line);padding-top:6px}
+.mt-tw div{font-size:11px;font-weight:700;line-height:1.5;color:var(--ink2);margin-top:3px}
+.mt-tw b{color:var(--ok);font-size:9.5px;font-weight:900;margin-right:4px}
+.why{font-size:11px;font-weight:700;line-height:1.55;color:var(--ink2);margin-top:4px}
+.why b{color:var(--ink)}
+.why .k{display:inline-block;font-size:9px;font-weight:900;border-radius:5px;padding:1px 5px;margin-right:4px;vertical-align:1px}
+.why .k.a{background:var(--red-s);color:#A33}.why .k.b{background:var(--navy-s);color:var(--navy)}
+.ddl{background:#181A17;color:#C9E600;border-radius:10px;padding:10px 12px;font:600 10.5px/1.6 ui-monospace,Menlo,monospace;
+ white-space:pre;overflow-x:auto;margin-top:9px}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.pipe>div{border:1.5px solid var(--line);border-radius:11px;padding:9px 10px;background:#fff}
+.pipe .st{font-size:9.5px;font-weight:900;color:var(--ink3)}
+.pipe h4{font-size:12px;font-weight:900;margin:3px 0 4px}
+.pipe p{font-size:10.5px;font-weight:700;line-height:1.5;color:var(--ink2);margin:0}
+.pipe .ev{display:inline-block;margin-top:6px;font-size:9.5px;font-weight:900;background:var(--ok-s,#EEF8EE);color:var(--ok);border-radius:999px;padding:2px 7px}
+@media(max-width:760px){.pipe{grid-template-columns:1fr}}
+body.mob .pipe{grid-template-columns:1fr}
+.cmp{width:100%;border-collapse:collapse;font-size:11px}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top;line-height:1.5}
+.cmp th{font-size:10px;color:var(--ink3);font-weight:900}
+.cmp td:first-child{font-weight:900;white-space:nowrap;color:var(--ink3);font-size:10.5px}
+.cmp td{font-weight:700}
+.cmp .hl{background:var(--lime-s)}
+.mt-tabs{display:flex;gap:5px;margin-bottom:10px}
+.mt-tabs button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:7px 4px;
+ font:inherit;font-size:11.5px;font-weight:900;color:var(--ink3);cursor:pointer}
+.mt-tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.mt-chain{display:flex;align-items:center;gap:5px;flex-wrap:wrap;background:var(--line2);border-radius:10px;
+ padding:9px 10px;font-size:10.5px;font-weight:800;line-height:1.4;margin-bottom:11px}
+.mt-chain .nd{background:#fff;border:1px solid var(--line);border-radius:7px;padding:3px 7px}
+.mt-chain .nd.hot{background:var(--navy);border-color:var(--navy);color:#fff}
+.mt-chain .ar{color:var(--ink3);font-weight:900}
+.mt-lbl{font-size:11px;font-weight:900;color:var(--ink3);margin:12px 0 6px}
+.mt-types{display:flex;flex-wrap:wrap;gap:5px}
+.mt-types button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;
+ font:inherit;font-size:11px;font-weight:800;color:var(--ink);cursor:pointer;line-height:1.3;text-align:left}
+.mt-types button .id{font-size:9px;font-weight:900;color:var(--ink3);margin-right:4px}
+.mt-types button.on{background:var(--lime-s);border-color:var(--lime-d)}
+.mt-types button .ct{font-size:9.5px;font-weight:900;color:var(--ink3);margin-left:4px}
+.mt-sum{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.mt-sum span{font-size:10.5px;font-weight:900;border-radius:999px;padding:4px 9px;background:var(--line2)}
+.mt-sum span.k1{background:var(--navy-s);color:var(--navy)}
+.mt-sum span.k2{background:var(--sun-s);color:var(--sun-ink)}
+.mt-sum span.k3{background:var(--ok-s,#EEF8EE);color:var(--ok)}
+.mt-q{border:1.5px solid var(--line);border-radius:11px;padding:9px 11px;margin-bottom:6px}
+.mt-q .qh{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:5px}
+.mt-q .bd{font-size:9px;font-weight:900;border-radius:999px;padding:2px 7px}
+.mt-q .bd.m1{background:var(--navy);color:#fff}
+.mt-q .bd.m2{background:var(--sun-s);color:var(--sun-ink)}
+.mt-q .bd.fb{background:var(--line2);color:var(--ink3)}
+.mt-q .bd.tw{background:var(--ok-s,#EEF8EE);color:var(--ok)}
+.mt-q .bd.pc{background:var(--red-s);color:#A33}
+.mt-q .src{margin-left:auto;font-size:9.5px;font-weight:800;color:var(--faint)}
+.mt-q .qt{font-size:12px;font-weight:700;line-height:1.55}
+.mt-q .qa{font-size:10.5px;font-weight:800;color:var(--ink3);margin-top:4px}
+.mt-empty{border:1.5px dashed var(--line);border-radius:11px;padding:16px;text-align:center;
+ font-size:11.5px;font-weight:800;color:var(--ink3)}
 #moreTab{display:none}
 
 /* ========== 스테이지 ========== */
@@ -1965,6 +2023,27 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
           </div>
         </div>
 
+        <div class="card" id="mtCard">
+          <div class="ch"><h2>막힌 곳 → 문항 자동 매칭</h2><span class="tag t-tutor">실제 문항 60개</span>
+            <span class="note">유형 태깅 파일럿</span></div>
+          <div class="mt-tabs">
+            <button data-mts="수학" class="on">수학</button>
+            <button data-mts="영어">영어</button>
+            <button data-mts="과학">과학</button>
+          </div>
+          <div class="mt-chain" id="mtChain"></div>
+          <div class="mt-lbl">① 오늘 진도 — 교재 목차에서</div>
+          <div class="mt-types" id="mtBook"></div>
+          <div class="mt-lbl">② 어디서 막혔나 — 유형 사전에서 고르기 <span style="font-weight:700">(복수 선택)</span></div>
+          <div class="mt-types" id="mtTypes"></div>
+          <div class="mt-lbl">③ 매칭된 문항</div>
+          <div class="mt-sum" id="mtSum"></div>
+          <div id="mtList"></div>
+          <div class="ban info" style="margin-top:9px"><span class="bi">🎯</span>
+            <span>순서는 <b>주유형 일치 → 부유형 일치 → 같은 단원(폴백)</b>. 계산형 유형은 틀린 문제 하나에서 <b>숫자만 바꾼 쌍둥이</b>를 자동으로 만들어 붙입니다. 쌤이 고른 유형이 곧 아이 스터디룸의 오늘 할 것이 돼요.</span></div>
+          <button class="btn g" style="width:100%;margin-top:10px" data-mtgo="1">📘 이 문항으로 숙제 내기</button>
+        </div>
+
         <div class="card">
           <div class="ch"><h2>숙제 내기</h2><span class="tag t-tutor">여기가 연결 지점</span></div>
           <div style="display:flex;gap:7px;margin-bottom:12px">
@@ -2438,14 +2517,32 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
 
       <div class="stk">
         <div class="card">
-          <div class="ch"><h2>막고 있는 것</h2><span class="note">전부 자유 텍스트</span></div>
+          <div class="ch"><h2>막고 있는 것</h2><span class="note">자유 텍스트 3개 → 코드 3개</span></div>
+          <p class="why" style="margin:0 0 8px">매칭은 <b>"같은 값끼리 붙인다"</b>가 전부입니다. 숙제 쪽이 <b>문장</b>이고 문항 쪽이 <b>코드</b>면, 사람이 읽어 옮기지 않는 한 절대 안 붙습니다. 그래서 세 칸 모두 <b>원문은 메모로 남기고, 옆에 코드 칸을 하나씩 추가</b>합니다 — 기존 화면·데이터를 깨지 않는 방식입니다.</p>
           <table class="tbl">
-            <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">lesson_topic</code><small>NVARCHAR(200) → 단원 코드 아님</small></td><td class="num" style="color:var(--red)">코드화</td></tr>
-            <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">member_textbooks.material_text</code><small>NVARCHAR(1000) → 출판사 코드 아님</small></td><td class="num" style="color:var(--red)">코드화</td></tr>
-            <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">improvement_text</code><small>NVARCHAR(2000) 서술 → 개념 단위 아님</small></td><td class="num" style="color:var(--red)">코드화</td></tr>
-            <tr><td>문항 HWP → DB 이관<small>파싱 자체는 검증됨 · 수학 그림만 미확인</small></td><td class="num" style="color:var(--sun-ink)">진행 가능</td></tr>
+            <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">lesson_topic</code><small>NVARCHAR(200) → 단원 코드 아님</small>
+              <div class="why"><span class="k a">근거</span>"순환소수 함", "쎈 23~31p", "1단원 마무리" — 같은 진도가 쌤마다 다르게 적혀 조인 불가.</div>
+              <div class="why"><span class="k b">원리</span>쌤은 수업종료에서 <b>교재 목차를 탭</b> → <code>lesson_node_id</code> 저장. 목차 노드가 이미 (학년·과목·대단원·소단원)을 품고 있어서 <b>탭 한 번이 곧 단원 코드 입력</b>입니다.</div></td>
+              <td class="num" style="color:var(--red)">코드화</td></tr>
+            <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">member_textbooks.material_text</code><small>NVARCHAR(1000) → 출판사 코드 아님</small>
+              <div class="why"><span class="k a">근거</span>"쎈", "쎈수학 중2-1", "신사고 쎈" — 같은 책이 3가지로 적히면 3권으로 셉니다.</div>
+              <div class="why"><span class="k b">원리</span><code>textbook_id</code> FK → 교재 마스터(출판사·교재·학기). 출판사 코드는 <b>아라 영상 경로의 번호 체계(예 /77/) 재사용</b>. 기존 텍스트는 유사도로 후보를 붙이고 운영이 한 번 확인.</div></td>
+              <td class="num" style="color:var(--red)">코드화</td></tr>
+            <tr><td><code style="background:var(--red-s);padding:2px 6px;border-radius:5px;font-size:11px;color:var(--red)">improvement_text</code><small>NVARCHAR(2000) 서술 → 개념 단위 아님</small>
+              <div class="why"><span class="k a">근거</span>"분수 바꾸는 거 헷갈려함" — 무엇이 막혔는지 문장이라 누적·비교·매칭이 안 됩니다.</div>
+              <div class="why"><span class="k b">원리</span>폐쇄형 <b>유형 사전</b>(과목별 7~10개)에서 다중 선택 → <code>session_weak_types(session_id, type_code)</code>. 같은 막힘이 늘 같은 코드라 <b>"3주째 MA05" 같은 리포트와 문항 매칭이 동시에</b> 됩니다.</div></td>
+              <td class="num" style="color:var(--red)">코드화</td></tr>
+            <tr><td>문항 HWP → DB 이관<small>파싱 검증 · 유형 자동태깅 파일럿 완료 · 수학 그림만 미확인</small>
+              <div class="why"><span class="k b">실측</span>5개 파일 100문항 — 발문·정답 100/100, 수식(HWP 수식개체) 복원, 유형 자동태깅 <b>확신 93 / 검토 7</b>.</div></td>
+              <td class="num" style="color:var(--sun-ink)">진행 가능</td></tr>
           </table>
-          <div class="ban warn" style="margin-top:11px"><span class="bi">🚧</span><span>조인키는 <b>(학년·과목·대단원·소단원·출판사)</b>인데 쌤이다에 코드로 있는 건 <code style="background:#fff;padding:1px 5px;border-radius:4px">subject_code</code> 하나뿐입니다. <b>다만 출판사 코드는 새로 만들 필요가 없습니다</b> — 아라 영상 경로에 이미 체계가 있습니다.</span></div>
+          <div class="ban warn" style="margin-top:11px"><span class="bi">🚧</span><span>조인키는 <b>(학년·과목·대단원·소단원) + 유형</b>입니다. 출판사는 <b>교과서 매칭</b>(내신 범위)에서만 키에 들어가고, <b>교재 매칭</b>은 교재 목차 노드가 단원을 대신 들고 옵니다. 지금 쌤이다에 코드로 있는 건 <code style="background:#fff;padding:1px 5px;border-radius:4px">subject_code</code> 하나뿐 — 위 3칸이 채워지면 키가 완성됩니다.</span></div>
+          <div class="ddl">-- 기존 칸은 그대로, 코드 칸만 추가 (되돌리기 쉬움)
+ALTER TABLE ssamida_session_notes ADD lesson_node_id INT NULL;     -- 교재 목차 노드
+ALTER TABLE member_textbooks      ADD textbook_id    INT NULL;     -- 교재 마스터 FK
+CREATE TABLE session_weak_types (
+  session_id INT NOT NULL, type_code VARCHAR(8) NOT NULL,          -- 예 MA05
+  PRIMARY KEY (session_id, type_code));</div>
         </div>
 
         <div class="card">
@@ -2468,9 +2565,53 @@ button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.
             <b>세션 단위로만</b> 설계돼 있습니다 (<code style="background:var(--red-s);padding:1px 5px;border-radius:4px;font-size:11px;color:var(--red)">session_id NOT NULL</code>).
             애드온 노동은 수업 밖에서 하는 일이라 넣을 자리가 없습니다. 수행·시험관리는 전담 매니저(급여)라 쌤 정산과 무관 — 쌤 노동이 늘어나는 건 <b>필기관리뿐</b>입니다.
           </p>
-          <div class="ban info" style="margin-top:10px"><span class="bi">🔧</span><span>최소 변경 — <b>session_id NULL 허용</b> · <b>item_type</b> 추가(LESSON/SUHAENG/NOTE/EXAM) · <b>member_id</b> 추가. 가상 세션으로 우회하면 잔여 회차가 틀어집니다.</span></div>
+          <div class="why"><span class="k a">근거</span><b>잔여 회차 = 계약 회차 − 완료 세션 수</b>로 계산됩니다. 필기 피드백을 "가상 세션"으로 만들어 정산에 넣으면 그 세션도 회차로 세져서 <b>학부모가 산 수업이 줄어듭니다</b>. 그래서 세션을 만들지 말고, 정산 줄이 세션 없이도 설 수 있어야 합니다.</div>
+          <div class="why"><span class="k b">원리</span>정산 한 줄 = <b>누가(teacher) · 어떤 일(item_type) · 누구 것(member_id) · 근거(ref_id)</b>. 수업은 근거가 session_id, 필기는 근거가 photo_feedback id. 회차 계산은 <code>item_type='LESSON'</code>만 봅니다.</div>
+          <div class="ddl">ALTER TABLE ssamida_teacher_settlement_items ALTER COLUMN session_id INT NULL;
+ALTER TABLE ssamida_teacher_settlement_items ADD item_type VARCHAR(8) NOT NULL DEFAULT 'LESSON';
+ALTER TABLE ssamida_teacher_settlement_items ADD member_id INT NULL, ref_id INT NULL;
+-- 수업 줄은 세션 필수, 애드온 줄은 학생 필수
+ALTER TABLE ssamida_teacher_settlement_items ADD CONSTRAINT ck_settle_kind CHECK (
+  (item_type='LESSON' AND session_id IS NOT NULL) OR
+  (item_type<>'LESSON' AND member_id IS NOT NULL AND ref_id IS NOT NULL));</div>
+          <div class="ban info" style="margin-top:10px"><span class="bi">🔧</span><span>최소 변경 — <b>session_id NULL 허용</b> · <b>item_type</b>(LESSON/NOTE, 확장 시 SUHAENG/EXAM) · <b>member_id · ref_id</b>. DEFAULT 'LESSON'이라 <b>기존 정산 줄은 손대지 않아도</b> 그대로 맞습니다. 같은 필기를 두 번 정산하지 않도록 (item_type, ref_id) 유니크.</span></div>
         </div>
       </div>
+    </div>
+    <div class="card">
+      <div class="ch"><h2>내 문제로 유사문제 만들고 매칭하기</h2><span class="tag t-base">twin_gen.py 실행 결과</span><span class="note">직접 제작 HWP 기준</span></div>
+      <div class="pipe">
+        <div><div class="st">1 · 읽기</div><h4>HWP 파싱</h4><p>문단·표·수식개체를 그대로 읽어 발문/선택지/정답표 분리. 수식은 HWP 수식 스크립트 → 텍스트.</p><span class="ev">100/100 추출</span></div>
+        <div><div class="st">2 · 태깅</div><h4>유형 코드 부여</h4><p>폐쇄형 사전에서 주·부유형 1개씩. 규칙+키워드로 자동, 확신 낮은 것만 사람 검토.</p><span class="ev">확신 93 · 검토 7</span></div>
+        <div><div class="st">3 · 틀 만들기</div><h4>숫자 자리 + 조건 + 풀이</h4><p>계산형 유형마다 문항을 틀로. <b>원본 숫자를 넣어 원본 정답이 나오는지 먼저 검증</b> — 틀이 맞다는 증거.</p><span class="ev">단답 3틀 검증 O</span></div>
+        <div><div class="st">4 · 생성</div><h4>숫자만 바꿔 쌍둥이</h4><p>조건 통과만 채택: 답이 자연수 · 원본·다른 쌍둥이와 답이 다름 · 퇴화 케이스 제외(0.1999…=0.2).</p><span class="ev">4문항 → 쌍둥이 8</span></div>
+        <div><div class="st">5 · 매칭</div><h4>유형 코드 상속</h4><p>쌍둥이는 원본 유형 코드를 물려받아 매칭 엔진에서 원본과 똑같이 잡힘. 저작권도 원본과 같이 내 것.</p><span class="ev">쌤 화면에 표시 중</span></div>
+      </div>
+      <table class="cmp" style="margin-top:12px">
+        <tr><th>원본 (내 문제)</th><th>틀</th><th>생성된 쌍둥이</th></tr>
+        <tr><td style="white-space:normal;color:var(--ink);font-size:11px">순환소수 0.3666 …을 기약분수로 나타내면 a/30이다. 이때 자연수 a의 값을 구하시오. <span style="color:var(--ink3)">[정답 11]</span></td>
+          <td style="white-space:normal">0.<b>b</b><b>r</b>r r… = a/k<br><span style="color:var(--ink3)">b≠r · r≠9 · 분수는 Fraction으로 정확 계산</span></td>
+          <td style="white-space:normal">순환소수 0.2777 …을 기약분수로 나타내면 a/18이다. 이때 자연수 a의 값을 구하시오. <b>[5]</b><br>순환소수 0.4111 …을 기약분수로 나타내면 a/90이다. 이때 자연수 a의 값을 구하시오. <b>[37]</b></td></tr>
+        <tr><td style="white-space:normal;color:var(--ink);font-size:11px">순환소수 1.52̇에 어떤 자연수를 곱하여 소수로 나타내면 유한소수가 된다. 이때 곱할 수 있는 가장 작은 자연수를 구하시오. <span style="color:var(--ink3)">[정답 9]</span></td>
+          <td style="white-space:normal">a.b<b>ṙ</b> → 분모에서 2·5 지운 나머지<br><span style="color:var(--ink3)">순환마디 1~2자리 · 답 &gt;1</span></td>
+          <td style="white-space:normal">순환소수 2.86̇8̇에 어떤 자연수를 곱하여 소수로 나타내면 유한소수가 된다. 이때 곱할 수 있는 가장 작은 자연수를 구하시오. <b>[99]</b><br>순환소수 2.53̇에 어떤 자연수를 곱하여 소수로 나타내면 유한소수가 된다. 이때 곱할 수 있는 가장 작은 자연수를 구하시오. <b>[3]</b></td></tr>
+      </table>
+      <div class="ban info" style="margin-top:10px"><span class="bi">🧪</span><span>생성은 <b>계산형 유형만</b>(숫자를 바꿔도 같은 사고를 요구하는 것). 개념 판단형(보기 고르기, 합답형)·국어·영어 지문형은 생성하지 않고 <b>같은 유형의 다른 원본</b>을 매칭합니다 — 억지로 바꾸면 질이 떨어집니다.</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h2>교과서 매칭 vs 교재 매칭</h2><span class="note">둘 다 되고, 키가 다릅니다</span></div>
+      <table class="cmp">
+        <tr><th></th><th>교과서 매칭</th><th class="hl">교재 매칭</th></tr>
+        <tr><td>쓰는 때</td><td>내신 대비 — 학교 시험 범위</td><td class="hl">평소 진도 — 아이가 실제로 푸는 책</td></tr>
+        <tr><td>입력</td><td>학교 → 출판사(교과서) 자동</td><td class="hl">아이가 등록한 교재 + 쌤이 탭한 목차</td></tr>
+        <tr><td>조인 키</td><td>학년·과목·<b>출판사</b>·대단원·소단원 + 유형</td><td class="hl"><b>교재 목차 노드</b> → 단원 코드 + 유형</td></tr>
+        <tr><td>왜 다른가</td><td>같은 "순환소수"라도 출판사마다 단원 번호·용어가 달라 출판사가 키에 꼭 필요</td><td class="hl">교재 목차는 출판사와 무관하게 표준 단원 코드에 한 번만 매핑해 두면 끝 — <b>교과서가 달라도 같은 문항 풀을 씀</b></td></tr>
+        <tr><td>매칭 결과</td><td>그 교과서 범위의 기출·변형</td><td class="hl">책에서 막힌 곳과 같은 유형의 다른 문항 + 내 문제 쌍둥이 · 책 다음 쪽과 겹치지 않게</td></tr>
+        <tr><td>필요 데이터</td><td>교과서별 단원표 (학교·출판사 매핑)</td><td class="hl">교재 마스터 + 목차→단원 매핑표 (교재당 1회, 1~2시간)</td></tr>
+        <tr><td>지금 상태</td><td>출판사 코드 체계 있음(아라 경로)</td><td class="hl">파일럿 3교재 매핑 · 실제 문항 60개로 쌤 화면 작동</td></tr>
+      </table>
+      <div class="ban lime" style="margin-top:10px"><span class="bi">🎯</span><span>핵심은 <b>단원 코드가 중간 다리</b>라는 것. 교과서 → 단원 코드 ← 교재 목차. 어느 쪽에서 들어와도 단원 코드 + 유형에서 만나므로 <b>문항 DB는 하나</b>로 두 매칭을 다 합니다.</span></div>
     </div>
     <div class="sp"></div>
   </div>
@@ -3700,6 +3841,90 @@ document.addEventListener('DOMContentLoaded',function(){renderRoomCard();paintNe
 renderRoomCard();paintNext();renderCharCard();
 </script>
 <script>
+/* 막힌 유형 → 문항 매칭 — 파일럿 실데이터(중2 수학·영어·과학 60문항, 유형 26개) */
+(function(){
+ var D={"tax": {"수학": [{"id": "MA01", "n": "순환소수와 순환마디 표기", "d": "순환마디를 찾고 점 표기로 나타내기"}, {"id": "MA02", "n": "순환소수 n번째 자리 숫자", "d": "순환마디 길이로 나머지 계산"}, {"id": "MA03", "n": "유한소수 판별", "d": "기약분수 분모의 소인수가 2·5뿐인지"}, {"id": "MA04", "n": "유한소수·자연수가 되게 하는 미지수", "d": "곱해야 할 수, 될 수 없는 수, 최솟값"}, {"id": "MA05", "n": "순환소수를 분수로", "d": "10의 거듭제곱 차, 공식 적용·판정"}, {"id": "MA06", "n": "유리수와 소수의 관계", "d": "무한·순환·유한소수와 유리수 포함관계"}, {"id": "MA07", "n": "순환소수가 포함된 식의 계산", "d": "분수로 바꿔 사칙연산"}, {"id": "MA08", "n": "잘못 본 분자·분모 역추적", "d": "두 조건을 조합해 원래 분수 복원"}], "과학": [{"id": "SC01", "n": "빛의 반사와 굴절", "d": "입사각·반사각·굴절각, 속력 차이"}, {"id": "SC02", "n": "빛의 직진과 물체를 보는 원리", "d": "광원→물체→눈 경로"}, {"id": "SC03", "n": "평면거울의 상", "d": "크기·거리 대칭, 허상"}, {"id": "SC04", "n": "볼록·오목 거울", "d": "상의 특징과 이용 기구"}, {"id": "SC05", "n": "볼록·오목 렌즈와 시력 교정", "d": "상의 특징, 원시·근시"}, {"id": "SC06", "n": "물체의 색과 조명", "d": "반사·흡수하는 빛의 색"}, {"id": "SC07", "n": "빛의 합성과 영상 장치", "d": "3원색, 화소"}, {"id": "SC08", "n": "파동의 요소", "d": "파장·진폭·마루·골·주기·진동수"}, {"id": "SC09", "n": "파동의 전달", "d": "파원·매질, 매질은 제자리 진동"}, {"id": "SC10", "n": "소리의 3요소", "d": "세기=진폭, 높낮이=진동수, 음색=파형"}], "영어": [{"id": "EN01", "n": "어휘", "d": "철자·빈칸·단어 쓰임"}, {"id": "EN02", "n": "의사소통 기능: 도움 제안·응답", "d": "No problem, You’re welcome 등"}, {"id": "EN03", "n": "문법: 비교급·최상급", "d": "비교급 강조, the most ~ of/in"}, {"id": "EN04", "n": "문법: 현재완료", "d": "How long has ~, since/for, 과거분사"}, {"id": "EN05", "n": "문법: to부정사·동명사", "d": "plan to, be interested in -ing"}, {"id": "EN06", "n": "독해: 내용 일치", "d": "일치·불일치, 내용 고쳐쓰기"}, {"id": "EN07", "n": "독해: 흐름·요약·문맥 빈칸", "d": "이어질 내용, 요약문, 문맥 어휘"}, {"id": "EN08", "n": "어법 종합", "d": "네모 어법 선택"}]}, "items": [{"s": "영어", "no": 1, "t1": "EN01", "t2": "", "f": "단답·서술형", "q": "다음 빈칸에 공통으로 알맞은 말을 주어진 철자로 시작하여 쓰시오. [표:  I plan to at the community kitchen every Sunday. |  My sister works as a at the animal shelter.]", "a": "(v)olunteer", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 2, "t1": "EN01", "t2": "", "f": "짝짓기·조합형", "q": "다음 문장의 빈칸에 들어갈 말이 차례대로 바르게 짝지어진 것은?", "a": "2", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 3, "t1": "EN01", "t2": "", "f": "객관식 단일정답", "q": "다음 중 밑줄 친 단어의 쓰임이 어색한 것은?", "a": "1", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 4, "t1": "EN02", "t2": "", "f": "짝짓기·조합형", "q": "다음 대화의 밑줄 친 문장 ⓐ, ⓑ와 바꿔 쓸 수 있는 표현이 차례대로 바르게 짝 지어진 것은? [표: A: Can I help you? | B: Yes, please. I need to find a bank. | A: ⓐ No problem. I c", "a": "1", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 5, "t1": "EN05", "t2": "", "f": "단답·서술형", "q": "위 대화의 밑줄 친 동사 ⓐ, ⓑ를 알맞은 형태로 바꿔 쓰시오.(필요시 단어를 추가할 것)", "a": "to volunteer/ baking", "pic": false, "set": "5-6", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 6, "t1": "EN06", "t2": "", "f": "단답·서술형", "q": "위 대화의 내용과 일치하도록 다음 글에서 틀린 부분을 두 군데 찾아 바르게 고쳐 쓰시오. [표: Youa plans to volunteer at the community kitchen every Sunday. | She will make soup an", "a": "Sunday  Saturday/ make soup  bake bread", "pic": false, "set": "5-6", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 7, "t1": "EN04", "t2": "", "f": "객관식 단일정답", "q": "다음 동사의 과거분사형이 바르지 않은 것은?", "a": "4", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 8, "t1": "EN03", "t2": "", "f": "객관식 복수정답", "q": "다음 문장의 빈칸에 들어갈 말로 알맞은 것을 두 개 고르시오. [표: Mark is the most famous .]", "a": "1, 5", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 9, "t1": "EN03", "t2": "", "f": "짝짓기·조합형", "q": "다음 문장의 빈칸에 들어갈 말이 차례대로 바르게 짝지어진 것은?", "a": "3", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 10, "t1": "EN04", "t2": "", "f": "객관식 단일정답", "q": "다음 질문에 대한 답으로 알맞은 것은? [표: How long has she worked in this store?]", "a": "4", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 11, "t1": "EN03", "t2": "", "f": "객관식 단일정답", "q": "다음 중 빈칸에 비교급을 넣을 수 없는 것은?", "a": "4", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 12, "t1": "EN02", "t2": "", "f": "객관식 단일정답", "q": "위 대화의 밑줄 친 부분과 바꿔 쓸 수 없는 것은?", "a": "2", "pic": false, "set": "12-13", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 13, "t1": "EN06", "t2": "", "f": "단답·서술형", "q": "위 대화의 내용과 일치하도록 빈칸에 알맞은 말을 넣어 지훈의 말을 완성하시오. [표: Today, I helped Ms. Lee. She couldn’t (1) the door because her hands were full. So I did it,", "a": "open/ carried", "pic": false, "set": "12-13", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 14, "t1": "EN03", "t2": "EN06", "f": "객관식 단일정답", "q": "다음 중 표의 내용과 일치하지 않는 것은? [표: Name | Jude | Hojun | Nick | Age | 16 | 14 | 14 | Height | 166cm | 158cm | 160cm]", "a": "4", "pic": false, "set": "", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 15, "t1": "EN04", "t2": "", "f": "객관식 단일정답", "q": "윗글의 빈칸에 들어갈 말로 어색한 것은?", "a": "5", "pic": false, "set": "15-16", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 16, "t1": "EN07", "t2": "", "f": "객관식 단일정답", "q": "윗글의 뒤에 이어질 내용으로 가장 알맞은 것은?", "a": "3", "pic": false, "set": "15-16", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 17, "t1": "EN08", "t2": "", "f": "짝짓기·조합형", "q": "(A), (B), (C)의 각 네모에서 어법에 맞는 표현이 바르게 연결된 것은? (A) (B) (C) (A) (B) (C)", "a": "2", "pic": false, "set": "17-18", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 18, "t1": "EN07", "t2": "", "f": "짝짓기·조합형", "q": "윗글의 내용을 요약할 때 빈칸 ⓐ, ⓑ에 알맞은 말이 차례대로 바르게 짝지어진 것은? [표: We noticed that roads near our ⓐ were dark at night. We put up sensor lights, and it hel", "a": "1", "pic": false, "set": "17-18", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 19, "t1": "EN07", "t2": "EN01", "f": "짝짓기·조합형", "q": "윗글의 빈칸 ⓐ~ⓒ에 알맞은 말을 차례대로 바르게 나타낸 것은?", "a": "1", "pic": false, "set": "19-20", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "영어", "no": 20, "t1": "EN06", "t2": "", "f": "객관식 단일정답", "q": "윗글에서 밑줄 친 we가 한 활동으로 글의 내용과 일치하지 않는 것은?", "a": "4", "pic": false, "set": "19-20", "src": "중2-1 영어 능률 2단원(2)"}, {"s": "수학", "no": 1, "t1": "MA01", "t2": "", "f": "객관식 단일정답", "q": "다음 중 순환소수와 순환마디가 바르게 짝지어진 것은?", "a": "3", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 2, "t1": "MA02", "t2": "", "f": "객관식 단일정답", "q": "분수 7/13을 소수로 나타낼 때, 소수점 아래 10번째 자리의 숫자를 a, 33번째 자리의 숫자를 b라 하자. 이때 a+b의 값은?", "a": "3", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 3, "t1": "MA03", "t2": "", "f": "객관식 단일정답", "q": "다음은 분수 9/40를 유한소수로 나타내는 과정이다. 이때 a÷b+c의 값은?", "a": "3", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 4, "t1": "MA03", "t2": "", "f": "객관식 단일정답", "q": "다음 분수 중 유한소수로 나타낼 수 있는 것은?", "a": "3", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 5, "t1": "MA04", "t2": "", "f": "객관식 단일정답", "q": "분수 1/(2×5×11)에 어떤 자연수 n을 곱하여 소수로 나타내면 유한소수가 될 때, 다음 중 n의 값이 될 수 없는 것은?", "a": "4", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 6, "t1": "MA04", "t2": "MA05", "f": "객관식 단일정답", "q": "분수 x/150를 소수로 나타내면 유한소수가 되고, 이 분수를 기약분수로 나타내면 3/y이 된다. 가장 작은 자연수 x의 값과 이때 구한 y의 값에 대 하여 x+y의 값은?", "a": "1", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 7, "t1": "MA04", "t2": "", "f": "객관식 단일정답", "q": "분수 54/(225×x)를 소수로 나타내면 유한소수가 될 때, x의 값이 될 수 있는 한 자리 자연수는 모두 몇 개인가?", "a": "4", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 8, "t1": "MA05", "t2": "", "f": "객관식 단일정답", "q": "x=0.2585858 …일 때, 1000x-10x의 값은?", "a": "4", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 9, "t1": "MA05", "t2": "", "f": "객관식 단일정답", "q": "다음 중 옳지 않은 것은?", "a": "5", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 10, "t1": "MA02", "t2": "MA05", "f": "짝짓기·조합형", "q": "기약분수 a/22를 소수로 나타내면 1.95̇4̇이고, 소수점 아래 100번째 자리의 숫자를 b라 할 때, a, b의 값은?", "a": "4", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 11, "t1": "MA07", "t2": "", "f": "객관식 단일정답", "q": "7/2 ( 1/10 + 1/100 + 1/1000 + … )을 계산한 값을 순환소수로 나타내면?", "a": "2", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 12, "t1": "MA04", "t2": "MA05", "f": "객관식 단일정답", "q": "순환소수 3.2̇에 a를 곱하면 자연수가 될 때, 다음 중 a의 값이 될 수 없는 것은?", "a": "1", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 13, "t1": "MA05", "t2": "MA01", "f": "객관식 복수정답", "q": "다음 중 순환소수 x=1.5234234 …에 대한 설명으로 옳지 않은 것을 모두 고르면? (정답 2개)", "a": "1, 5", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 14, "t1": "MA06", "t2": "", "f": "<보기> 합답형", "q": "다음 <보기> 중 옳은 것을 모두 고른 것은?", "a": "3", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 15, "t1": "MA05", "t2": "", "f": "단답·서술형", "q": "a, b는 한 자리 자연수이고 0. dota = 5/9, 0.0dotb = 4/45일 때, ab의 값을 구하시오.", "a": "40", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 16, "t1": "MA05", "t2": "", "f": "단답·서술형", "q": "순환소수 0.3666 …을 기약분수로 나타내면 a/30이다. 이때 자연수 a의 값을 구하시오.", "a": "11", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 17, "t1": "MA04", "t2": "MA05", "f": "단답·서술형", "q": "순환소수 1.52̇에 어떤 자연수를 곱하여 소수로 나타내면 유한소수가 된다. 이때 곱할 수 있는 가장 작은 자연수를 구하시오.", "a": "9", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 18, "t1": "MA07", "t2": "", "f": "단답·서술형", "q": "0.3̇21̇ = 321×a에서 a의 값을 순환소수로 나타내시오.", "a": "0.0̇01̇", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 19, "t1": "MA04", "t2": "", "f": "단답·서술형", "q": "11/(3×5×7×a)를 소수로 나타내면 유한소수가 될 때, a의 값이 될 수 있는 가장 작은 자연수를 구하시오.", "a": "21", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "수학", "no": 20, "t1": "MA08", "t2": "MA05", "f": "단답·서술형", "q": "어떤 기약분수를 순환소수로 나타내는데 혜리는 분자를 잘못 보아서 0.26̇이라 하였고, 동규는 분모를 잘못 보아서 0.583̇이라 하였다. 처음의 기약분수를 순환소수로 바르게 나타내시오.", "a": "0.46̇", "pic": false, "set": "", "src": "중2-1 수학 예상문제 1단원(1)"}, {"s": "과학", "no": 1, "t1": "SC01", "t2": "", "f": "객관식 단일정답", "q": "빛의 반사와 굴절에 대한 설명으로 옳지 않은 것은?", "a": "1", "pic": false, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 2, "t1": "SC01", "t2": "", "f": "객관식 단일정답", "q": "그림과 같이 공기 중에서 물속으로 빛을 비췄을 때, 공기와 물의 경계면에서 빛의 진행 방향이 꺾였다. [그림] 이에 대한 설명으로 옳은 것은?", "a": "2", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 3, "t1": "SC02", "t2": "", "f": "객관식 단일정답", "q": "전등 아래에서 책을 볼 때 빛의 진행 경로로 옳은 것은? [그림]", "a": "3", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 4, "t1": "SC03", "t2": "", "f": "<보기> 합답형", "q": "그림과 같이 평면거울로부터 20 cm 떨어진 곳에 물체를 놓고 거울에 생기는 상의 모습을 관찰했다. [그림]", "a": "1", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 5, "t1": "SC04", "t2": "", "f": "<보기> 합답형", "q": "그림과 같이 거울에 평행하게 빛을 비췄다. [그림] 이에 대한 설명으로 옳은 것을 [보기]에서 모두 고른 것은? [표: ㄱ. 빛은 거울 면에서 반사한 후 한 점에 모인다. | ㄴ. 이 거울을 이용하여 물체를 보면 거꾸로 선 상을 볼 수 있다. | ㄷ.", "a": "5", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 6, "t1": "SC04", "t2": "", "f": "객관식 단일정답", "q": "그림 (가), (나)는 인형이 볼록 거울과 오목 거울에 가까이 있을 때 생기는 상의 모습 을 순서 없이 나타낸 것이다. [그림] 이에 대한 설명으로 옳지 않은 것은?", "a": "2", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 7, "t1": "SC04", "t2": "", "f": "짝짓기·조합형", "q": "거울의 종류와 이를 이용한 기구를 옳게 짝 지은 것은?", "a": "3", "pic": false, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 8, "t1": "SC05", "t2": "", "f": "<보기> 합답형", "q": "오른쪽 그림은 어떤 렌즈를 이용하여 멀리있는 물체를 본 모습을 나타낸 것이다. 이 렌즈에 대한 설명으로 옳은 것을 [보기]에서 모두 고른 것은? [표: ㄱ. 오목 렌즈이다. | ㄴ. 나란하게 입사한 빛을 퍼뜨린다. | ㄷ. 물체보다 크고 거꾸로 선 상", "a": "3", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 9, "t1": "SC05", "t2": "", "f": "객관식 단일정답", "q": "먼 곳은 잘 보이지만 가까운 곳은 잘 보이지 않는 시력 이상을 교정하기 위해 쓰는 안경 렌즈에 대한 설명으로 옳지 않은 것은?", "a": "1", "pic": false, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 10, "t1": "SC06", "t2": "", "f": "객관식 단일정답", "q": "그림 (가)는 빨간색 사과 A와 초록색 사과 B에 빨간색 조명을 비춘 모습을, (나)는 A, B에 노란색 조명을 비춘 모습을 나타낸 것이다. [그림] 이에 대한 설명으로 옳은 것은?", "a": "5", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 11, "t1": "SC06", "t2": "SC07", "f": "객관식 단일정답", "q": "어두운 방 안에서 노란색 바나나에 여러 가지 색의 조명을 비추며 관찰했다. 이에 대한 설명으로 옳은 것은?", "a": "5", "pic": false, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 12, "t1": "SC07", "t2": "", "f": "<보기> 합답형", "q": "오른쪽 그림은 흰 바닥에 같은 세기의 빨간색, 초록색, 파란색 빛을 비춘 모습을 나타낸 것이다. 이에 대한 설명으로 옳은 것을 [보기]에서 모두 고른 것은? [표: ㄱ. A는 검은색으로 보인다. | ㄴ. B에 초록색 빛을 비추면 A와 같은 색으로 보인", "a": "2", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 13, "t1": "SC07", "t2": "", "f": "<보기> 합답형", "q": "그림과 같이 노트북 화면에 여러 가지 색을 나타나게 하고, 각각의 색을 띠는 곳에 스마트폰 현미경으로 향하게 한 후 스마트폰 화면에 나타나는 모습을 관찰했다. [그림]", "a": "3", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 14, "t1": "SC08", "t2": "", "f": "짝짓기·조합형", "q": "그림은 어떤 파동을 위치-거리 그래프로 나타낸 것이다. [그림]", "a": "2", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 15, "t1": "SC09", "t2": "", "f": "객관식 단일정답", "q": "오른쪽 그림은 물에 빠진 공을 건지기 위해 공 뒤쪽 으로 돌을 던져 물결을 만드는 모습을 나타낸 것이다. 이에 대한 설명으로 옳은 것은?", "a": "3", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 16, "t1": "SC08", "t2": "", "f": "<보기> 합답형", "q": "이에 대한 설명으로 옳은 것을 [보기]에서 모두 고른 것은? [표: ㄱ. 물결파의 진폭은 2 cm 이다. | ㄴ. 물결파의 파장은 6 cm 이다. | ㄷ. 처음 종이배가 물결파의 마루에 있었다면, 2초 후에는 골에 있다.]", "a": "5", "pic": true, "set": "16-17", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 17, "t1": "SC08", "t2": "", "f": "짝짓기·조합형", "q": "물결파의 주기와 진동수를 옳게 짝 지은 것은?", "a": "5", "pic": false, "set": "16-17", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 18, "t1": "SC10", "t2": "SC08", "f": "짝짓기·조합형", "q": "소리의 3요소와 관련 있는 파동의 요소를 옳게 짝 지은 것은?", "a": "2", "pic": false, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 19, "t1": "SC10", "t2": "", "f": "짝짓기·조합형", "q": "그림은 소리의 세기와 높낮이가 각각 다른 소리의 파형을 나타낸 것이다. [그림]", "a": "3", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}, {"s": "과학", "no": 20, "t1": "SC10", "t2": "SC08", "f": "<보기> 합답형", "q": "그림은 하프의 길이가 서로 다른 줄 A, B를 같은 세기로 튕겼을 때 발생하는 소리 의 파형을 나타낸 것이다. [그림] 이에 대한 설명으로 옳은 것을 [보기]에서 모두 고른 것은? [표: ㄱ. 주기는 A가 B보다 길다. | ㄴ. 진동수는 A가 B보다 ", "a": "1", "pic": true, "set": "", "src": "중2-1 과학 예상문제 3단원(2)"}]};
+ var BOOK={
+  '수학':{book:'보유 교재 예) 쎈 중2-1',node:'01 유리수와 순환소수',unit:'중2-1 › Ⅰ. 유리수와 식의 계산 › 유리수와 순환소수'},
+  '영어':{book:'보유 교재 예) 능률 중2 평가문제집',node:'Lesson 2 The Joy of Helping',unit:'중2-1 영어(능률) › Lesson 2'},
+  '과학':{book:'보유 교재 예) 오투 중2-1',node:'Ⅲ-2 거울과 렌즈 · Ⅲ-3 파동과 소리',unit:'중2-1 과학 › Ⅲ. 빛과 파동'}
+ };
+ var DEF={'수학':['MA04','MA05'],'영어':['EN03','EN04'],'과학':['SC04','SC05']};
+ var TWIN={MA02:1,MA04:1,MA05:1,MA07:1,MA08:1};
+ /* twin_gen.py 실제 출력 — 원본 숫자로 틀을 먼저 검증한 뒤 숫자만 바꿔 생성 */
+ var GEN={"2": [{"q": "분수 5/27을 소수로 나타낼 때, 소수점 아래 14번째 자리의 숫자를 a, 28번째 자리의 숫자를 b라 하자. 이때 a+b의 값은?", "a": 9}, {"q": "분수 4/41을 소수로 나타낼 때, 소수점 아래 16번째 자리의 숫자를 a, 38번째 자리의 숫자를 b라 하자. 이때 a+b의 값은?", "a": 7}], "16": [{"q": "순환소수 0.2777 …을 기약분수로 나타내면 a/18이다. 이때 자연수 a의 값을 구하시오.", "a": 5}, {"q": "순환소수 0.4111 …을 기약분수로 나타내면 a/90이다. 이때 자연수 a의 값을 구하시오.", "a": 37}], "19": [{"q": "11/(2×3×13×a)를 소수로 나타내면 유한소수가 될 때, a의 값이 될 수 있는 가장 작은 자연수를 구하시오.", "a": 39}, {"q": "9/(2×3×7×a)를 소수로 나타내면 유한소수가 될 때, a의 값이 될 수 있는 가장 작은 자연수를 구하시오.", "a": 7}], "17": [{"q": "순환소수 2.86̇8̇에 어떤 자연수를 곱하여 소수로 나타내면 유한소수가 된다. 이때 곱할 수 있는 가장 작은 자연수를 구하시오.", "a": 99}, {"q": "순환소수 2.53̇에 어떤 자연수를 곱하여 소수로 나타내면 유한소수가 된다. 이때 곱할 수 있는 가장 작은 자연수를 구하시오.", "a": 3}]};
+ var SUBJ='수학', SEL={};
+ Object.keys(DEF).forEach(function(k){SEL[k]=DEF[k].slice();});
+ function el(i){return document.getElementById(i);}
+ function esc(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+ function tname(id){var l=D.tax[SUBJ];for(var i=0;i<l.length;i++)if(l[i].id===id)return l[i].n;return id;}
+ function match(){
+  var S=SEL[SUBJ], items=D.items.filter(function(x){return x.s===SUBJ;});
+  var hit=items.map(function(x){
+    var sc=(S.indexOf(x.t1)>-1?3:0)+(x.t2&&S.indexOf(x.t2)>-1?1:0);
+    return {x:x,sc:sc,kind:sc>=3?'m1':(sc>0?'m2':'fb')};
+  }).filter(function(o){return o.sc>0;})
+   .sort(function(a,b){return b.sc-a.sc||((GEN[b.x.no]?1:0)-(GEN[a.x.no]?1:0))||a.x.no-b.x.no;}).slice(0,8);
+  if(S.length && hit.length<4){
+   var used={}; hit.forEach(function(o){used[o.x.no]=1;});
+   items.filter(function(x){return !used[x.no];}).slice(0,4-hit.length)
+    .forEach(function(x){hit.push({x:x,sc:0,kind:'fb'});});
+  }
+  return hit;
+ }
+ function render(){
+  if(!el('mtCard'))return;
+  document.querySelectorAll('#mtCard [data-mts]').forEach(function(b){b.classList.toggle('on',b.dataset.mts===SUBJ);});
+  var B=BOOK[SUBJ], S=SEL[SUBJ], R=match();
+  var tw=R.reduce(function(n,o){return n+(SUBJ==='수학'&&GEN[o.x.no]?GEN[o.x.no].length:0);},0);
+  el('mtChain').innerHTML=
+   '<span class="nd">'+esc(B.book)+'</span><span class="ar">›</span>'+
+   '<span class="nd">'+esc(B.node)+'</span><span class="ar">→</span>'+
+   '<span class="nd">'+esc(B.unit)+'</span><span class="ar">→</span>'+
+   '<span class="nd hot">'+(S.length?S.join('·'):'유형 미선택')+'</span><span class="ar">→</span>'+
+   '<span class="nd hot">문항 '+R.length+(tw?' + 쌍둥이 '+tw:'')+'</span>';
+  el('mtBook').innerHTML='<button class="on" type="button"><span class="id">교재</span>'+esc(B.node)+'</button>'+
+   '<button type="button" data-toastmsg="교재 목차 노드마다 단원 코드가 매핑돼 있어서, 진도를 찍으면 단원은 자동이에요"><span class="id">+</span>다른 목차</button>';
+  var cnt={}; D.items.forEach(function(x){if(x.s===SUBJ){cnt[x.t1]=(cnt[x.t1]||0)+1;}});
+  el('mtTypes').innerHTML=D.tax[SUBJ].map(function(t){
+   return '<button type="button" data-mtt="'+t.id+'" class="'+(S.indexOf(t.id)>-1?'on':'')+'" title="'+esc(t.d)+'">'+
+    '<span class="id">'+t.id+'</span>'+esc(t.n)+'<span class="ct">'+(cnt[t.id]||0)+'</span></button>';}).join('');
+  var n1=R.filter(function(o){return o.kind==='m1';}).length,
+      n2=R.filter(function(o){return o.kind==='m2';}).length,
+      n3=R.filter(function(o){return o.kind==='fb';}).length;
+  el('mtSum').innerHTML=S.length?(
+   '<span class="k1">주유형 일치 '+n1+'</span>'+
+   (n2?'<span class="k2">부유형 일치 '+n2+'</span>':'')+
+   (n3?'<span>단원 폴백 '+n3+'</span>':'')+
+   (tw?'<span class="k3">쌍둥이 +'+tw+' 생성</span>':'')):'';
+  if(!S.length){ el('mtList').innerHTML='<div class="mt-empty">막힌 유형을 하나 이상 고르면 문항이 매칭돼요</div>'; return; }
+  el('mtList').innerHTML=R.map(function(o){
+   var x=o.x, lab=o.kind==='m1'?'주유형':(o.kind==='m2'?'부유형':'단원 폴백');
+   return '<div class="mt-q"><div class="qh">'+
+    '<span class="bd '+o.kind+'">'+lab+' · '+(o.kind==='fb'?x.t1:(S.indexOf(x.t1)>-1?x.t1:x.t2))+'</span>'+
+    (SUBJ==='수학'&&GEN[x.no]?'<span class="bd tw">쌍둥이 '+GEN[x.no].length+'</span>':(TWIN[x.t1]?'<span class="bd fb">쌍둥이 틀 준비중</span>':''))+
+    (x.pic?'<span class="bd pc">그림 포함</span>':'')+
+    '<span class="src">'+esc(x.src)+' #'+x.no+'</span></div>'+
+    '<div class="qt">'+esc(x.q)+'</div>'+
+    '<div class="qa">'+esc(tname(x.t1))+' · '+esc(x.f)+' · 정답 '+esc(x.a)+(x.set?' · 지문세트 '+esc(x.set):'')+'</div>'+
+    (GEN[x.no]&&SUBJ==='수학'?'<div class="mt-tw">'+GEN[x.no].map(function(g,i){
+      return '<div><b>쌍둥이 '+(i+1)+'</b>'+esc(g.q)+' <span style="color:var(--ink3)">[정답 '+esc(g.a)+']</span></div>';}).join('')+'</div>':'')+
+    '</div>';
+  }).join('');
+ }
+ document.addEventListener('click',function(e){
+  if(!el('mtCard')||!el('mtCard').contains(e.target))return;
+  var t=e.target.closest('[data-mts]'); if(t){SUBJ=t.dataset.mts; render(); return;}
+  var y=e.target.closest('[data-mtt]');
+  if(y){ var S=SEL[SUBJ], i=S.indexOf(y.dataset.mtt);
+   if(i>-1)S.splice(i,1); else S.push(y.dataset.mtt); render(); return; }
+  if(e.target.closest('[data-mtgo]')){
+   var R=match(), tw=R.reduce(function(n,o){return n+(SUBJ==='수학'&&GEN[o.x.no]?GEN[o.x.no].length:0);},0);
+   if(typeof toast==='function')toast(SEL[SUBJ].length?('숙제 '+R.length+'문항'+(tw?' + 쌍둥이 '+tw:'')+' — 민준이 스터디룸 오늘 할 것에 배정됐어요'):'막힌 유형을 먼저 골라주세요');
+  }
+ });
+ render();
+})();
 /* 하단 '더보기' 시트 — 모바일에서 사이드바가 숨으므로 수행·시험·필기 진입을 여기서 */
 (function(){
  var tab=document.getElementById('moreTab'), sheet=document.getElementById('navSheet'),
