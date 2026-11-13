@@ -38,6 +38,35 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .grp.add button{font-size:11.5px;padding:7px 11px}
 .hint{font-size:11px;color:#7D84B8;font-weight:700;width:100%;text-align:center;margin-top:-2px}
 .hint b{color:var(--lime)}
+/* 데모 컨트롤 — 좁은 화면 전용 플로팅 칩 + 백드롭 */
+#demoChip{display:none;position:fixed;left:10px;bottom:calc(14px + env(safe-area-inset-bottom,0px));
+ z-index:10001;align-items:center;gap:6px;background:rgba(26,29,52,.95);color:#fff;border:1px solid #3B4068;
+ border-radius:999px;padding:9px 13px;font-size:11px;font-weight:900;font-family:inherit;cursor:pointer;
+ box-shadow:0 8px 24px rgba(0,0,0,.4);backdrop-filter:blur(10px);max-width:72vw}
+#demoChip .st{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#demoChip .gr{font-size:13px;line-height:1}
+#demoChip.pulse{animation:chipPulse 1.5s ease-in-out 3}
+@keyframes chipPulse{0%,100%{box-shadow:0 8px 24px rgba(0,0,0,.4)}
+ 50%{box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 0 7px rgba(201,230,0,.22)}}
+#demoBd{display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.45);
+ opacity:0;pointer-events:none;transition:opacity .24s}
+body.navOpen #demoBd{opacity:1;pointer-events:auto}
+/* 하단 탭 '더보기' 시트 — 모바일에서 사이드바를 대신한다 */
+.navsheet{position:absolute;left:0;right:0;bottom:0;z-index:45;background:#fff;
+ border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:14px 12px 16px;
+ box-shadow:0 -10px 40px rgba(0,0,0,.18);transform:translateY(103%);
+ transition:transform .26s cubic-bezier(.2,.8,.2,1);max-height:78%;overflow-y:auto;display:none}
+body.navOpen .navsheet{transform:translateY(0)}
+.navsheet .nsh{font-size:13px;font-weight:900;margin-bottom:9px}
+.navsheet .nsg{font-size:9.5px;font-weight:900;color:var(--ink3);letter-spacing:.05em;margin:11px 0 5px}
+.navsheet .nsb{display:flex;align-items:center;gap:10px;width:100%;border:1.5px solid var(--line);
+ background:#fff;border-radius:11px;padding:11px 12px;font:inherit;font-size:12.5px;font-weight:800;
+ color:var(--ink);margin-bottom:5px;cursor:pointer;text-align:left}
+.navsheet .nsb .ic{font-size:16px;flex:none}
+.navsheet .nsb .lk{margin-left:auto;font-size:10px;font-weight:900;color:var(--sun-ink);
+ background:var(--sun-s);border-radius:999px;padding:2px 8px}
+.navsheet .nsb.locked{opacity:.5}
+#moreTab{display:none}
 
 /* ========== 스테이지 ========== */
 #stage{position:fixed;inset:0;top:0;padding-top:var(--barH,86px);display:grid;place-items:start center;overflow:hidden}
@@ -52,16 +81,25 @@ body.mob .device{width:min(392px,100vw);height:calc(100vh - var(--barH,86px) - 1
  html,body{overflow-x:hidden}
  .device{width:100%!important;max-width:100%!important;height:calc(100vh - var(--barH,86px))!important;
   border:0!important;border-radius:0!important;box-shadow:none!important;max-height:none!important}
- /* 데모 컨트롤 바 압축 — 세로를 먹으면 그만큼 기기 화면이 잘린다 */
- .bar{padding:6px 7px 5px!important;gap:5px!important}
- .bar .grp{padding:2px!important}
- .bar .grp button{font-size:10.5px!important;padding:5px 9px!important}
- .bar .grp.add button{font-size:10px!important;padding:5px 8px!important}
- .bar .grp.lab::before{font-size:8.5px!important;padding:0 6px 0 8px!important}
- .bar .grp.lab[data-lab="화면"]{flex-wrap:nowrap!important;max-width:100%;overflow-x:auto;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none}
- .bar .grp.lab[data-lab="화면"]::-webkit-scrollbar{display:none}
- .bar .hint{display:none!important}
+ /* 데모 바를 바텀시트로 접고, 평소엔 플로팅 칩 하나만 — 기기 화면을 한 픽셀도 안 먹는다 */
+ #stage{padding-top:0!important}
+ .device{height:100dvh!important;height:100vh!important}
+ .bar{top:auto!important;bottom:0;left:0;right:0;flex-direction:column;align-items:stretch;
+  gap:9px!important;padding:14px 12px calc(16px + env(safe-area-inset-bottom,0px))!important;
+  border-bottom:none;border-top:1px solid #343962;border-radius:18px 18px 0 0;
+  max-height:76vh;overflow-y:auto;transform:translateY(102%);transition:transform .26s cubic-bezier(.2,.8,.2,1)}
+ body.demoOpen .bar{transform:translateY(0)}
+ .bar .grp{flex-wrap:wrap;justify-content:flex-start}
+ .bar .grp.lab::before{font-size:9px!important;padding:0 8px 0 6px!important}
+ .bar .grp button{font-size:11.5px!important;padding:7px 11px!important}
+ .bar .grp.lab[data-lab="화면"]{display:grid!important;grid-template-columns:1fr 1fr;gap:4px}
+ .bar .grp.lab[data-lab="화면"]::before{grid-column:1/-1;padding:2px 0 3px!important;text-align:left}
+ .bar .hint{font-size:10.5px;margin-top:2px}
+ #demoChip{display:flex!important}
+ #demoBd{display:block}
+ .navsheet{display:block}
+ #moreTab{display:flex!important}
+ body.demoOpen #demoBd{opacity:1;pointer-events:auto}
  /* 하단 탭 라벨이 기기 테두리·브라우저 하단에 잘리지 않게 */
  .tabs{padding:7px 4px calc(10px + env(safe-area-inset-bottom,0px))!important}
  .tabs button{font-size:9px!important}
@@ -152,7 +190,9 @@ body.mob .stk{gap:12px}
  border-radius:16px;padding:16px;position:relative;overflow:hidden}
 .lesson::after{content:"";position:absolute;right:-48px;top:-56px;width:190px;height:190px;border-radius:50%;
  background:radial-gradient(closest-side,rgba(201,230,0,.2),transparent)}
-.lesson .top{display:flex;align-items:center;gap:7px;position:relative;z-index:2}
+.lesson .top{display:flex;align-items:center;gap:7px;position:relative;z-index:2;flex-wrap:wrap}
+.lesson .go{flex-wrap:wrap}
+.lesson .go .btn{min-width:0}
 .lesson .top small{font-size:10.5px;font-weight:900;color:var(--lime);letter-spacing:.05em}
 .lesson .top .when{margin-left:auto;font-size:10.5px;color:#A9B29A;font-weight:700}
 .lesson h3{font-size:19px;font-weight:900;margin-top:9px;letter-spacing:-.03em;position:relative;z-index:2}
@@ -492,7 +532,7 @@ body.pc .ovl{align-items:center}
 .ess .b span{font-size:11px;color:var(--ink3);font-weight:700;line-height:1.45;display:block;margin-top:2px}
 .ddc{cursor:pointer;transition:.14s}
 .ddc:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(58,61,143,.4)}
-.tc{cursor:pointer}
+.tline .tc{cursor:pointer}
 
 /* ========== AI 튜터 ========== */
 .fab{position:absolute;right:16px;bottom:16px;z-index:60;width:54px;height:54px;border-radius:50%;
@@ -552,13 +592,13 @@ body.g-el .elonly.ddrow,body.g-mi .mionly.ddrow,body.g-hi .hionly.ddrow{display:
 
 .tline{display:flex;gap:7px;overflow-x:auto;padding:3px 0 5px;scrollbar-width:none;align-items:center}
 .tline::-webkit-scrollbar{display:none}
-.tc{flex:none;border:1.5px solid var(--line);border-radius:999px;padding:7px 12px;font-size:11.5px;
+.tline .tc{flex:none;border:1.5px solid var(--line);border-radius:999px;padding:7px 12px;font-size:11.5px;
  font-weight:800;white-space:nowrap;background:#fff;display:flex;align-items:center;gap:6px}
-.tc b{font-weight:900}
-.tc.done{color:var(--faint);text-decoration:line-through;background:var(--line2);border-color:var(--line2)}
-.tc.now{border-color:var(--brand);background:var(--brand-s);color:var(--brand-ink)}
-.tc.tutor{border-color:#181A17;background:#181A17;color:var(--lime)}
-.tc .k{width:7px;height:7px;border-radius:2px;flex:none}
+.tline .tc b{font-weight:900}
+.tline .tc.done{color:var(--faint);text-decoration:line-through;background:var(--line2);border-color:var(--line2)}
+.tline .tc.now{border-color:var(--brand);background:var(--brand-s);color:var(--brand-ink)}
+.tline .tc.tutor{border-color:#181A17;background:#181A17;color:var(--lime)}
+.tline .tc .k{width:7px;height:7px;border-radius:2px;flex:none}
 
 .week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:4px}
 .wd{border:1px solid var(--line);border-radius:10px;padding:7px 3px;text-align:center;background:#fff}
@@ -718,6 +758,34 @@ body.g-hi .noteonly{display:none!important}
 .vcsc{display:flex;align-items:center;gap:9px;margin-top:9px}
 .vcsc .bar{flex:1;height:9px;background:var(--line2);border-radius:99px;overflow:hidden}
 .vcsc .bar i{display:block;height:100%;border-radius:99px}
+/* 수행 직접 추가 / 공지 파싱 */
+.saw{display:flex;gap:5px;margin-bottom:10px}
+.saw button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 4px;
+ font:inherit;font-size:10.5px;font-weight:900;color:var(--ink3);cursor:pointer;line-height:1.3}
+.saw button.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.sata{width:100%;min-height:92px;border:1.5px solid var(--line);border-radius:11px;padding:11px;
+ font:inherit;font-size:12px;font-weight:600;line-height:1.55;resize:vertical;outline:none}
+.sata:focus{border-color:var(--brand)}
+.safs{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.saf{display:flex;align-items:flex-start;gap:8px;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px}
+.saf.hit{border-color:var(--ok);background:var(--ok-s,#EEF8EE)}
+.saf .fk{font-size:9.5px;font-weight:900;color:var(--ink3);flex:none;width:62px;padding-top:1px}
+.saf .fv{font-size:11.5px;font-weight:800;line-height:1.45;flex:1}
+.saf .fv.miss{color:var(--faint);font-weight:700}
+.sack{display:flex;align-items:flex-start;gap:8px;border:1.5px solid var(--line);border-radius:10px;
+ padding:9px 10px;margin-bottom:5px;font-size:11.5px;font-weight:800;line-height:1.45;cursor:pointer;background:#fff}
+.sack .bx{width:17px;height:17px;border-radius:5px;border:2px solid var(--line);flex:none;display:grid;
+ place-items:center;font-size:11px;color:#fff;margin-top:1px}
+.sack.on{border-color:var(--ok);background:var(--ok-s,#EEF8EE)}
+.sack.on .bx{background:var(--ok);border-color:var(--ok)}
+.safile{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.safile .fchip{display:flex;align-items:center;gap:5px;border:1.5px solid var(--line);border-radius:9px;
+ padding:6px 9px;font-size:10.5px;font-weight:800;background:#fff}
+.safile .fchip .x{color:var(--faint);font-weight:900}
+.satype{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:900;border-radius:999px;padding:3px 8px}
+.satype.t1{background:var(--brand-s);color:var(--brand-ink)}
+.satype.t2{background:var(--vio-s,#F0ECFF);color:var(--vio)}
+.satype.t3{background:var(--sun-s);color:var(--sun-ink)}
 .vcmic{width:72px;height:72px;border-radius:50%;border:none;cursor:pointer;margin:6px auto;display:flex;
  align-items:center;justify-content:center;font-size:28px;background:var(--navy);color:#fff;
  box-shadow:0 8px 22px rgba(25,29,22,.25);transition:transform .15s}
@@ -746,6 +814,10 @@ body.g-hi .noteonly{display:none!important}
 </head>
 <body class="pc">
 
+<div id="demoBd"></div>
+<button id="demoChip" type="button" aria-label="데모 설정 열기">
+  <span class="gr">⚙</span><span class="st" id="demoSt">고등 · 모바일 · 기본관리</span>
+</button>
 <div class="bar">
   <div class="grp lab" data-lab="화면">
     <button data-v="home" class="on">🏠 스터디룸</button>
@@ -1472,6 +1544,46 @@ body.g-hi .noteonly{display:none!important}
   <div class="wrap">
     <div class="ban info"><span class="bi">🏫</span>
       <span>학교 평가계획의 수행평가는 <b>대단원 수준</b>까지만 공지됩니다. 세부 범위는 시행 약 1주 전에 긴급 공지돼요. 그 1주 안에 준비·작성·발표까지 끝내야 해서 <b>공지 감지 → 1주 역산</b> 구조로 갑니다.</span></div>
+
+    <div class="card">
+      <div class="ch"><h2>수행 추가하기</h2><span class="tag t-base">기본</span>
+        <span class="note">허브에 안 잡히는 과제도 직접</span></div>
+      <div class="mini" style="margin-bottom:9px">평가계획서에 없는 <b>심화탐구·창체·희망자 과제</b>는 학급 공지로만 내려와요. 공지를 그대로 넣으면 일정과 제출 조건이 자동으로 잡힙니다.</div>
+
+      <div class="saw">
+        <button data-saw="paste" class="on">📋 공지 붙여넣기</button>
+        <button data-saw="photo">📷 공지 사진</button>
+        <button data-saw="manual">✍️ 직접 입력</button>
+      </div>
+
+      <div data-sap="paste">
+        <textarea class="sata" id="saIn" placeholder="리로스쿨·학급 공지·안내문을 그대로 붙여넣으세요"></textarea>
+        <div class="vcrow" style="margin-top:8px">
+          <button class="btn line sm" data-sademo="1">예시 공지 넣기</button>
+          <button class="btn g sm" data-saparse="1">✨ 자동으로 읽기</button>
+        </div>
+      </div>
+
+      <div data-sap="photo" style="display:none">
+        <div style="border:1.5px dashed var(--line);border-radius:12px;padding:22px 12px;text-align:center">
+          <div style="font-size:30px">📷</div>
+          <div style="font-size:12.5px;font-weight:900;margin-top:6px">공지 캡쳐·안내문 사진 올리기</div>
+          <div class="mini" style="margin-top:5px">사진 속 글자를 읽어 아래 항목을 자동으로 채웁니다</div>
+          <button class="btn g sm" style="margin-top:10px" data-saparse="1">사진 선택</button>
+        </div>
+      </div>
+
+      <div data-sap="manual" style="display:none">
+        <div class="safs">
+          <div class="saf"><span class="fk">유형</span><span class="fv">교과 수행 / 심화탐구(희망자) / 창의적 체험활동</span></div>
+          <div class="saf"><span class="fk">과목·제목</span><span class="fv">예) 생활과윤리 · 학기말 심화탐구보고서</span></div>
+          <div class="saf"><span class="fk">마감</span><span class="fv">날짜·시각을 넣으면 역산 플랜이 생성됩니다</span></div>
+        </div>
+        <button class="btn g sm" style="width:100%;margin-top:9px" data-saparse="1">이 내용으로 만들기</button>
+      </div>
+
+      <div id="saOut" style="display:none;margin-top:12px"></div>
+    </div>
 
     <div class="cols">
       <div class="stk">
@@ -2297,8 +2409,21 @@ body.g-hi .noteonly{display:none!important}
   <button data-v="solve"><span class="ic">✏️</span>문제풀이</button>
   <button data-v="check"><span class="ic">🧩</span>점검</button>
   <button data-v="parent"><span class="ic">📈</span>리포트</button>
-  <button data-v="product"><span class="ic">🧾</span>상품</button>
+  <button id="moreTab" type="button"><span class="ic">☰</span>더보기</button>
 </nav>
+<div class="navsheet" id="navSheet">
+  <div class="nsh">메뉴</div>
+  <div class="nsg">관리</div>
+  <button class="nsb" data-v="suh" data-need="suh"><span class="ic">📝</span>수행 관리<span class="lk">+</span></button>
+  <button class="nsb" data-v="exam" data-need="exam"><span class="ic">📅</span>시험 관리<span class="lk">+</span></button>
+  <button class="nsb" data-v="note" data-need="note"><span class="ic">📓</span>필기 관리<span class="lk">+</span></button>
+  <div class="nsg">시연 전용</div>
+  <button class="nsb" data-v="teacher"><span class="ic">👨‍🏫</span>쌤 · 수업종료</button>
+  <button class="nsb" data-v="parent"><span class="ic">👪</span>학부모 보기</button>
+  <button class="nsb" data-v="admin"><span class="ic">🛠</span>어드민 튜터</button>
+  <button class="nsb" data-v="product"><span class="ic">🧾</span>상품 구조</button>
+  <button class="nsb" data-v="system"><span class="ic">🔗</span>연동 구조</button>
+</div>
 
 </div>
 </div>
@@ -2369,9 +2494,10 @@ body.g-hi .noteonly{display:none!important}
       el.classList.toggle('lock',!ADDONS[el.dataset.lock]);
     });
     /* 사이드 네비 잠금 표시 */
-    qsa('.side .nav[data-need]').forEach(function(el){
+    qsa('.side .nav[data-need], .navsheet .nsb[data-need]').forEach(function(el){
       var on=ADDONS[el.dataset.need];
       el.dataset.locked=on?'0':'1';
+      el.classList.toggle('locked',!on);
       var lk=el.querySelector('.lk'); if(lk) lk.textContent=on?'ON':'+';
     });
     /* 버튼 */
@@ -3278,6 +3404,174 @@ document.addEventListener('DOMContentLoaded',function(){renderRoomCard();paintNe
 renderRoomCard();paintNext();renderCharCard();
 </script>
 <script>
+/* 하단 '더보기' 시트 — 모바일에서 사이드바가 숨으므로 수행·시험·필기 진입을 여기서 */
+(function(){
+ var tab=document.getElementById('moreTab'), sheet=document.getElementById('navSheet'),
+     bd=document.getElementById('demoBd');
+ if(!tab||!sheet)return;
+ function open(v){ document.body.classList.toggle('navOpen',v);
+  tab.classList.toggle('on',v);
+  if(v)sync(); }
+ function sync(){} /* 잠금 표시는 본체 ADDONS 로직이 함께 갱신 */
+ tab.addEventListener('click',function(){ open(!document.body.classList.contains('navOpen')); });
+ if(bd)bd.addEventListener('click',function(){ open(false); });
+ document.addEventListener('keydown',function(e){ if(e.key==='Escape')open(false); });
+ sheet.addEventListener('click',function(e){
+  if(e.target.closest('.nsb'))setTimeout(function(){open(false);},130);
+ });
+ document.addEventListener('click',function(e){
+  if(e.target.closest('.bar [data-a]'))setTimeout(sync,60);
+ });
+ sync(); setTimeout(sync,400);
+})();
+/* 수행 공지 파싱 — 학교 공지에서 일정·제출조건을 뽑아낸다 */
+(function(){
+ var DEMO=['2026년 3학년 사회 3학년 생활과윤리 [학기말] 심화탐구보고서 제출 (희망자만)',
+  '담당교사: 권혜주, 정해영',
+  '제출 대상 : 희망자에 한해서 제출. 단, 보고서는 반드시 개인별로 작성해야 함.',
+  '제출 기간 : 2026-07-07(화) 09:00:00 ~ 2026-07-18(토) 23:55:00',
+  '제출 방법 : [리로스쿨] - [활동보고서] - [교과활동] - [사회]',
+  '제출 양식',
+  ' 1) 한글 또는 워드로 작성한 뒤 PDF 파일로 변환하여 리로스쿨로 제출',
+  ' 2) A4 3쪽 이내로 분량 제한',
+  ' 3) 보고서 마지막에 보고서 핵심 요약 3줄 작성',
+  '*관련 도서를 읽고, 발췌문을 제시하는 것을 강력하게 추천함',
+  '파일 첨부 : 30Mb 파일 5개 첨부 가능 / 마감 후 수정 금지'].join('\n');
+
+ function parse(t){
+  var o={},T=t.replace(/\s+/g,' ');
+  var m;
+  // 과목·제목
+  m=t.split('\n')[0]||''; o.title=m.trim().slice(0,70);
+  m=T.match(/(국어|영어|수학|사회|과학|한국사|생활과윤리|윤리와사상|통합사회|통합과학|물리|화학|생명과학|지구과학|정보|체육|음악|미술|일본어|중국어)/);
+  o.subject=m?m[1]:null;
+  // 유형
+  o.type = /심화\s*탐구|탐구\s*보고서|활동\s*보고서/.test(T) ? '심화탐구'
+         : /창의적\s*체험|자율\s*활동|동아리|진로\s*활동/.test(T) ? '창체' : '교과 수행';
+  o.optional = /희망자/.test(T);
+  o.group = /모둠별\s*제출\s*[:\s]*금지|개인별로\s*작성/.test(T) ? '개인별 (모둠 금지)' : (/모둠/.test(T)?'모둠 가능':null);
+  o.afterEdit = /마감\s*후\s*수정\s*[:\s]*금지/.test(T) ? '마감 후 수정 불가' : null;
+  // 마감 — 여러 표기 지원
+  var d=null;
+  if((m=T.match(/~\s*(20\d\d)[-.]\s*(\d{1,2})[-.]\s*(\d{1,2})\D{0,6}(\d{1,2}):(\d{2})/)))
+    d={y:+m[1],mo:+m[2],da:+m[3],hh:m[4],mi:m[5]};
+  else if((m=T.match(/제출\s*기한\s*[:：]?\s*(20\d\d)[.\-]\s*(\d{1,2})[.\-]\s*(\d{1,2})\D{0,6}(\d{1,2}):(\d{2})/)))
+    d={y:+m[1],mo:+m[2],da:+m[3],hh:m[4],mi:m[5]};
+  else if((m=T.match(/제출\s*기한\s*[:：]?\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/)))
+    d={y:new Date().getFullYear(),mo:+m[1],da:+m[2],hh:'23',mi:'59'};
+  o.due=d?(d.y+'-'+('0'+d.mo).slice(-2)+'-'+('0'+d.da).slice(-2)+' '+d.hh+':'+d.mi):null;
+  if(d){ var dt=new Date(d.y,d.mo-1,d.da), now=new Date();
+   now.setHours(0,0,0,0);
+   o.dday=Math.round((dt-now)/864e5);
+   o.past=o.dday<0; }
+  // 제출 경로
+  m=T.match(/제출\s*방법\s*[:：]?\s*([^\n]{3,60}?)(?:제출\s*양식|보고서\s*내용|$)/);
+  if(!m)m=T.match(/(리로스쿨[^\n]{0,40})/);
+  if(!m)m=T.match(/([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+)/);
+  o.how=m?m[1].trim():null;
+  // 제출 조건(체크리스트)
+  var c=[];
+  if((m=T.match(/A4\s*(\d+)\s*쪽/)))c.push('A4 '+m[1]+'쪽 이내로 맞췄나');
+  else if((m=T.match(/(\d)\s*[-~]\s*(\d)\s*장\s*분량/)))c.push(m[1]+'–'+m[2]+'장 분량에 맞췄나');
+  if((m=T.match(/(?:핵심\s*)?요약\s*(?:문\s*)?(\d+)\s*줄/))||(m=T.match(/(\d+)\s*줄[^\n]{0,8}요약/)))
+    c.push('마지막에 요약 '+m[1]+'줄을 넣었나');
+  if(/PDF/i.test(T))c.push('PDF로 변환해서 올리나');
+  if((m=T.match(/(\d+)\s*point|글자\s*크기[^\d]*(\d+)/)))c.push('글자 크기 '+(m[1]||m[2])+'pt로 맞췄나');
+  if(/파일명/.test(T))c.push('파일명 규칙(학년-반-번호-이름)을 지켰나');
+  if(/메일\s*제목/.test(T))c.push('메일 제목에 학년·반·번호·이름을 넣었나');
+  if(/개인별로\s*작성/.test(T))c.push('혼자 작성한 게 맞나 (모둠 금지)');
+  if(/발췌문|관련\s*도서/.test(T))c.push('관련 도서 발췌문을 넣었나 (권장)');
+  o.checks=c;
+  return o;
+ }
+
+ function row(k,v,hit){
+  return '<div class="saf'+(hit?' hit':'')+'"><span class="fk">'+k+'</span>'+
+   '<span class="fv'+(v?'':' miss')+'">'+(v||'공지에서 못 찾음 — 직접 입력')+'</span></div>';
+ }
+ function render(o){
+  var box=document.getElementById('saOut'); if(!box)return;
+  var tcls=o.type==='심화탐구'?'t2':(o.type==='창체'?'t3':'t1');
+  var h='<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px">'+
+   '<span class="satype '+tcls+'">'+o.type+'</span>'+
+   (o.optional?'<span class="satype t3">희망자 선택</span>':'')+
+   (o.dday==null?'':o.past?'<span class="satype t3">마감 지남 ('+(-o.dday)+'일 전)</span>'
+     :'<span class="satype t1">'+(o.dday===0?'오늘 마감':'D-'+o.dday)+'</span>')+
+   '<span style="font-size:10.5px;font-weight:800;color:var(--ink3);margin-left:auto">자동으로 읽은 결과</span></div>';
+  h+='<div class="safs">'+
+    row('과제명',o.title,!!o.title)+
+    row('과목',o.subject,!!o.subject)+
+    row('마감',o.due,!!o.due)+
+    row('제출 방법',o.how,!!o.how)+
+    row('제출 단위',o.group,!!o.group)+
+    (o.afterEdit?row('주의',o.afterEdit,true):'')+
+   '</div>';
+  if(o.checks.length){
+   h+='<div style="font-size:11.5px;font-weight:900;margin:13px 0 7px">제출 조건 — 내용과 무관하게 깎이는 것들</div>';
+   h+=o.checks.map(function(c,i){
+    return '<div class="sack" data-sack="'+i+'"><span class="bx">✓</span><span>'+c+'</span></div>';}).join('');
+   h+='<div class="mini" style="margin-top:6px">제출 직전에 이 목록이 다시 떠요. 하나라도 비면 알림이 갑니다.</div>';
+  }
+  h+='<div style="font-size:11.5px;font-weight:900;margin:13px 0 7px">자료 붙이기</div>'+
+   '<div class="safile">'+
+    '<span class="fchip">📄 공지 원문<span class="x">×</span></span>'+
+    '<span class="fchip">📷 수업 학습지<span class="x">×</span></span>'+
+    '<span class="fchip" style="border-style:dashed;color:var(--ink3)">＋ 추가</span>'+
+   '</div>'+
+   '<div class="mini" style="margin-top:6px">학습지·발표자료를 붙여두면 쌤이 그걸 보고 코칭해요.</div>';
+  h+='<button class="btn g sm" style="width:100%;margin-top:11px" data-saadd="1">📅 역산 플랜 만들고 플래너에 넣기</button>';
+  box.innerHTML=h; box.style.display='block';
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }
+
+ document.addEventListener('click',function(e){
+  var w=e.target.closest('[data-saw]');
+  if(w){ document.querySelectorAll('[data-saw]').forEach(function(b){b.classList.toggle('on',b===w);});
+   document.querySelectorAll('[data-sap]').forEach(function(d){
+    d.style.display=(d.dataset.sap===w.dataset.saw)?'':'none';});
+   return; }
+  if(e.target.closest('[data-sademo]')){ var t=document.getElementById('saIn');
+   if(t){t.value=DEMO;t.focus();} return; }
+  if(e.target.closest('[data-saparse]')){
+   var el=document.getElementById('saIn');
+   var txt=(el&&el.value.trim())?el.value:DEMO;
+   render(parse(txt));
+   if(typeof toast==='function')toast('공지에서 일정·제출조건을 읽었어요');
+   return; }
+  var ck=e.target.closest('[data-sack]');
+  if(ck){ ck.classList.toggle('on'); return; }
+  if(e.target.closest('[data-saadd]')){
+   if(typeof toast==='function')toast('플래너에 추가됐어요 — D-day 카드가 생성됩니다');
+   return; }
+ });
+ window.__saParse=parse;
+})();
+/* 좁은 화면: 데모 바를 바텀시트로, 평소엔 칩 하나 */
+(function(){
+ var chip=document.getElementById('demoChip'),bd=document.getElementById('demoBd');
+ if(!chip)return;
+ function label(){
+  var g=document.querySelector('.bar [data-g].on'),
+      d=document.querySelector('.bar [data-d].on'),
+      a=document.querySelector('.bar [data-a].on'),
+      st=document.getElementById('demoSt');
+  function t(el){return el?el.textContent.replace(/[^가-힣A-Za-z0-9]/g,'').trim():'';}
+  if(st)st.textContent=[t(g),t(d),t(a)].filter(Boolean).join(' · ')||'데모 설정';
+ }
+ function open(v){ document.body.classList.toggle('demoOpen',v); chip.classList.remove('pulse'); }
+ chip.addEventListener('click',function(){ open(!document.body.classList.contains('demoOpen')); });
+ if(bd)bd.addEventListener('click',function(){ open(false); });
+ document.addEventListener('keydown',function(e){ if(e.key==='Escape')open(false); });
+ document.addEventListener('click',function(e){
+  if(e.target.closest('.bar [data-g],.bar [data-d],.bar [data-a]')){ setTimeout(label,40); }
+  if(e.target.closest('.bar [data-v]')){ setTimeout(function(){open(false);},120); }
+ });
+ label(); setTimeout(label,300);
+ // 발견성: 좁은 화면 첫 진입에만 칩을 잠깐 펄스
+ try{ if(window.matchMedia('(max-width:760px)').matches && !sessionStorage.getItem('demoChipSeen')){
+   chip.classList.add('pulse'); sessionStorage.setItem('demoChipSeen','1'); } }catch(e){
+   if(window.matchMedia('(max-width:760px)').matches)chip.classList.add('pulse'); }
+})();
 /* 상단 데모 컨트롤 바의 실제 높이를 재서 --barH 로 — 줄바꿈 수가 달라져도 기기 화면이 안 잘림 */
 (function(){
  function setBarH(){
