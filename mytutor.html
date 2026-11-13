@@ -795,6 +795,8 @@ body.g-hi .noteonly{display:none!important}
 .safile .fchip{display:flex;align-items:center;gap:5px;border:1.5px solid var(--line);border-radius:9px;
  padding:6px 9px;font-size:10.5px;font-weight:800;background:#fff}
 .safile .fchip .x{color:var(--faint);font-weight:900}
+button.fchip{font-family:inherit;font-size:10.5px;font-weight:800;line-height:1.3;
+ color:var(--navy);border-style:dashed;border-color:var(--navy);cursor:pointer}
 .satype{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:900;border-radius:999px;padding:3px 8px}
 .satype.t1{background:var(--brand-s);color:var(--brand-ink)}
 .satype.t2{background:var(--vio-s,#F0ECFF);color:var(--vio)}
@@ -1025,6 +1027,16 @@ body.g-hi .noteonly{display:none!important}
           <div class="dn"><div class="dd d-ma">D-20</div>
             <div><div class="dt">전국연합 학력평가</div><div class="ds">학교 공지 기준</div></div></div>
           <span class="db d-ma">모의고사</span>
+        </div>
+        <div class="ddc" data-dd="hi_g">
+          <div class="dn"><div class="dd d-ko">D-16</div>
+            <div><div class="dt">자유 주제 발표</div><div class="ds">자원하는 사람만 — 수업 중 10분</div></div></div>
+          <span class="db d-ko">선택 · 세특</span>
+        </div>
+        <div class="ddc" data-dd="hi_f">
+          <div class="dn"><div class="dd d-sc">D-9</div>
+            <div><div class="dt">심화탐구보고서</div><div class="ds">희망자만 — 안 해도 감점 없음</div></div></div>
+          <span class="db d-sc">선택 · 세특</span>
         </div>
         <div class="ddc" data-dd="hi_e">
           <div class="dn"><div class="dd d-ko">D-35</div>
@@ -2669,6 +2681,13 @@ body.g-hi .noteonly{display:none!important}
     {d:'D-3',t:'주장·근거2·반론1 개요 짜기',done:false,tip:'150단어엔 이 넷만 들어가. 개요는 외워갈 수 있어.',out:'개요 4줄'},
     {d:'D-2',t:'원고 없이 2분 말해보기',done:false,tip:'손으로 쓰는 게 아니라 <b>머리에 든 걸</b> 꺼내는 시험이야.',out:'2분 녹음'},
     {d:'D-0',t:'수업시간 작성',done:false,tip:'같은 단어 4번 넘게 반복하면 어휘에서 깎여.',out:'제출 확인'}]},
+  hi_g:{nm:'자유 발표 안내문', sub:'자원자 · 10분 · 12/2',
+   facts:['자원자에 한해 발표 — 선착순 배정','발표 시간 10분 (초과 시 중단)','슬라이드 자율 · 제출 의무 없음','질의응답 5분 포함','발표 후 교사 메모가 세특 재료가 됨'],
+   steps:null},
+  hi_f:{nm:'생활과윤리 심화탐구 안내문', sub:'희망자 · A4 3쪽 · PDF · 7/18 23:55',
+   facts:['희망자에 한해 제출 — 안 해도 감점 없음','반드시 개인별 작성 (모둠 불가)','한글/워드로 쓴 뒤 PDF로 변환해 리로스쿨 제출','A4 3쪽 이내',
+    '보고서 마지막에 핵심 요약 3줄 필수','관련 도서 발췌문 제시 강력 추천','마감 후 수정 불가'],
+   steps:null},
   hi_b:{nm:'사회과 탐구보고서 안내문', sub:'4단원 세계화 · A4 2쪽 · 출처 필수',
    facts:['범위: 4단원 세계화의 양상과 문제','분량: A4 2쪽 이내','출처 2건 이상 명시 필수','개인별 작성 (모둠 불가)'],
    steps:null},
@@ -2770,7 +2789,33 @@ body.g-hi .noteonly{display:none!important}
   hi_d:{k:'exam',t:'전국연합 학력평가',subj:'전과목',date:'학교 공지 기준',pts:'모의고사',share:'유형 대비',
     unit:'범위 아님 — 유형으로 준비',notice:'학교가 공지한 날짜를 그대로 따름',
     steps:[{t:'지난 학평 오답 유형 분석 (−30P)',done:false},{t:'취약 유형 집중 세트 (−20P)',done:false}],reh:[]},
-  hi_e:{k:'perf',t:'교과 세특 마감',subj:'전과목',date:'12/20 마감',pts:'학생부',share:'D-35',
+  hi_g:{k:'perf',optional:true,t:'자유 주제 발표',subj:'생활과윤리',
+    date:'12/2(화) 수업 중 10분',pts:'점수 없음',share:'자원 · 세특',
+    unit:'단원 어디서든 주제를 골라도 됨',notice:'자원자 순서대로 배정 — 선착순 마감',
+    vt:['pres','arg'],
+    vq:['네 주장을 한 문장으로 말해봐','왜 그렇게 생각하는지 근거 두 개는?','반대하는 사람은 뭐라고 할까?'],
+    steps:[
+     {d:'D-16',t:'자원할지 정하고 자리 잡기',done:true,tip:'<b>선착순이야.</b> 늦게 정하면 자리가 없어서 못 해. 할 거면 오늘 신청해.',out:'신청 여부 + 날짜 확정'},
+     {d:'D-14',t:'주제 고르기 — 수업에서 걸렸던 것으로',done:false,tip:'인터넷에서 찾은 주제 말고 <b>수업 중에 이상하다고 느낀 것</b>으로. 그래야 질문이 들어와도 답해.',out:'주제 1문장 + 고른 이유'},
+     {d:'D-10',t:'주장·근거 2개·반론 1개 짜기',done:false,tip:'10분이면 이 넷이 끝이야. 더 넣으면 아무것도 안 남아.',out:'개요 4줄'},
+     {d:'D-6',t:'슬라이드는 5장 이내로',done:false,tip:'장수가 많을수록 읽게 돼. 읽으면 발표가 아니라 낭독이야.',out:'슬라이드 5장'},
+     {d:'D-3',t:'원고 없이 리허설 녹음',done:false,tip:'아래 리허설에서 시간·군더더기를 재. 원고를 외우지 말고 <b>구조</b>를 외워.',out:'녹음 2회 이상'},
+     {d:'D-1',t:'예상 질문 3개 준비',done:false,tip:'발표보다 <b>질의응답</b>에서 갈려. 선생님이 뭘 물을지 적어봐.',out:'예상 질문·답 3쌍'},
+     {d:'D-0',t:'발표 + 끝나고 한 줄 기록',done:false,tip:'뭘 물었고 어떻게 답했는지 적어둬. 세특 문장 재료야.',out:'질의 기록'}],
+    reh:[{n:1,sec:'12분 40초',fil:'어… 11회',note:'2분 40초 초과 — 슬라이드 2장 덜어내기'}]},
+  hi_f:{k:'perf',optional:true,t:'생활과윤리 심화탐구보고서',subj:'생활과윤리',
+    date:'7/18(토) 23:55 마감',pts:'점수 없음',share:'희망자 선택',
+    unit:'1학기 주제발표 수행과 연계',notice:'희망자에 한해 제출 · 개인별 작성',
+    vt:['arg','read'],
+    vq:['왜 이 주제를 더 파보고 싶었어?','발표 때 뭐가 아쉬웠는데?','책에서 가져온 건 어디까지야?'],
+    steps:[
+     {d:'D-9',t:'할지 말지 먼저 정하기',done:true,tip:'안 해도 점수는 안 깎여. 대신 <b>하면 세특에 들어가고 안 하면 아무것도 안 남아</b>. 이게 차이가 벌어지는 자리야.',out:'한다/안 한다 + 이유'},
+     {d:'D-8',t:'1학기 발표에서 아쉬웠던 것 꺼내기',done:false,tip:'공지가 <b>그때 발표와 연계하라</b>고 했어. 새 주제를 찾지 말고 그때 못 다룬 걸 파.',out:'아쉬웠던 점 1개'},
+     {d:'D-6',t:'관련 도서 1권에서 발췌문 뽑기',done:false,tip:'공지에 발췌문 제시를 <b>강력 추천</b>한다고 돼 있어. 추천은 사실상 채점 기준이야.',out:'발췌문 2개 + 쪽수'},
+     {d:'D-4',t:'본문 쓰기 (A4 3쪽 이내)',done:false,tip:'책 주장과 네 적용을 섞지 마. 섞이면 읽는 사람이 네 생각을 못 찾아.',out:'본문 초안'},
+     {d:'D-2',t:'핵심 요약 3줄 쓰기',done:false,tip:'요약 3줄이 <b>필수 항목</b>이야. 빠지면 내용과 무관하게 깎여.',out:'요약 3줄'},
+     {d:'D-0',t:'PDF 변환 후 리로스쿨 제출',done:false,tip:'마감 후 수정이 안 돼. 올리기 전에 분량·요약·파일형식 확인.',out:'제출 확인'}],reh:[]},
+  hi_e:{k:'perf',meta:true,t:'교과 세특 마감',subj:'전과목',date:'12/20 마감',pts:'학생부',share:'D-35',
     unit:'마감 뒤 활동은 반영 안 됨',notice:'마감 역산이 수행 역산보다 상위 일정',
     steps:[{t:'영어 영작 수행 (D-3 진행 중)',done:false},{t:'사회 탐구보고서 (D-7)',done:false},{t:'교과별 발표 1회 이상',done:false}],reh:[]}
  };
@@ -2797,7 +2842,10 @@ body.g-hi .noteonly{display:none!important}
      '<button class="'+(PRO?'on':'')+'" data-pro="1">관리 ON</button></div>';
 
   /* 0. 학교 자료 — 세부 공지가 뜨면 여기에 올린다 */
-  if(perf){
+  if(perf && c.optional){
+   h+='<div class="ban warn"><span class="bi">🙋</span><span>이건 <b>희망자만</b> 내는 과제예요. 안 내도 점수는 안 깎입니다 — 대신 <b>낸 사람만 세특에 한 줄이 생겨요.</b> 할지 말지부터 정하는 게 첫 단계입니다.</span></div>';
+  }
+  if(perf && !c.meta){
    var waiting=!!c.waiting;
    h+='<div class="pf-sec"><div class="pf-h">학교 자료'+
       '<span class="auto-b">⚙️ 올리면 자동 분석</span>'+
@@ -2811,7 +2859,7 @@ body.g-hi .noteonly{display:none!important}
    h+='<div class="safile">'+
      ((CFILES[CUR]||[]).map(function(f){
        return '<span class="fchip">'+f.ic+' '+esc(f.nm)+'<span class="x">×</span></span>';}).join(''))+
-     '<button class="fchip" data-upl="'+CUR+'" style="border-style:dashed;color:var(--navy);cursor:pointer;font:inherit">＋ 유인물 올리기</button>'+
+     '<button class="fchip" type="button" data-upl="'+CUR+'">＋ 유인물 올리기</button>'+
      '</div>';
    if(c.facts&&c.facts.length){
     h+='<div style="font-size:11.5px;font-weight:900;margin:12px 0 6px">유인물에서 확인된 것</div>';
@@ -2959,8 +3007,13 @@ body.g-hi .noteonly{display:none!important}
 
  document.addEventListener('click',function(e){
   var c=e.target.closest('[data-dd]');
-  if(c&&c.dataset.dd==='__new__'){ CUR='__new__'; newForm();
-   var p=el('ddP'); if(p)p.classList.add('on'); return; }
+  if(c&&c.dataset.dd==='__new__'){
+   CUR='__new__';
+   el('ddT').textContent='내가 만든 탐구';
+   el('ddS').textContent='수업 중 생긴 의문 · 마감은 내가 정함';
+   newForm();
+   el('ddOvl').classList.add('show');
+   return; }
   if(c){open(c.dataset.dd);return;}
   if(!CUR)return;
   /* 유인물 올리기 → 기존 일정이 세분화된다 */
@@ -3013,9 +3066,9 @@ body.g-hi .noteonly{display:none!important}
      {d:'D-'+Math.max(1,Math.round(dd*0.4)),t:'내가 확인할 수 있는 범위로 줄이기',done:false,tip:'고등학생이 검증 가능한 크기까지 줄여. 큰 질문은 <b>실패가 아니라 미완</b>으로 끝나.',out:'검증 가능한 소질문 1개'},
      {d:'D-'+Math.max(1,Math.round(dd*0.2)),t:'정리해서 쓰기',done:false,tip:'알게 된 것과 <b>아직 모르는 것</b>을 같이 써. 모르는 걸 아는 게 실력이야.',out:'보고서 1쪽'},
      {d:'D-0',t:'쌤한테 보여주고 세특 연계 묻기',done:false,tip:'자발 탐구는 <b>교사가 알아야</b> 기록돼. 보여주는 것까지가 탐구야.',out:'교사 피드백 기록'}]};
-   CUR=key;
+   open(key);
    if(typeof toast==='function')toast('플래너에 추가했어요 — D-'+dd+' 역산 플랜 '+DD[key].steps.length+'단계');
-   render(); return;
+   return;
   }
   var ad=e.target.closest('#ddB [data-add]');
   if(ad){ if(window.__ADDONS){window.__ADDONS[ad.dataset.add]=true; window.__ADDONS.base=true;}
